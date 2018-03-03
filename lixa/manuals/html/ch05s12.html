@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with MySQL, PostgreSQL &amp; Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s11.html" title="An example with MySQL &amp; PostgreSQL" /><link rel="next" href="ch05s13.html" title="An example with two MySQL servers" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with MySQL, PostgreSQL &amp; Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s11.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s13.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example10_mys_pql_ora"></a>An example with MySQL, PostgreSQL &amp; Oracle</h2></div></div></div>
+    
+    <div class="figure"><a id="develop10"></a><p class="title"><strong>Figure 5.10. Deploy model of an example showing a distributed transaction with
+	MySQL, PostgreSQL and Oracle</strong></p><div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../images/LIXA_Development_10.png" alt="Deploy model of an example showing a distributed transaction with MySQL, PostgreSQL and Oracle" /></div>
+    </div></div><br class="figure-break" />
+    <p>
+      This example shows as
+      you can implement DTP (Distributed Transaction Processing) with three
+      Resource Managers (MySQL, PostgreSQL and Oracle)
+      coordinated by the LIXA Transaction Manager.
+      It's strongly suggested you have played with the
+      examples previously shown in this chapter (see
+      <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs">Chapter 5, <em>Developing C Application Programs</em></a>) before starting this more complex one.
+    </p>
+    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+	If you did not yet installed the software provided by MySQL,
+	please refer to the official MySQL site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to MySQL technology: it is assumed you already installed and
+	configured the database.
+      </p>
+      <p>
+	If you did not yet installed the software provided by PostgreSQL,
+	please refer to the official PostgreSQL site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to PostgreSQL technology: it is assumed you already installed and
+	configured the database.
+      </p>
+      <p>
+	If you did not yet installed the software provided by Oracle,
+	please refer to the official Oracle site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to Oracle technology: it is assumed you already installed and
+	configured the database.
+      </p>
+    </div>
+    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+      <p>
+	The LIXA software must be configured to support the MySQL, 
+	PostgreSQL and Oracle resource managers as explained in 
+	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
+	As a little hint, you should configure LIXA as below:
+	</p><pre class="screen">
+./configure --with-mysql \
+&gt; --with-postgresql-include=/usr/include/postgresql --with-postgresql-lib=/usr/lib \
+&gt; --with-oracle=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
+	</pre><p>
+	Please don't forget you must compile and install every time you
+	re-configure.
+      </p>
+    </div>
+    <p>
+      Please follow the instructions explained 
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s10.html#Development_setup_MySQL_environment" title="Set-up MySQL environment">the section called “Set-up MySQL environment”</a>
+	    to set-up a running environment for MySQL server
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s07.html#Development_setup_PostgreSQL_environment" title="Set-up PostgreSQL environment">the section called “Set-up PostgreSQL environment”</a>
+	    to set-up a running environment for PostgreSQL server
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s04.html#Development_setup_Oracle_environment" title="Set-up the Oracle environment (server side)">the section called “Set-up the Oracle environment (server side)”</a>
+	    to set-up a running environment for Oracle Database Server
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
+	    to start up the LIXA state server
+	</p></li></ul></div><p>
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72780384"></a>Build the client program</h3></div></div></div>
+      
+      <p>
+	Prepare the client (Application Program) using the below commands
+	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
+	using <span class="command"><strong>\</strong></span> to help readability, but you may use
+	a single line):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ mkdir tmp
+tiian@ubuntu:~$ cd tmp
+tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example10_mys_pql_ora.c .
+tiian@ubuntu:~/tmp$ gcc example10_mys_pql_ora.c $(/opt/lixa/bin/lixa-config -c -f -m -p -d) \
+&gt; $(mysql_config --include --libs_r) -I/usr/include/postgresql -lpq \
+&gt; -I/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/rdbms/public \
+&gt; -L/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib -lclntsh -lnnz10 \  &gt; -o example10_mys_pql_ora
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ldd example10_mys_pql_ora
+        linux-gate.so.1 =&gt;  (0xb774b000)
+        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb7730000)
+        liblixapq.so.0 =&gt; /opt/lixa/lib/liblixapq.so.0 (0xb7729000)
+        liblixamy.so.0 =&gt; /opt/lixa/lib/liblixamy.so.0 (0xb7720000)
+        libmysqlclient_r.so.15 =&gt; /usr/lib/libmysqlclient_r.so.15 (0xb7530000)
+        libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0xb7511000)
+        libclntsh.so.10.1 =&gt; not found
+        libnnz10.so =&gt; not found
+        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb73c1000)
+        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb73bd000)
+        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb73b9000)
+        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb73b4000)
+        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb73ab000)
+        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb72fa000)
+        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb71d9000)
+        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb71c4000)
+        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb719f000)
+        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb7187000)
+        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb7155000)
+        libnsl.so.1 =&gt; /lib/tls/i686/cmov/libnsl.so.1 (0xb713c000)
+        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb7127000)
+        libssl.so.0.9.8 =&gt; /usr/lib/i686/cmov/libssl.so.0.9.8 (0xb70e1000)
+        libcrypto.so.0.9.8 =&gt; /usr/lib/i686/cmov/libcrypto.so.0.9.8 (0xb6f9f000)
+        libkrb5.so.3 =&gt; /usr/lib/libkrb5.so.3 (0xb6f12000)
+        libcom_err.so.2 =&gt; /lib/libcom_err.so.2 (0xb6f0e000)
+        libgssapi_krb5.so.2 =&gt; /usr/lib/libgssapi_krb5.so.2 (0xb6ee5000)
+        libldap_r-2.4.so.2 =&gt; /usr/lib/libldap_r-2.4.so.2 (0xb6ea5000)
+        /lib/ld-linux.so.2 (0xb774c000)
+        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb6e7e000)
+        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb6e7a000)
+        libk5crypto.so.3 =&gt; /usr/lib/libk5crypto.so.3 (0xb6e56000)
+        libkrb5support.so.0 =&gt; /usr/lib/libkrb5support.so.0 (0xb6e4e000)
+        libkeyutils.so.1 =&gt; /lib/libkeyutils.so.1 (0xb6e4b000)
+        libresolv.so.2 =&gt; /lib/tls/i686/cmov/libresolv.so.2 (0xb6e38000)
+        liblber-2.4.so.2 =&gt; /usr/lib/liblber-2.4.so.2 (0xb6e2b000)
+        libsasl2.so.2 =&gt; /usr/lib/libsasl2.so.2 (0xb6e13000)
+        libgnutls.so.13 =&gt; /usr/lib/libgnutls.so.13 (0xb6d9d000)
+        libtasn1.so.3 =&gt; /usr/lib/libtasn1.so.3 (0xb6d8d000)
+        libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb6d40000)
+        libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb6d3c000)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72790624"></a>Set-up LIXA environment</h3></div></div></div>
+      
+      <p>
+	There are five unresolved references that can be fixed setting up
+	the environment properly:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
+
+tiian@ubuntu:~/tmp$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
+tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib:
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Check again the executable:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ldd example10_mys_pql_ora                                           linux-gate.so.1 =&gt;  (0xb77c3000)
+        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb77a8000)
+        liblixapq.so.0 =&gt; /opt/lixa/lib/liblixapq.so.0 (0xb77a1000)
+        liblixamy.so.0 =&gt; /opt/lixa/lib/liblixamy.so.0 (0xb7798000)
+        libmysqlclient_r.so.15 =&gt; /usr/lib/libmysqlclient_r.so.15 (0xb75a8000)
+        libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0xb7589000)
+        libclntsh.so.10.1 =&gt; /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib/libclntsh.so.10.1 (0xb67d5000)
+        libnnz10.so =&gt; /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib/libnnz10.so (0xb65d0000)
+        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb6480000)
+        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb647c000)
+        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb6478000)
+        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb6473000)
+        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb646a000)
+        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb63b9000)
+        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb6298000)
+        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb6283000)
+        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb625e000)
+        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb6246000)
+        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb6214000)
+        libnsl.so.1 =&gt; /lib/tls/i686/cmov/libnsl.so.1 (0xb61fb000)
+        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb61e6000)
+        libssl.so.0.9.8 =&gt; /usr/lib/i686/cmov/libssl.so.0.9.8 (0xb61a0000)
+        libcrypto.so.0.9.8 =&gt; /usr/lib/i686/cmov/libcrypto.so.0.9.8 (0xb605e000)
+        libkrb5.so.3 =&gt; /usr/lib/libkrb5.so.3 (0xb5fd1000)
+        libcom_err.so.2 =&gt; /lib/libcom_err.so.2 (0xb5fcd000)
+        libgssapi_krb5.so.2 =&gt; /usr/lib/libgssapi_krb5.so.2 (0xb5fa4000)
+        libldap_r-2.4.so.2 =&gt; /usr/lib/libldap_r-2.4.so.2 (0xb5f64000)
+        /lib/ld-linux.so.2 (0xb77c4000)
+        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb5f3d000)
+        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb5f39000)
+        libk5crypto.so.3 =&gt; /usr/lib/libk5crypto.so.3 (0xb5f15000)
+        libkrb5support.so.0 =&gt; /usr/lib/libkrb5support.so.0 (0xb5f0d000)
+        libkeyutils.so.1 =&gt; /lib/libkeyutils.so.1 (0xb5f0a000)
+        libresolv.so.2 =&gt; /lib/tls/i686/cmov/libresolv.so.2 (0xb5ef7000)
+        liblber-2.4.so.2 =&gt; /usr/lib/liblber-2.4.so.2 (0xb5eea000)
+        libsasl2.so.2 =&gt; /usr/lib/libsasl2.so.2 (0xb5ed2000)
+        libgnutls.so.13 =&gt; /usr/lib/libgnutls.so.13 (0xb5e5c000)
+        libtasn1.so.3 =&gt; /usr/lib/libtasn1.so.3 (0xb5e4c000)
+        libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb5dff000)
+        libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb5dfb000)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Set-up the necessary environment variables:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=MYS_STA_PQL_STA_ORA_DYN
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+MYS_STA_PQL_STA_ORA_DYN
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	It is suggested to set the necessary environment variables in your 
+	profile if you are going to execute the programs many times.
+	This is the list of the suggested variables:
+	<code class="varname">LD_LIBRARY_PATH</code>,
+	<code class="varname">LIXA_PROFILE</code>,
+	<code class="varname">ORACLE_HOME</code>,
+	<code class="varname">ORACLE_SID</code>,
+	<code class="varname">PATH</code>.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72804256"></a>Some checks before program execution</h3></div></div></div>
+      
+      <p>
+	We set <code class="varname">LIXA_PROFILE</code> to value
+	<span class="quote">“<span class="quote">MYS_STA_PQL_STA_ORA_DYN</span>”</span>, looking at
+	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
+	</p><pre class="screen">
+    &lt;profile name="MYS_STA_PQL_STA_ORA_DYN"&gt;
+      &lt;sttsrvs&gt;
+        &lt;sttsrv&gt;local_1&lt;/sttsrv&gt;
+      &lt;/sttsrvs&gt;
+      &lt;rsrmgrs&gt;
+        &lt;rsrmgr&gt;MySQL_stareg&lt;/rsrmgr&gt;
+        &lt;rsrmgr&gt;PostgreSQL_stareg&lt;/rsrmgr&gt;
+        &lt;rsrmgr&gt;OracleXE_dynreg&lt;/rsrmgr&gt;
+      &lt;/rsrmgrs&gt;
+    &lt;/profile&gt;
+	</pre><p>
+	the profile references three Resource Managers:
+	<span class="quote">“<span class="quote">MySQL_stareg</span>”</span>, <span class="quote">“<span class="quote">PostgreSQL_stareg</span>”</span> 
+	and <span class="quote">“<span class="quote">OracleXE_dynreg</span>”</span>,
+	looking again at the config file:
+	</p><pre class="screen">
+    &lt;rsrmgr name="MySQL_stareg" switch_file="/opt/lixa/lib/switch_mysql_stareg.so" xa_open_info="host=localhost,user=lixa,passwd=,db=lixa,client_flag=0" xa_close_info="" /&gt;
+    &lt;rsrmgr name="PostgreSQL_stareg" switch_file="/opt/lixa/lib/switch_postgresql_stareg.so" xa_open_info="dbname=testdb" xa_close_info="" /&gt;
+    &lt;rsrmgr name="OracleXE_dynreg" switch_file="/opt/lixa/lib/switch_oracle_dynreg.so" xa_open_info="Oracle_XA+Acc=P/hr/hr+SesTm=30+LogDir=/tmp+threads=true+DbgFl=7+Loose_Coupling=true" xa_close_info="" /&gt;
+	</pre><p>
+	we can discover how our application will access the resource
+	managers
+	<a href="#ftn.idp72809936" class="footnote" id="idp72809936"><sup class="footnote">[38]</sup></a>
+	<a href="#ftn.idp72812304" class="footnote" id="idp72812304"><sup class="footnote">[39]</sup></a>
+	<a href="#ftn.idp72814128" class="footnote" id="idp72814128"><sup class="footnote">[40]</sup></a>. 
+      </p>
+      <p>
+	Verify no (Oracle) trace file exists:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
+ls: cannot access /tmp/xa*: No such file or directory
+	</pre><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72817456"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div>
+      
+      <p>
+	It is suggested to open four different terminals: 
+	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> MySQL database,
+	the second one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database,
+	the third one connected to Oracle database and the
+	fourth one pointing to the directory where the compiled program 
+	example10_mys_pql_ora lives.
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ mysql -h localhost -u lixa lixa
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 37
+Server version: 5.0.51a-3ubuntu5.8 (Ubuntu)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql&gt;
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ psql testdb
+Welcome to psql 8.3.15, the PostgreSQL interactive terminal.
+
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+
+testdb=&gt;
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
+tiian@ubuntu:~$ sqlplus "hr/hr"                                                 
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue May 3 21:52:06 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt;
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ls -la
+total 152
+drwxr-xr-x  2 tiian tiian  4096 2011-11-11 21:06 .
+drwxr-xr-x 40 tiian tiian  4096 2011-11-11 15:47 ..
+-rwxr-xr-x  1 tiian tiian 12317 2011-11-11 21:06 example10_mys_pql_ora
+-rw-r--r--  1 tiian tiian  8422 2011-11-11 21:05 example10_mys_pql_ora.c
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Check the content of the MySQL table (<span class="quote">“<span class="quote">authors</span>”</span>):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+mysql&gt; SELECT * FROM authors;
+Empty set (0.02 sec)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Check the content of the PostgreSQL table (<span class="quote">“<span class="quote">AUTHORS</span>”</span>):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from AUTHORS;
+ id | last_name | first_name
+----+-----------+------------
+(0 rows)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Check the content of the Oracle table (<span class="quote">“<span class="quote">COUNTRIES</span>”</span>):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Insert a row in all the tables and check the contents of the tables
+	after the transaction execution:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example10_mys_pql_ora insert
+Inserting a row in MySQL table...
+Inserting a row in PostgreSQL table...
+Inserting a row in Oracle table...
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Now you can verify the content of the tables after the transaction:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+mysql&gt; SELECT * FROM authors;
++----+-----------+------------+
+| id | last_name | first_name |
++----+-----------+------------+
+|  1 | Foo       | Bar        |
++----+-----------+------------+
+1 row in set (0.00 sec)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from AUTHORS;
+ id | last_name | first_name
+----+-----------+------------
+  1 | Foo       | Bar
+(1 row)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+CO COUNTRY_NAME                              REGION_ID
+-- ---------------------------------------- ----------
+RS Repubblica San Marino                             1
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	With the opposite command you can remove the rows from the tables:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example10_mys_pql_ora delete
+Deleting a row from MySQL  table...
+Deleting a row from PostgreSQL table...
+Deleting a row from Oracle table...
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	and check the content of the tables again:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+mysql&gt; SELECT * FROM authors;
+Empty set (0.00 sec)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from AUTHORS;
+ id | last_name | first_name
+----+-----------+------------
+(0 rows)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	We can verify the dynamic registration behavior of Oracle:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
+tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
+0x00002000
+tiian@ubuntu:~/tmp$ ./example10_mys_pql_ora insert 2&gt;&amp;1 | grep ax_reg
+2011-11-11 21:39:40.850356 [23176/3051161344] ax_reg: rmid=2, xid=0xbfecc68c, flags=0x0
+2011-11-11 21:39:40.850451 [23176/3051161344] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.0600c467d21b42b38f1c89d912fc125d.8be5bdb35ba638bb997258e6bd8b9d88' will be returned
+2011-11-11 21:39:40.850565 [23176/3051161344] ax_reg: sending 153 bytes to the server for step 8
+2011-11-11 21:39:40.850602 [23176/3051161344] ax_reg/excp=7/ret_cod=0/errno=0
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	We can check the static registration behavior of Oracle with a 
+	different profile:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=MYS_STA_PQL_STA_ORA_STA
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+MYS_STA_PQL_STA_ORA_STA
+tiian@ubuntu:~/tmp$ ./example10_mys_pql_ora delete 2&gt;&amp;1 | grep xa_start
+2011-11-11 21:41:52.953050 [23204/3050981120] lixa_xa_start
+[...]
+2011-11-11 21:41:53.005001 [23204/3050981120] lixa_xa_start: xa_start_entry(xid, 0, 0x0) = 0
+2011-11-11 21:41:53.007040 [23204/3050981120] lixa_xa_start: xa_start_entry(xid, 1, 0x0) = 0
+2011-11-11 21:41:53.009927 [23204/3050981120] lixa_xa_start: xa_start_entry(xid, 2, 0x0) = 0
+2011-11-11 21:41:53.010004 [23204/3050981120] lixa_xa_start: sending 352 bytes to the server for step 24
+2011-11-11 21:41:53.010095 [23204/3050981120] lixa_xa_start/excp=10/ret_cod=0/errno=0
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	and check the content of the tables again:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+mysql&gt; SELECT * FROM authors;
+Empty set (0.00 sec)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from AUTHORS;
+ id | last_name | first_name
+----+-----------+------------
+(0 rows)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	The activity of the Oracle database can be analyzed in the trace file:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ls -la /tmp/xa_NULL11112011.trc
+-rw-r--r-- 1 tiian tiian 22112 2011-11-11 21:47 /tmp/xa_NULL11112011.trc
+	  </pre></td></tr></tbody>
+	</table></div><p>
+      </p>
+    </div>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72809936" class="footnote">
+	  <p><a href="#idp72809936" class="para"><sup class="para">[38] </sup></a>
+	    The content of <code class="constant">xa_open_info</code> for MySQL is
+	    described in 
+	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
+	  </p>
+	</div><div id="ftn.idp72812304" class="footnote">
+	  <p><a href="#idp72812304" class="para"><sup class="para">[39] </sup></a>
+	    The content of <code class="constant">xa_open_info</code> is passed to
+	    <code class="function">PQconnectdb</code> function: you can refer to 
+	    PostgreSQL official
+	    documentation to discover what you can pass to this function.
+	    Please pay attention the <code class="varname">xa_open_info</code> can
+	    contain a maximum of 255 characters: this limitation is
+	    documented in [<a class="citation" href="bi01.html#idp74222592"><span class="citation">XAspec</span></a>].
+	  </p>
+	</div><div id="ftn.idp72814128" class="footnote">
+	  <p><a href="#idp72814128" class="para"><sup class="para">[40] </sup></a>
+	    The content of <code class="constant">xa_open_info</code> string is
+	    described in chapter 15 "Developing Applications with Oracle XA"
+	    of the "Oracle Database Application Developer's Guide"
+	    manual; please refer to the documentation published by
+	    Oracle Corporation for further details.
+	  </p>
+	</div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s11.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s13.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL &amp; PostgreSQL </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with two MySQL servers</td></tr></table></div></body></html>

@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle and IBM DB2</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s05.html" title="An example with IBM DB2 DBMS" /><link rel="next" href="ch05s07.html" title="An example with PostgreSQL" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle and IBM DB2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s05.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s07.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp72116256"></a>An example with Oracle and IBM DB2</h2></div></div></div>
+    
+    <div class="figure"><a id="develop4"></a><p class="title"><strong>Figure 5.4. Deploy model of an example showing a distributed transaction with Oracle and IBM DB2</strong></p><div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../images/LIXA_Development_4.png" alt="Deploy model of an example showing a distributed transaction with Oracle and IBM DB2" /></div>
+    </div></div><br class="figure-break" />
+    <p>
+      This example should be considered a milestone because it shows as
+      you can implement DTP (Distributed Transaction Processing) with two
+      Resource Managers (Oracle Database Server and IBM DB2 DBMS)
+      coordinated by the LIXA Transaction Manager.
+      It's strongly suggested you have played with the
+      examples previously shown in this chapter (see
+      <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs">Chapter 5, <em>Developing C Application Programs</em></a>) before starting this more complex one.
+    </p>
+    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+	If you did not yet installed the software provided by Oracle,
+	please refer to the official Oracle site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to Oracle technology: it is assumed you already installed and
+	configured the database.
+      </p>
+      <p>
+	If you did not yet installed the software provided by IBM,
+	please refer to the official IBM site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to IBM DB2 technology: it is assumed you already installed and
+	configured the database.
+      </p>
+    </div>
+    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+      <p>
+	The LIXA software must be configured to support the Oracle Database
+	Server and the IBM DB2 resource managers as explained in 
+	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
+	As a little hint, you should configure LIXA as below:
+	</p><pre class="screen">
+./configure --with-oracle=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server --with-ibmdb2=/opt/ibm/db2/V9.7
+	</pre><p>
+	Please don't forget you must compile and install every time you
+	re-configure.
+      </p>
+    </div>
+    <p>
+      Please follow the instructions explained 
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s04.html#Development_setup_Oracle_environment" title="Set-up the Oracle environment (server side)">the section called “Set-up the Oracle environment (server side)”</a>
+	    to set-up a running environment for Oracle Database Server
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s05.html#Development_setup_DB2_environment" title="Set-up DB2 environment">the section called “Set-up DB2 environment”</a>
+	    to set-up a running environment for IBM DB2 server
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
+	    to start up the LIXA state server
+	</p></li></ul></div><p>
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72206176"></a>Build the client program</h3></div></div></div>
+      
+      <p>
+	Prepare the client (Application Program) using the below commands
+	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
+	using <span class="command"><strong>\</strong></span> to help readability, but you may use
+	a single line):
+	</p><pre class="screen">
+tiian@ubuntu:~$ mkdir tmp
+tiian@ubuntu:~$ cd tmp
+tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example4_ora_db2.c .
+tiian@ubuntu:~/tmp$ gcc example4_ora_db2.c $(/opt/lixa/bin/lixa-config -c -f -l -d) \
+&gt; -I/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/rdbms/public \
+&gt; -L/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib -l clntsh -l nnz10 \
+&gt; -I/opt/ibm/db2/V9.7/include -L/opt/ibm/db2/V9.7/lib32/ -ldb2 -o example4_ora_db2
+	</pre><p>
+	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ldd example4_ora_db2
+        linux-gate.so.1 =&gt;  (0xb770e000)
+        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb76f3000)
+        libclntsh.so.10.1 =&gt; not found
+        libnnz10.so =&gt; not found
+        libdb2.so.1 =&gt; /usr/lib/libdb2.so.1 (0xb61b2000)
+        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb6063000)
+        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb605f000)
+        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb605b000)
+        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb6055000)
+        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb604c000)
+        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb5f9b000)
+        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb5e7b000)
+        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb5e66000)
+        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb5e41000)
+        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb5e28000)
+        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb5df6000)
+        libpam.so.0 =&gt; /lib/libpam.so.0 (0xb5dec000)
+        libdb2dascmn.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2dascmn.so.1 (0xb5dbe000)
+        libdb2g11n.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2g11n.so.1 (0xb5750000)
+        libdb2genreg.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2genreg.so.1 (0xb5710000)
+        libdb2install.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2install.so.1 (0xb5705000)
+        libdb2locale.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2locale.so.1 (0xb56f2000)
+        libdb2osse.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2osse.so.1 (0xb53ec000)
+        libdb2osse_db2.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2osse_db2.so.1 (0xb537c000)
+        libdb2trcapi.so.1 =&gt; /opt/ibm/db2/V9.7/lib32/libdb2trcapi.so.1 (0xb5369000)
+        libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0xb5276000)
+        libgcc_s.so.1 =&gt; /lib/libgcc_s.so.1 (0xb526b000)
+        /lib/ld-linux.so.2 (0xb770f000)
+        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb5243000)
+        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb522e000)
+        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb522a000)
+	</pre><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72211952"></a>Set-up LIXA environment</h3></div></div></div>
+      
+      <p>
+	There are three unresolved references that can be fixed setting up
+	the environment properly; you can fix the environment manually or
+	using these scripts supplied by Oracle and IBM:
+	<code class="filename">/home/db2inst1/sqllib/db2profile</code> and
+	<code class="filename">/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh</code>
+	</p><pre class="screen">
+tiian@ubuntu:~$ echo $LD_LIBRARY_PATH
+
+tiian@ubuntu:~$ . /home/db2inst1/sqllib/db2profile
+tiian@ubuntu:~$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
+tiian@ubuntu:~$ echo $LD_LIBRARY_PATH
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib:/home/db2inst1/sqllib/lib32
+	</pre><p>
+	Check again the executable:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ldd example4_ora_db2
+        linux-gate.so.1 =&gt;  (0xb777f000)
+        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb7764000)
+        libclntsh.so.10.1 =&gt; /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib/libclntsh.so.10.1 (0xb69b0000)
+        libnnz10.so =&gt; /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib/libnnz10.so (0xb67aa000)
+        libdb2.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2.so.1 (0xb5278000)
+        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb511b000)
+        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb5117000)
+        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb5113000)
+        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb510d000)
+        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb5104000)
+        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb5053000)
+        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb4f33000)
+        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb4f1e000)
+        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb4ef9000)
+        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb4ee0000)
+        libnsl.so.1 =&gt; /lib/tls/i686/cmov/libnsl.so.1 (0xb4ec8000)
+        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb4e95000)
+        libpam.so.0 =&gt; /lib/libpam.so.0 (0xb4e8b000)
+        libdb2dascmn.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2dascmn.so.1 (0xb4e5e000)
+        libdb2g11n.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2g11n.so.1 (0xb47f0000)
+        libdb2genreg.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2genreg.so.1 (0xb47b0000)
+        libdb2install.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2install.so.1 (0xb47a4000)
+        libdb2locale.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2locale.so.1 (0xb4791000)
+        libdb2osse.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2osse.so.1 (0xb448c000)
+        libdb2osse_db2.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2osse_db2.so.1 (0xb441c000)
+        libdb2trcapi.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2trcapi.so.1 (0xb4409000)
+        libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0xb4315000)
+        libgcc_s.so.1 =&gt; /lib/libgcc_s.so.1 (0xb430a000)
+        /lib/ld-linux.so.2 (0xb7780000)
+        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb42e3000)
+        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb42ce000)
+        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb42ca000)
+	</pre><p>
+	Set-up the necessary environment variables:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=ORA_DYN_DB2_DYN
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+ORA_DYN_DB2_SYN
+	</pre><p>
+	The below environment variables were set by the previous sourced
+	script; take a look to them:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ echo $ORACLE_HOME
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
+tiian@ubuntu:~/tmp$ echo $PATH
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/db2inst1/sqllib/bin:/home/db2inst1/sqllib/adm:/home/db2inst1/sqllib/misc:/home/db2inst1/sqllib/db2tss/bin
+tiian@ubuntu:~/tmp$ echo $ORACLE_SID
+XE
+	</pre><p>
+	It is suggested to set the necessary environment variables in your 
+	profile if you are going to execute the programs many times.
+	This is the list of the suggested variables:
+	<code class="varname">LD_LIBRARY_PATH</code>,
+	<code class="varname">LIXA_PROFILE</code>,
+	<code class="varname">ORACLE_HOME</code>,
+	<code class="varname">ORACLE_SID</code>,
+	<code class="varname">PATH</code>.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72221968"></a>Some checks before program execution</h3></div></div></div>
+      
+      <p>
+	We set <code class="varname">LIXA_PROFILE</code> to value
+	<span class="quote">“<span class="quote">ORA_DYN_DB2_DYN</span>”</span>, looking at
+	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
+	</p><pre class="screen">
+    &lt;profile name="ORA_DYN_DB2_DYN"&gt;
+      &lt;sttsrvs&gt;
+        &lt;sttsrv&gt;local_1&lt;/sttsrv&gt;
+      &lt;/sttsrvs&gt;
+      &lt;rsrmgrs&gt;
+        &lt;rsrmgr&gt;OracleXE_dynreg&lt;/rsrmgr&gt;
+        &lt;rsrmgr&gt;IBMDB2_stareg&lt;/rsrmgr&gt;
+      &lt;/rsrmgrs&gt;
+    &lt;/profile&gt;
+	</pre><p>
+	the profile references two Resource Managers:
+	<span class="quote">“<span class="quote">OracleXE_dynreg</span>”</span> and <span class="quote">“<span class="quote">IBMDB2_stareg</span>”</span>, 
+	looking again at the config file:
+	</p><pre class="screen">
+    &lt;rsrmgr name="OracleXE_dynreg" switch_file="/opt/lixa/lib/switch_oracle_dynreg.so" xa_open_info="Oracle_XA+Acc=P/hr/hr+SesTm=30+LogDir=/tmp+threads=true+DbgFl=7+Loose_Coupling=true" xa_close_info="" /&gt;
+    &lt;rsrmgr name="IBMDB2_dynreg" switch_file="/opt/lixa/lib/switch_ibmdb2_dynreg.so" xa_open_info="axlib=/opt/lixa/lib/liblixac.so,db=sample,tpm=lixa" xa_close_info="" /&gt;
+	</pre><p>
+	we can discover how our application will access the resource
+	managers
+	<a href="#ftn.idp72226512" class="footnote" id="idp72226512"><sup class="footnote">[26]</sup></a>. 
+	Verify no (Oracle) trace file exists:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
+ls: cannot access /tmp/xa*: No such file or directory
+	</pre><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72231824"></a>Program execution (dynamic registration)</h3></div></div></div>
+      
+      <p>
+	It is suggested to open three different terminals: 
+	the first one connected to <span class="quote">“<span class="quote">SAMPLE</span>”</span> DB2 database,
+	the second one connected to Oracle database and the
+	third one pointing to the directory where the compiled program 
+	example4_ora_db2 lives.
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ . /home/db2inst1/sqllib/db2profile
+tiian@ubuntu:~$ db2
+(c) Copyright IBM Corporation 1993,2007
+Command Line Processor for DB2 Client 9.7.1
+
+You can issue database manager commands and SQL statements from the command
+prompt. For example:
+    db2 =&gt; connect to sample
+    db2 =&gt; bind sample.bnd
+
+For general help, type: ?.
+For command help, type: ? command, where command can be
+the first few keywords of a database manager command. For example:
+ ? CATALOG DATABASE for help on the CATALOG DATABASE command
+ ? CATALOG          for help on all of the CATALOG commands.
+
+To exit db2 interactive mode, type QUIT at the command prompt. Outside
+interactive mode, all commands must be prefixed with 'db2'.
+To list the current command option settings, type LIST COMMAND OPTIONS.
+
+For more detailed help, refer to the Online Reference Manual.
+
+db2 =&gt; connect to SAMPLE
+
+   Database Connection Information
+
+ Database server        = DB2/LINUX 9.7.1
+ SQL authorization ID   = TIIAN
+ Local database alias   = SAMPLE
+
+db2 =&gt;
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
+tiian@ubuntu:~$ sqlplus "hr/hr"                                                 
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue May 3 21:52:06 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt;
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ls -la
+total 36
+drwxr-xr-x  2 tiian tiian  4096 2011-05-03 21:53 .
+drwxr-xr-x 40 tiian tiian  4096 2011-05-03 21:04 ..
+-rwxr-xr-x  1 tiian tiian 14422 2011-05-02 21:53 example4_ora_db2
+-rw-r--r--  1 tiian tiian 11892 2011-05-02 21:52 example4_ora_db2.c
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Check the content of the Oracle table (<span class="quote">“<span class="quote">COUNTRIES</span>”</span>):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Check the content of the DB2 tables (<span class="quote">“<span class="quote">DB2INST1.ORG</span>”</span> and
+	<span class="quote">“<span class="quote">DB2INST1.DEPT</span>”</span>):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+
+  0 record(s) selected.
+
+db2 =&gt; select * from DB2INST1.DEPT where DEPTNO='Z99'
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+
+  0 record(s) selected.
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	<span class="command"><strong>example4_ora_db2</strong></span> program accepts some arguments
+	you can tune to experiment different transactions:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">iorg</code>: insert a row into 
+	      <span class="quote">“<span class="quote">DB2INST1.ORG</span>”</span> table
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">dorg</code>: delete rows from 
+	      <span class="quote">“<span class="quote">DB2INST1.ORG</span>”</span> table
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">idept</code>: insert a row into 
+	      <span class="quote">“<span class="quote">DB2INST1.DEPT</span>”</span> table
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">ddept</code>: delete rows from 
+	      <span class="quote">“<span class="quote">DB2INST1.DEPT</span>”</span> table
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">icountries</code>: insert a row into 
+	      <span class="quote">“<span class="quote">COUNTRIES</span>”</span> table
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">dcountries</code>: delete rows from 
+	      <span class="quote">“<span class="quote">COUNTRIES</span>”</span> table
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">rollback</code>: force a transaction rollback (the
+	      default behavior is commit)
+	  </p></li></ul></div><p>
+	Insert a row in all the tables and check the contents of the tables
+	after the transaction execution:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Third terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept
+INSERT INTO DB2INST1.ORG executed!
+INSERT INTO COUNTRIES executed!
+INSERT INTO DB2INST1.DEPT executed!
+COMMIT performed!
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Now you can verify the content of the tables after the transaction:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+CO COUNTRY_NAME                              REGION_ID
+-- ---------------------------------------- ----------
+RS Repubblica San Marino                             1
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+     150 Europe             231 R&amp;D        Mojan
+
+  1 record(s) selected.
+
+db2 =&gt;  select * from DB2INST1.DEPT where DEPTNO='Z99'
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+Z99    RESEARCH &amp; DEVELOPMENT               -      E01      -
+
+  1 record(s) selected.
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	With the opposite command you can remove the rows from the tables:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 dorg dcountries ddept
+DELETE FROM DB2INST1.ORG executed!
+DELETE FROM COUNTRIES executed!
+DELETE FROM DB2INST1.DEPT executed!
+COMMIT performed!
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	and check the content of the tables again:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+
+  0 record(s) selected.
+
+db2 =&gt; select * from DB2INST1.DEPT where DEPTNO='Z99'
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+
+  0 record(s) selected.
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	This sequence shows what happens trying to insert a duplicated row
+	in a table that does not allow duplicates:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept
+INSERT INTO DB2INST1.ORG executed!
+INSERT INTO COUNTRIES executed!
+INSERT INTO DB2INST1.DEPT executed!
+COMMIT performed!
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept
+INSERT INTO DB2INST1.ORG executed!
+OCIStmtExecute/Error while executing INSERT statement; ocirc = -1
+ROLLBACK performed!
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Verify that table <span class="quote">“<span class="quote">DB2INST1.ORG</span>”</span> contains only one row
+	because the second transaction was rolled back after the error
+	occurred while inserting a duplicated row in <span class="quote">“<span class="quote">COUNTRIES</span>”</span>
+	table:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+     150 Europe             231 R&amp;D        Mojan
+
+  1 record(s) selected.
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Remove the rows from the tables:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 dorg dcountries ddept
+DELETE FROM DB2INST1.ORG executed!
+DELETE FROM COUNTRIES executed!
+DELETE FROM DB2INST1.DEPT executed!
+COMMIT performed!
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	We can introduce the usage of the <code class="option">rollback</code> option 
+	to check dynamic registration behavior:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
+tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
+0x00002000
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep ax_reg
+2011-05-04 22:35:07.919522 [8962/3023124208] ax_reg: rmid=1, xid=0xbfe8d1f0, flags=0x0
+2011-05-04 22:35:07.920026 [8962/3023124208] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.47b3b61569764774bfc1e5f79ef725ae.818e85f29a0c09e22f0c75f89ca17658' will be returned
+2011-05-04 22:35:07.920276 [8962/3023124208] ax_reg: sending 153 bytes to the server for step 8
+2011-05-04 22:35:07.920527 [8962/3023124208] ax_reg/excp=7/ret_cod=0/errno=2
+2011-05-04 22:35:07.921592 [8962/3023124208] ax_reg: rmid=0, xid=0xbfe8b09c, flags=0x0
+2011-05-04 22:35:07.921812 [8962/3023124208] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.47b3b61569764774bfc1e5f79ef725ae.818e85f29a0c09e22f0c75f89ca17658' will be returned
+2011-05-04 22:35:07.921979 [8962/3023124208] ax_reg: sending 153 bytes to the server for step 8
+2011-05-04 22:35:07.922128 [8962/3023124208] ax_reg/excp=7/ret_cod=0/errno=2
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	The second resource manager for profile
+	<span class="quote">“<span class="quote">ORA_DYN_DB2_DYN</span>”</span> is <span class="quote">“<span class="quote">IBMDB2_dynreg</span>”</span>
+	and it calls <code class="function">ax_reg</code> with 
+	<em class="parameter"><code>rmid=1</code></em> before the first resource manager
+	that's <span class="quote">“<span class="quote">OracleXE_dynreg</span>”</span> and calls
+	<code class="function">ax_reg</code> with <em class="parameter"><code>rmid=0</code></em>
+	later.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72232944"></a>Program execution (mixed registration)</h3></div></div></div>
+      
+      <p>
+	Switching to a different registration type is quite easy; we can start
+	with dynamic registration for Oracle and static registration for
+	IBM DB2:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
+tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
+0x00002000
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=ORA_DYN_DB2_STA
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+ORA_DYN_DB2_STA
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep ax_reg
+2011-05-04 22:47:11.812256 [9122/3022382832] ax_reg: rmid=0, xid=0xbfc0f59c, flags=0x0
+2011-05-04 22:47:11.813114 [9122/3022382832] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.a74508954f774509a939ad9580bca2b8.03460325a8fe89a8c8134b6dea4b782e' will be returned
+2011-05-04 22:47:11.813631 [9122/3022382832] ax_reg: sending 153 bytes to the server for step 8
+2011-05-04 22:47:11.814037 [9122/3022382832] ax_reg/excp=7/ret_cod=0/errno=2
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep xa_start
+2011-05-04 22:47:38.081183 [9126/3022632688] lixa_xa_start
+[...]
+2011-05-04 22:47:38.124749 [9126/3022632688] lixa_xa_start: resource manager # 0 registers dynamically, skipping...
+2011-05-04 22:47:38.125154 [9126/3022632688] lixa_xa_start: xa_start_entry(xid, 1, 0x0) = 0
+2011-05-04 22:47:38.125330 [9126/3022632688] lixa_xa_start: sending 210 bytes to the server for step 24
+2011-05-04 22:47:38.125654 [9126/3022632688] lixa_xa_start/excp=10/ret_cod=0/errno=2
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Oracle is defined as the first resource manager and calls
+	<code class="function">ax_reg</code> using <em class="parameter"><code>rmid=0</code></em>.
+	IBM DB2 is defined as the second resource manager and its
+	<code class="function">xa_start</code> function is called
+	from the LIXA transaction manager using <em class="parameter"><code>rmid=1</code></em>.
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    The LIXA Transaction Manager skips the first resource manager
+	    because it is configured for dynamic registration.
+	</p></div><p>
+	Using static registration for Oracle and dynamic registration for
+	IBM DB2 is easy as well:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=ORA_STA_DB2_DYN
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+ORA_STA_DB2_DYN
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep ax_reg
+2011-05-04 22:57:37.235541 [9346/3023226608] ax_reg: rmid=1, xid=0xbfcf8880, flags=0x0
+2011-05-04 22:57:37.236410 [9346/3023226608] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.1bf330d60c0442e4b61539214a413ecb.79fecb55351db58295ebf99c9bf09a70' will be returned
+2011-05-04 22:57:37.236859 [9346/3023226608] ax_reg: sending 153 bytes to the server for step 8
+2011-05-04 22:57:37.237581 [9346/3023226608] ax_reg/excp=7/ret_cod=0/errno=2
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep xa_start
+2011-05-04 22:58:10.258562 [9350/3022706416] lixa_xa_start
+[...]
+2011-05-04 22:58:10.296182 [9350/3022706416] lixa_xa_start: xa_start_entry(xid, 0, 0x0) = 0
+2011-05-04 22:58:10.296448 [9350/3022706416] lixa_xa_start: resource manager # 1 registers dynamically, skipping...
+2011-05-04 22:58:10.296625 [9350/3022706416] lixa_xa_start: sending 210 bytes to the server for step 24
+2011-05-04 22:58:10.296990 [9350/3022706416] lixa_xa_start/excp=10/ret_cod=0/errno=2
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Now the roles of Oracle and IBM DB2 swapped. As a final example
+	you can try the static registration for Oracle and IBM DB2 too:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=ORA_STA_DB2_STA
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+ORA_STA_DB2_STA
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep ax_reg
+tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;1 | grep xa_start
+2011-05-04 23:00:27.871131 [9356/3022927600] lixa_xa_start
+[...]
+2011-05-04 23:00:27.917087 [9356/3022927600] lixa_xa_start: xa_start_entry(xid, 0, 0x0) = 0
+2011-05-04 23:00:27.918251 [9356/3022927600] lixa_xa_start: xa_start_entry(xid, 1, 0x0) = 0
+2011-05-04 23:00:27.918741 [9356/3022927600] lixa_xa_start: sending 281 bytes to the server for step 24
+2011-05-04 23:00:27.919389 [9356/3022927600] lixa_xa_start/excp=10/ret_cod=0/errno=2
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	No resource manager calls <code class="function">ax_reg</code> with this
+	configuration: this is exactly what's expected.
+      </p>
+      <p>
+	As a final check, we can verify all the tables have no rows:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+
+  0 record(s) selected.
+
+db2 =&gt; select * from DB2INST1.DEPT where DEPTNO='Z99'
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+
+  0 record(s) selected.
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Congratulations! You have just completed a full discovery of
+	a Distributed Transaction Processing example with a simple
+	Application Program, LIXA Transaction Manager and two widespread
+	Resource Managers: Oracle Database Server and IBM DB2 DBMS.
+      </p>
+    </div>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72226512" class="footnote">
+	  <p><a href="#idp72226512" class="para"><sup class="para">[26] </sup></a>
+	    The content of <code class="constant">xa_open_info</code> string is
+	    described in chapter 15 "Developing Applications with Oracle XA"
+	    of the "Oracle Database Application Developer's Guide"
+	    manual; please refer to the documentation published by
+	    Oracle Corporation for further details.
+	  </p>
+	  <p>
+	    The content of <code class="constant">xa_open_info</code> string is
+	    documented at IBM Infocenter: search the string
+	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation
+	    relevant to your installed version; this is a link
+	    <a class="ulink" href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/topic/com.ibm.db2.luw.admin.2pc.doc/doc/r0005080.html" target="_top">
+	      http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/topic/com.ibm.db2.luw.admin.2pc.doc/doc/r0005080.html
+	    </a>
+	    but it may change in the future.
+	  </p>
+	</div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with IBM DB2 DBMS </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with PostgreSQL</td></tr></table></div></body></html>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71614160"></a>Configuring LIXA components</h2></div></div></div>
+    
+    <p>
+      The picture below emphasizes the LIXA components that must be configured
+      in a simple scenario:
+    </p>
+    <div class="figure"><a id="config6"></a><p class="title"><strong>Figure 3.6. The LIXA components and the necessary configuration files</strong></p><div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../images/LIXA_Configuration_6.png" alt="The LIXA components and the necessary configuration files" /></div>
+    </div></div><br class="figure-break" />
+    <p>
+      The client component (<code class="systemitem">lixac</code>) 
+      is configured using the
+      <code class="filename">etc/lixac_conf.xml</code> file; the server component
+      (<span class="command"><strong>lixad</strong></span>) is configured using the
+      <code class="filename">etc/lixad_conf.xml</code> file
+      <a href="#ftn.idp71620688" class="footnote" id="idp71620688"><sup class="footnote">[16]</sup></a>.
+    </p>
+    <p>
+      If a node hosts both the client and the server components, both the
+      files must be configured. If a node hosts only one component, only
+      one configuration file is necessary
+      <a href="#ftn.idp71623296" class="footnote" id="idp71623296"><sup class="footnote">[17]</sup></a>.
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div>
+      
+      <p>
+	The default configuration file is 
+	<code class="filename">etc/lixad_conf.xml</code>
+	and is located at the root installation path (i.e.
+	<code class="filename">/opt/lixa/etc/lixad_conf.xml</code>).
+      </p>
+      <p>
+	The file is composed of three sections:
+	</p><div class="figure"><a id="config7"></a><p class="title"><strong>Figure 3.7. The structure of lixad_conf.xml</strong></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><img src="../images/LIXA_Configuration_7.png" alt="The structure of lixad_conf.xml" /></div>
+	</div></div><p><br class="figure-break" />
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      the <span class="emphasis"><em>server</em></span> section contains the global
+	      parameters of the server
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the <span class="emphasis"><em>listeners</em></span> section specifies how many
+	      TCP/IP addresses and ports must be listened to accept incoming
+	      client connections
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the <span class="emphasis"><em>managers</em></span> section specifies how many
+	      parallel threads must be activated to serve the LIXA clients
+	  </p></li></ul></div><p>
+      </p>
+      <p>
+	Below there is a sample configuration file:
+	</p><pre class="screen">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+  &lt;server 
+    pid_file="/opt/lixa/var/run.pid"
+    min_elapsed_sync_time="0" max_elapsed_sync_time="0"&gt;
+  &lt;listeners&gt;
+    &lt;listener domain="AF_INET" address="127.0.0.1" port="3456"/&gt;
+    &lt;listener domain="AF_INET" address="0.0.0.0" port="2345"/&gt;
+  &lt;/listeners&gt;
+  &lt;managers&gt;
+    &lt;manager status_file="/opt/lixa/var/lixad_status1"/&gt;
+    &lt;manager status_file="/opt/lixa/var/lixad_status2"/&gt;
+    &lt;manager status_file="/opt/lixa/var/lixad_status3"/&gt;
+  &lt;/managers&gt;
+&lt;/server&gt;
+      </pre><p>
+	The tags and the
+	properties of the XML file are described below:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>pid_file</code></em>: it is the file used by the 
+	      server 
+	      to store the daemon <acronym class="acronym">PID</acronym>; the server creates
+	      the file at start-up and destroys it at shutdown
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>min_elapsed_sync_time</code></em>: minimum time
+	      expressed in millisecond interleaving a state file 
+	      synchronization request and the start of the synchronization
+	      operation; every manager (thread) uses its own clock 
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>max_elapsed_sync_time</code></em>: maximum time
+	      expressed in millisecond interleaving a state file 
+	      synchronization request and the start of the synchronization
+	      operation; every manager (thread) uses its own clock.
+	      <em class="parameter"><code>max_elapsed_sync_time</code></em> can not be less 
+	      than <em class="parameter"><code>min_elapsed_sync_time</code></em>;
+	      see <a class="xref" href="ch10.html" title="Chapter 10. Tuning">Chapter 10, <em>Tuning</em></a> for more information about these
+	      parameters.
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>listener</code></em>: the server can activate one 
+	      or more
+	      listeners; most of the times one listener is sufficient, but if
+	      you want to use only a subset of the IP addresses defined at
+	      the operating system level, you have to configure a dedicated
+	      listener for every desired address
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>domain</code></em>: the type of socket must be used to
+	      listen for clients. The only allowed type is 
+	      <code class="constant">AF_INET</code>; this may change in the future
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>address</code></em>: the address that must be used 
+	      to listen for
+	      clients; the special value "<code class="constant">0.0.0.0</code>" means
+	      <span class="emphasis"><em>any</em></span> address
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>port</code></em>: the port that must be used to 
+	      listen for
+	      clients; it must be a free port (use command 
+	      <span class="command"><strong>netstat</strong></span> to find out one)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>manager</code></em>: any configured 
+	      <span class="emphasis"><em>manager</em></span> is a server worker and runs as
+	      a dedicated thread. 
+	      Refer to <a class="xref" href="ch10.html" title="Chapter 10. Tuning">Chapter 10, <em>Tuning</em></a> for a discussion about
+	      configuration and performance results
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>status_file</code></em>: the physical path that 
+	      must be used to
+	      create the status files (a couple) for a manager; 
+	      this generally is
+	      a persistent and reliable storage device like a RAID partition.
+	      The string specified by the tag <em class="parameter"><code>status_file</code></em>
+	      is used as a prefix: every manager (thread) creates two files
+	      with the same prefix and different suffixes.
+	  </p></li></ul></div><p>
+      </p>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Delayed_synchronization_effects"></a>Delayed synchronization effects</h4></div></div></div>
+	
+	<p>
+	  Parameters
+	  <em class="parameter"><code>min_elapsed_sync_time</code></em> and
+	  <em class="parameter"><code>max_elapsed_sync_time</code></em>
+	  have a great relevance with the performance of the LIXA system
+	  as explained in <a class="xref" href="ch10.html" title="Chapter 10. Tuning">Chapter 10, <em>Tuning</em></a> but they have a relevance
+	  with system robustness as well:
+	</p>
+	<p>
+	  <span class="emphasis"><em>
+	    the higher the delay between the time a client ask a disk
+	    synchronization and the time the state server performs it
+	    (<em class="parameter"><code>min_elapsed_sync_time</code></em>), the higher
+	    the chance the disk status files will not contain the correct
+	    state for some transactions if the state server crashes.
+	  </em></span>
+	</p>
+	<p>
+	  The risk is not related to data corruption: data integrity is
+	  guaranteed by the Resource Managers your Application Programs use.
+	  The risk is some <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span>
+	  transactions will not automatically recovered
+	  (see <a class="xref" href="ch08s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a>) by LIXA
+	  infrastructure; those transactions will need
+	  manual recovery (see <a class="xref" href="ch08s03.html" title="Manual (cold) recovery">the section called “Manual (cold) recovery”</a>).
+	</p>
+	<p>
+	  <span class="emphasis"><em>
+	    During the interval between state server crash and
+	    manual recovery your Resource Managers will keep some locks on
+	    data: this could be the real damage for your application.
+	  </em></span>
+	</p>
+      </div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71660304"></a>Configuring the client</h3></div></div></div>
+      
+      <p>
+	The default configuration file is 
+	<code class="filename">etc/lixac_conf.xml</code>
+	and is located at the root installation path (i.e.
+	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>). 
+      </p>
+      <p>
+	The file is composed of three sections:
+	</p><div class="figure"><a id="config8"></a><p class="title"><strong>Figure 3.8. The structure of lixac_conf.xml</strong></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><img src="../images/LIXA_Configuration_8.png" alt="The structure of lixac_conf.xml" /></div>
+	</div></div><p><br class="figure-break" />
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      the <span class="emphasis"><em>state servers</em></span> section 
+	      contains a list of the available LIXA state servers and how they
+	      can be contacted
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the <span class="emphasis"><em>resource managers</em></span> section
+	      contains a list of the available Resource Managers and how they
+	      can be managed by LIXA using XA standard API and protocol
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the <span class="emphasis"><em>profiles</em></span> section
+	      contains a set of possibly different profiles: every
+	      Application Program can use only one profile; if you had
+	      different Application Programs with different requirements,
+	      you should create different profiles. Every profile contains
+	      a set of servers and a set of Resource Managers that must be
+	      used to support the Application Program.
+	  </p></li></ul></div><p>
+      </p>
+      <p>
+	Below there is a sample configuration file:
+	</p><pre class="screen">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;client&gt;
+  &lt;sttsrvs&gt;
+    &lt;sttsrv name="local_1" domain="AF_INET" address="10.23.45.67" port="2345" /&gt;
+    &lt;sttsrv name="local_2" domain="AF_INET" address="10.23.46.91" port="3456" /&gt;
+  &lt;/sttsrvs&gt;
+  &lt;rsrmgrs&gt;
+    &lt;rsrmgr name="OracleXE_dynreg" switch_file="/opt/lixa/lib/switch_oracle_dynreg.so" xa_open_info="Oracle_XA+Acc=P/hr/hr+SesTm=30+LogDir=/tmp+threads=true+DbgFl=7+Loose_Coupling=true" xa_close_info="" /&gt;
+    &lt;rsrmgr name="OracleXE_stareg" switch_file="/opt/lixa/lib/switch_oracle_stareg.so" xa_open_info="Oracle_XA+Acc=P/hr/hr+SesTm=30+LogDir=/tmp+threads=true+DbgFl=7+Loose_Coupling=true" xa_close_info="" /&gt;
+    &lt;rsrmgr name="IBMDB2_dynreg" switch_file="/opt/lixa/lib/switch_ibmdb2_dynreg.so" xa_open_info="axlib=/opt/lixa/lib/liblixac.so,db=sample,tpm=lixa" xa_close_info="" /&gt;
+    &lt;rsrmgr name="IBMDB2_stareg" switch_file="/opt/lixa/lib/switch_ibmdb2_stareg.so" xa_open_info="axlib=/opt/lixa/lib/liblixac.so,db=sample,tpm=lixa" xa_close_info="" /&gt;
+  &lt;/rsrmgrs&gt;
+  &lt;profiles&gt;
+    &lt;profile name="GT71"&gt;
+      &lt;sttsrvs&gt;
+        &lt;sttsrv&gt;local_1&lt;/sttsrv&gt;
+      &lt;/sttsrvs&gt;
+      &lt;rsrmgrs&gt;
+        &lt;rsrmgr&gt;OracleXE_stareg&lt;/rsrmgr&gt;
+        &lt;rsrmgr&gt;IBMDB2_stareg&lt;/rsrmgr&gt;
+      &lt;/rsrmgrs&gt;
+    &lt;/profile&gt;
+    &lt;profile name="VZ67"&gt;
+      &lt;sttsrvs&gt;
+        &lt;sttsrv&gt;local_1&lt;/sttsrv&gt;
+      &lt;/sttsrvs&gt;
+      &lt;rsrmgrs&gt;
+        &lt;rsrmgr&gt;OracleXE_dynreg&lt;/rsrmgr&gt;
+        &lt;rsrmgr&gt;IBMDB2_dynreg&lt;/rsrmgr&gt;
+      &lt;/rsrmgrs&gt;
+    &lt;/profile&gt;
+    &lt;profile name="AG71"&gt;
+      &lt;sttsrvs&gt;
+        &lt;sttsrv&gt;local_2&lt;/sttsrv&gt;
+      &lt;/sttsrvs&gt;
+      &lt;rsrmgrs&gt;
+        &lt;rsrmgr&gt;IBMDB2_dynreg&lt;/rsrmgr&gt;
+      &lt;/rsrmgrs&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/client&gt;
+	</pre><p>
+	The tags and the
+	properties of the XML file are described below:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">sttsrv</code>: this section is used to describe a
+	      state server (a LIXA server instance) that must be reached by any
+	      client described below
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">sttsrv/name</code>: a name associated to the 
+	      state server; it is a logical name that is referenced by 
+	      the profiles defined below
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">domain</code>: it must be the same domain specified 
+	      by the listener that must be reached; the listener is configured
+	      in <code class="filename">lixad_conf.xml</code> (see above) and may be
+	      local or remote
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">address</code>: it must be the same same address 
+	      specified by the listener that must be reached; the listener is
+	      configured in <code class="filename">lixad_conf.xml</code> (see above)
+	      and may be local or remote
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">port</code>: it must be the same port specified
+	      by the listener that must be reached; the listener is
+	      configured in
+	      <code class="filename">lixad_conf.xml</code> (see above)
+	      and may be local or remote
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">rsrmgr</code>: this section is used to describe 
+	      a resource manager that will be used by the
+	      Application Programs configured below (see profiles)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">rsrmgr/name</code>: a name associated to the 
+	      Resource Manager; it is a logical name that is referenced by
+	      the profile defined below
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">switch_file</code>: name of the file that contains 
+	      the XA switch structure; the file is produced by the installation
+	      procedure
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">xa_open_info</code>: it is the string of parameters
+	      that must be passed to the Resource Manager by the xa_open() 
+	      function call; the content
+	      of the string depends on the Resource Manager, please refer to
+	      the documentation distributed with the resource manager you
+	      are using. The string can not exceed 255 characters
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">xa_close_info</code>: it is the string of parameters
+	      that must be passed to the Resource Manager by the xa_close() 
+	      function call; the content
+	      of the string depends on the Resource Manager, please refer to
+	      the documentation distributed with the resource manager you
+	      are using. The string can not exceed 255 characters
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">profile</code>: it contains the description of the
+	      LIXA every transactional profile must be
+	      used by the Application Programs needs to be listed here
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">profile/name</code>: the name associated to the
+	      transaction profile; this name is used in different places and
+	      it is suggested to avoid special characters, blanks and possibly
+	      mixed case (these hints may help you in troubleshooting)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">profile/sttsrv</code>: the state server that
+	      will be used to store
+	      the transactional information associated to this profile; more
+	      than one state servers can be specified but 
+	      <span class="emphasis"><em>only</em></span> 
+	      the first one is used with the current release software
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="varname">profile/rsrmgr</code>: every Resource Manager that
+	      must be
+	      used by the Application Programs associated to this transactional
+	      profile needs to be listed here. There is no a limit: you can
+	      specify 1, 2, 3, ... resource managers. Avoid useless resource
+	      manager because xa_open() and xa_close() will be performed 
+	      against all the listed resource managers. If you can choose 
+	      between a "dynamic" and a "static" version of the same resource
+	      manager, the "dynamic" one is more efficient	    
+	  </p></li></ul></div><p>
+      </p>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Client_configuration_explanation"></a>Client configuration explanation</h4></div></div></div>
+	
+	<p>
+	  The client configuration file contains three sections:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		<code class="varname">sttsrvs</code>: is the list of the LIXA daemons 
+		you are
+		running inside your network and you will use to manage the
+		persistent state of the clients that are using the
+		configuration
+		file; many times a single LIXA state server is sufficient, but
+		sometimes you need more (development, test and production
+		environment might use different LIXA servers)
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		<code class="varname">rsrmgrs</code>: the list of the Resource Managers
+		necessary execute the Application Programs; there is no limit
+		to the number of resource managers you can specify from a LIXA
+		point of view, but you should avoid to list useless 
+		Resource Managers to obtain the best performance
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		<code class="varname">profiles</code>: the list of the available
+		transactional profiles for your Application Programs. This
+		concept allows you a great configuration flexibility: the same
+		configuration file can be used for completely different
+		Application Programs and completely different environment.
+		As an example, imagine you have 3 distinct applications and
+		every application uses a different mix of resource managers; 
+		then
+		you manage 3 different environments (development, test and
+		production): with 9 profiles you can model your
+		transactional needs completely 
+		(APP1DEV, APP2DEV, APP3DEV, APP1TEST,
+		APP2TEST, APP3TEST, APP1PROD, APP2PROD, APP3PROD).
+	    </p></li></ul></div><p>
+	</p>
+	<p>
+	  The picture below models an environment that's using the sample
+	  <code class="filename">etc/lixac_conf.xml</code>
+	  showed above:
+	  </p><div class="figure"><a id="config9"></a><p class="title"><strong>Figure 3.9. A "real" environment</strong></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><img src="../images/LIXA_Configuration_9.png" alt="A &quot;real&quot; environment" /></div>
+	  </div></div><p><br class="figure-break" />
+	  The scenario is composed of three distinct applications:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		GT71: it's an application that uses both an Oracle and an
+		IBM DB2 DBMS; most of the transactions need to perform
+		distributed transaction processing and the profile specifies
+		the static registration versions of the switch files.
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		AG71: it's an application that uses only an
+		IBM DB2 DBMS; only few transactions need to perform
+		distributed transaction processing and the profile specifies
+		the dynamic registration versions of the switch files. This
+		application does not need an XA Transaction Manager because
+		it uses only one Resource Manager, but the development team
+		decided to use LIXA because it will use a second Resource
+		Manager in the next few months.
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		VZ67: it's an application that uses both an Oracle and an
+		IBM DB2 DBMS; only few transactions need to perform
+		distributed transaction processing and the profile specifies
+		the dynamic registration versions of the switch files.
+	    </p></li></ul></div><p>
+	  The scenario uses two distinct LIXA state servers: this is an
+	  unusual situation but it works.
+	</p>
+	<p>
+	  The <code class="varname">LIXA_PROFILE</code> environment variable must be used 
+	  to specify the transactional profile associated to the Application 
+	  Program.
+	  If you do not specify a valid transactional profile, 
+	  the first profile
+	  of the list will be applied (in the above example it's
+	  <code class="varname">GT71</code>).
+	  </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	      There is not an alternate way to specify the 
+	      transactional profile:
+	      <code class="function">tx_open</code> does not allow parameters.
+	  </p></div><p>
+	  With reference to scenario showed above, Application Program GT71
+	  must export <code class="varname">LIXA_PROFILE</code> before execution; if
+	  you are using <span class="command"><strong>bash</strong></span> shell you must specifiy
+	  something like this
+	  </p><pre class="screen">
+export LIXA_PROFILE=GT71
+	  </pre><p>
+	  before application execution. The same applies to Application Program
+	  AG71 and VZ67:
+	  </p><pre class="screen">
+export LIXA_PROFILE=AG71
+[...]
+export LIXA_PROFILE=VZ67
+	  </pre><p>
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Client_configuration_caution"></a>Client configuration caution</h4></div></div></div>
+	
+	<p>
+	  If you change the content of <code class="filename">lixac_conf.xml</code>
+	  you will change the signature associated to the configuration file
+	  from LIXA Transaction Manager. The signature is very important
+	  because LIXA Transaction Manager will not activate automatic
+	  recovery of <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transactions
+	  if configuration file signatures do not match. In the case of
+	  signature mismatch during automatic recovery, the LIXA system 
+	  reacts with some log messages as below:
+	  </p><pre class="screen">
+Feb  8 21:38:51 ubuntu lixad[2517]: LXD011W a client is performing recovery but config file changed in the meantime for job 'a100c8728292168b21ba7239bffc137d/127.0.0.1      ' and transaction '1279875137.46d1df80428d4d6c85e6919b16b4a744.a100c8728292168b21ba7239bffc137d'
+Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d4d6c85e6919b16b4a744.a100c8728292168b21ba7239bffc137d' can NOT be recovered because current config digest 'a100c8728292168b21ba7239bffc137d' does NOT match server stored config digest '9e4c11057107c73366c9fc421eaa85ca'
+	  </pre><p>
+	  LIXA state server issues a warning (LXD011W) while LIXA Transaction
+	  Manager (client) issues an error (LXC001E): this behavior is
+	  necessary to protect the whole system against undesired recovery
+	  operation that could damage your data inside the Resource Managers.
+	</p>
+	<p>
+	  This protection has a cost explained in 
+	  <a class="xref" href="ch08s03.html#Recoverying_transaction_associated_different_job" title="Recoverying a transaction associated to a different job">the section called “Recoverying a transaction associated to a different job”</a>.
+	</p>
+	<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+	  <p>
+	    Before editing (and saving) <code class="filename">lixac_conf.xml</code>,
+	    be sure <span class="emphasis"><em>there are no</em></span>
+	    <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transactions
+	    (you can use <code class="option">--dump</code> as explained in
+	    <a class="xref" href="ch04.html#lixad_dump_execution" title="Dump execution">the section called “Dump execution”</a> and in
+	    <a class="xref" href="ch08s03.html#Recoverying_recovery_failed_transaction" title="Recoverying a “recovery failed” transaction">the section called “Recoverying a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction”</a>
+	    to verify the content of the state server).
+	  </p>
+	  <p>
+	    Create a different config file and use 
+	    <code class="varname">LIXA_CONFIG_FILE</code> environment variable
+	    as explained in
+	    <a class="xref" href="ch03s03.html" title="Environment variables">the section called “Environment variables”</a> until you are not sure 
+	    about the changes you are performing.
+	  </p>
+	</div>
+      </div>
+    </div>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71620688" class="footnote"><p><a href="#idp71620688" class="para"><sup class="para">[16] </sup></a>
+	  Both the files reside in <code class="filename">/opt/lixa/etc/</code>
+	  directory and must be managed by
+	  <code class="systemitem">lixa</code> user, the
+	  LIXA administrative user
+      </p></div><div id="ftn.idp71623296" class="footnote"><p><a href="#idp71623296" class="para"><sup class="para">[17] </sup></a>
+	  The standard installation procedure installs both the files with
+	  default content; it's your responsability to customize the content
+	  of the files.
+      </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Environment variables</td></tr></table></div></body></html>

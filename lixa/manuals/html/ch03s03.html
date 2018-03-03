@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Environment variables</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03s02.html" title="Configuring LIXA components" /><link rel="next" href="ch04.html" title="Chapter 4. Execution" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Environment variables</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Environment_variables"></a>Environment variables</h2></div></div></div>
+    
+    <p>
+      You can use some environment variables to tailor the LIXA configuration
+      to your needs. Some environment variables applies only to one component,
+      others apply to both client and server LIXA components.
+    </p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71723552"></a>LIXA_CONFIG_FILE</h3></div></div></div>
+	
+	<p>
+	  This environment variable can be used to specify an alternate
+	  configuration file for your application. 
+	  Example: if you are trying a new configuration, but you 
+	  wont to modify the default
+	  <code class="filename">etc/lixac_conf.xml</code>
+	  file, you can export the variable before program execution:
+	  </p><pre class="screen">
+export LIXA_CONFIG_FILE=/tmp/my_lixac
+./myapp
+	  </pre><p>
+	  <span class="command"><strong>myapp</strong></span> will be executed using the configuration
+	  stored inside
+	  <code class="filename">/tmp/my_lixac</code>
+	  instead of the configuration stored inside the default
+	  <code class="filename">etc/lixac_conf.xml</code>
+	  client configuration file.
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71727280"></a>LIXA_CRASH_COUNT</h3></div></div></div>
+	
+	<p>
+	  This environment variable must be used only in a development
+	  environment: after the program crossed the
+	  <span class="emphasis"><em>crash point</em></span> as many times as the value of
+	  this variable (default = 1), the process crashes. See
+	  environemt variable
+	  <code class="varname">LIXA_CRASH_POINT</code> too.
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71729936"></a>LIXA_CRASH_POINT</h3></div></div></div>
+	
+	<p>
+	  This environment variable must be used only in a development
+	  environment: it specifies the crash point inside the LIXA
+	  code. The acceptable values for this variable are listed
+	  inside the C header file
+	  <code class="filename">src/common/lixa_crash.h</code>
+	  LIXA project uses 
+	  the <code class="function">abort()</code> function to simulate a soft crash.
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71732352"></a>LIXA_JOB</h3></div></div></div>
+	
+	  <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	      This environment variable may be very useful to deal with some
+	      specific requirements, but it changes how the automatic
+	      recovery process works and the final result could be strange
+	      or "unpredictable" if you didn't understand the whole picture.
+	  </p></div>
+	<p>
+	  Use this environment variable to associate a specific transactional
+	  job identifier instead of the automatically assigned one. 
+	  See <a class="xref" href="ch08s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a> and
+	  <a class="xref" href="ch09s04.html" title="Workload balanced environments">the section called “Workload balanced environments”</a> 
+	  for more information.
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71735840"></a>LIXA_PROFILE</h3></div></div></div>
+	
+	<p>
+	  This environment variable must be used 
+	  to specify the transactional profile associated to the Application 
+	  Program.
+	  If you do not specify a valid transactional profile, the first
+	  profile listed inside 
+	  <code class="filename">etc/lixac_conf.xml</code>
+	  will be applied.
+	  See <a class="xref" href="ch03s02.html#Client_configuration_explanation" title="Client configuration explanation">the section called “Client configuration explanation”</a> too.
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71738464"></a>LIXA_TRACE_MASK</h3></div></div></div>
+	
+	<p>
+	  This environment variable specifies which internal modules must
+	  be traced at run-time. 
+	  The C header file
+	  <code class="filename">src/common/lixa_trace.h</code>
+	  contains the exadecimal value of every internal module; if you 
+	  want to trace two or more modules you have make the logical OR
+	  among all the desired values.
+	</p>
+	<p>
+	  Supposing you are interested in tracing what happens inside 
+	  <span class="emphasis"><em>"server listener"</em></span>,
+	  <span class="emphasis"><em>"server manager"</em></span> and
+	  <span class="emphasis"><em>"server status"</em></span> modules.
+	  Looking at file
+	  <code class="filename">src/common/lixa_trace.h</code>:
+	  </p><pre class="screen">
+#define LIXA_TRACE_MOD_SERVER_LISTENER    0x00000004
+#define LIXA_TRACE_MOD_SERVER_MANAGER     0x00000008
+#define LIXA_TRACE_MOD_SERVER_STATUS      0x00000010
+	  </pre><p>
+	  the resulting value is 0x0000001C:
+	  </p><pre class="screen">
+export LIXA_TRACE_MASK=0x00000010
+	  </pre><p>
+	  The <span class="emphasis"><em>"trace all"</em></span> value is 0xffffffff:
+	  </p><pre class="screen">
+export LIXA_TRACE_MASK=0xffffffff
+	  </pre><p>
+	  </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	      Too much tracing is dangerous: it slows down your system and
+	      possibly fills-up your filesystems.
+	  </p></div><p>
+	  Establishing the internal modules that must be traced is a typical
+	  troubleshooting task you can acquire working with LIXA project.
+	  In <a class="xref" href="ch09s02.html" title="Tracing">the section called “Tracing”</a> you can discover some useful information
+	  related to the usage of this environment variable.
+	</p>
+      </div>
+  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Configuring LIXA components </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 4. Execution</td></tr></table></div></body></html>

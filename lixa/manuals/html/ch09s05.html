@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>High Availability configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch09.html" title="Chapter 9. In Depth" /><link rel="prev" href="ch09s04.html" title="Workload balanced environments" /><link rel="next" href="ch09s06.html" title="LIXA Very Stupid Robot (lixavsr)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">High Availability configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09s04.html">Prev</a> </td><th width="60%" align="center">Chapter 9. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch09s06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp74041616"></a>High Availability configuration</h2></div></div></div>
+    
+    <p>
+      If you were using LIXA software project in a mission critical
+      environment, you should set-up an high availability configuration.
+      If you take a look to <a class="xref" href="ch03.html#config1" title="Figure 3.1. Typical LIXA topology">Figure 3.1, “Typical LIXA topology”</a> you will notice the
+      <span class="command"><strong>lixad</strong></span> daemon is a <span class="emphasis"><em>single point of
+	failure</em></span>: if the system hosting <span class="command"><strong>lixad</strong></span>
+      crashed, the Application Program could not perform distributed
+      transaction processing due to the unavailability of
+      <span class="command"><strong>lixad</strong></span> daemon.
+    </p>
+    <p>
+      To avoid the issues related to <span class="quote">“<span class="quote">single point of failure
+      pathology</span>”</span> the suggested configuration is
+      <span class="quote">“<span class="quote">Active/passive</span>”</span> as described in 
+      <a class="ulink" href="http://en.wikipedia.org/wiki/High-availability_cluster#Node_configurations" target="_top">
+	Wikipedia <span class="quote">“<span class="quote">High-availability cluster</span>”</span> page</a>.
+      You can use:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    any cluster manager, for example
+	    <a class="ulink" href="http://www.linux-ha.org/wiki/Main_Page" target="_top">Linux-HA
+	      Heartbeat</a>
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    any shared disk technology like 
+	    <a class="ulink" href="http://en.wikipedia.org/wiki/Storage_area_network" target="_top">SAN (Storage Area Network)</a>, 
+	    <a class="ulink" href="http://en.wikipedia.org/wiki/Network-attached_storage" target="_top">NAS (Network Attached Storage)</a> or disk replication technology like
+	    <a class="ulink" href="http://www.drbd.org/" target="_top">DR:BD</a>
+	</p></li></ul></div><p>
+      <span class="command"><strong>lixad</strong></span> requires that the filesystem and the
+      block device support <code class="function">mmap()</code>, 
+      <code class="function">munmap()</code> and <code class="function">msync()</code> functions.
+      The faster the filesystem/block device you are using, the better the
+      <span class="command"><strong>lixad</strong></span> performance.
+    </p>
+    <p>
+      The easiest high-availability configuration uses:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    a shared/mirrored disk containing the LIXA file tree
+	    (<code class="filename">/opt/lixa</code> if you are using a default
+	    installation)
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    a service dedicated IP address that must be activated on the
+	    host servicing LIXA
+	</p></li></ul></div><p>
+      The following pictures show an high availability configuration in action:
+      </p><div class="figure"><a id="high_availability_1"></a><p class="title"><strong>Figure 9.1. HA, step 1: the active node is on the left, 
+	  the passive one is on the right</strong></p><div class="figure-contents">
+	
+	<div class="mediaobject"><img src="../images/LIXA_In_Depth_01.png" alt="HA, step 1: the active node is on the left, the passive one is on the right" /></div>
+      </div></div><p><br class="figure-break" />
+      </p><div class="figure"><a id="high_availability_2"></a><p class="title"><strong>Figure 9.2. HA, step 2: the active node fails</strong></p><div class="figure-contents">
+	
+	<div class="mediaobject"><img src="../images/LIXA_In_Depth_02.png" alt="HA, step 2: the active node fails" /></div>
+      </div></div><p><br class="figure-break" />
+      </p><div class="figure"><a id="high_availability_3"></a><p class="title"><strong>Figure 9.3. HA, step 3: the passive node takes over the service</strong></p><div class="figure-contents">
+	
+	<div class="mediaobject"><img src="../images/LIXA_In_Depth_03.png" alt="HA, step 3: the passive node takes over the service" /></div>
+      </div></div><p><br class="figure-break" />
+    </p>
+    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	If you put all the LIXA installation files 
+	(<code class="filename">/opt/lixa</code>) in the shared disk you will not
+	be able to run LIXA utility program from the node that's not owning
+	the shared disk: this should not be an issue if your active/passive
+	cluster hosts only <span class="command"><strong>lixad</strong></span>.
+      </p>
+      <p>
+	If you were using a most complicated configuration, it might be
+	preferable to put only <code class="filename">/opt/lixa/var</code> and
+	<code class="filename">/opt/lixa/etc</code> in the shared disk. You could
+	implement such a configuration using symbolic links or customizing
+	the configure procedure with 
+	<code class="option">--sysconfdir=DIR</code> and 
+	<code class="option">--localstatedir=DIR</code>
+	options. Use <span class="command"><strong>./configure</strong></span> <code class="option">--help</code>
+	for more details.
+      </p>
+    </div>
+  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch09s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Workload balanced environments </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> LIXA Very Stupid Robot (lixavsr)</td></tr></table></div></body></html>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.2-dev)" /><link rel="up" href="ch07.html" title="Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions" /><link rel="prev" href="ch07s03.html" title="The first example" /><link rel="next" href="ch08.html" title="Chapter 8. Recovery" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s03.html">Prev</a> </td><th width="60%" align="center">Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</th><td width="20%" align="right"> <a accesskey="n" href="ch08.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp74419648"></a>An example with Oracle</h2></div></div></div>
+    
+    <div class="figure"><a id="idp74422304"></a><p class="title"><strong>Figure 7.1. Deployment model of two example applications with Oracle DBMS</strong></p><div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../images/LIXA_Development_15.png" alt="Deployment model of two example applications with Oracle DBMS" /></div>
+    </div></div><br class="figure-break" />
+    <p>
+      This example shows how two application programs can take part in the same global transaction when using the same Resource Manager coordinated by the LIXA Transaction Manager. Please make sure that you are comfortable with previous sections and examples before setting this up.
+    </p>
+    <p>
+      The following relates to the figure above:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+          <code class="function">Application Program 1</code>: an application developed in C that is able to call functionality exposed by Application Program 2
+        </p></li><li class="listitem" style="list-style-type: disc"><p>
+          <code class="function">Application Program 2</code>: an application developed in C that is able to fulfil service functionality when called by Application Program 1
+        </p></li><li class="listitem" style="list-style-type: disc"><p>
+          <code class="function">A1 and B1</code>: includes Resource Manager specific calls during program execution
+        </p></li><li class="listitem" style="list-style-type: disc"><p>
+          <code class="function">C1</code>: this is any custom protocol developed or used for communication between Application Program 1 and Application Program 2 - <span class="emphasis"><em>it is important to note that to make use of the Transaction Coupling extensions, one would have to share the XID between the programs.</em></span>
+        </p></li></ul></div><p>
+    </p>
+    <p>
+      This example was developed using the following configuration:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+          Oracle client and server with Oracle XE 11.2
+        </p></li><li class="listitem" style="list-style-type: disc"><p>
+          GNU C compiler supplied with CentOS 7.3.1611:
+          </p><pre class="screen">
+[pieter.jvrensburg@centos-linux tmp]$ cc --version
+cc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
+          </pre><p>
+        </p></li></ul></div><p>
+    </p>
+    <p>
+      The environment should be prepared following these steps:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+          The Oracle environment as explained in <a class="xref" href="ch05s04.html#Development_setup_Oracle_environment" title="Set-up the Oracle environment (server side)">the section called “Set-up the Oracle environment (server side)”</a>. Please adapt to your version of Oracle installed.
+        </p></li><li class="listitem" style="list-style-type: disc"><p>
+          Configuration of the Oracle listener for remote connections as explained in <a class="xref" href="ch05s04.html#Development_configure_Oracle_listener" title="Configure Oracle Listener">the section called “Configure Oracle Listener”</a>.
+        </p></li><li class="listitem" style="list-style-type: disc"><p>
+          Installation and configuration of the Oracle Instance Client (if required) as explained in <a class="xref" href="ch05s04.html#Development_install_Oracle_Instant_Client" title="Install and configure Oracle Instant Client">the section called “Install and configure Oracle Instant Client”</a>.
+        </p></li></ul></div><p>
+    </p>
+    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+      <p>
+        LIXA must be configured to support the Oracle Resource Manager as explained in <a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74441632"></a>Set the environment variables</h3></div></div></div>
+      
+      <p>
+        Set up the required environment variables:
+        </p><div class="table"><table frame="box">
+          <thead>
+            <tr><td>[Shell terminal session]</td></tr>
+          </thead>
+          <tbody>
+            <tr><td>
+              <pre class="screen">
+[pieter.jvrensburg@centos-linux ~]$ export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+[pieter.jvrensburg@centos-linux ~]$ export ORACLE_SID=XE
+[pieter.jvrensburg@centos-linux ~]$ export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
+[pieter.jvrensburg@centos-linux ~]$ export PATH=$ORACLE_HOME/bin:$PATH
+[pieter.jvrensburg@centos-linux ~]$ export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+              </pre>
+              And for LIXA:
+              <pre class="screen">
+[pieter.jvrensburg@centos-linux ~]$ export PATH=/opt/lixa/bin:/opt/lixa/sbin:$PATH
+[pieter.jvrensburg@centos-linux ~]$ export LD_LIBRARY_PATH=/opt/lixa/lib:$LD_LIBRARY_PATH
+              </pre>
+            </td></tr>
+          </tbody>
+        </table></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74445680"></a>Build the client programs</h3></div></div></div>
+      
+      <p>
+        Prepare the client (Application Program) using the below commands:
+        </p><div class="table"><table frame="box">
+          <thead>
+            <tr><td>[Shell terminal session]</td></tr>
+          </thead>
+          <tbody>
+            <tr><td>
+              <pre class="screen">
+[pieter.jvrensburg@centos-linux tmp]$ cp /opt/lixa/share/doc/lixa/X.Y.Z/examples/example15_transaction_coupling.c .
+[pieter.jvrensburg@centos-linux tmp]$ cc $(lixa-config -c -f -l) -L$ORACLE_HOME/lib -lclntsh -lnnz11 example15_transaction_coupling.c
+              </pre>
+            </td></tr>
+          </tbody>
+        </table></div><p>
+        Next, verify the executable produced by <span class="command"><strong>cc</strong></span>:
+        </p><div class="table"><table frame="box">
+          <thead>
+            <tr><td>[Shell terminal session]</td></tr>
+          </thead>
+          <tbody>
+            <tr><td>
+              <pre class="screen">
+[pieter.jvrensburg@centos-linux tmp]$ ldd a.out 
+	linux-vdso.so.1 =&gt;  (0x00007ffce4b13000)
+	liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0x00007f39938f6000)
+	libclntsh.so.11.1 =&gt; /u01/app/oracle/product/11.2.0/xe/lib/libclntsh.so.11.1 (0x00007f39910aa000)
+	libnnz11.so =&gt; /u01/app/oracle/product/11.2.0/xe/lib/libnnz11.so (0x00007f3990ce2000)
+	libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f3990919000)
+	libgmodule-2.0.so.0 =&gt; /lib64/libgmodule-2.0.so.0 (0x00007f3990714000)
+	libgthread-2.0.so.0 =&gt; /lib64/libgthread-2.0.so.0 (0x00007f3990512000)
+	libxml2.so.2 =&gt; /lib64/libxml2.so.2 (0x00007f39901a8000)
+	liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0x00007f398ff8a000)
+	libglib-2.0.so.0 =&gt; /lib64/libglib-2.0.so.0 (0x00007f398fc53000)
+	libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f398fa37000)
+	libuuid.so.1 =&gt; /lib64/libuuid.so.1 (0x00007f398f831000)
+	libm.so.6 =&gt; /lib64/libm.so.6 (0x00007f398f52f000)
+	libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f398f32b000)
+	libnsl.so.1 =&gt; /lib64/libnsl.so.1 (0x00007f398f111000)
+	libaio.so.1 =&gt; /lib64/libaio.so.1 (0x00007f398ef0f000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f3993b17000)
+	libz.so.1 =&gt; /lib64/libz.so.1 (0x00007f398ecf9000)
+	liblzma.so.5 =&gt; /lib64/liblzma.so.5 (0x00007f398ead2000)
+              </pre>
+            </td></tr>
+          </tbody>
+        </table></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74457088"></a>Configure the LIXA environment</h3></div></div></div>
+      
+      <p>
+        Set up the <code class="varname">LIXA_PROFILE</code> environment variable:
+        </p><div class="table"><table frame="box">
+          <thead>
+            <tr><td>[Shell terminal session]</td></tr>
+          </thead>
+          <tbody>
+            <tr><td>
+              <pre class="screen">
+[pieter.jvrensburg@centos-linux ~]$ export LIXA_PROFILE=ORA_STA
+[pieter.jvrensburg@centos-linux ~]$ echo $LIXA_PROFILE 
+ORA_STA
+              </pre>
+            </td></tr>
+          </tbody>
+        </table></div><p>
+      </p>
+      <p>
+        See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional information on creating the profile configuration file.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74463184"></a>Test program execution</h3></div></div></div>
+      
+      <p>
+        This shows how a transaction was suspended and resumed within the same thread of control. The example in <code class="filename">example15_transaction_coupling.c</code> does not interact with the actual Oracle database, but loads the switch file.
+      </p>
+      <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+        <p>
+          Make sure that the LIXA Transaction Manager server is running before executing the example application, as explained in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>.
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp74466720"></a>Successful execution</h4></div></div></div>
+        
+        <p>
+          The transaction is suspended, resumed and then rolled back:
+          </p><div class="table"><table frame="box">
+          <thead>
+            <tr><td>[Shell terminal session]</td></tr>
+          </thead>
+          <tbody>
+            <tr><td>
+              <pre class="screen">
+[pieter.jvrensburg@centos-linux tmp]$ LIXA_CONFIG_FILE=./lixac_conf.xml LIXA_PROFILE=ORA_STA ./a.out 
+tx_open(): 0
+tx_begin(): 0
+tx_end(TMSUSPEND): 0
+tx_info(): 1
+tx_resume(): 0
+tx_commit(): 0
+tx_begin(): 0
+tx_end(TMSUSPEND): 0
+tx_info(): 1
+tx_resume(): 0
+tx_rollback(): 0
+tx_close(): 0
+              </pre>
+            </td></tr>
+          </tbody>
+        </table></div><p>
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp74471792"></a>Conclusion</h4></div></div></div>
+        
+        <p>
+          This example shows a basic usage of the extended TX interface API calls. A more elaborate use case will include developing two application programs that communicate with each other and share the XID obtained from <code class="function">tx_info</code> so that the second application program can join the existing transaction.
+        </p>
+      </div>
+    </div>
+  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch08.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The first example </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 8. Recovery</td></tr></table></div></body></html>

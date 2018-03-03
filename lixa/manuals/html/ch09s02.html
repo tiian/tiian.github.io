@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tracing</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch09.html" title="Chapter 9. In Depth" /><link rel="prev" href="ch09.html" title="Chapter 9. In Depth" /><link rel="next" href="ch09s03.html" title="Non root installation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tracing</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09.html">Prev</a> </td><th width="60%" align="center">Chapter 9. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch09s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tracing"></a>Tracing</h2></div></div></div>
+    
+    <p>
+      The LIXA project can produce a lot of traces when the software is 
+      running; the tracing functions are included in the code by default but
+      you can disable them when you configure the software before the build 
+      phase:
+      </p><pre class="screen">
+	./configure --disable-trace
+	make
+	...
+      </pre><p>
+      </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	  Excluding tracing functions can reduce CPU and memory usage when
+	  the software is running, but you should disable tracing 
+	  <span class="emphasis"><em>only if you are really sure about it:
+	  </em></span>without tracing you have no instruments
+	  to understand what's happening inside LIXA code when it's running.
+      </p></div><p>
+      In the case you didn't disable the tracing feature at build time (see
+      above), you could activate the message production when you need it.
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Tracing_modules"></a>Tracing modules</h3></div></div></div>
+      
+      <p>
+	The trace messages produced by LIXA code are divided by 
+	<span class="emphasis"><em>modules</em></span>: you can activate the trace messages for
+	one or more modules. There is not a concept of <span class="quote">“<span class="quote">severity</span>”</span>
+	for the trace messages: if you activate the trace for a module, it
+	will print all the trace messages of that module.
+      </p>
+      <p>
+	The table below shows how the LIXA software is partitioned in modules:
+	</p><div class="table"><a id="idp73914032"></a><p class="title"><strong>Table 9.1. Tracing module flags</strong></p><div class="table-contents">
+	  
+	  <table summary="Tracing module flags" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th align="center">Module Trace Label</th><th align="center">Hex Flag</th><th align="center">Component</th><th align="center">Function</th></tr></thead><tbody><tr><td align="left">LIXA_TRACE_MOD_SERVER</td><td align="left">0x00000001</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">main program</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_CONFIG</td><td align="left">0x00000002</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">configuration: config file parsing and environment 
+		  variable detection</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_LISTENER</td><td align="left">0x00000004</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">network listener and signal handler</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_MANAGER</td><td align="left">0x00000008</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">session client manager, thread manager, 
+		  network I/O manager</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_STATUS</td><td align="left">0x00000010</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">persistent state</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_XA</td><td align="left">0x00000040</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">XA logic called by client</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_REPLY</td><td align="left">0x00000080</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">replies to client messages</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_RECOVERY</td><td align="left">0x00000100</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">logic necessary to answer the client recovery 
+		  calls</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_TX</td><td align="left">0x00001000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">transaction demarcation (TX) functions:
+		  <code class="function">tx_open()</code>,
+		  <code class="function">tx_begin()</code>, ...</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_XA</td><td align="left">0x00002000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">XA function wrapper:
+		  <code class="function">xa_open()</code>,
+		  <code class="function">xa_start()</code>, 
+		  <code class="function">ax_reg()</code>, ...</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_CONN</td><td align="left">0x00004000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">function necessary to connect to the state server 
+		  (<span class="command"><strong>lixad</strong></span>)</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_CONFIG</td><td align="left">0x00008000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">configuration: config file parsing and environment 
+		  variable detection</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_XA_SWITCH</td><td align="left">0x00010000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">XA switch file implementation of the dummy resource
+		managers provided by LIXA and of the XA wrappers for the
+		resource managers without a standard switch file</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_STATUS</td><td align="left">0x00020000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">client status management</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_RECOVERY</td><td align="left">0x00040000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">warm and cold recovery of the transaction(s)</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_GENERIC</td><td align="left">0x00080000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">generic client functions</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_CONFIG</td><td align="left">0x01000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">configuration stuff common to all components</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_XML_MSG</td><td align="left">0x02000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">functions related to XML messages serialization and
+		deserialization</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_STATUS</td><td align="left">0x04000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">convenience functions used to manage the status on
+		client and server side</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_UTILS</td><td align="left">0x08000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">utility functions used by all the components</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_XID</td><td align="left">0x10000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">functions specialized for XID (transaction ID)
+		management</td></tr></tbody></table>
+	</div></div><p><br class="table-break" />
+	You can trace any module combination creating any
+	<span class="emphasis"><em>trace mask</em></span> ORing the bits; for example:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc">
+	    <p>0x00000003 will produce all the messages of
+	    <code class="constant">LIXA_TRACE_MOD_SERVER</code> and
+	    <code class="constant">LIXA_TRACE_MOD_SERVER_CONFIG</code></p>
+	  </li><li class="listitem" style="list-style-type: disc">
+	    <p>0xffffffff will produce all the messages</p>
+	  </li><li class="listitem" style="list-style-type: disc">
+	    <p>0x00000000 will disable all the messages</p>
+	  </li></ul></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73986576"></a>Improve troubleshooting with trace</h3></div></div></div>
+      
+      <p>
+	The trace can be activated setting the environment variable
+	<code class="varname">LIXA_TRACE_MASK</code> before starting the execution of
+	the traced program. Try the following example...
+      </p>
+      <p>
+	Check the state server is not active:
+	</p><pre class="screen">
+tiian@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+	</pre><p>
+	try to execute <span class="command"><strong>lixat</strong></span>, the LIXA test program:
+	</p><pre class="screen">
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+tx_open(): -7
+	</pre><p>
+	it gives us few information (<code class="constant">TX_FAIL = -7</code>): from
+	<code class="filename">/opt/lixa/include/tx.h</code> we can retrieve the
+	meaning: <span class="quote">“<span class="quote">fatal error</span>”</span>... Not so much...
+	We could try to trace the <span class="quote">“<span class="quote">CLIENT TX</span>”</span> module:
+	</p><pre class="screen">
+tiian@ubuntu:~$ export LIXA_TRACE_MASK=0x00001000
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+2011-12-04 12:19:49.235007 [8899/3073612464] lixa_tx_open
+2011-12-04 12:19:49.241544 [8899/3073612464] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
+tx_open(): -7
+	</pre><p>
+	<span class="quote">“<span class="quote">ret_cod=-138</span>”</span> can be inspected inside
+	<code class="filename">src/common/lixa_errors.h</code>:
+	</p><pre class="screen">
+[...]
+/**
+ * "connect" function error
+ */
+#define LIXA_RC_CONNECT_ERROR                  -138
+[...]
+	</pre><p>
+	now we know the errors happens using <code class="function">connect()</code>
+	function; <span class="quote">“<span class="quote">errno=111</span>”</span> can be inspected inside
+	<code class="filename">/usr/include/asm-generic/errno.h</code>:
+	</p><pre class="screen">
+[...]
+#define ECONNREFUSED    111     /* Connection refused */
+[...]
+	</pre><p>
+	The error happens because the LIXA state server 
+	(<span class="command"><strong>lixad</strong></span>) is not running, but we can improve our
+	diagnosis with a more detailed tracing adding
+	<span class="quote">“<span class="quote">CLIENT CONN</span>”</span> module:
+	</p><pre class="screen">
+tiian@ubuntu:~$ export LIXA_TRACE_MASK=0x00005000
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+2011-12-04 17:00:49.447866 [4514/3074067120] lixa_tx_open
+2011-12-04 17:00:49.452624 [4514/3074067120] client_connect
+2011-12-04 17:00:49.452678 [4514/3074067120] client_connect: connecting socket 4 to server '127.0.0.1' port 2345
+2011-12-04 17:00:49.454033 [4514/3074067120] client_connect/excp=2/ret_cod=-138/errno=111
+2011-12-04 17:00:49.454872 [4514/3074067120] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
+tx_open(): -7
+	</pre><p>
+	the client is not able to contact the state server that is configured
+	to listen port <code class="systemitem">2345</code> 
+	at address 
+	<code class="systemitem">127.0.0.1</code>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73988880"></a>Activating trace for <span class="command"><strong>lixad</strong></span> in 
+	<span class="emphasis"><em>daemon</em></span> mode</h3></div></div></div>
+      
+      <p>
+	When running the state server (<span class="command"><strong>lixad</strong></span>) in
+	<span class="emphasis"><em>daemon</em></span>
+	mode, you must explicitly ask <span class="command"><strong>lixad</strong></span> to use a
+	trace file. Try the following steps...
+	</p><pre class="screen">
+tiian@ubuntu:~$ sudo su - lixa
+lixa@ubuntu:~$ export LIXA_TRACE_MASK=0x00000005
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad -d
+2011-12-04 17:14:46.976067 [4888/3074164464] lixad/daemonize: fork()
+2011-12-04 17:14:46.978399 [4889/3074164464] lixad/daemonize: setsid()
+2011-12-04 17:14:46.979740 [4889/3074164464] lixad/daemonize: signal()
+2011-12-04 17:14:46.980513 [4889/3074164464] lixad/daemonize: fork()
+2011-12-04 17:14:46.982516 [4890/3074164464] lixad/daemonize: chdir()
+2011-12-04 17:14:46.984002 [4890/3074164464] lixad/daemonize: umask()
+	</pre><p>
+	the process is tracing the initial operations and after the
+	<span class="emphasis"><em>daemonization</em></span> it does not produce any more
+	messages. By default <code class="filename">stderr</code> is used as the
+	standard tracing file, but the
+	<span class="emphasis"><em>daemon</em></span> disconnects from the terminal
+	and closes the <code class="filename">stderr</code> file.
+	To avoid this issue you can specify a specific trace file name using
+	the <code class="option">-t</code> (<code class="option">--trace-file</code>) dedicated
+	option:
+	</p><pre class="screen">
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad -d -t /tmp/lixad.trace
+lixa@ubuntu:~$ ls -la /tmp/lixad.trace
+-rw-r--r-- 1 lixa lixa 349 2011-12-04 17:29 /tmp/lixad.trace
+lixa@ubuntu:~$ pkill lixad
+	</pre><p>
+	inspecting the content of <code class="filename">/tmp/lixad.trace</code>
+	you can now find messages related to the listener module too:
+	</p><pre class="screen">
+2011-12-04 17:29:12.435474 [5187/3074373360] lixad/daemonize: fork()
+2011-12-04 17:29:12.436593 [5188/3074373360] lixad/daemonize: setsid()
+2011-12-04 17:29:12.437187 [5188/3074373360] lixad/daemonize: signal()
+2011-12-04 17:29:12.437245 [5188/3074373360] lixad/daemonize: fork()
+2011-12-04 17:29:12.435474 [5187/3074373360] lixad/daemonize: fork()
+2011-12-04 17:29:12.439878 [5189/3074373360] lixad/daemonize: now daemonized!
+2011-12-04 17:29:12.441874 [5189/3074373360] lixad/main: starting
+2011-12-04 17:29:12.447862 [5189/3074373360] server_listener
+2011-12-04 17:29:12.447940 [5189/3074373360] server_listener: resolving address '127.0.0.1' for listener # 0
+2011-12-04 17:29:12.448001 [5189/3074373360] server_listener: creating socket for listener # 0
+2011-12-04 17:29:12.448033 [5189/3074373360] server_listener: socket for listener 0 is 10
+2011-12-04 17:29:12.448044 [5189/3074373360] server_listener: setting SO_REUSE option for listener # 0
+2011-12-04 17:29:12.448142 [5189/3074373360] server_listener: resolving address '0.0.0.0' for listener # 1
+2011-12-04 17:29:12.448156 [5189/3074373360] server_listener: creating socket for listener # 1
+2011-12-04 17:29:12.448174 [5189/3074373360] server_listener: socket for listener 1 is 11
+2011-12-04 17:29:12.448183 [5189/3074373360] server_listener: setting SO_REUSE option for listener # 1
+2011-12-04 17:29:12.448213 [5189/3074373360] server_listener_signal
+2011-12-04 17:29:12.448262 [5189/3074373360] server_listener_signal/excp=3/ret_cod=0/errno=0
+2011-12-04 17:29:12.448275 [5189/3074373360] server_listener_loop
+2011-12-04 17:29:12.448284 [5189/3074373360] server_listener_loop: entering poll...
+2011-12-04 17:29:23.499666 [5189/3074373360] server_listener_signal_action: signo=15
+2011-12-04 17:29:23.499850 [5189/3074373360] server_listener_signal_action: sending message to thread id 0
+2011-12-04 17:29:23.499877 [5189/3074373360] server_listener_signal_action: sending message to thread id 1
+2011-12-04 17:29:23.499904 [5189/3074373360] server_listener_signal_action: sending message to thread id 2
+2011-12-04 17:29:23.499942 [5189/3074373360] server_listener_signal_action: sending message to thread id 3
+2011-12-04 17:29:23.499991 [5189/3074373360] server_listener_loop: ready file descriptors = 1
+2011-12-04 17:29:23.500003 [5189/3074373360] server_listener_loop: slot=0, fd=2, POLLIN=1, POLLERR=0, POLLHUP=0, POLLNVAL=0
+2011-12-04 17:29:23.500025 [5189/3074373360] server_listener_loop: waiting thread (1) id 3074329488 termination...
+2011-12-04 17:29:23.521138 [5189/3074373360] server_listener_loop: waiting thread (2) id 3065920400 termination...
+2011-12-04 17:29:23.521169 [5189/3074373360] server_listener_loop: waiting thread (3) id 3057511312 termination...
+2011-12-04 17:29:23.521180 [5189/3074373360] server_listener_loop/excp=8/ret_cod=0/errno=4
+2011-12-04 17:29:23.521190 [5189/3074373360] server_listener/excp=8/ret_cod=0/errno=4
+2011-12-04 17:29:23.521558 [5189/3074373360] lixad/main: exiting
+	</pre><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    The trace file is written using the 
+	    <code class="systemitem">stdio</code>
+	    and the output is not flushed after every message: if you look
+	    at the trace file of a running <span class="command"><strong>lixad</strong></span> state
+	    server, you will not be able to read the last messages due to
+	    the buffering of <code class="systemitem">stdio</code>
+	    library. After the
+	    server termination you are sure every trace message is inside the
+	    trace file.
+	</p></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74012464"></a>Redirecting the trace messages</h3></div></div></div>
+      
+      <p>
+	In the previous section you discovered how you can send the trace
+	messages of <span class="command"><strong>lixad</strong></span>. The
+	<code class="systemitem">lixac</code> library sends the
+	trace messages to the <code class="filename">stderr</code> file associated to
+	the terminal of the user that's running the process; many times you
+	would send the messages to a specific disk hosted file. You can
+	obtain this behavior using redirection:
+	</p><pre class="screen">
+tiian@ubuntu:~$ export LIXA_TRACE_MASK=0x00005000
+tiian@ubuntu:~$ /opt/lixa/bin/lixat 2&gt;/tmp/lixat.trace
+tx_open(): -7
+tiian@ubuntu:~$ ls -la /tmp/lixat.trace
+-rw-r--r-- 1 tiian tiian 417 2011-12-04 17:43 /tmp/lixat.trace
+	</pre><p>
+	You can inspect the content of the file
+	<code class="filename">/tmp/lixat.trace</code>:
+	</p><pre class="screen">
+2011-12-04 17:43:36.078314 [5544/3074013872] lixa_tx_open
+2011-12-04 17:43:36.083822 [5544/3074013872] client_connect
+2011-12-04 17:43:36.083890 [5544/3074013872] client_connect: connecting socket 4 to server '127.0.0.1' port 2345
+2011-12-04 17:43:36.084862 [5544/3074013872] client_connect/excp=2/ret_cod=-138/errno=111
+2011-12-04 17:43:36.084906 [5544/3074013872] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
+	</pre><p>
+      </p>
+    </div>
+  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch09s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 9. In Depth </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Non root installation</td></tr></table></div></body></html>

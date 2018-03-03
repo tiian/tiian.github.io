@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 9. In Depth</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="prev" href="ch08s03.html" title="Manual (cold) recovery" /><link rel="next" href="ch09s02.html" title="Tracing" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 9. In Depth</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp73881424"></a>Chapter 9. In Depth</h1></div></div></div>
+  
+  <p>
+    This chapter explains some internal details you can be interested in
+    when you are dealing with complex environments.
+  </p>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp73882768"></a>Logging</h2></div></div></div>
+    
+    <p>
+      The LIXA project software uses standard UNIX logging 
+      <code class="function">syslog()</code> function but it does not
+      set a specific <em class="parameter"><code>facility</code></em>
+      using the <code class="function">openlog()</code> function.
+      The final destination of the log messages depends on the configuration
+      of the standard UNIX logging; Ubuntu 8.04, for examples, sends the
+      messages to file <code class="filename">/var/log/daemon.log</code>. This should
+      be in accordance with the content of the <code class="function">syslog</code>
+      man page <span class="quote">“<span class="quote">LOG_DAEMON
+        system daemons without separate facility value</span>”</span>.
+    </p>
+    <p>
+      The messages produced by the LIXA project software are documented in
+      the file <code class="filename">src/common/lixa_syslog.h</code>
+    </p>
+    <p>
+      The messages produced by the LIXA project software use two different
+      prefixes: <span class="quote">“<span class="quote">LXC</span>”</span> for
+      <code class="systemitem">lixac</code> (client library) and
+      <span class="quote">“<span class="quote">LXD</span>”</span> for
+      <span class="command"><strong>lixad</strong></span> (state server).
+      Try the following example:
+      </p><pre class="screen">
+tiian@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+tx_open(): -7	
+      </pre><p>
+      inspecting the log file <code class="filename">/var/log/daemon.log</code>
+      you should find out something like this:
+      </p><pre class="screen">
+Dec  4 18:16:10 ubuntu lixat[6538]: LXC000I this process is starting a new LIXA transaction manager (lixa package version is 0.5.36)
+Dec  4 18:16:10 ubuntu lixat[6538]: LXC002E unable to connect to LIXA server at address 127.0.0.1, port 2345
+      </pre><p>
+      the <span class="command"><strong>lixat</strong></span> command is running as expected because
+      the state server is not active.
+      To see the messages produced by the state server you can try the
+      following commands:
+      </p><pre class="screen">
+tiian@ubuntu:~$ sudo su - lixa
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad -d
+lixa@ubuntu:~$ pkill lixad
+lixa@ubuntu:~$ exit
+logout
+      </pre><p>
+      inspecting the log file <code class="filename">/var/log/daemon.log</code>
+      you should find out something like this:
+      </p><pre class="screen">
+Dec  4 18:22:46 ubuntu lixad[6694]: LXD000N this process is starting a new LIXA server (lixa package version is 0.5.36)
+Dec  4 18:22:46 ubuntu lixad[6697]: LXD014N LIXA server entered daemon status
+Dec  4 18:22:49 ubuntu lixad[6697]: LXD019N received signal 15, server immediate shutdown in progress...
+Dec  4 18:22:49 ubuntu lixad[6697]: LXD006N server terminated activities
+      </pre><p>
+      The log messages are differentiated by 
+      <em class="parameter"><code>priority</code></em>; there is a direct
+      link between the letter in the seventh position and the severity of
+      the message:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc">
+	  <p><span class="emphasis"><em>D</em></span> : <code class="constant">LOG_DEBUG</code></p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p><span class="emphasis"><em>I</em></span> : <code class="constant">LOG_INFO</code></p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p><span class="emphasis"><em>N</em></span> : <code class="constant">LOG_NOTICE</code></p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p><span class="emphasis"><em>W</em></span> : <code class="constant">LOG_WARNING</code></p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p><span class="emphasis"><em>E</em></span> : <code class="constant">LOG_ERR</code></p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p><span class="emphasis"><em>C</em></span> : <code class="constant">LOG_CRIT</code></p>
+	</li></ul></div><p>
+      If LIXA software was logging too much in your production environment
+      you can configure the system log facility
+      (<code class="filename">/etc/syslog.conf</code>) to filter some messages, but
+      this tuning operation should not be necessary because the LIXA software
+      does not use the system log facility as a debugging tool: look at
+      <a class="xref" href="ch09s02.html" title="Tracing">the section called “Tracing”</a> to discover how debug messages are managed.
+    </p>
+  </div>
+  
+  
+  
+  
+  
+</div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Manual (cold) recovery </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Tracing</td></tr></table></div></body></html>

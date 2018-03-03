@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 3. Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="prev" href="ch02s05.html" title="Checking" /><link rel="next" href="ch03s02.html" title="Configuring LIXA components" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 3. Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s05.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Configuration"></a>Chapter 3. Configuration</h1></div></div></div>
+  
+  <p>
+    A LIXA system is the assembling of two components: the client and 
+    the server. The figure
+    below shows a typical configuration with one Application
+    Program and two Resource Managers.
+  </p>
+  <div class="figure"><a id="config1"></a><p class="title"><strong>Figure 3.1. Typical LIXA topology</strong></p><div class="figure-contents">
+    
+    <div class="mediaobject"><img src="../images/LIXA_Configuration_1.png" alt="Typical LIXA topology" /></div>
+  </div></div><br class="figure-break" />
+  <p>
+    The model shows logical and "phisycal" blocks:
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	  "Application Program code" is the code of your own application
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "librm1" is the code of the library your application must use to
+	  communicate with "RM1" (the first resource manager)
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "librm2" is the code of the library your application must use to
+	  communicate with "RM2" (the second resource manager)
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "liblixac" is the code of the library your application must use to
+	  invoke the TX verbs and send instruction to the Transaction Manager
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "Application Program code" + "librm1" + "librm2" + "liblixac" must
+	  be linked togheter to produce the Application Program; the
+	  Application Program is an executable object
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "RM1" is the first resource manager; it may be a relational database
+	  (RDBMS)
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "RM2" is the second resource manager; it may be an object oriented
+	  database (OODBMS)
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  "lixad" is the <span class="emphasis"><em>daemon</em></span> used by "liblixac" to
+	  store the states of the transactions
+      </p></li></ul></div><p>
+  </p>
+  <p>
+    The model shows how the blocks communicate:
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	  (A1): is the protocol supplied by the first resource manager; 
+	  SQL/CLI is an example and is supplied by IBM DB2, 
+	  SQL/OCI is another example and is supplied by Oracle Database Server
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  (B1): is the protocol supplied by the second resource manager; every
+	  resource manager has its own protocol and its own API
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  (A2): is the internal protocol used by the client of RM1 to 
+	  communicate with RM1 server process(es); it can be a cross memory
+	  or a network protocol and it depends on RM1 configuration
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  (B2): is the internal protocol used by the client of RM2 to 
+	  communicate with RM2 server process(es); it can be a cross memory
+	  or a network protocol and it depends on RM2 configuration
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  (TX): is the protocol supplied by the LIXA project and is described
+	  in [<a class="citation" href="bi01.html#idp74217792"><span class="citation">TXspec</span></a>]; it's a standard protocol and API
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  (XA): is the standard protocol used by the LIXA project to 
+	  communicate with the resource managers and is described
+	  in [<a class="citation" href="bi01.html#idp74222592"><span class="citation">XAspec</span></a>]; it's a standard protocol and API
+      </p></li><li class="listitem" style="list-style-type: disc"><p>
+	  (LX): is the internal protocol used by the client of LIXA to 
+	  communicate with the LIXA server process (lixad); it is a network 
+	  protocol
+      </p></li></ul></div><p>
+  </p>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71580896"></a>Architectural elements</h2></div></div></div>
+    
+    <p>
+      The <span class="command"><strong>lixad</strong></span> daemon process can be executed on any
+      system: there is no need to execute it on the same system that's hosting
+      the Application Programs. The communications between 
+      the client and the server (<span class="command"><strong>lixad</strong></span>) uses TCP/IP sockets.
+    </p>
+    <p>
+      The <code class="systemitem">lixac</code> library is 
+      embedded in the Application
+      Programs; the communication between the Application Program and
+      the <code class="systemitem">lixac</code> library uses 
+      TX (Transaction Demarcation)
+      API, see [<a class="citation" href="bi01.html#idp74217792"><span class="citation">TXspec</span></a>]. 
+      The <code class="systemitem">lixac</code> 
+      library contains all the logic of the LIXA Transaction Manager.
+    </p>
+    <p>
+      The communication between the Application Program and the Resource
+      Managers depends on Resource Managers type and configuration: 
+      it may be cross memory, TCP/IP, System V IPC, etc...
+      The communication between the 
+      <code class="systemitem">lixac</code> library and the
+      Resource Manager depends on Resource Manager configuration and must be
+      of the same used by the Application Program.
+    </p>
+    <p>
+      The communication between 
+      <code class="systemitem">lixac</code> library and 
+      <span class="command"><strong>lixad</strong></span> is ever istantiated by the client: the
+      server never calls the clients.
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71589472"></a>Deployment models</h3></div></div></div>
+      
+      <p>
+	This section explains some different deployment models you can
+	set up leveraging the LIXA project technology.
+      </p>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71590800"></a>The easiest non trivial model</h4></div></div></div>
+	
+	<p>
+	  The easiest non trivial deployment of a distributed transaction
+	  processing system based on the LIXA project is showed below: a single
+	  node hosts the Application Program, the Resource Managers and the
+	  LIXA server.
+	</p>
+	<div class="figure"><a id="config2"></a><p class="title"><strong>Figure 3.2. Easiest non trivial deployment model</strong></p><div class="figure-contents">
+	  <div class="mediaobject"><img src="../images/LIXA_Configuration_2.png" alt="Easiest non trivial deployment model" /></div>
+	  
+	</div></div><br class="figure-break" />
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71595504"></a>A trivial model</h4></div></div></div>
+	
+	<p>
+	  A trivial deployment of a distributed transaction
+	  processing system based on the LIXA project is showed below: a single
+	  node hosts the Application Program, the Resource Manager and the
+	  LIXA server. This configuration is obtained from the previous one
+	  removing a Resource Manager.
+	</p>
+	<p>
+	  Using only one Resource Manager is supported by the LIXA project
+	  technology, but it's quite useless because you don't need a
+	  transaction manager to perform 
+	  <span class="emphasis"><em>single phase commit</em></span> against 
+	  <span class="emphasis"><em>one</em></span>
+	  Resource Manager. This type of configuration will not be described
+	  more deeply.
+	</p>
+	<div class="figure"><a id="config3"></a><p class="title"><strong>Figure 3.3. Trivial deployment model</strong></p><div class="figure-contents">
+	  <div class="mediaobject"><img src="../images/LIXA_Configuration_3.png" alt="Trivial deployment model" /></div>
+	  
+	</div></div><br class="figure-break" />
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71601440"></a>A fully distributed model</h4></div></div></div>
+	
+	<p>
+	  A fully distributed transaction processing system can be achieved
+	  hosting every component in a different node.
+	  The picture below shows 4 different nodes:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		an application server node hosting the Application Program
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		a Transaction Manager dedicated node hosting the 
+		LIXA server
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		two Resource Manager dedicated nodes hosting the
+		Reosurce Managers
+	    </p></li></ul></div><p>
+	</p>
+	<div class="figure"><a id="config4"></a><p class="title"><strong>Figure 3.4. Fully distributed deployment model</strong></p><div class="figure-contents">
+	  <div class="mediaobject"><img src="../images/LIXA_Configuration_4.png" alt="Fully distributed deployment model" /></div>
+	  
+	</div></div><br class="figure-break" />
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71608160"></a>A more complex distributed model</h4></div></div></div>
+	
+	<p>
+	  A more complex distributed transaction processing system 
+	  can be achieved introducing a second application server and a third
+	  Resource Manager; in the picture below the third Resource Manager 
+	  is hosted in the same node of the second Resource Manager.
+	</p>
+	<p>
+	  The two different Application Programs do not need to be hosted in
+	  different application servers. They are different 
+	  Application Programs because they use a different mix of
+	  Resource Managers.
+	</p>
+	<div class="figure"><a id="config5"></a><p class="title"><strong>Figure 3.5. Complex distributed deployment model</strong></p><div class="figure-contents">
+	  <div class="mediaobject"><img src="../images/LIXA_Configuration_5.png" alt="Complex distributed deployment model" /></div>
+	  
+	</div></div><br class="figure-break" />
+	<p>
+	  Further complexity can be reached introducing an Application
+	  Program that uses three (or more) different Resource Managers,
+	  but this document will not go on this path to preserve
+	  understandability
+	  <a href="#ftn.idp71613408" class="footnote" id="idp71613408"><sup class="footnote">[15]</sup></a>
+	  .
+	</p>
+      </div>
+    </div>
+  </div>
+  
+  
+<div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71613408" class="footnote"><p><a href="#idp71613408" class="para"><sup class="para">[15] </sup></a>
+	      The dashed box named "Transaction Manager" was removed to
+	      simplify the picture.
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s05.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch03s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Checking </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Configuring LIXA components</td></tr></table></div></body></html>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The TX (Transaction Demarcation) Specification</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs" /><link rel="prev" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs" /><link rel="next" href="ch06s03.html" title="LIXA library linkage" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The TX (Transaction Demarcation) Specification</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch06s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp73241136"></a>The TX (Transaction Demarcation) Specification</h2></div></div></div>
+    
+    <p>
+      LIXA project adopts the standard described in 
+      [<a class="citation" href="bi01.html#idp74217792"><span class="citation">TXspec</span></a>] as the API you should use when developing
+      an Application Program.
+    </p>
+    <p>
+      The API is very easy, it supplies COBOL routines and C functions.
+      The following COBOL example can be briefly explained:
+      </p><pre class="programlisting">
+        IDENTIFICATION DIVISION.
+        PROGRAM-ID. EXAMPLE1.
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+      * Include TX definitions using the provided copybook
+        01 TX-RETURN-STATUS.
+           COPY TXSTATUS.
+        01 TX-INFO-AREA.
+           COPY TXINFDEF.
+      * Include LIXA definitions using the provided copybook
+           COPY LIXAXID.
+        PROCEDURE DIVISION.
+        000-MAIN.
+            MOVE ZERO TO TX-RETURN-STATUS.
+      * Calling TXOPEN (tx_open)
+            CALL "TXOPEN" USING TX-RETURN-STATUS.
+            DISPLAY 'TXOPEN returned value ' TX-STATUS.
+            IF NOT TX-OK THEN
+               DISPLAY 'Exiting...'
+               STOP RUN RETURNING 1
+            END-IF.
+      *
+      * Put your code OUTSIDE the transaction boundary here
+      *
+      * Calling TXBEGIN (tx_begin): the transaction starts here
+            CALL "TXBEGIN" USING TX-RETURN-STATUS.
+            DISPLAY 'TXBEGIN returned value ' TX-STATUS.
+            IF NOT TX-OK THEN
+               DISPLAY 'Exiting...'
+               STOP RUN RETURNING 1
+            END-IF.
+      *
+      * Put yout code INSIDE the transaction boundary here
+      *
+      * Calling TXCOMMIT (tx_commit): the transaction ends here with a
+      * commit
+            CALL "TXCOMMIT" USING TX-RETURN-STATUS.
+            DISPLAY 'TXCOMMIT returned value ' TX-STATUS.
+            IF NOT TX-OK THEN
+               DISPLAY 'Exiting...'
+               STOP RUN RETURNING 1
+            END-IF.
+      *
+      * You can use TXROLLBACK instead of TXCOMMIT if you decide that the
+      * work must be rolled back
+      *
+      * Put here other transactions if you need them
+      *
+      * Calling TXCLOSE (tx_close) to close ALL the Resource Managers
+      * associated to the current LIXA_PROFILE
+      *
+            CALL "TXCLOSE" USING TX-RETURN-STATUS.
+            DISPLAY 'TXCLOSE returned value ' TX-STATUS.
+            IF NOT TX-OK
+               STOP RUN RETURNING 1
+            STOP RUN.
+      </pre><p>
+      These are the available COBOL routines (the descriptions come from
+      [<a class="citation" href="bi01.html#idp74217792"><span class="citation">TXspec</span></a>]):
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXBEGIN</code>: begin a global transaction
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXCLOSE</code>: close a set of resource managers
+ 	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXCOMMIT</code>: commit a global transaction
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXINFORM</code>: return global transaction 
+	    information
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXOPEN</code>: open a set of resource managers
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXROLLBACK</code>: roll back a global transaction
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXSETCOMMITRET</code>: set 
+	    <em class="parameter"><code>commit_return</code></em> 
+	    characteristic
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXSETTRANCTL</code>: set
+	    <em class="parameter"><code>transaction_control</code></em> 
+	    characteristic
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <code class="function">TXSETTIMEOUT</code>: set
+	    <em class="parameter"><code>transaction_timeout</code></em> 
+	    characteristic
+	</p></li></ul></div><p>
+      Refer to [<a class="citation" href="bi01.html#idp74217792"><span class="citation">TXspec</span></a>] for the complete description.
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73259568"></a>Access to the resource managers</h3></div></div></div>
+      
+      <p>
+	A program developed for TX (Transaction Demarcation) Specification
+	<span class="emphasis"><em>must</em></span> access the resource managers coordinated by
+	the transaction manager using specific functions.
+	Unfortunately, the TX Specification does <span class="emphasis"><em>not</em></span>
+	specify a standard unified method to access a coordinated resource
+	manager. 
+      </p>
+      <p>
+	Tipically, every resource manager provides its own specific
+	function(s) to retrieve one or more <span class="emphasis"><em>connection 
+	  handler(s)</em></span>. Once you have got the right connection
+	handler(s), you can use the resource manager as you use without a
+	transaction manager.
+      </p>
+      <p>
+	The supplied examples (see <code class="filename">doc/examples/cobol</code> 
+	directory) show the routines that must be used to
+	retrieve the connection handler(s) necessary to interact with
+	the resource managers.
+      </p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  Special attention must be payed to <span class="emphasis"><em>commit</em></span> and
+	  <span class="emphasis"><em>rollback</em></span> operations: a well designed program
+	  developed for TX (Transaction Demarcation) Specification must not
+	  specify the resource manager native version of 
+	  <span class="emphasis"><em>commit</em></span> and <span class="emphasis"><em>rollback</em></span> 
+	  operations.
+	  If your software violates this rule, your environment will
+	  generate warning conditions related to euristically completed
+	  transaction. If your software forces a resource manager to
+	  <span class="emphasis"><em>commit</em></span> or <span class="emphasis"><em>rollback</em></span> 
+	  outside the control of the transaction manager, the transaction
+	  manager will not be able to perform the opposite operation if
+	  asked to do it. These situations tend to generate inconsistencies.
+      </p></div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73264128"></a>Chapter organization</h3></div></div></div>
+      
+      <p>
+	This chapter focuses on differences between C and COBOL and does not
+	repeat all the configuration steps described in the previous C chapter.
+	Anyway, when necessary, a pointer to the related section that explains
+	how to configure the environment is provided.
+      </p>
+    </div>
+  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch06s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 6. Developing COBOL Application Programs </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> LIXA library linkage</td></tr></table></div></body></html>

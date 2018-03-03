@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with IBM DB2 DBMS</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s04.html" title="Examples with Oracle Database Server" /><link rel="next" href="ch05s06.html" title="An example with Oracle and IBM DB2" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with IBM DB2 DBMS</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s04.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example3_db2"></a>An example with IBM DB2 DBMS</h2></div></div></div>
+      
+      <div class="figure"><a id="develop3"></a><p class="title"><strong>Figure 5.3. Deploy model of an example with IBM DB2 DBMS</strong></p><div class="figure-contents">
+	
+	<div class="mediaobject"><img src="../images/LIXA_Development_3.png" alt="Deploy model of an example with IBM DB2 DBMS" /></div>
+    </div></div><br class="figure-break" />
+    <p>
+      This example was developed using DB2 Express-C 9.7 for Linux (Ubuntu).
+      If you were using a different version you would need to adapt some
+      commands to your environment.
+    </p>
+    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	If you did not yet installed the software provided by IBM,
+	please refer to the official IBM site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to IBM DB2 technology: it is assumed you already installed and
+	configured the database.
+    </p></div>
+    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	The LIXA software must be configured to support the IBM DB2
+	server resource manager as explained in 
+	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
+    </p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_DB2_environment"></a>Set-up DB2 environment</h3></div></div></div>
+      
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72123360"></a>Start-up the DB2 server</h4></div></div></div>
+	
+	<p>
+	  If your server didn't start-up automatically at boot time, you
+	  could start it with the following commands:
+	  </p><pre class="screen">
+tiian@ubuntu:~$ ps -ef | grep db2 | grep -v grep
+tiian@ubuntu:~$ sudo /etc/init.d/db2exc start
+  * Starting DAS:                       done.
+  * Instance db2inst1 ( db2c_db2inst1 ):        done.
+  * Activating database SAMPLE          done.
+tiian@ubuntu:~$ ps -ef | grep db2 | grep -v grep
+dasusr1  22959     1  0 10:54 pts/2    00:00:00 /home/dasusr1/das/adm/db2dasrrm
+root     23190     1  2 10:54 pts/2    00:00:00 db2wdog                         
+db2inst1 23192 23190  4 10:54 pts/2    00:00:01 db2sysc                         
+root     23193 23192  0 10:54 pts/2    00:00:00 db2ckpwd                        
+root     23194 23192  0 10:54 pts/2    00:00:00 db2ckpwd                        
+root     23195 23192  0 10:54 pts/2    00:00:00 db2ckpwd                        
+db2inst1 23206 23190  2 10:54 pts/2    00:00:00 db2acd   ,0,0,0,1,0,0,0,1,0,8a6614,14,1e014,2,0,1,11fd0,0x12600000,0x12600000,1600000,740002,2,a0800d
+	  </pre><p>
+	  Switch to user <code class="systemitem">db2inst1</code>,
+	  try to connect to database <span class="quote">“<span class="quote">SAMPLE</span>”</span>:
+	  </p><pre class="screen">
+tiian@ubuntu:~$ sudo su - db2inst1
+db2inst1@ubuntu:~$ db2
+(c) Copyright IBM Corporation 1993,2007
+Command Line Processor for DB2 Client 9.7.1
+
+You can issue database manager commands and SQL statements from the command
+prompt. For example:
+    db2 =&gt; connect to sample
+    db2 =&gt; bind sample.bnd
+
+For general help, type: ?.
+For command help, type: ? command, where command can be
+the first few keywords of a database manager command. For example:
+ ? CATALOG DATABASE for help on the CATALOG DATABASE command
+ ? CATALOG          for help on all of the CATALOG commands.
+
+To exit db2 interactive mode, type QUIT at the command prompt. Outside
+interactive mode, all commands must be prefixed with 'db2'.
+To list the current command option settings, type LIST COMMAND OPTIONS.
+
+For more detailed help, refer to the Online Reference Manual.
+
+db2 =&gt; connect to sample
+
+   Database Connection Information
+
+ Database server        = DB2/LINUX 9.7.1
+ SQL authorization ID   = DB2INST1
+ Local database alias   = SAMPLE
+
+	  </pre><p>
+	  Check the tables <span class="quote">“<span class="quote">ORG</span>”</span> and <span class="quote">“<span class="quote">DEPT</span>”</span> exist
+	  and contain some data:
+	  </p><pre class="screen">
+db2 =&gt; select * from ORG
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+      10 Head Office        160 Corporate  New York
+      15 New England         50 Eastern    Boston
+      20 Mid Atlantic        10 Eastern    Washington
+      38 South Atlantic      30 Eastern    Atlanta
+      42 Great Lakes        100 Midwest    Chicago
+      51 Plains             140 Midwest    Dallas
+      66 Pacific            270 Western    San Francisco
+      84 Mountain           290 Western    Denver
+
+  8 record(s) selected.
+
+db2 =&gt; select * from DEPT
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+A00    SPIFFY COMPUTER SERVICE DIV.         000010 A00      -
+B01    PLANNING                             000020 A00      -
+C01    INFORMATION CENTER                   000030 A00      -
+D01    DEVELOPMENT CENTER                   -      A00      -
+D11    MANUFACTURING SYSTEMS                000060 D01      -
+D21    ADMINISTRATION SYSTEMS               000070 D01      -
+E01    SUPPORT SERVICES                     000050 A00      -
+E11    OPERATIONS                           000090 E01      -
+E21    SOFTWARE SUPPORT                     000100 E01      -
+F22    BRANCH OFFICE F2                     -      E01      -
+G22    BRANCH OFFICE G2                     -      E01      -
+H22    BRANCH OFFICE H2                     -      E01      -
+I22    BRANCH OFFICE I2                     -      E01      -
+J22    BRANCH OFFICE J2                     -      E01      -
+
+  14 record(s) selected.
+
+	  </pre><p>
+	  OK, the <span class="quote">“<span class="quote">ORG</span>”</span> and <span class="quote">“<span class="quote">DEPT</span>”</span>
+	  tables are populated. 
+	  If something went wrong, you should refer to IBM DB2
+	  documentation to fix the issue before the next step because
+	  you would not be able to execute the sample program without a
+	  basic running installation.
+	</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Development_setup_DB2_user_customization"></a>User customization</h4></div></div></div>
+	
+	<p>
+	  We want to execute our example program with a generic user,
+	  not just using <code class="systemitem">db2inst1</code>
+	  because that's the system user dedicated to the database
+	  instance execution. The commands below explain as the generic
+	  user <code class="systemitem">tiian</code> (my own 
+	  user) can be used instead of 
+	  <code class="systemitem">db2inst1</code>.
+	</p>
+	<p>
+	  Grant <code class="constant">DBADM</code> privilege to the user
+	  <code class="systemitem">tiian</code>:
+	  </p><pre class="screen">
+db2 =&gt; grant DBADM on database to user tiian
+DB20000I  The SQL command completed successfully.
+	  </pre><p>
+	  <code class="constant">DBADM</code> is not the lowest authorization
+	  level necessary to execute our example, but for the sake of 
+	  this example it's a <span class="quote">“<span class="quote">good enought</span>”</span> choice.
+	</p>
+	<p>
+	  Add something like the 4 lines below to your
+	  <code class="filename">$HOME/.profile</code> or equivalent profile
+	  configuration:
+	  </p><pre class="screen">
+# The following three lines have been added by IBM DB2 instance utilities.
+if [ -f /home/db2inst1/sqllib/db2profile ]; then
+    . /home/db2inst1/sqllib/db2profile
+fi
+	  </pre><p>
+	  Then login again and check your environment:
+	  </p><pre class="screen">
+tiian@ubuntu:~$ env|grep -i db2
+DB2INSTANCE=db2inst1
+LD_LIBRARY_PATH=/home/db2inst1/sqllib/lib32
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/db2inst1/sqllib/bin:/home/db2inst1/sqllib/adm:/home/db2inst1/sqllib/misc:/home/db2inst1/sqllib/db2tss/bin
+CLASSPATH=/home/db2inst1/sqllib/java/db2java.zip:/home/db2inst1/sqllib/java/db2jcc.jar:/home/db2inst1/sqllib/java/sqlj.zip:/home/db2inst1/sqllib/function:/home/db2inst1/sqllib/java/db2jcc_license_cu.jar:.
+	  </pre><p>
+	  As shown above,
+	  <code class="varname">DB2INSTANCE</code>, <code class="varname">LD_LIBRARY_PATH</code>,
+	  <code class="varname">PATH</code> variables should refer to DB2 stuff too.
+	  Connect to the database using your own user instead of
+	  <code class="systemitem">db2inst1</code>:
+	  </p><pre class="screen">
+tiian@ubuntu:~$ db2
+(c) Copyright IBM Corporation 1993,2007
+Command Line Processor for DB2 Client 9.7.1
+
+You can issue database manager commands and SQL statements from the command
+prompt. For example:
+    db2 =&gt; connect to sample
+    db2 =&gt; bind sample.bnd
+
+For general help, type: ?.
+For command help, type: ? command, where command can be
+the first few keywords of a database manager command. For example:
+ ? CATALOG DATABASE for help on the CATALOG DATABASE command
+ ? CATALOG          for help on all of the CATALOG commands.
+
+To exit db2 interactive mode, type QUIT at the command prompt. Outside
+interactive mode, all commands must be prefixed with 'db2'.
+To list the current command option settings, type LIST COMMAND OPTIONS.
+
+For more detailed help, refer to the Online Reference Manual.
+
+db2 =&gt; connect to sample
+
+   Database Connection Information
+
+ Database server        = DB2/LINUX 9.7.1
+ SQL authorization ID   = TIIAN
+ Local database alias   = SAMPLE
+
+db2 =&gt; select * from DB2INST1.ORG
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+      10 Head Office        160 Corporate  New York
+      15 New England         50 Eastern    Boston
+      20 Mid Atlantic        10 Eastern    Washington
+      38 South Atlantic      30 Eastern    Atlanta
+      42 Great Lakes        100 Midwest    Chicago
+      51 Plains             140 Midwest    Dallas
+      66 Pacific            270 Western    San Francisco
+      84 Mountain           290 Western    Denver
+
+  8 record(s) selected.
+
+db2 =&gt; select * from DB2INST1.DEPT
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+A00    SPIFFY COMPUTER SERVICE DIV.         000010 A00      -
+B01    PLANNING                             000020 A00      -
+C01    INFORMATION CENTER                   000030 A00      -
+D01    DEVELOPMENT CENTER                   -      A00      -
+D11    MANUFACTURING SYSTEMS                000060 D01      -
+D21    ADMINISTRATION SYSTEMS               000070 D01      -
+E01    SUPPORT SERVICES                     000050 A00      -
+E11    OPERATIONS                           000090 E01      -
+E21    SOFTWARE SUPPORT                     000100 E01      -
+F22    BRANCH OFFICE F2                     -      E01      -
+G22    BRANCH OFFICE G2                     -      E01      -
+H22    BRANCH OFFICE H2                     -      E01      -
+I22    BRANCH OFFICE I2                     -      E01      -
+J22    BRANCH OFFICE J2                     -      E01      -
+
+  14 record(s) selected.
+
+db2 =&gt; quit
+DB20000I  The QUIT command completed successfully.
+	  </pre><p>
+	  You have just verified that a generic user, like
+	  <code class="systemitem">tiian</code>	
+	  in the example above, can connect to the database and execute
+	  some query.
+	</p>
+      </div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72149136"></a>Start the LIXA state server</h3></div></div></div>
+      
+      <p>
+	Start the state server as shown below:
+	</p><pre class="screen">
+tiian@ubuntu:~$ sudo su - lixa
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ exit
+logout
+tiian@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+lixa     12866     1  0 21:35 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
+	</pre><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72151136"></a>Build the client program</h3></div></div></div>
+      
+      <p>
+	Prepare the client (Application Program) using the below commands
+	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
+	using <span class="command"><strong>\</strong></span> to help readability, but you may use
+	a single line):
+	</p><pre class="screen">
+tiian@ubuntu:~$ mkdir tmp
+tiian@ubuntu:~$ cd tmp
+tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example3_db2.c .
+tiian@ubuntu:~/tmp$ gcc example3_db2.c $(/opt/lixa/bin/lixa-config -c -f -l -d) \
+&gt; -I/opt/ibm/db2/V9.7/include -L/opt/ibm/db2/V9.7/lib32/ -ldb2 -o example3_db2
+	</pre><p>
+	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ldd example3_db2
+        linux-gate.so.1 =&gt;  (0xb775f000)
+        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb7744000)
+        libdb2.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2.so.1 (0xb6212000)
+        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb60b4000)
+        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb60b0000)
+        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb60ac000)
+        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb60a7000)
+        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb609e000)
+        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb5fed000)
+        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb5ecc000)
+        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb5eb9000)
+        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb5ea1000)
+        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb5e6e000)
+        libpam.so.0 =&gt; /lib/libpam.so.0 (0xb5e64000)
+        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb5e3f000)
+        libdb2dascmn.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2dascmn.so.1 (0xb5e12000)
+        libdb2g11n.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2g11n.so.1 (0xb57a4000)
+        libdb2genreg.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2genreg.so.1 (0xb5763000)
+        libdb2install.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2install.so.1 (0xb5758000)
+        libdb2locale.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2locale.so.1 (0xb5745000)
+        libdb2osse.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2osse.so.1 (0xb5440000)
+        libdb2osse_db2.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2osse_db2.so.1 (0xb53d0000)
+        libdb2trcapi.so.1 =&gt; /home/db2inst1/sqllib/lib32/libdb2trcapi.so.1 (0xb53bc000)
+        libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0xb52c9000)
+        libgcc_s.so.1 =&gt; /lib/libgcc_s.so.1 (0xb52be000)
+        /lib/ld-linux.so.2 (0xb7760000)
+        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb5297000)
+        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb5282000)
+        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb527d000)
+	</pre><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72156928"></a>Set-up LIXA environment</h3></div></div></div>
+      
+      <p>
+	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=DB2_DYN
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+DB2_DYN
+	</pre><p>
+	No additional DB2 variables are needed because they are automatically
+	set at login (see <a class="xref" href="ch05s05.html#Development_setup_DB2_environment" title="Set-up DB2 environment">the section called “Set-up DB2 environment”</a>).
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72160256"></a>Some checks before program execution</h3></div></div></div>
+      
+      <p>
+	We set <code class="varname">LIXA_PROFILE</code> to value
+	<span class="quote">“<span class="quote">DB2_DYN</span>”</span>, looking at
+	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
+	</p><pre class="screen">
+    &lt;profile name="DB2_DYN"&gt;
+      &lt;sttsrvs&gt;
+        &lt;sttsrv&gt;local_1&lt;/sttsrv&gt;
+      &lt;/sttsrvs&gt;
+      &lt;rsrmgrs&gt;
+        &lt;rsrmgr&gt;IBMDB2_dynreg&lt;/rsrmgr&gt;
+      &lt;/rsrmgrs&gt;
+    &lt;/profile&gt;
+	</pre><p>
+	the profile references the Resource Manager named
+	<span class="quote">“<span class="quote">IBMDB2_dynreg</span>”</span>, looking again at the config file:
+	</p><pre class="screen">
+    &lt;rsrmgr name="IBMDB2_dynreg" switch_file="/opt/lixa/lib/switch_ibmdb2_dynreg.so" xa_open_info="axlib=/opt/lixa/lib/liblixac.so,db=sample,tpm=lixa" xa_close_info="" /&gt;
+	</pre><p>
+	we can discover how the DB2 database is configured for XA
+	<a href="#ftn.idp72164256" class="footnote" id="idp72164256"><sup class="footnote">[25]</sup></a>.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72165952"></a>Program execution (dynamic registration)</h3></div></div></div>
+      
+      <p>
+	It is suggested to open two different terminals: the first one
+	connected to <span class="quote">“<span class="quote">SAMPLE</span>”</span> DB2 database and the second
+	one pointing to the directory where the compiled program
+	<code class="filename">example3_db2</code> lives.
+	First teminal session:
+	</p><pre class="screen">
+tiian@ubuntu:~$ db2
+(c) Copyright IBM Corporation 1993,2007
+Command Line Processor for DB2 Client 9.7.1
+
+You can issue database manager commands and SQL statements from the command
+prompt. For example:
+    db2 =&gt; connect to sample
+    db2 =&gt; bind sample.bnd
+
+For general help, type: ?.
+For command help, type: ? command, where command can be
+the first few keywords of a database manager command. For example:
+ ? CATALOG DATABASE for help on the CATALOG DATABASE command
+ ? CATALOG          for help on all of the CATALOG commands.
+
+To exit db2 interactive mode, type QUIT at the command prompt. Outside
+interactive mode, all commands must be prefixed with 'db2'.
+To list the current command option settings, type LIST COMMAND OPTIONS.
+
+For more detailed help, refer to the Online Reference Manual.
+
+db2 =&gt; connect to SAMPLE
+
+   Database Connection Information
+
+ Database server        = DB2/LINUX 9.7.1
+ SQL authorization ID   = TIIAN
+ Local database alias   = SAMPLE
+
+	</pre><p>
+	Second teminal session:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ls -la
+total 28
+drwxr-xr-x  2 tiian tiian  4096 2011-04-22 16:26 .
+drwxr-xr-x 40 tiian tiian  4096 2011-04-18 22:55 ..
+-rwxr-xr-x  1 tiian tiian 11030 2011-04-22 16:26 example3_db2
+-rw-r--r--  1 tiian tiian  5898 2011-04-22 16:23 example3_db2.c
+	</pre><p>
+	Check the content of <span class="quote">“<span class="quote">DB2INST1.ORG</span>”</span> table before
+	program execution:
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+      10 Head Office        160 Corporate  New York
+      15 New England         50 Eastern    Boston
+      20 Mid Atlantic        10 Eastern    Washington
+      38 South Atlantic      30 Eastern    Atlanta
+      42 Great Lakes        100 Midwest    Chicago
+      51 Plains             140 Midwest    Dallas
+      66 Pacific            270 Western    San Francisco
+      84 Mountain           290 Western    Denver
+
+  8 record(s) selected.
+
+	</pre><p>
+	Execute the program:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example3_db2 insert org
+	</pre><p>
+	Check the content of the table again:
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+      10 Head Office        160 Corporate  New York
+      15 New England         50 Eastern    Boston
+      20 Mid Atlantic        10 Eastern    Washington
+      38 South Atlantic      30 Eastern    Atlanta
+      42 Great Lakes        100 Midwest    Chicago
+      51 Plains             140 Midwest    Dallas
+      66 Pacific            270 Western    San Francisco
+      84 Mountain           290 Western    Denver
+     150 Europe             231 R&amp;D        Mojan
+
+  9 record(s) selected.
+
+	</pre><p>
+	The example program inserted the last row! You can execute it again
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example3_db2 insert org
+	</pre><p>
+	and it inserts another row:
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.ORG
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+      10 Head Office        160 Corporate  New York
+      15 New England         50 Eastern    Boston
+      20 Mid Atlantic        10 Eastern    Washington
+      38 South Atlantic      30 Eastern    Atlanta
+      42 Great Lakes        100 Midwest    Chicago
+      51 Plains             140 Midwest    Dallas
+      66 Pacific            270 Western    San Francisco
+      84 Mountain           290 Western    Denver
+     150 Europe             231 R&amp;D        Mojan
+     150 Europe             231 R&amp;D        Mojan
+
+  10 record(s) selected.
+
+	</pre><p>
+	Because there is no an unique constraint on this table; if you
+	want to check an error while inserting, use <span class="quote">“<span class="quote">DEPT</span>”</span>
+	table instead.
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.DEPT
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+A00    SPIFFY COMPUTER SERVICE DIV.         000010 A00      -
+B01    PLANNING                             000020 A00      -
+C01    INFORMATION CENTER                   000030 A00      -
+D01    DEVELOPMENT CENTER                   -      A00      -
+D11    MANUFACTURING SYSTEMS                000060 D01      -
+D21    ADMINISTRATION SYSTEMS               000070 D01      -
+E01    SUPPORT SERVICES                     000050 A00      -
+E11    OPERATIONS                           000090 E01      -
+E21    SOFTWARE SUPPORT                     000100 E01      -
+F22    BRANCH OFFICE F2                     -      E01      -
+G22    BRANCH OFFICE G2                     -      E01      -
+H22    BRANCH OFFICE H2                     -      E01      -
+I22    BRANCH OFFICE I2                     -      E01      -
+J22    BRANCH OFFICE J2                     -      E01      -
+
+  14 record(s) selected.
+
+	</pre><p>
+	Try to insert the same row twice:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example3_db2 insert dept
+tiian@ubuntu:~/tmp$ ./example3_db2 insert dept
+Unable to execute the SQL statement ('INSERT INTO DB2INST1.DEPT (DEPTNO, DEPTNAME, ADMRDEPT) VALUES('Z99', 'RESEARCH &amp; DEVELOPMENT', 'E01')'): -1
+	</pre><p>
+	Check the table content:
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.DEPT
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+A00    SPIFFY COMPUTER SERVICE DIV.         000010 A00      -
+B01    PLANNING                             000020 A00      -
+C01    INFORMATION CENTER                   000030 A00      -
+D01    DEVELOPMENT CENTER                   -      A00      -
+D11    MANUFACTURING SYSTEMS                000060 D01      -
+D21    ADMINISTRATION SYSTEMS               000070 D01      -
+E01    SUPPORT SERVICES                     000050 A00      -
+E11    OPERATIONS                           000090 E01      -
+E21    SOFTWARE SUPPORT                     000100 E01      -
+F22    BRANCH OFFICE F2                     -      E01      -
+G22    BRANCH OFFICE G2                     -      E01      -
+H22    BRANCH OFFICE H2                     -      E01      -
+I22    BRANCH OFFICE I2                     -      E01      -
+J22    BRANCH OFFICE J2                     -      E01      -
+Z99    RESEARCH &amp; DEVELOPMENT               -      E01      -
+
+  15 record(s) selected.
+
+	</pre><p>
+	Only one record was inserted. As a final step, clean up both the
+	tables:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
+tiian@ubuntu:~/tmp$ ./example3_db2 delete org
+	</pre><p>
+	and check the tables were cleaned-up:
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.DEPT
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+A00    SPIFFY COMPUTER SERVICE DIV.         000010 A00      -
+B01    PLANNING                             000020 A00      -
+C01    INFORMATION CENTER                   000030 A00      -
+D01    DEVELOPMENT CENTER                   -      A00      -
+D11    MANUFACTURING SYSTEMS                000060 D01      -
+D21    ADMINISTRATION SYSTEMS               000070 D01      -
+E01    SUPPORT SERVICES                     000050 A00      -
+E11    OPERATIONS                           000090 E01      -
+E21    SOFTWARE SUPPORT                     000100 E01      -
+F22    BRANCH OFFICE F2                     -      E01      -
+G22    BRANCH OFFICE G2                     -      E01      -
+H22    BRANCH OFFICE H2                     -      E01      -
+I22    BRANCH OFFICE I2                     -      E01      -
+J22    BRANCH OFFICE J2                     -      E01      -
+
+  14 record(s) selected.
+
+db2 =&gt; select * from DB2INST1.ORG
+
+DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
+-------- -------------- ------- ---------- -------------
+      10 Head Office        160 Corporate  New York
+      15 New England         50 Eastern    Boston
+      20 Mid Atlantic        10 Eastern    Washington
+      38 South Atlantic      30 Eastern    Atlanta
+      42 Great Lakes        100 Midwest    Chicago
+      51 Plains             140 Midwest    Dallas
+      66 Pacific            270 Western    San Francisco
+      84 Mountain           290 Western    Denver
+
+  8 record(s) selected.
+
+	</pre><p>
+	To verify the LIXA Transaction Manager and DB2 Resource Manager
+	are using the dynamic transaction registration, you can inspect
+	the trace produced by the LIXA client library:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
+tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
+0x00002000
+tiian@ubuntu:~/tmp$ ./example3_db2 insert dept 2&gt;&amp;1 | grep ax_reg
+2011-04-22 22:08:40.650458 [6654/3039381232] ax_reg: rmid=0, xid=0xbfcd65d0, flags=0x0
+2011-04-22 22:08:40.650858 [6654/3039381232] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.9a73b024b7ab4018915b54761d3dcd79.e41205820a9c722218578c0eeec6a27c' will be returned
+2011-04-22 22:08:40.651156 [6654/3039381232] ax_reg: sending 153 bytes to the server for step 8
+2011-04-22 22:08:40.651316 [6654/3039381232] ax_reg/excp=7/ret_cod=0/errno=2
+	</pre><p>
+	I don't know how you can retrieve the same information on the
+	DB2 side, but there probably is a way to do it. Clean-up again
+	the table...
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
+	</pre><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72185120"></a>Program execution (static registration)</h3></div></div></div>
+      
+      <p>
+	If you desire static transaction registration instead of the
+	dynamic one, you can switch the <code class="varname">LIXA_PROFILE</code>:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=DB2_STA
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+DB2_STA
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
+tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
+0x00002000
+	</pre><p>
+	you can verify in file
+	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>
+	that <span class="quote">“<span class="quote">DB2_STA</span>”</span> is associated to static registration.
+	Execute the program:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ ./example3_db2 insert dept 2&gt;&amp;1 | grep xa_start
+2011-04-22 22:19:45.717003 [6745/3038836464] lixa_xa_start
+[...]
+2011-04-22 22:19:45.758075 [6745/3038836464] lixa_xa_start: xa_start_entry(xid, 0, 0x0) = 0
+2011-04-22 22:19:45.758321 [6745/3038836464] lixa_xa_start: sending 210 bytes to the server for step 24
+2011-04-22 22:19:45.758681 [6745/3038836464] lixa_xa_start/excp=10/ret_cod=0/errno=2
+	</pre><p>
+	Check the content of the table:
+	</p><pre class="screen">
+db2 =&gt; select * from DB2INST1.DEPT
+
+DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
+------ ------------------------------------ ------ -------- ----------------
+A00    SPIFFY COMPUTER SERVICE DIV.         000010 A00      -
+B01    PLANNING                             000020 A00      -
+C01    INFORMATION CENTER                   000030 A00      -
+D01    DEVELOPMENT CENTER                   -      A00      -
+D11    MANUFACTURING SYSTEMS                000060 D01      -
+D21    ADMINISTRATION SYSTEMS               000070 D01      -
+E01    SUPPORT SERVICES                     000050 A00      -
+E11    OPERATIONS                           000090 E01      -
+E21    SOFTWARE SUPPORT                     000100 E01      -
+F22    BRANCH OFFICE F2                     -      E01      -
+G22    BRANCH OFFICE G2                     -      E01      -
+H22    BRANCH OFFICE H2                     -      E01      -
+I22    BRANCH OFFICE I2                     -      E01      -
+J22    BRANCH OFFICE J2                     -      E01      -
+Z99    RESEARCH &amp; DEVELOPMENT               -      E01      -
+
+  15 record(s) selected.
+
+	</pre><p>
+	And clean the table again:
+	</p><pre class="screen">
+tiian@ubuntu:~/tmp$ unset LIXA_TRACE_MASK
+tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
+	</pre><p>
+      </p>
+    </div>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72164256" class="footnote"><p><a href="#idp72164256" class="para"><sup class="para">[25] </sup></a>
+	    The content of <code class="constant">xa_open_info</code> string is
+	    documented at IBM Infocenter: search the string
+	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation
+	    relevant to your installed version; this is a link
+	    <a class="ulink" href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/topic/com.ibm.db2.luw.admin.2pc.doc/doc/r0005080.html" target="_top">
+	      http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/topic/com.ibm.db2.luw.admin.2pc.doc/doc/r0005080.html
+	    </a>
+	    but it may change in the future.
+	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Examples with Oracle Database Server </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with Oracle and IBM DB2</td></tr></table></div></body></html>
