@@ -2,7 +2,7 @@
 
 tiian.org is my personal open and free software initiative; it hosts 3 projects:
 
-- [LIXA](https://github.com/tiian/lixa), LIbre XA
+- [LIXA](https://github.com/tiian/lixa/manuals/html/index.html), LIbre XA
 - [FLoM](https://github.com/tiian/flom), Free Lock Manager
 - [LIBJF](http://libjf.sourceforge.net), LIBrary for Journaled Files
 
