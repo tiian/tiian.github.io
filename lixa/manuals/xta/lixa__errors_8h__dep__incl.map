@@ -1,0 +1,10 @@
+<map id="lixa_errors.h" name="lixa_errors.h">
+<area shape="rect" id="node2" href="$xta__acquired__xa__resource_8c.html" title="xta_acquired_xa_resource.c" alt="" coords="5,80,189,107"/>
+<area shape="rect" id="node3" href="$xta__mysql__xa__resource_8c.html" title="xta_mysql_xa_resource.c" alt="" coords="215,80,385,107"/>
+<area shape="rect" id="node4" href="$xta__native__xa__resource_8c.html" title="xta_native_xa_resource.c" alt="" coords="409,80,580,107"/>
+<area shape="rect" id="node5" href="$xta__postgresql__xa__resource_8c.html" title="xta_postgresql_xa_resource.c" alt="" coords="605,80,800,107"/>
+<area shape="rect" id="node6" href="$xta__transaction_8c.html" title="xta_transaction.c" alt="" coords="825,80,948,107"/>
+<area shape="rect" id="node7" href="$xta__transaction__manager_8c.html" title="xta_transaction_manager.c" alt="" coords="972,80,1151,107"/>
+<area shape="rect" id="node8" href="$xta__xa__resource_8c.html" title="xta_xa_resource.c" alt="" coords="1175,80,1304,107"/>
+<area shape="rect" id="node9" href="$xta__xid_8c.html" title="xta_xid.c" alt="" coords="1328,80,1401,107"/>
+</map>

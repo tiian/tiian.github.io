@@ -1,0 +1,16 @@
+<map id="xta_xa_resource.h" name="xta_xa_resource.h">
+<area shape="rect" id="node2" href="$xta_8h.html" title="xta.h" alt="" coords="637,229,688,256"/>
+<area shape="rect" id="node3" href="$xta__acquired__xa__resource_8h.html" title="xta_acquired_xa_resource.h" alt="" coords="421,80,605,107"/>
+<area shape="rect" id="node11" href="$xta__native__xa__resource_8h.html" title="xta_native_xa_resource.h" alt="" coords="681,80,852,107"/>
+<area shape="rect" id="node13" href="$xta__transaction_8h.html" title="xta_transaction.h" alt="" coords="876,80,999,107"/>
+<area shape="rect" id="node15" href="$xta__xa__resource_8c.html" title="xta_xa_resource.c" alt="" coords="1023,80,1152,107"/>
+<area shape="rect" id="node4" href="$xta__acquired__xa__resource_8c.html" title="xta_acquired_xa_resource.c" alt="" coords="421,155,605,181"/>
+<area shape="rect" id="node5" href="$xta__mysql__xa__resource_8h.html" title="xta_mysql_xa_resource.h" alt="" coords="5,155,176,181"/>
+<area shape="rect" id="node7" href="$xta__postgresql__xa__resource_8h.html" title="xta_postgresql_xa_resource.h" alt="" coords="201,155,396,181"/>
+<area shape="rect" id="node9" href="$xta__transaction__manager_8h.html" title="xta_transaction_manager.h" alt="" coords="732,155,911,181"/>
+<area shape="rect" id="node6" href="$xta__mysql__xa__resource_8c.html" title="xta_mysql_xa_resource.c" alt="" coords="5,229,176,256"/>
+<area shape="rect" id="node8" href="$xta__postgresql__xa__resource_8c.html" title="xta_postgresql_xa_resource.c" alt="" coords="201,229,396,256"/>
+<area shape="rect" id="node10" href="$xta__transaction__manager_8c.html" title="xta_transaction_manager.c" alt="" coords="732,229,911,256"/>
+<area shape="rect" id="node12" href="$xta__native__xa__resource_8c.html" title="xta_native_xa_resource.c" alt="" coords="935,155,1105,181"/>
+<area shape="rect" id="node14" href="$xta__transaction_8c.html" title="xta_transaction.c" alt="" coords="1180,155,1303,181"/>
+</map>
