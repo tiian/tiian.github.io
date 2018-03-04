@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 4. Execution</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="prev" href="ch03s03.html" title="Environment variables" /><link rel="next" href="ch04s02.html" title="Starting the test utility (lixat)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Execution</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp71746320"></a>Chapter 4. Execution</h1></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 4. Execution</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="prev" href="ch03s03.html" title="Environment variables" /><link rel="next" href="ch04s02.html" title="Starting the test utility (lixat)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Execution</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp71641632"></a>Chapter 4. Execution</h1></div></div></div>
   
   <p>
     Once you have installed (see <a class="xref" href="ch02.html" title="Chapter 2. Installation">Chapter 2, <em>Installation</em></a>)
@@ -12,7 +12,7 @@
 	the shown commands consequently.
     </p></div><p>
   </p>
-  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71749040"></a>Starting the state server (<span class="command"><strong>lixad</strong></span>)</h2></div></div></div>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71644352"></a>Starting the state server (<span class="command"><strong>lixad</strong></span>)</h2></div></div></div>
     
     <p>
       The first step you must perform is starting the
@@ -230,13 +230,13 @@ Block type: unknown (0)
 	results if there is a running state server.
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71784592"></a>Additional options</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71679904"></a>Additional options</h3></div></div></div>
       
       <p>
 	Some additional options are available: they don't radically change the 
 	state server behavior, but supply some features.
       </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71785936"></a>Specifying a different configuration file</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71681248"></a>Specifying a different configuration file</h4></div></div></div>
 	
 	<p>
 	  With option <code class="option">--config-file</code> you can specify a
@@ -253,7 +253,7 @@ Block type: unknown (0)
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --config-file /tmp/lixad_conf.xml
 	</pre>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71788912"></a>Specifying a trace file</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71684224"></a>Specifying a trace file</h4></div></div></div>
 	
 	<p>
 	  With option <code class="option">--trace-file</code> you can specify a
@@ -276,7 +276,7 @@ lixa@ubuntu:~$ ls -la /tmp/lixad.trace
 	  for additional details.
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71793840"></a>Clean-up recovery failed transactions</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71689152"></a>Clean-up recovery failed transactions</h4></div></div></div>
 	
 	<p>
 	  Use option <code class="option">--clean-failed</code> to clean-up the
@@ -297,7 +297,7 @@ lixa@ubuntu:~$ ls -la /tmp/lixad.trace
 	  <a class="xref" href="ch08.html" title="Chapter 8. Recovery">Chapter 8, <em>Recovery</em></a>.	  
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71799200"></a>Retrieving software version</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71694512"></a>Retrieving software version</h4></div></div></div>
 	
 	<p>
 	  Use option <code class="option">--version</code> to retrieve the 

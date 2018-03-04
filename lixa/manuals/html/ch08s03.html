@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Manual (cold) recovery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch08.html" title="Chapter 8. Recovery" /><link rel="prev" href="ch08s02.html" title="Automatic recovery concepts" /><link rel="next" href="ch09.html" title="Chapter 9. In Depth" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Manual (cold) recovery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Recovery</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Manual_cold_recovery"></a>Manual (cold) recovery</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Manual (cold) recovery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch08.html" title="Chapter 8. Recovery" /><link rel="prev" href="ch08s02.html" title="Automatic recovery concepts" /><link rel="next" href="ch09.html" title="Chapter 9. In Depth" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Manual (cold) recovery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Recovery</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Manual_cold_recovery"></a>Manual (cold) recovery</h2></div></div></div>
     
     <p>
       Manual (cold) recovery uses the information provided by the
@@ -11,7 +11,7 @@
     <p>
       If, for any reason, the LIXA state server (<span class="command"><strong>lixad</strong></span>)
       forgot the state of a transaction
-      <a href="#ftn.idp73656736" class="footnote" id="idp73656736"><sup class="footnote">[45]</sup></a>
+      <a href="#ftn.idp73551744" class="footnote" id="idp73551744"><sup class="footnote">[45]</sup></a>
       or the transaction is in state <span class="quote">“<span class="quote">recovery failed</span>”</span> because
       a previous automatic (warm) recovery failed, you have to manually
       recover the transaction.
@@ -648,7 +648,7 @@ logout
 	  </pre></td></tr></tbody>
 	</table></div><p>
 	and inspect the content of file <code class="filename">/tmp/bar</code>
-	<a href="#ftn.idp73788656" class="footnote" id="idp73788656"><sup class="footnote">[46]</sup></a>:
+	<a href="#ftn.idp73683664" class="footnote" id="idp73683664"><sup class="footnote">[46]</sup></a>:
 	</p><div class="table"><table frame="box">
 	  <thead><tr><td>[Content of file /tmp/bar]</td></tr></thead>
 	  <tbody><tr><td><pre class="screen">
@@ -836,11 +836,11 @@ Dumping records following used block chain: 1
 tiian@ubuntu:~/tmp$ sudo su - lixa
 lixa@ubuntu:~$ pkill lixad
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon --clean-failed
-lixa@ubuntu:~$ pkill lixad<a href="#ftn.idp73804096" class="footnote" id="idp73804096"><sup class="footnote">[a]</sup></a>
+lixa@ubuntu:~$ pkill lixad<a href="#ftn.idp73699216" class="footnote" id="idp73699216"><sup class="footnote">[a]</sup></a>
 lixa@ubuntu:~$ exit
 logout
 	  </pre></td></tr></tbody>
-	<tbody class="footnotes"><tr><td colspan="50"><div id="ftn.idp73804096" class="footnote"><p><a href="#idp73804096" class="para"><sup class="para">[a] </sup></a>
+	<tbody class="footnotes"><tr><td colspan="50"><div id="ftn.idp73699216" class="footnote"><p><a href="#idp73699216" class="para"><sup class="para">[a] </sup></a>
 The LIXA state server is stopped after start-up to guarantee the content
 of the state file(s) on the disk are up-to-date before dumping them.
 </p></div></td></tr></tbody></table></div><p>
@@ -951,7 +951,7 @@ logout
 	<code class="varname">LIXA_PROFILE</code>, you must specify the
 	<code class="option">--bypass-bqual-check</code> (<code class="option">-b</code>) option.
       </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp73838208"></a>Side effect of <code class="filename">lixac_conf.xml</code> changes</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp73733328"></a>Side effect of <code class="filename">lixac_conf.xml</code> changes</h4></div></div></div>
 	
 	<p>
 	  This paragraph explains a side effect of the behavior explained
@@ -1006,7 +1006,7 @@ logout
 	</p>
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73852256"></a>Recoverying a transaction managed by a different Transaction Manager</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73747376"></a>Recoverying a transaction managed by a different Transaction Manager</h3></div></div></div>
       
       <p>
 	The LIXA project technology can help you dealing with a different
@@ -1044,7 +1044,7 @@ logout
 	  third party Transaction Manager supplier.
       </p></div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73865984"></a>Picking up the LIXA format id and branch qualifier</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73761104"></a>Picking up the LIXA format id and branch qualifier</h3></div></div></div>
       
       <p>
 	In the previous sections we have dealt with 
@@ -1102,18 +1102,18 @@ tx_close(): 0
 	If you were interested in retrieving them programmatically
 	(from your own C language program) you could use the standard
 	<code class="function">tx_info()</code> function that returns a 
-	<span class="type">TXINFO</span> struct ([<a class="citation" href="bi01.html#idp74217792"><span class="citation">TXspec</span></a>]).
+	<span class="type">TXINFO</span> struct ([<a class="citation" href="bi01.html#idp74112912"><span class="citation">TXspec</span></a>]).
 	Please pay attention the
 	<span class="type">XID</span> struct contains <span class="emphasis"><em>binary data</em></span>
 	(it does not contain ASCII data).
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp73656736" class="footnote"><p><a href="#idp73656736" class="para"><sup class="para">[45] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp73551744" class="footnote"><p><a href="#idp73551744" class="para"><sup class="para">[45] </sup></a>
 	  This should never happen: it could be a bug in LIXA project
 	  software or it might be the consequence of a 
 	  <span class="quote">“<span class="quote">cold start</span>”</span> (you removed the state files) of
 	  <span class="command"><strong>lixad</strong></span>
-      </p></div><div id="ftn.idp73788656" class="footnote"><p><a href="#idp73788656" class="para"><sup class="para">[46] </sup></a>
+      </p></div><div id="ftn.idp73683664" class="footnote"><p><a href="#idp73683664" class="para"><sup class="para">[46] </sup></a>
 	    The state server can be analyzed without stopping it
 	    (<span class="command"><strong>pkill lixad</strong></span>), but it may happen you will
 	    not see the current content because the state server 

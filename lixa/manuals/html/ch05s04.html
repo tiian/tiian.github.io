@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Examples with Oracle Database Server</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s03.html" title="The first example" /><link rel="next" href="ch05s05.html" title="An example with IBM DB2 DBMS" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Examples with Oracle Database Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s03.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example2_ora"></a>Examples with Oracle Database Server</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Examples with Oracle Database Server</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s03.html" title="The first example" /><link rel="next" href="ch05s05.html" title="An example with IBM DB2 DBMS" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Examples with Oracle Database Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s03.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example2_ora"></a>Examples with Oracle Database Server</h2></div></div></div>
     
     <p>
       This section contains many examples related to different configurations:
@@ -51,7 +51,7 @@
       <a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
       </p></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71939808"></a>Local configuration (Server) and OCI</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71835120"></a>Local configuration (Server) and OCI</h3></div></div></div>
       
       <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Development_setup_Oracle_environment"></a>Set-up the Oracle environment (server side)</h4></div></div></div>
 	
@@ -60,7 +60,7 @@
 	  there shouldn't be too much differences with other Oracle
 	  versions.
 	</p>
-	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71942480"></a>Start-up the Oracle server</h5></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71837792"></a>Start-up the Oracle server</h5></div></div></div>
 	  
 	  <p>
 	    If the database server was not running, you can start it
@@ -81,7 +81,7 @@ Starting Oracle Database 11g Express Edition Instance.
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71945024"></a>Create the XA related views</h5></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71840336"></a>Create the XA related views</h5></div></div></div>
 	  
 	  <p>
 	    First of all you must be able to connect as <span class="quote">“<span class="quote">SYSDBA</span>”</span>
@@ -89,8 +89,8 @@ Starting Oracle Database 11g Express Edition Instance.
 	    I connect to the Oracle server using the user 
 	    <code class="systemitem">sys</code> with password
 	    <span class="quote">“<span class="quote">oracle</span>”</span>
-	    <a href="#ftn.idp71948544" class="footnote" id="idp71948544"><sup class="footnote">[19]</sup></a>
-	    <a href="#ftn.idp71951568" class="footnote" id="idp71951568"><sup class="footnote">[20]</sup></a>:
+	    <a href="#ftn.idp71843856" class="footnote" id="idp71843856"><sup class="footnote">[19]</sup></a>
+	    <a href="#ftn.idp71846880" class="footnote" id="idp71846880"><sup class="footnote">[20]</sup></a>:
 	      </p><pre class="screen">
 tiian@ubuntu:~$ sudo su - oracle
 oracle@ubuntu:~$ echo $ORACLE_HOME
@@ -203,7 +203,7 @@ SQL&gt; SQL&gt; SQL&gt; Disconnected from Oracle Database 10g Express Edition Re
 	      </pre><p>
 	    </p>
 	  </div>
-	  <div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71960208"></a>Authorize the XA related views</h5></div></div></div>
+	  <div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71855520"></a>Authorize the XA related views</h5></div></div></div>
 	    
 	    <p>
 	      The example programs supplied by the LIXA project are designed
@@ -249,7 +249,7 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	      information to create it.
 	    </p></div>
 	  </div>
-	  <div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71966528"></a>Unlock <span class="quote">“<span class="quote"><code class="systemitem">hr</code></span>”</span> Oracle user</h5></div></div></div>
+	  <div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp71861840"></a>Unlock <span class="quote">“<span class="quote"><code class="systemitem">hr</code></span>”</span> Oracle user</h5></div></div></div>
 	    
 	    <p>
 	      The example programs supplied by the LIXA project are designed
@@ -316,7 +316,7 @@ logout
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71975056"></a>Build the client program</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71870368"></a>Build the client program</h4></div></div></div>
 	  
 	  <p>
 	    Prepare the client (Application Program) using the below commands
@@ -377,7 +377,7 @@ tiian@ubuntu:~/tmp$ ldd example2_ora
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71985600"></a>Set-up LIXA environment</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71880912"></a>Set-up LIXA environment</h4></div></div></div>
 	  
 	  <p>
 	    There are three unresolved references that can be fixed setting up
@@ -451,14 +451,14 @@ ORA_DYN
 	    </p></div><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71996336"></a>Check the data table before execution</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71891648"></a>Check the data table before execution</h4></div></div></div>
 	  
 	  <p>
 	    Execute the below commands to check the existence of table
 	    <code class="filename">countries</code> and to create a new table with
 	    name <code class="filename">authors</code>:
 	    </p><pre class="screen">
-tiian@ubuntu:~$ sqlplus "hr/hr"<a href="#ftn.idp71998640" class="footnote" id="idp71998640"><sup class="footnote">[21]</sup></a>
+tiian@ubuntu:~$ sqlplus "hr/hr"<a href="#ftn.idp71893952" class="footnote" id="idp71893952"><sup class="footnote">[21]</sup></a>
 
 SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 14 22:04:55 2011
 
@@ -486,7 +486,7 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	    are going to insert.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72000864"></a>Some checks before program execution</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71896176"></a>Some checks before program execution</h4></div></div></div>
 	  
 	  <p>
 	    We set <code class="varname">LIXA_PROFILE</code> to value
@@ -511,14 +511,14 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	    database using <code class="systemitem">hr</code>
 	    user and writing the trace file to directory 
 	    <code class="filename">/tmp</code> (see <code class="constant">LogDir</code>)
-	    <a href="#ftn.idp72006992" class="footnote" id="idp72006992"><sup class="footnote">[22]</sup></a>. Verify no trace file exists:
+	    <a href="#ftn.idp71902304" class="footnote" id="idp71902304"><sup class="footnote">[22]</sup></a>. Verify no trace file exists:
 	      </p><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
 ls: cannot access /tmp/xa*: No such file or directory
 	      </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72008880"></a>Program execution (dynamic registration)</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71904192"></a>Program execution (dynamic registration)</h4></div></div></div>
 	  
 	  <p>
 	    Execute the client program as shown below:
@@ -663,7 +663,7 @@ tiian@ubuntu:~/tmp$ rm /tmp/xa_NULL04102011.trc
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72009808"></a>Program execution (static registration)</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71905120"></a>Program execution (static registration)</h4></div></div></div>
 	  
 	  <p>
 	    Switch from dynamic registration to static registration (local
@@ -812,7 +812,7 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	  </p>
 	</div>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72026256"></a>Remote configuration (Instant Client) and OCI</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71921568"></a>Remote configuration (Instant Client) and OCI</h3></div></div></div>
 	
 	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  This example has been tested using Ubuntu Server LTS 14.04
@@ -830,7 +830,7 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	      configured in the system that will connect to the database
 	    </p></li></ul></div><p>
 	</p>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72029312"></a>Set-up the Oracle environment (server side)</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71924624"></a>Set-up the Oracle environment (server side)</h4></div></div></div>
 	  
 	  <p>
 	    The first part of the Oracle Database Server is pretty the same
@@ -1025,7 +1025,7 @@ export PATH=/opt/oracle/instantclient_12_1:/opt/oracle/instantclient_12_1/sdk:$P
 export ORACLE_HOME=/opt/oracle/instantclient_12_1
 	    </pre><p>
 	    and to put it inside Oracle Instant Client base directory
-	    <a href="#ftn.idp72049536" class="footnote" id="idp72049536"><sup class="footnote">[23]</sup></a>:
+	    <a href="#ftn.idp71944848" class="footnote" id="idp71944848"><sup class="footnote">[23]</sup></a>:
 	    </p><pre class="screen">
 tiian@ubuntu1404-64:~/lixa$ ls -la /opt/oracle/instantclient_12_1/oracle_env.sh
 -rwxr-xr-- 1 root root 216 mar 10 21:57 /opt/oracle/instantclient_12_1/oracle_env.sh
@@ -1086,14 +1086,14 @@ Disconnected from Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bi
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72056048"></a>Start the LIXA state server</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71951360"></a>Start the LIXA state server</h4></div></div></div>
 	  
 	  <p>
 	    The LIXA state server (daemon) must be started as explained in
 	    <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72058752"></a>Build the client program</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71954064"></a>Build the client program</h4></div></div></div>
 	  
 	  <p>
 	    Prepare the client (Application Program) using the below commands
@@ -1145,7 +1145,7 @@ libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007f32e5b71000)
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72066816"></a>Set-up LIXA environment</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71962128"></a>Set-up LIXA environment</h4></div></div></div>
 	  
 	  <p>
 	    Set-up the necessary environment variable:
@@ -1156,7 +1156,7 @@ ORAIC_DYN
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72068800"></a>Some checks before program execution</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71964112"></a>Some checks before program execution</h4></div></div></div>
 	  
 	  <p>
 	    We set <code class="varname">LIXA_PROFILE</code> to value
@@ -1181,10 +1181,10 @@ ORAIC_DYN
 	    database using <code class="systemitem">hr</code>
 	    user and writing the trace file to directory 
 	    <code class="filename">/tmp</code> (see <code class="constant">LogDir</code>)
-	    <a href="#ftn.idp72073408" class="footnote" id="idp72073408"><sup class="footnote">[24]</sup></a>. 
+	    <a href="#ftn.idp71968720" class="footnote" id="idp71968720"><sup class="footnote">[24]</sup></a>. 
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72076400"></a>Program execution (dynamic registration)</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71971712"></a>Program execution (dynamic registration)</h4></div></div></div>
 	  
 	  <p>
 	    Execute the client program and check how the content table changes:
@@ -1311,7 +1311,7 @@ xaoclose: rtn 0
 	  </p>
 	</div>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72026576"></a>Remote configuration (Instant Client) and Pro*C</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71921888"></a>Remote configuration (Instant Client) and Pro*C</h3></div></div></div>
 	
 	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  This example has been tested using Red Hat Enterprise Linux 7.3
@@ -1329,7 +1329,7 @@ xaoclose: rtn 0
 	      configured in the system that will connect to the database
 	    </p></li></ul></div><p>
 	</p>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72087392"></a>Set-up the Oracle environment (server side)</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71982704"></a>Set-up the Oracle environment (server side)</h4></div></div></div>
 	  
 	  <p>
 	    The first part of the Oracle Database Server is pretty the same
@@ -1344,21 +1344,21 @@ xaoclose: rtn 0
 	    </pre><p>	    
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72088528"></a>Configure Oracle Listener</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71983840"></a>Configure Oracle Listener</h4></div></div></div>
 	  
 	  <p>
 	    Configure at least one Oracle listener as explained in
 	    <a class="xref" href="ch05s04.html#Development_configure_Oracle_listener" title="Configure Oracle Listener">the section called “Configure Oracle Listener”</a>.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72092192"></a>Install and configure Oracle Instant Client</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71987504"></a>Install and configure Oracle Instant Client</h4></div></div></div>
 	  
 	  <p>
 	    Install and configure Oracle Instant Client as explained in
 	    <a class="xref" href="ch05s04.html#Development_install_Oracle_Instant_Client" title="Install and configure Oracle Instant Client">the section called “Install and configure Oracle Instant Client”</a>.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72094304"></a>Configure Oracle Pro*C precompiler</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71989616"></a>Configure Oracle Pro*C precompiler</h4></div></div></div>
 	  
 	  <p>
 	    If you don't like to use a lot of options on the command line,
@@ -1375,14 +1375,14 @@ define=__x86_64__
 	    Especially "sys_include" and "include" need your attention.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72096896"></a>Start the LIXA state server</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71992208"></a>Start the LIXA state server</h4></div></div></div>
 	  
 	  <p>
 	    The LIXA state server (daemon) must be started as explained in
 	    <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72099008"></a>Build the client program</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71994320"></a>Build the client program</h4></div></div></div>
 	  
 	  <p>
 	    Prepare the client (Application Program) using the below commands
@@ -1441,7 +1441,7 @@ proc is /opt/oracle/instantclient_12_1/sdk/proc
 	    </pre><p>
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72107296"></a>Set-up LIXA environment</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72002608"></a>Set-up LIXA environment</h4></div></div></div>
 	  
 	  <p>
 	    Set-up the necessary environment variable:
@@ -1455,7 +1455,7 @@ ORA_STA
 	    OCI and Pro*C.
 	  </p>
 	</div>
-	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72109392"></a>Program execution (static registration)</h4></div></div></div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72004704"></a>Program execution (static registration)</h4></div></div></div>
 	  
 	  <p>
 	    Execute the client program and check how the content table changes:
@@ -1577,7 +1577,7 @@ xaoclose: rtn 0
 	  </p>
 	</div>
       </div>
-    <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71948544" class="footnote"><p><a href="#idp71948544" class="para"><sup class="para">[19] </sup></a>
+    <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71843856" class="footnote"><p><a href="#idp71843856" class="para"><sup class="para">[19] </sup></a>
 	      I put this line (Oracle 10.2 32 bit)
 	      <code class="computeroutput">. /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh</code>
 	      or this line (Oracle 11.2 64 bit)
@@ -1587,7 +1587,7 @@ xaoclose: rtn 0
 	      the default administration environment; it complains about
 	      two shell errors, but for the sake of our example it's
 	      safe.
-	    </p></div><div id="ftn.idp71951568" class="footnote"><p><a href="#idp71951568" class="para"><sup class="para">[20] </sup></a>
+	    </p></div><div id="ftn.idp71846880" class="footnote"><p><a href="#idp71846880" class="para"><sup class="para">[20] </sup></a>
 	      If you got some errors like these:
 	      </p><pre class="screen">
 /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/nls_lang.sh: 114: [[: not found
@@ -1598,19 +1598,19 @@ xaoclose: rtn 0
 	      <code class="computeroutput">#!/bin/bash</code> in the first row as explained 
 	      here:
 	      <a class="ulink" href="http://forums.oracle.com/forums/thread.jspa?messageID=1542334" target="_top">http://forums.oracle.com/forums/thread.jspa?messageID=1542334</a>
-	      </p></div><div id="ftn.idp71998640" class="footnote"><p><a href="#idp71998640" class="para"><sup class="para">[21] </sup></a>
+	      </p></div><div id="ftn.idp71893952" class="footnote"><p><a href="#idp71893952" class="para"><sup class="para">[21] </sup></a>
   use </p><pre class="screen">sqlplus hr/hr@lixa_ora_db</pre><p> in the event that you are 
   using a remote connection as explained above
-</p></div><div id="ftn.idp72006992" class="footnote"><p><a href="#idp72006992" class="para"><sup class="para">[22] </sup></a>
+</p></div><div id="ftn.idp71902304" class="footnote"><p><a href="#idp71902304" class="para"><sup class="para">[22] </sup></a>
 	      The content of <code class="constant">xa_open_info</code> string is
 	      described in chapter 15 "Developing Applications with Oracle XA"
 	      of the "Oracle Database Application Developer's Guide"
 	      manual; please refer to the documentation published by
 	      Oracle Corporation for further details.
-	      </p></div><div id="ftn.idp72049536" class="footnote"><p><a href="#idp72049536" class="para"><sup class="para">[23] </sup></a>
+	      </p></div><div id="ftn.idp71944848" class="footnote"><p><a href="#idp71944848" class="para"><sup class="para">[23] </sup></a>
 	      LIXA test suite, based on <span class="command"><strong>autotest</strong></span> looks for
 	      it: if it's not available, Oracle's tests are skipped.
-	    </p></div><div id="ftn.idp72073408" class="footnote"><p><a href="#idp72073408" class="para"><sup class="para">[24] </sup></a>
+	    </p></div><div id="ftn.idp71968720" class="footnote"><p><a href="#idp71968720" class="para"><sup class="para">[24] </sup></a>
 	      The content of <code class="constant">xa_open_info</code> string is
 	      described in chapter "Developing Applications with Oracle XA"
 	      of the "Oracle Database Application Developer's Guide"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Environment variables</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2-rc2)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03s02.html" title="Configuring LIXA components" /><link rel="next" href="ch04.html" title="Chapter 4. Execution" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Environment variables</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Environment_variables"></a>Environment variables</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Environment variables</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03s02.html" title="Configuring LIXA components" /><link rel="next" href="ch04.html" title="Chapter 4. Execution" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Environment variables</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Environment_variables"></a>Environment variables</h2></div></div></div>
     
     <p>
       You can use some environment variables to tailor the LIXA configuration
       to your needs. Some environment variables applies only to one component,
       others apply to both client and server LIXA components.
     </p>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71723552"></a>LIXA_CONFIG_FILE</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71618864"></a>LIXA_CONFIG_FILE</h3></div></div></div>
 	
 	<p>
 	  This environment variable can be used to specify an alternate
@@ -27,7 +27,7 @@ export LIXA_CONFIG_FILE=/tmp/my_lixac
 	  client configuration file.
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71727280"></a>LIXA_CRASH_COUNT</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71622592"></a>LIXA_CRASH_COUNT</h3></div></div></div>
 	
 	<p>
 	  This environment variable must be used only in a development
@@ -38,7 +38,7 @@ export LIXA_CONFIG_FILE=/tmp/my_lixac
 	  <code class="varname">LIXA_CRASH_POINT</code> too.
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71729936"></a>LIXA_CRASH_POINT</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71625248"></a>LIXA_CRASH_POINT</h3></div></div></div>
 	
 	<p>
 	  This environment variable must be used only in a development
@@ -50,7 +50,7 @@ export LIXA_CONFIG_FILE=/tmp/my_lixac
 	  the <code class="function">abort()</code> function to simulate a soft crash.
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71732352"></a>LIXA_JOB</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71627664"></a>LIXA_JOB</h3></div></div></div>
 	
 	  <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
 	      This environment variable may be very useful to deal with some
@@ -66,7 +66,7 @@ export LIXA_CONFIG_FILE=/tmp/my_lixac
 	  for more information.
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71735840"></a>LIXA_PROFILE</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71631152"></a>LIXA_PROFILE</h3></div></div></div>
 	
 	<p>
 	  This environment variable must be used 
@@ -79,7 +79,7 @@ export LIXA_CONFIG_FILE=/tmp/my_lixac
 	  See <a class="xref" href="ch03s02.html#Client_configuration_explanation" title="Client configuration explanation">the section called “Client configuration explanation”</a> too.
 	</p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71738464"></a>LIXA_TRACE_MASK</h3></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71633776"></a>LIXA_TRACE_MASK</h3></div></div></div>
 	
 	<p>
 	  This environment variable specifies which internal modules must
