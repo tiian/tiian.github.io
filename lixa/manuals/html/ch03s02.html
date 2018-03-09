@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71674288"></a>Configuring LIXA components</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71845840"></a>Configuring LIXA components</h2></div></div></div>
     
     <p>
       The picture below emphasizes the LIXA components that must be configured
@@ -15,13 +15,13 @@
       <code class="filename">etc/lixac_conf.xml</code> file; the server component
       (<span class="command"><strong>lixad</strong></span>) is configured using the
       <code class="filename">etc/lixad_conf.xml</code> file
-      <a href="#ftn.idp71680976" class="footnote" id="idp71680976"><sup class="footnote">[16]</sup></a>.
+      <a href="#ftn.idp71851648" class="footnote" id="idp71851648"><sup class="footnote">[18]</sup></a>.
     </p>
     <p>
       If a node hosts both the client and the server components, both the
       files must be configured. If a node hosts only one component, only
       one configuration file is necessary
-      <a href="#ftn.idp71683408" class="footnote" id="idp71683408"><sup class="footnote">[17]</sup></a>.
+      <a href="#ftn.idp71854256" class="footnote" id="idp71854256"><sup class="footnote">[19]</sup></a>.
     </p>
     <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div>
       
@@ -86,7 +86,7 @@
 	      operation; every manager (thread) uses its own clock.
 	      <em class="parameter"><code>max_elapsed_sync_time</code></em> can not be less 
 	      than <em class="parameter"><code>min_elapsed_sync_time</code></em>;
-	      see <a class="xref" href="ch10.html" title="Chapter 10. Tuning">Chapter 10, <em>Tuning</em></a> for more information about these
+	      see <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> for more information about these
 	      parameters.
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      <em class="parameter"><code>listener</code></em>: the server can activate one 
@@ -113,7 +113,7 @@
 	      <em class="parameter"><code>manager</code></em>: any configured 
 	      <span class="emphasis"><em>manager</em></span> is a server worker and runs as
 	      a dedicated thread. 
-	      Refer to <a class="xref" href="ch10.html" title="Chapter 10. Tuning">Chapter 10, <em>Tuning</em></a> for a discussion about
+	      Refer to <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> for a discussion about
 	      configuration and performance results
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      <em class="parameter"><code>status_file</code></em>: the physical path that 
@@ -133,7 +133,7 @@
 	  <em class="parameter"><code>min_elapsed_sync_time</code></em> and
 	  <em class="parameter"><code>max_elapsed_sync_time</code></em>
 	  have a great relevance with the performance of the LIXA system
-	  as explained in <a class="xref" href="ch10.html" title="Chapter 10. Tuning">Chapter 10, <em>Tuning</em></a> but they have a relevance
+	  as explained in <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> but they have a relevance
 	  with system robustness as well:
 	</p>
 	<p>
@@ -150,9 +150,9 @@
 	  guaranteed by the Resource Managers your Application Programs use.
 	  The risk is some <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span>
 	  transactions will not automatically recovered
-	  (see <a class="xref" href="ch08s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a>) by LIXA
+	  (see <a class="xref" href="ch09s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a>) by LIXA
 	  infrastructure; those transactions will need
-	  manual recovery (see <a class="xref" href="ch08s03.html" title="Manual (cold) recovery">the section called “Manual (cold) recovery”</a>).
+	  manual recovery (see <a class="xref" href="ch09s03.html" title="Manual (cold) recovery">the section called “Manual (cold) recovery”</a>).
 	</p>
 	<p>
 	  <span class="emphasis"><em>
@@ -163,7 +163,7 @@
 	</p>
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71720384"></a>Configuring the client</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71891232"></a>Configuring the client</h3></div></div></div>
       
       <p>
 	The default configuration file is 
@@ -438,7 +438,7 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	</p>
 	<p>
 	  This protection has a cost explained in 
-	  <a class="xref" href="ch08s03.html#Recoverying_transaction_associated_different_job" title="Recoverying a transaction associated to a different job">the section called “Recoverying a transaction associated to a different job”</a>.
+	  <a class="xref" href="ch09s03.html#Recoverying_transaction_associated_different_job" title="Recoverying a transaction associated to a different job">the section called “Recoverying a transaction associated to a different job”</a>.
 	</p>
 	<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
 	  <p>
@@ -447,7 +447,7 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	    <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transactions
 	    (you can use <code class="option">--dump</code> as explained in
 	    <a class="xref" href="ch04.html#lixad_dump_execution" title="Dump execution">the section called “Dump execution”</a> and in
-	    <a class="xref" href="ch08s03.html#Recoverying_recovery_failed_transaction" title="Recoverying a “recovery failed” transaction">the section called “Recoverying a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction”</a>
+	    <a class="xref" href="ch09s03.html#Recoverying_recovery_failed_transaction" title="Recoverying a “recovery failed” transaction">the section called “Recoverying a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction”</a>
 	    to verify the content of the state server).
 	  </p>
 	  <p>
@@ -460,12 +460,12 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	</div>
       </div>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71680976" class="footnote"><p><a href="#idp71680976" class="para"><sup class="para">[16] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71851648" class="footnote"><p><a href="#idp71851648" class="para"><sup class="para">[18] </sup></a>
 	  Both the files reside in <code class="filename">/opt/lixa/etc/</code>
 	  directory and must be managed by
 	  <code class="systemitem">lixa</code> user, the
 	  LIXA administrative user
-      </p></div><div id="ftn.idp71683408" class="footnote"><p><a href="#idp71683408" class="para"><sup class="para">[17] </sup></a>
+      </p></div><div id="ftn.idp71854256" class="footnote"><p><a href="#idp71854256" class="para"><sup class="para">[19] </sup></a>
 	  The standard installation procedure installs both the files with
 	  default content; it's your responsability to customize the content
 	  of the files.

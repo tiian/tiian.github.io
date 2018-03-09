@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with MySQL &amp; PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s10.html" title="An example with MySQL/MariaDB" /><link rel="next" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with MySQL &amp; PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example9_mys_pql"></a>An example with MySQL &amp; PostgreSQL</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with MySQL &amp; PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s10.html" title="An example with MySQL/MariaDB" /><link rel="next" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with MySQL &amp; PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example9_mys_pql"></a>An example with MySQL &amp; PostgreSQL</h2></div></div></div>
     
     <div class="figure"><a id="develop9"></a><p class="title"><strong>Figure 5.9. Deploy model of an example showing a distributed transaction with
 	MySQL and PostgreSQL</strong></p><div class="figure-contents">
@@ -13,7 +14,8 @@
       coordinated by the LIXA Transaction Manager.
       It's strongly suggested you have played with the
       examples previously shown in this chapter (see
-      <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs">Chapter 5, <em>Developing C Application Programs</em></a>) before starting this more complex one.
+      <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface">Chapter 5, <em>Developing C Application Programs using TX (Transaction
+  Demarcation) interface</em></a>) before starting this more complex one.
     </p>
     <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
       <p>
@@ -67,7 +69,7 @@
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72765088"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72939776"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -132,7 +134,7 @@ tiian@ubuntu:~/tmp$ ldd example9_mys_pql
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72775216"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72949904"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	Set-up the necessary environment variables:
@@ -151,7 +153,7 @@ MYS_STA_PQL_STA
 	profile if you are going to execute the programs many times.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72779472"></a>Some checks before program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72954160"></a>Some checks before program execution</h3></div></div></div>
       
       <p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
@@ -177,11 +179,11 @@ MYS_STA_PQL_STA
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp72784240" class="footnote" id="idp72784240"><sup class="footnote">[36]</sup></a>
-	<a href="#ftn.idp72786608" class="footnote" id="idp72786608"><sup class="footnote">[37]</sup></a>.
+	<a href="#ftn.idp72958928" class="footnote" id="idp72958928"><sup class="footnote">[38]</sup></a>
+	<a href="#ftn.idp72961296" class="footnote" id="idp72961296"><sup class="footnote">[39]</sup></a>.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72789616"></a>Program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72964304"></a>Program execution</h3></div></div></div>
       
       <p>
 	It is suggested to open three different terminals: 
@@ -311,20 +313,20 @@ testdb=&gt; select * from AUTHORS;
 	</table></div><p>
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72784240" class="footnote">
-	  <p><a href="#idp72784240" class="para"><sup class="para">[36] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72958928" class="footnote">
+	  <p><a href="#idp72958928" class="para"><sup class="para">[38] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
 	  </p>
-	</div><div id="ftn.idp72786608" class="footnote">
-	  <p><a href="#idp72786608" class="para"><sup class="para">[37] </sup></a>
+	</div><div id="ftn.idp72961296" class="footnote">
+	  <p><a href="#idp72961296" class="para"><sup class="para">[39] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp74278704"><span class="citation">XAspec</span></a>].
+	    documented in [<a class="citation" href="bi01.html#idp74467168"><span class="citation">XAspec</span></a>].
 	  </p>
 	</div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL/MariaDB </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL, PostgreSQL &amp; Oracle</td></tr></table></div></body></html>

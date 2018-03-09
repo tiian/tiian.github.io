@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="prev" href="ch06s07.html" title="An example with PostgreSQL &amp; Oracle" /><link rel="next" href="ch07s02.html" title="A TC TX usage example with Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s07.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch07s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Development_TC"></a>Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</h1></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="prev" href="ch06s07.html" title="An example with PostgreSQL &amp; Oracle" /><link rel="next" href="ch07s02.html" title="A TC TX usage example with Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s07.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch07s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Development_TC"></a>Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</h1></div></div></div>
   
   <p>
     This chapter explains how you can develop your own C application using the libraries and tools supplied by the LIXA project.
@@ -8,14 +8,15 @@
     The LIXA project ships with some example C programs that you can find in the <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples</code> folder after software installation (see <a class="xref" href="ch02.html" title="Chapter 2. Installation">Chapter 2, <em>Installation</em></a>).
   </p>
   <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-    This chapter is focused on the C programming language for the non-standard extensions that has been added to the TX specification to expose some of the XA interface capabilities. All the information supplied in <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs">Chapter 5, <em>Developing C Application Programs</em></a> still applies.
+    This chapter is focused on the C programming language for the non-standard extensions that has been added to the TX specification to expose some of the XA interface capabilities. All the information supplied in <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface">Chapter 5, <em>Developing C Application Programs using TX (Transaction
+  Demarcation) interface</em></a> still applies.
   </p></div>
-  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp73532832"></a>Non-standard TX (Transaction Demarcation) Specification Extensions</h2></div></div></div>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp73707632"></a>Non-standard TX (Transaction Demarcation) Specification Extensions</h2></div></div></div>
     
     <p>
-      The LIXA project provides extensions to the [<a class="citation" href="bi01.html#idp74273904"><span class="citation">TXspec</span></a>],
+      The LIXA project provides extensions to the [<a class="citation" href="bi01.html#idp74462368"><span class="citation">TXspec</span></a>],
       named Transaction Coupling (TC)
-      <a href="#ftn.idp73534432" class="footnote" id="idp73534432"><sup class="footnote">[44]</sup></a>, which can be used in addition to the 
+      <a href="#ftn.idp73709232" class="footnote" id="idp73709232"><sup class="footnote">[46]</sup></a>, which can be used in addition to the 
       standard API when developing distributed Application Programs.
     </p>
     <p>
@@ -78,7 +79,7 @@ int main(int argc, char *argv[])
           <code class="function">tx_resume</code>: resume a suspended global transaction - <span class="emphasis"><em>only from the thread that suspended the original transaction</em></span>
         </p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73547824"></a>LIXA library linkage</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73722592"></a>LIXA library linkage</h3></div></div></div>
       
       <p>
 	See <a class="xref" href="ch05s02.html" title="LIXA library linkage">the section called “LIXA library linkage”</a>.
@@ -86,8 +87,8 @@ int main(int argc, char *argv[])
     </div>
   </div>
   
-<div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp73534432" class="footnote">
-	<p><a href="#idp73534432" class="para"><sup class="para">[44] </sup></a>
+<div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp73709232" class="footnote">
+	<p><a href="#idp73709232" class="para"><sup class="para">[46] </sup></a>
 	  This extension to the TX specification was designed and has been
 	  provided to the LIXA project by 
 	  <a class="ulink" href="http://www.globetom.com/" target="_top">Globetom</a>

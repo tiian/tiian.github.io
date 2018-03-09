@@ -1,80 +1,1124 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Non root installation</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch09.html" title="Chapter 9. In Depth" /><link rel="prev" href="ch09s02.html" title="Tracing" /><link rel="next" href="ch09s04.html" title="Workload balanced environments" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Non root installation</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09s02.html">Prev</a> </td><th width="60%" align="center">Chapter 9. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch09s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Non_root_installation"></a>Non root installation</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Manual (cold) recovery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch09.html" title="Chapter 9. Recovery" /><link rel="prev" href="ch09s02.html" title="Automatic recovery concepts" /><link rel="next" href="ch10.html" title="Chapter 10. In Depth" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Manual (cold) recovery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09s02.html">Prev</a> </td><th width="60%" align="center">Chapter 9. Recovery</th><td width="20%" align="right"> <a accesskey="n" href="ch10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Manual_cold_recovery"></a>Manual (cold) recovery</h2></div></div></div>
     
     <p>
-      The standard installation procedure explained in
-      <a class="xref" href="ch02.html" title="Chapter 2. Installation">Chapter 2, <em>Installation</em></a> uses 
-      <code class="systemitem">root</code> account.
-      You can install the software in a home directory using a normal user
-      account, for instance <code class="systemitem">lixa</code>.
-      To specify an alternative installation path you have to use
-      <code class="option">--prefix</code> option at configure time.
+      Manual (cold) recovery uses the information provided by the
+      Resource Managers querying them using 
+      <code class="function">xa_recover()</code>.
+      This type of recovery should be used to resolve some unusual
+      situations.
     </p>
     <p>
-      The following steps show how you can install the software in 
-      <code class="systemitem">lixa</code> home directory.
-      </p><pre class="screen">
-lixa@ubuntu:~$ ls -l
-total 1520
--rw-r--r-- 1 lixa lixa 1550959 2011-12-18 21:25 lixa-0.5.36.tar.gz
-lixa@ubuntu:~$ tar xzf lixa-0.5.36.tar.gz
-lixa@ubuntu:~$ cd lixa-0.5.36
+      If, for any reason, the LIXA state server (<span class="command"><strong>lixad</strong></span>)
+      forgot the state of a transaction
+      <a href="#ftn.idp73901216" class="footnote" id="idp73901216"><sup class="footnote">[48]</sup></a>
+      or the transaction is in state <span class="quote">“<span class="quote">recovery failed</span>”</span> because
+      a previous automatic (warm) recovery failed, you have to manually
+      recover the transaction.
+      The procedure to recover a <span class="quote">“<span class="quote">forgotten</span>”</span> transaction is 
+      the same you use to recover a <span class="quote">“<span class="quote">recovery failed</span>”</span> one, 
+      but additional server side clean-up is suggested for 
+      <span class="quote">“<span class="quote">recovery failed</span>”</span> transactions.
+    </p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Recoverying_forgotten_transactions"></a>Recoverying forgotten transactions</h3></div></div></div>
+      
+      <p>
+	This example necessitates of the same environment set-up in
+	<a class="xref" href="ch09s02.html#Forcing_automatic_recovery" title="Forcing automatic recovery">the section called “Forcing automatic recovery”</a>; you must start running
+	the example program after you enabled the 
+	<code class="varname">LIXA_CRASH_POINT</code> environment variable:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_CRASH_POINT=15
+tiian@ubuntu:~/tmp$ echo $LIXA_CRASH_POINT
+15
+tiian@ubuntu:~/tmp$ ./example6_pql_ora insert
+Deleting a row from the tables...
+Oracle DELETE statement executed!
+Aborted
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	and check there is a recovery pending transaction inside PostgreSQL
+	and Oracle Resource Managers:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from dba_pending_transactions;
 
-lixa@ubuntu:~/lixa-0.5.36$ ./configure --prefix=/home/lixa/prod
-[...]
-config.status: creating config.h
-config.status: executing depfiles commands
-config.status: executing tests/atconfig commands
-
-lixa@ubuntu:~/lixa-0.5.36$ make install
-[...]
-make[2]: Leaving directory `/home/lixa/lixa-0.5.36'
-make[1]: Leaving directory `/home/lixa/lixa-0.5.36'
-
-lixa@ubuntu:~/lixa-0.5.36$ ls -la /home/lixa/prod/
-total 36
-drwxr-xr-x 9 lixa lixa 4096 2011-12-18 21:30 .
-drwxr-xr-x 5 lixa lixa 4096 2011-12-18 21:28 ..
-drwxr-xr-x 2 lixa lixa 4096 2011-12-18 21:29 bin
-drwxr-xr-x 2 lixa lixa 4096 2011-12-18 21:28 etc
-drwxr-xr-x 2 lixa lixa 4096 2011-12-18 21:29 include
-drwxr-xr-x 2 lixa lixa 4096 2011-12-18 21:29 lib
-drwxr-xr-x 2 lixa lixa 4096 2011-12-18 21:29 sbin
-drwxr-xr-x 3 lixa lixa 4096 2011-12-18 21:30 share
-drwxr-xr-x 2 lixa lixa 4096 2011-12-18 21:29 var
-
-lixa@ubuntu:~/lixa-0.5.36$ export LD_LIBRARY_PATH=/home/lixa/prod/lib
-lixa@ubuntu:~/lixa-0.5.36$ /home/lixa/prod/sbin/lixad --daemon
-lixa@ubuntu:~/lixa-0.5.36$ ps -ef|grep lixad|grep -v grep
-lixa     23493     1  0 21:32 ?        00:00:00 /home/lixa/prod/sbin/lixad --daemon
-
-lixa@ubuntu:~/lixa-0.5.36$ export PATH=$PATH:/home/lixa/prod/bin
-lixa@ubuntu:~/lixa-0.5.36$ lixat
+  FORMATID
+----------
+GLOBALID
+--------------------------------------------------------------------------------
+BRANCHID
+--------------------------------------------------------------------------------
+1279875137
+957747F7F37B439EBCEA4146076AD322
+9BAC7BE1C129EA6EE31F2D71B318120C
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from pg_prepared_xacts;
+ transaction |                                    gid                                       |           prepared            | owner | database 
+-------------+------------------------------------------------------------------------------+-------------------------------+-------+----------
+         877 | 1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c | 2011-12-14 22:55:14.973443+01 | tiian | testdb
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Then you should stop and cold start the <span class="command"><strong>lixad</strong></span> 
+	state server:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo su - lixa
+lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+lixa     24437     1  0 21:19 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ pkill lixad
+lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+lixa@ubuntu:~$ ls /opt/lixa/var/
+lixad_status1_1  lixad_status2_1  lixad_status3_1  README
+lixad_status1_2  lixad_status2_2  lixad_status3_2
+lixa@ubuntu:~$ rm /opt/lixa/var/lixad_status*
+lixa@ubuntu:~$ ls /opt/lixa/var/
+README
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+lixa     28594     1  0 23:00 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ ls /opt/lixa/var/
+lixad_status1_1  lixad_status2_1  lixad_status3_1  README
+lixad_status1_2  lixad_status2_2  lixad_status3_2  run.pid
+lixa@ubuntu:~$ exit
+logout
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	These are the operations you just performed:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      changed the user from your own to 
+	      <code class="systemitem">lixa</code> user
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      checked the <span class="command"><strong>lixad</strong></span> daemon was running
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      stopped the <span class="command"><strong>lixad</strong></span> daemon
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      checked the <span class="command"><strong>lixad</strong></span> daemon was not running
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      checked the <span class="command"><strong>lixad</strong></span>'s state files
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      removed the <span class="command"><strong>lixad</strong></span>'s state files
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      started the <span class="command"><strong>lixad</strong></span> daemon
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      checked the new <span class="command"><strong>lixad</strong></span>'s state files
+	  </p></li></ul></div><p>
+	Running <span class="command"><strong>lixat</strong></span> does <span class="emphasis"><em>not</em></span>
+	automatically recover the transaction:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00040000
+tiian@ubuntu:~/tmp$ /opt/lixa/bin/lixat 
 tx_open(): 0
 tx_close(): 0
-      </pre><p>
-    </p>
-    <p>
-      Installing LIXA using a non 
-      <code class="systemitem">root</code> 
-      account has some advantages:
-      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	    there aren't post install steps to change the ownership of
-	    <code class="filename">etc</code> and <code class="filename">var</code>
-	    directories
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    you can install the software without
-	    <code class="systemitem">root</code> privileges
-	</p></li></ul></div><p>
-      and some disadvantages:
-      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	    the software is installed inside a home directory instead of
-	    a system path
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    there is no distinction between the administrative account
-	    that must manage the state (<code class="filename">var</code>) and
-	    the configuration (<code class="filename">etc</code>) and the
-	    system account that must manage the software installation.
-	</p></li></ul></div><p>
-    </p>
-  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch09s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Tracing </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Workload balanced environments</td></tr></table></div></body></html>
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    The program does not produce trace because
+	    <span class="quote">“<span class="quote">client recovery</span>”</span> module is not called (the 
+	    state server does not pass information about recovery 
+	    pending transactions to the LIXA client library).
+	</p></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from dba_pending_transactions;
+
+  FORMATID
+----------
+GLOBALID
+--------------------------------------------------------------------------------
+BRANCHID
+--------------------------------------------------------------------------------
+1279875137
+957747F7F37B439EBCEA4146076AD322
+9BAC7BE1C129EA6EE31F2D71B318120C
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from pg_prepared_xacts;
+ transaction |                                    gid                                       |           prepared            | owner | database 
+-------------+------------------------------------------------------------------------------+-------------------------------+-------+----------
+         877 | 1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c | 2011-12-14 22:55:14.973443+01 | tiian | testdb
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	The <span class="command"><strong>lixar</strong></span> utility program with <code class="option">-p</code>
+	option can be used to list the prepared transactions that can not be
+	automatically recovered:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ /opt/lixa/bin/lixar -p
+Execution options:
+	- print report = yes
+	- transaction(s) will be committed = no
+	- transaction(s) will be rolled back = no
+	- bypass xid branch qualifier check = no
+	- bypass xid format id check = no
+	- use TMENDRSCAN flag for last xa_recover call = no
+
+Recovery environment:
+LIXA_CONFIG_FILE_ENV_VAR = '(null)'
+LIXA_PROFILE_ENV_VAR = 'PQL_STA_ORA_DYN'
+LIXA_JOB_ENV_VAR = '(null)'
+
+Resource manager list:
+rmid=0, lixa_name='PostgreSQL_stareg', xa_name='PostgreSQL[LIXA]'
+rmid=1, lixa_name='OracleXE_dynreg', xa_name='Oracle_XA'
+
+Prepared and in-doubt transaction list:
+xid='1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c': rmid=0 rmid=1 
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	it reports some useful information and at the bottom there is the
+	list of in-doubt transactions. 
+	The transaction is prepared/in-doubt for both Resource Managers;
+	sometimes it may be only for a subset of the Resource Managers
+	defined by <code class="varname">LIXA_PROFILE</code>.
+	You can manually recover the transaction using
+	the <code class="option">-x</code> and <code class="option">-r</code> (rollback) or
+	<code class="option">-c</code> (commit):
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ /opt/lixa/bin/lixar -p -x 1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c -r
+Execution options:
+	- print report = yes
+	- transaction to commit/rollback = 1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c
+	- transaction(s) will be committed = no
+	- transaction(s) will be rolled back = yes
+	- bypass xid branch qualifier check = no
+	- bypass xid format id check = no
+	- use TMENDRSCAN flag for last xa_recover call = no
+
+Recovery environment:
+LIXA_CONFIG_FILE_ENV_VAR = '(null)'
+LIXA_PROFILE_ENV_VAR = 'PQL_STA_ORA_DYN'
+LIXA_JOB_ENV_VAR = '(null)'
+
+Resource manager list:
+rmid=0, lixa_name='PostgreSQL_stareg', xa_name='PostgreSQL[LIXA]'
+rmid=1, lixa_name='OracleXE_dynreg', xa_name='Oracle_XA'
+
+Prepared and in-doubt transaction list:
+xid='1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c': rmid=0 rmid=1 
+
+Analizing transaction '1279875137.957747f7f37b439ebcea4146076ad322.9bac7be1c129ea6ee31f2d71b318120c':
+xa_rollback --&gt; rmid=0, lixa_name='PostgreSQL_stareg', xa_name='PostgreSQL[LIXA]', rc=0
+xa_rollback --&gt; rmid=1, lixa_name='OracleXE_dynreg', xa_name='Oracle_XA', rc=0
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	You can now verify there are no prepared/in-doubt transactions 
+	inside the Resource Managers:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from dba_pending_transactions;
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from pg_prepared_xacts;
+ transaction | gid | prepared | owner | database 
+-------------+-----+----------+-------+----------
+(0 rows)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	We rolled back the deletion so the rows must be in place:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+COUNTR
+------
+COUNTRY_NAME
+--------------------------------------------------------------------------------
+ REGION_ID
+----------
+RS
+Repubblica San Marino
+	 1
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from AUTHORS;
+ id | last_name | first_name 
+----+-----------+------------
+  1 | Foo       | Bar
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	You can retrieve some help from <span class="command"><strong>lixar</strong></span> with
+	<code class="option">-?</code> option:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ /opt/lixa/bin/lixar -?
+Usage:
+  lixar [OPTION...] - LIXA recovery utility
+
+Help Options:
+  -?, --help                      Show help options
+
+Application Options:
+  -p, --print                     Print a report of all the prepared and in-doubt transactions compatible with current configuration and profile
+  -x, --xid                       Select specified transaction for rollback/commit
+  -X, --xid-file                  Select specified file as a list of transaction to rollback/commit
+  -c, --commit                    Commit prepared &amp; in-doubt transactions
+  -r, --rollback                  Rollback prepared &amp; in-doubt transactions
+  -v, --version                   Print package info and exit
+  -b, --bypass-bqual-check        Bypass xid branch qualifier check
+  -B, --bypass-formatid-check     Bypass xid format id check
+  -e, --use-tmendrscan-flag       Use TMENDRSCAN flag for last xa_recover call
+	  </pre></td></tr></tbody>
+	</table></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Recoverying_recovery_failed_transaction"></a>Recoverying a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction</h3></div></div></div>
+      
+      <p>
+	This example is quite complex because a 
+	<span class="quote">“<span class="quote">recovery failed</span>”</span> transaction is unlikely.
+	To create a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction we 
+	will use a special
+	Resource Manager, the <span class="quote">“<span class="quote">LIXA monkey</span>”</span> one: it's a
+	R.M. we can <span class="quote">“<span class="quote">program</span>”</span> to answer the Transaction Manager
+	as we desire. We will emulate an heuristically completed transaction
+	to force the LIXA Transaction Manager marking it as
+	<span class="quote">“<span class="quote">recovery failed</span>”</span>.
+      </p>
+      <p>
+	Before we can start, you must set-up the same environment already 
+	explained in <a class="xref" href="ch09s03.html#Recoverying_forgotten_transactions" title="Recoverying forgotten transactions">the section called “Recoverying forgotten transactions”</a>.
+	Open three terminals session and prepare the sessions as shown
+	below:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
+tiian@ubuntu:~/tmp$ echo $ORACLE_HOME
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
+tiian@ubuntu:~/tmp$ echo $ORACLE_SID
+XE
+tiian@ubuntu:~/tmp$ export LIXA_PROFILE=MON_STA_PQL_STA_ORA_DYN
+tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+MON_STA_PQL_STA_ORA_DYN
+tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib:
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	The specified <code class="varname">LIXA_PROFILE</code> points to a
+	configuration with three Resource Managers: LIXA Monkey (a fake
+	R.M.), PostgreSQL (static registration) and Oracle DBMS (dynamic
+	registration).
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
+tiian@ubuntu:~$ sqlplus "hr/hr"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Ven Dic 16 16:15:23 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connesso a:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~$ psql testdb
+Welcome to psql 8.3.16, the PostgreSQL interactive terminal.
+
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+
+testdb=&gt; SELECT * FROM authors;
+ id | last_name | first_name 
+----+-----------+------------
+(0 rows)
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Start the LIXA state server if it's not active:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo su - lixa
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+lixa      7127     1  0 22:13 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ exit
+logout
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Before we can start the program execution, we must create a file
+	named <code class="filename">monkeyrm.conf</code> in the current directory
+	and put the following content inside it:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Content of file monkeyrm.conf]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+xa_open/0
+xa_start/0
+xa_end/0
+xa_prepare/0
+xa_commit/0
+xa_close/0
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Now you can execute the program to verify it's running as expected;
+	we are tracing the module <span class="quote">“<span class="quote">client XA switch</span>”</span>
+	(see <a class="xref" href="ch10s02.html#Tracing_modules" title="Tracing modules">the section called “Tracing modules”</a>) to verify the 
+	LIXA Monkey Resource Manager is properly configured:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00010000
+tiian@ubuntu:~/tmp$ ./example6_pql_ora insert 2&gt;&amp;1 | grep monkey
+2011-12-15 22:42:20.709697 [22490/3052672768] lixa_monkeyrm_open: xa_info='monkeyrm.conf', rmid=1, flags=0x0
+2011-12-15 22:42:20.710101 [22490/3052672768] lixa_monkeyrm_open: creating new first level hash table...
+2011-12-15 22:42:20.713087 [22490/3052672768] lixa_monkeyrm_open/g_hash_table_new_full/monkey_status: 0x804caa0
+2011-12-15 22:42:20.713361 [22490/3052672768] lixa_monkeyrm_open: creating new second level hash table for tid=3052672768
+2011-12-15 22:42:20.713719 [22490/3052672768] lixa_monkeyrm_open/g_hash_table_new_full/slht: 0x804cac8
+2011-12-15 22:42:20.713994 [22490/3052672768] lixa_monkeyrm_open: creating new status block for tid=3052672768, rmid=1
+2011-12-15 22:42:20.714248 [22490/3052672768] lixa_monkeyrm_open/g_malloc/mss: 0x804e998
+2011-12-15 22:42:20.714521 [22490/3052672768] lixa_monkeyrm_open_init
+2011-12-15 22:42:20.714783 [22490/3052672768] lixa_monkeyrm_open_init/g_array_new/mss-&gt;records: 0x804c550 
+2011-12-15 22:42:20.715139 [22490/3052672768] lixa_monkeyrm_open_init: verb='xa_open'
+2011-12-15 22:42:20.715430 [22490/3052672768] lixa_monkeyrm_open_init: appending record verb=1, rc=0
+2011-12-15 22:42:20.715691 [22490/3052672768] lixa_monkeyrm_open_init: verb='xa_start'
+2011-12-15 22:42:20.715946 [22490/3052672768] lixa_monkeyrm_open_init: appending record verb=3, rc=0
+2011-12-15 22:42:20.716340 [22490/3052672768] lixa_monkeyrm_open_init: verb='xa_end'
+2011-12-15 22:42:20.716602 [22490/3052672768] lixa_monkeyrm_open_init: appending record verb=4, rc=0
+2011-12-15 22:42:20.716864 [22490/3052672768] lixa_monkeyrm_open_init: verb='xa_prepare'
+2011-12-15 22:42:20.717123 [22490/3052672768] lixa_monkeyrm_open_init: appending record verb=5, rc=0
+2011-12-15 22:42:20.717377 [22490/3052672768] lixa_monkeyrm_open_init: verb='xa_commit'
+2011-12-15 22:42:20.717671 [22490/3052672768] lixa_monkeyrm_open_init: appending record verb=6, rc=0
+2011-12-15 22:42:20.717937 [22490/3052672768] lixa_monkeyrm_open_init: verb='xa_close'
+2011-12-15 22:42:20.718196 [22490/3052672768] lixa_monkeyrm_open_init: appending record verb=2, rc=0
+2011-12-15 22:42:20.718519 [22490/3052672768] lixa_monkeyrm_open_init/excp=3/ret_cod=0/errno=0
+2011-12-15 22:42:20.718816 [22490/3052672768] lixa_monkeyrm_get_rc
+2011-12-15 22:42:20.726862 [22490/3052672768] lixa_monkeyrm_get_rc: verb is 1, XA return code is 0
+2011-12-15 22:42:20.727177 [22490/3052672768] lixa_monkeyrm_get_rc/excp=2/ret_cod=0/errno=0
+2011-12-15 22:42:20.727429 [22490/3052672768] lixa_monkeyrm_open/excp=4/ret_cod=0/xa_rc=0/errno=0
+2011-12-15 22:42:21.022655 [22490/3052672768] lixa_monkeyrm_start: xid='1279875137.7bdcf6c060e14bdba416302661187411.a100c8728292168b21ba7239bffc137d', rmid=1, flags=0x0
+2011-12-15 22:42:21.022695 [22490/3052672768] lixa_monkeyrm_get_rc
+2011-12-15 22:42:21.022705 [22490/3052672768] lixa_monkeyrm_get_rc: verb is 3, XA return code is 0
+2011-12-15 22:42:21.022712 [22490/3052672768] lixa_monkeyrm_get_rc/excp=2/ret_cod=0/errno=0
+2011-12-15 22:42:21.022719 [22490/3052672768] lixa_monkeyrm_start/excp=4/ret_cod=0/xa_rc=0/errno=0
+2011-12-15 22:42:21.059688 [22490/3052672768] lixa_monkeyrm_end: xid='1279875137.7bdcf6c060e14bdba416302661187411.a100c8728292168b21ba7239bffc137d', rmid=1, flags=0x4000000
+2011-12-15 22:42:21.059701 [22490/3052672768] lixa_monkeyrm_get_rc
+2011-12-15 22:42:21.059709 [22490/3052672768] lixa_monkeyrm_get_rc: verb is 4, XA return code is 0
+2011-12-15 22:42:21.059716 [22490/3052672768] lixa_monkeyrm_get_rc/excp=2/ret_cod=0/errno=0
+2011-12-15 22:42:21.059723 [22490/3052672768] lixa_monkeyrm_end/excp=4/ret_cod=0/xa_rc=0/errno=0
+2011-12-15 22:42:21.076478 [22490/3052672768] lixa_monkeyrm_prepare: xid='1279875137.7bdcf6c060e14bdba416302661187411.a100c8728292168b21ba7239bffc137d', rmid=1, flags=0x0
+2011-12-15 22:42:21.076498 [22490/3052672768] lixa_monkeyrm_get_rc
+2011-12-15 22:42:21.076512 [22490/3052672768] lixa_monkeyrm_get_rc: verb is 5, XA return code is 0
+2011-12-15 22:42:21.076520 [22490/3052672768] lixa_monkeyrm_get_rc/excp=2/ret_cod=0/errno=0
+2011-12-15 22:42:21.076527 [22490/3052672768] lixa_monkeyrm_prepare/excp=4/ret_cod=0/xa_rc=0/errno=0
+2011-12-15 22:42:21.098722 [22490/3052672768] lixa_monkeyrm_commit: xid='1279875137.7bdcf6c060e14bdba416302661187411.a100c8728292168b21ba7239bffc137d', rmid=1, flags=0x0
+2011-12-15 22:42:21.098747 [22490/3052672768] lixa_monkeyrm_get_rc
+2011-12-15 22:42:21.098756 [22490/3052672768] lixa_monkeyrm_get_rc: verb is 6, XA return code is 0
+2011-12-15 22:42:21.098764 [22490/3052672768] lixa_monkeyrm_get_rc/excp=2/ret_cod=0/errno=0
+2011-12-15 22:42:21.098770 [22490/3052672768] lixa_monkeyrm_commit/excp=4/ret_cod=0/xa_rc=0/errno=0
+2011-12-15 22:42:21.102841 [22490/3052672768] lixa_monkeyrm_close: xa_info='', rmid=1, flags=0x0
+2011-12-15 22:42:21.102853 [22490/3052672768] lixa_monkeyrm_get_rc
+2011-12-15 22:42:21.102862 [22490/3052672768] lixa_monkeyrm_get_rc: verb is 2, XA return code is 0
+2011-12-15 22:42:21.102869 [22490/3052672768] lixa_monkeyrm_get_rc/excp=2/ret_cod=0/errno=0
+2011-12-15 22:42:21.102877 [22490/3052672768] lixa_monkeyrm_close/excp=4/ret_cod=0/xa_rc=0/errno=0
+tiian@ubuntu:~/tmp$ unset LIXA_TRACE_MASK
+tiian@ubuntu:~/tmp$ ./example6_pql_ora delete
+Deleting a row from the tables...
+Oracle DELETE statement executed!
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Don't forget the clean-up step (last command) before performing
+	the next steps.
+      </p>
+      <p>
+	To create a <span class="quote">“<span class="quote">recovery pending</span>”</span> transaction, we are
+	going to forcea crash after <code class="function">xa_prepare()</code>
+	functions completed successfully:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_CRASH_POINT=15
+tiian@ubuntu:~/tmp$ echo $LIXA_CRASH_POINT
+15
+tiian@ubuntu:~/tmp$ ./example6_pql_ora insert
+Inserting a row in the tables...
+Oracle INSERT statement executed!
+Aborted
+tiian@ubuntu:~/tmp$ unset LIXA_CRASH_POINT
+tiian@ubuntu:~/tmp$ echo $LIXA_CRASH_POINT
+
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Verify there is a prepared/in-doubt transaction inside Oracle:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from dba_pending_transactions;
+
+  FORMATID
+----------
+GLOBALID
+--------------------------------------------------------------------------------
+BRANCHID
+--------------------------------------------------------------------------------
+1279875137
+D2F5F0A5C37E485CB44D9FC16E72A33D
+68D0E0CCBC6FC4B7FA616DF9AB122395
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Verify there is a prepared/in-doubt transaction inside PostgreSQL:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from pg_prepared_xacts;
+ transaction |                                    gid                                       |           prepared            | owner | database 
+-------------+------------------------------------------------------------------------------+-------------------------------+-------+----------
+         964 | 1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395 | 2011-12-16 16:38:47.921947+01 | tiian | testdb
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	To move the transaction in <span class="quote">“<span class="quote">recovery failed</span>”</span> status
+	we emulate
+	an <span class="quote">“<span class="quote">heuristically rolled back</span>”</span> in the automatic recovery
+	step.
+	Edit the file <code class="filename">monkeyrm.conf</code> to code the
+	new behavior of the LIXA Monkey R.M.:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Content of file monkeyrm.conf]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+xa_open/0
+xa_commit/6
+xa_close/0
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Start the <span class="command"><strong>lixat</strong></span> utility command to start an
+	<span class="quote">“<span class="quote">automatic (warm) recovery</span>”</span>; trace the
+	<span class="quote">“<span class="quote">client recovery</span>”</span> 
+	(see <a class="xref" href="ch10s02.html#Tracing_modules" title="Tracing modules">the section called “Tracing modules”</a>) module to understand what
+	happens:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00040000
+tiian@ubuntu:~/tmp$ /opt/lixa/bin/lixat
+2011-12-16 16:44:09.970398 [8385/3073862320] client_recovery
+2011-12-16 16:44:09.970575 [8385/3073862320] client_recovery: sending 197 bytes ('000191&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;msg level="0" verb="8" step="8"&gt;&lt;client job="68d0e0ccbc6fc4b7fa616df9ab122395/127.0.0.1      " config_digest="68d0e0ccbc6fc4b7fa616df9ab122395"/&gt;&lt;/msg&gt;') to the server for step 8
+2011-12-16 16:44:10.007703 [8385/3073862320] client_recovery: receiving 632 bytes from the server |&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;msg level="0" verb="8" step="16"&gt;&lt;answer rc="0"/&gt;&lt;client job="68d0e0ccbc6fc4b7fa616df9ab122395/127.0.0.1      " config_digest="68d0e0ccbc6fc4b7fa616df9ab122395"&gt;&lt;last_verb_step verb="5" step="16"/&gt;&lt;state finished="0" txstate="3" will_commit="1" will_rollback="0" xid="1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395"/&gt;&lt;/client&gt;&lt;rsrmgrs&gt;&lt;rsrmgr rmid="0" next_verb="0" r_state="1" s_state="33" td_state="10"/&gt;&lt;rsrmgr rmid="1" next_verb="0" r_state="1" s_state="33" td_state="10"/&gt;&lt;rsrmgr rmid="2" next_verb="0" r_state="1" s_state="33" td_state="20"/&gt;&lt;/rsrmgrs&gt;&lt;/msg&gt;|
+2011-12-16 16:44:10.008178 [8385/3073862320] client_recovery_analyze
+2011-12-16 16:44:10.008229 [8385/3073862320] client_recovery_analyze: the TX was committing
+2011-12-16 16:44:10.008242 [8385/3073862320] client_recovery_analyze: rmid=0, r_state=1, s_state=33, td_state=10
+2011-12-16 16:44:10.008261 [8385/3073862320] client_recovery_analyze: rmid=1, r_state=1, s_state=33, td_state=10
+2011-12-16 16:44:10.008278 [8385/3073862320] client_recovery_analyze: rmid=2, r_state=1, s_state=33, td_state=20
+2011-12-16 16:44:10.008303 [8385/3073862320] client_recovery_analyze/excp=1/ret_cod=0/errno=0
+2011-12-16 16:44:10.008327 [8385/3073862320] client_recovery: transaction '1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395' must be committed
+2011-12-16 16:44:10.008353 [8385/3073862320] client_recovery_commit
+2011-12-16 16:44:10.008388 [8385/3073862320] client_recovery_commit: committing transaction '1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395'
+2011-12-16 16:44:10.008412 [8385/3073862320] client_recovery_commit: xa_commit for rmid=0, name='LIXAmonkey1staRM', xa_name='LIXA Monkey RM (static)'...
+2011-12-16 16:44:10.008464 [8385/3073862320] client_recovery_commit: rc=6
+2011-12-16 16:44:10.008613 [8385/3073862320] client_recovery_commit: xa_commit for rmid=1, name='PostgreSQL_stareg', xa_name='PostgreSQL[LIXA]'...
+2011-12-16 16:44:10.062892 [8385/3073862320] client_recovery_commit: rc=0
+2011-12-16 16:44:10.062962 [8385/3073862320] client_recovery_commit: xa_commit for rmid=2, name='OracleXE_dynreg', xa_name='Oracle_XA'...
+2011-12-16 16:44:10.275061 [8385/3073862320] client_recovery_commit: rc=0
+2011-12-16 16:44:10.275128 [8385/3073862320] client_recovery_commit/excp=1/ret_cod=0/errno=0
+2011-12-16 16:44:10.275286 [8385/3073862320] client_recovery: sending 212 bytes ('000206&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;msg level="0" verb="8" step="24"&gt;&lt;recovery failed="1" commit="1"/&gt;&lt;rsrmgrs&gt;&lt;rsrmgr rmid="0" rc="6"/&gt;&lt;rsrmgr rmid="1" rc="0"/&gt;&lt;rsrmgr rmid="2" rc="0"/&gt;&lt;/rsrmgrs&gt;&lt;/msg&gt;') to the server for step 24
+2011-12-16 16:44:10.275483 [8385/3073862320] client_recovery: sending 197 bytes ('000191&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;msg level="0" verb="8" step="8"&gt;&lt;client job="68d0e0ccbc6fc4b7fa616df9ab122395/127.0.0.1      " config_digest="68d0e0ccbc6fc4b7fa616df9ab122395"/&gt;&lt;/msg&gt;') to the server for step 8
+2011-12-16 16:44:10.315057 [8385/3073862320] client_recovery: receiving 95 bytes from the server |&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;msg level="0" verb="8" step="16"&gt;&lt;answer rc="1"/&gt;&lt;/msg&gt;|
+2011-12-16 16:44:10.315261 [8385/3073862320] client_recovery: the server answered LIXA_RC_OBJ_NOT_FOUND; there are no more transactions to recover
+2011-12-16 16:44:10.315315 [8385/3073862320] client_recovery/excp=12/ret_cod=0/errno=0
+tx_open(): 0
+tx_close(): 0
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	The trace gives us a lot of information:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      <span class="command"><strong>lixat</strong></span> fires an automatic (warm) recovery
+	      for transaction XID='1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395'
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the transaction must be committed because the crash followed
+	      a successful <span class="quote">“<span class="quote">prepare</span>”</span> phase
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      first Resource Manager returns 6:
+	      <code class="constant">XA_HEURRB</code> (<span class="quote">“<span class="quote">the transaction branch 
+		has been heuristically rolled back</span>”</span>)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      second and third Resource Managers return 0: XA_OK
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the client send a <span class="quote">“<span class="quote">recovery failed</span>”</span>
+	      message to the state server
+	  </p></li></ul></div><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    You could think the LIXA Transaction Manager should have not
+	    performed the second and third 
+	    <code class="function">xa_commit</code> after a failure with the
+	    first Resource Manager. It seems a good idea, but unfortunately
+	    it does not add much value because, if applied, it would
+	    introduce a behaviour that depends on the order of the
+	    operations. The LIXA Transaction Manager tryes to apply a
+	    consistent rule: after a successful <code class="function">xa_prepare</code>
+	    all the Resource Managers must receive the same command
+	    (<code class="function">xa_commit</code>/<code class="function">xa_rollback</code>).
+	</p></div><p>
+	You can check the (real) Resource Managers status:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Oracle terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+SQL&gt; select * from dba_pending_transactions;
+
+no rows selected
+
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+COUNTR
+------
+COUNTRY_NAME
+--------------------------------------------------------------------------------
+ REGION_ID
+----------
+RS
+Repubblica San Marino
+	 1
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+testdb=&gt; select * from pg_prepared_xacts;
+ transaction | gid | prepared | owner | database 
+-------------+-----+----------+-------+----------
+(0 rows)
+
+testdb=&gt; SELECT * FROM authors;
+ id | last_name | first_name 
+----+-----------+------------
+  1 | Foo       | Bar
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	Inspecting the system log you can notify there was a problem:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo tail /var/log/daemon.log
+Dec 16 16:44:09 ubuntu lixat[8385]: LXC000I this process is starting a new LIXA transaction manager (lixa package version is 0.5.36)
+Dec 16 16:44:10 ubuntu lixat[8385]: LXC003C resource manager 'LIXAmonkey1staRM' returned an error (6) while committing (xa_commit) during recovery phase for transaction '1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395'
+Dec 16 16:44:10 ubuntu lixat[8385]: LXC005W unable to recover transaction id '1279875137.d2f5f0a5c37e485cb44d9fc16e72a33d.68d0e0ccbc6fc4b7fa616df9ab122395'; this transaction must be manually recovered and the correlated record(s) must be manually fixed in lixad server status file
+Dec 16 16:44:10 ubuntu lixad[8157]: LXD012W a client notified recovery failed condition for the transaction registered in status file 3 and block 1
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	there is a critical message (LXC003C) and two warning messages
+	(LXC005W, LXD012W). Pay attention the server notifies the problem 
+	(LXD012W) as well as the client (LXC005W).
+	To inspect the content of the <span class="quote">“<span class="quote">recovery failed</span>”</span>
+	transaction you may dump the state server:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo su - lixa
+lixa@ubuntu:~$ pkill lixad
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --dump=u &gt;/tmp/bar
+lixa@ubuntu:~$ exit
+logout
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	and inspect the content of file <code class="filename">/tmp/bar</code>
+	<a href="#ftn.idp74033232" class="footnote" id="idp74033232"><sup class="footnote">[49]</sup></a>:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Content of file /tmp/bar]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+========================================================================
+Second file ('/opt/lixa/var/lixad_status1_2') will be dumped
+Magic number is: 24848 (24848)
+Level is: 1 (1)
+Last sync timestamp: 2011-12-16T16:38:23.482854+0100
+Size: 17 blocks
+Used block chain starts at: 16 
+Free block chain starts at: 0 (empty chain)
+Dumping records following physical order: 0
+Dumping records following free block chain: 0
+Dumping records following used block chain: 1
+------------------------------------------------------------------------
+
+[...] 
+
+------------------------------------------------------------------------
+Block: 9, next block in chain: 8
+Block type: transaction manager record (transaction header)
+	Trnhdr/number of resource managers: 3
+	Trnhdr/resource manager blocks are: 10 11 12 
+	Trnhdr/arrival time: 2011-12-16T16:26:04.790526+0100
+	Trnhdr/local socket address:port is 127.0.0.1:2345
+	Trnhdr/peer socket address:port is 127.0.0.1:52251
+	Trnhdr/config digest is '68d0e0ccbc6fc4b7fa616df9ab122395'
+	Trnhdr/job is '68d0e0ccbc6fc4b7fa616df9ab122395/127.0.0.1      '
+	Trnhdr/last (verb, step) are: [ (9,8) (4,8) (4,16) (5,8) (5,16) ]
+	Trnhdr/state/finished: 0
+	Trnhdr/state/txstate: 3
+	Trnhdr/state/will commit: 1
+	Trnhdr/state/will rollback: 0
+	Trnhdr/state/xid: '1279875137.592cec793be1433d8ffd18574211e0e2.68d0e0ccbc6fc4b7fa616df9ab122395'
+	Trnhdr/recoverying block id: 0
+	Trnhdr/recovery failed: 1
+	Trnhdr/recovery failed time: 2011-12-16T16:29:15.947057+0100
+	Trnhdr/recovery commit: 1
+------------------------------------------------------------------------
+Block: 8, next block in chain: 7
+Block type: resource manager record
+	Rsrmgr/rmid: 2
+	Rsrmgr/state/next_verb: 0
+	Rsrmgr/state/xa_r_state: 1
+	Rsrmgr/state/dynamic: 0
+	Rsrmgr/state/xa_td_state: 10
+	Rsrmgr/state/xa_s_state: 33
+	Rsrmgr/lixac_conf.xml name: 'LIXAmonkey1staRM'
+	Rsrmgr/xa_name: 'LIXA Monkey RM (static)'
+	Rsrmgr/xa_open_info: 'monkeyrm.conf'
+	Rsrmgr/xa_open_flags: 0x0
+	Rsrmgr/xa_open_rc: 0
+	Rsrmgr/xa_start_flags: 0x0
+	Rsrmgr/xa_start_rc: 0
+	Rsrmgr/xa_end_flags: 0x4000000
+	Rsrmgr/xa_end_rc: 0
+	Rsrmgr/xa_prepare_flags: 0x0
+	Rsrmgr/xa_prepare_rc: 0
+	Rsrmgr/xa_commit_flags: 0x0
+	Rsrmgr/xa_commit_rc: 0
+	Rsrmgr/xa_rollback_flags: 0x0
+	Rsrmgr/xa_rollback_rc: 0
+	Rsrmgr/xa_forget_flags: 0x0
+	Rsrmgr/xa_forget_rc: 0
+	Rsrmgr/ax_reg_flags: 0x0
+	Rsrmgr/ax_reg_rc: 0
+	Rsrmgr/ax_unreg_flags: 0x0
+	Rsrmgr/ax_unreg_rc: 0
+	Rsrmgr/recovery_rc: 6
+------------------------------------------------------------------------
+Block: 7, next block in chain: 6
+Block type: resource manager record
+	Rsrmgr/rmid: 1
+	Rsrmgr/state/next_verb: 0
+	Rsrmgr/state/xa_r_state: 1
+	Rsrmgr/state/dynamic: 1
+	Rsrmgr/state/xa_td_state: 20
+	Rsrmgr/state/xa_s_state: 33
+	Rsrmgr/lixac_conf.xml name: 'OracleXE_dynreg'
+	Rsrmgr/xa_name: 'Oracle_XA'
+	Rsrmgr/xa_open_info: 'Oracle_XA+Acc=P/hr/hr+SesTm=30+LogDir=/tmp+threads=true+DbgFl=7+Loose_Coupling=true'
+	Rsrmgr/xa_open_flags: 0x0
+	Rsrmgr/xa_open_rc: 0
+	Rsrmgr/xa_start_flags: 0x0
+	Rsrmgr/xa_start_rc: 0
+	Rsrmgr/xa_end_flags: 0x4000000
+	Rsrmgr/xa_end_rc: 0
+	Rsrmgr/xa_prepare_flags: 0x0
+	Rsrmgr/xa_prepare_rc: 0
+	Rsrmgr/xa_commit_flags: 0x0
+	Rsrmgr/xa_commit_rc: 0
+	Rsrmgr/xa_rollback_flags: 0x0
+	Rsrmgr/xa_rollback_rc: 0
+	Rsrmgr/xa_forget_flags: 0x0
+	Rsrmgr/xa_forget_rc: 0
+	Rsrmgr/ax_reg_flags: 0x0
+	Rsrmgr/ax_reg_rc: 0
+	Rsrmgr/ax_unreg_flags: 0x0
+	Rsrmgr/ax_unreg_rc: 0
+	Rsrmgr/recovery_rc: 0
+------------------------------------------------------------------------
+Block: 6, next block in chain: 5
+Block type: resource manager record
+	Rsrmgr/rmid: 0
+	Rsrmgr/state/next_verb: 0
+	Rsrmgr/state/xa_r_state: 1
+	Rsrmgr/state/dynamic: 0
+	Rsrmgr/state/xa_td_state: 10
+	Rsrmgr/state/xa_s_state: 33
+	Rsrmgr/lixac_conf.xml name: 'PostgreSQL_stareg'
+	Rsrmgr/xa_name: 'PostgreSQL[LIXA]'
+	Rsrmgr/xa_open_info: 'dbname=testdb'
+	Rsrmgr/xa_open_flags: 0x0
+	Rsrmgr/xa_open_rc: 0
+	Rsrmgr/xa_start_flags: 0x0
+	Rsrmgr/xa_start_rc: 0
+	Rsrmgr/xa_end_flags: 0x4000000
+	Rsrmgr/xa_end_rc: 0
+	Rsrmgr/xa_prepare_flags: 0x0
+	Rsrmgr/xa_prepare_rc: 0
+	Rsrmgr/xa_commit_flags: 0x0
+	Rsrmgr/xa_commit_rc: 0
+	Rsrmgr/xa_rollback_flags: 0x0
+	Rsrmgr/xa_rollback_rc: 0
+	Rsrmgr/xa_forget_flags: 0x0
+	Rsrmgr/xa_forget_rc: 0
+	Rsrmgr/ax_reg_flags: 0x0
+	Rsrmgr/ax_reg_rc: 0
+	Rsrmgr/ax_unreg_flags: 0x0
+	Rsrmgr/ax_unreg_rc: 0
+	Rsrmgr/recovery_rc: 0
+------------------------------------------------------------------------
+
+[...]
+
+========================================================================
+First file ('/opt/lixa/var/lixad_status2_1') will be dumped
+Magic number is: 24848 (24848)
+Level is: 1 (1)
+Last sync timestamp: 2011-12-16T16:23:40.512332+0100
+Size: 10 blocks
+Used block chain starts at: 0 (empty chain)
+Free block chain starts at: 1 
+Dumping records following physical order: 0
+Dumping records following free block chain: 0
+Dumping records following used block chain: 1
+========================================================================
+First file ('/opt/lixa/var/lixad_status3_1') will be dumped
+Magic number is: 24848 (24848)
+Level is: 1 (1)
+Last sync timestamp: 2011-12-16T16:38:47.933099+0100
+Size: 10 blocks
+Used block chain starts at: 4 
+Free block chain starts at: 5 
+Dumping records following physical order: 0
+Dumping records following free block chain: 0
+Dumping records following used block chain: 1
+------------------------------------------------------------------------
+
+[...]
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	The chain composed of blocks 9 (transaction manager record) and
+	8, 7, 6 (resource manager records) keeps the state of the 
+	<span class="quote">“<span class="quote">recovery failed</span>”</span> transaction: 
+	<code class="computeroutput">Trnhdr/recovery failed: 1</code>
+      </p>
+      <p>
+	If <span class="quote">“<span class="quote">LIXA Monkey RM</span>”</span> Resource Manager was a real
+	Resource Manager, you could manually recovery the transaction
+	used the procedure shown in 
+	<a class="xref" href="ch09s03.html#Recoverying_forgotten_transactions" title="Recoverying forgotten transactions">the section called “Recoverying forgotten transactions”</a>.
+	Unfortunately the LIXA Monkey RM is a fake Resource Manager and it
+	does not save the state anywhere: it is not able to correctly
+	answer to <code class="function">xa_recover()</code> and there is no way to
+	show this last step.
+      </p>
+      <p>
+	As a final step, to clean-up the <span class="quote">“<span class="quote">recovery failed</span>”</span>
+	state from LIXA state server, you have to recycle it using a special
+	option:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo su - lixa
+lixa@ubuntu:~$ pkill lixad
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon --clean-failed
+lixa@ubuntu:~$ pkill lixad<a href="#ftn.idp74048672" class="footnote" id="idp74048672"><sup class="footnote">[a]</sup></a>
+lixa@ubuntu:~$ exit
+logout
+	  </pre></td></tr></tbody>
+	<tbody class="footnotes"><tr><td colspan="50"><div id="ftn.idp74048672" class="footnote"><p><a href="#idp74048672" class="para"><sup class="para">[a] </sup></a>
+The LIXA state server is stopped after start-up to guarantee the content
+of the state file(s) on the disk are up-to-date before dumping them.
+</p></div></td></tr></tbody></table></div><p>
+	Dump again the content of the state server:
+	</p><div class="table"><table frame="box">
+	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
+	  <tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo su - lixa
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --dump=u &gt;/tmp/bar
+lixa@ubuntu:~$ exit
+logout
+	  </pre></td></tr></tbody>
+	</table></div><p>
+	and check the content of the dump file again: the blocks 
+	10, 9, 8, 7 should not be used or, if re-used, they should be
+	related to a different transaction.
+      </p>
+      <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	  <span class="emphasis"><em>Don't use 
+	    <code class="option">--clean-failed</code> as a default</em></span>
+	  when starting LIXA state server (<span class="command"><strong>lixad</strong></span>):
+	  this option should be used only after you inspected the content
+	  of the state server and solved any in-doubt transaction.
+      </p></div>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  Operating this type of recovery can be easier if the LIXA state
+	  server is running in <span class="quote">“<span class="quote">maintenance mode</span>”</span>
+	  (see <a class="xref" href="ch04.html#Maintenance_mode_execution" title="Maintenance mode execution">the section called “Maintenance mode execution”</a>): only
+	  <span class="command"><strong>lixar</strong></span> can access the online content of the
+	  LIXA state server and ordinary clients (Application Program)
+	  can not perform transactions. It may be useful using the 
+	  state server in <span class="quote">“<span class="quote">maintenance mode</span>”</span>, but only you
+	  can decide if your business rules allows it.
+      </p></div>
+      <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	  The LIXA technology <span class="emphasis"><em>does not</em></span> ask you to:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		recycle the <span class="command"><strong>lixad</strong></span> state server to see
+		the current status when dumping the content of the state
+		server files (<code class="option">--dump</code> option)
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		start the <span class="command"><strong>lixad</strong></span> state server in
+		<span class="quote">“<span class="quote">maintenance mode</span>”</span> when performing
+		<span class="quote">“<span class="quote">manual (cold) recovery</span>”</span>
+	    </p></li></ul></div><p>
+	  The LIXA technology provides you these functions to simplify the
+	  administrative tasks, but deciding which option should be used
+	  it's your own responsability. 
+      </p></div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Recoverying_transaction_associated_different_job"></a>Recoverying a transaction associated to a different job</h3></div></div></div>
+      
+      <p>
+	As explained in <a class="xref" href="ch09s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a>,
+	the <span class="quote">“<span class="quote">automatic (warm) recovery</span>”</span> is automatically
+	performed by the LIXA Transaction Manager under the condition of
+	<span class="quote">“<span class="quote">Application Program equivalence</span>”</span>
+	(see <a class="xref" href="ch09s02.html#Application_Program_equivalence" title="Application Program equivalence">the section called “Application Program equivalence”</a>).
+      </p>
+      <p>
+	Sometimes you have to perform a <span class="quote">“<span class="quote">manual (cold) recovery</span>”</span>
+	because <span class="quote">“<span class="quote">Application Program equivalence</span>”</span> is no more
+	available. This is a typical scenario:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      an Application Program crashed and its transaction is in
+	      <span class="quote">“<span class="quote">in-doubt/prepared (recovery pending) status</span>”</span>
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the Application Program didn't specify a custom value for
+	      the environment variable <code class="varname">LIXA_JOB</code>
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      you changed the content of file
+	      <code class="filename">lixac_conf.xml</code>, for example you added a 
+	      new profile
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      the MD5 signature of file <code class="filename">lixac_conf.xml</code>
+	      changed, the associated <code class="varname">branch qualifier</code>
+	      changed, new transactions would be associated to a 
+	      different <span class="emphasis"><em>job</em></span>
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      automatic (warm) recovery wouldn't be automatically performed
+	      and the transaction becomes a 
+	      <span class="quote">“<span class="quote">forgotten</span>”</span> transaction.
+	  </p></li></ul></div><p>
+	Inspecting the list of recovery pending transaction using
+	<span class="command"><strong>lixar -p</strong></span> does not return the desired transaction...
+	What's going on?
+      </p>
+      <p>
+	By default, the <span class="command"><strong>lixar</strong></span> utility filters the 
+	transactions
+	retrieved by the Resource Managers: it keeps only the transactions
+	with the same <code class="varname">branch qualifier</code> of the current
+	<span class="command"><strong>lixar</strong></span> running instance.
+	If you look at <a class="xref" href="ch09s02.html#Application_Program_equivalence" title="Application Program equivalence">the section called “Application Program equivalence”</a>,
+	you will realize that <span class="command"><strong>lixar</strong></span> 
+	retrieves only the transactions started with 
+	the same <code class="filename">lixac_conf.xml</code>,
+	the same $(<code class="varname">LIXA_PROFILE</code>) and
+	the same <code class="function">gethostid()</code>.
+	This behaviour helps the system engineer to see only the 
+	<span class="quote">“<span class="quote">relevant</span>”</span> subset of the whole
+	<span class="quote">“<span class="quote">recovery pending</span>”</span> set.
+      </p>
+      <p>
+	If you are looking for <span class="emphasis"><em>all</em></span> the transactions in
+	<span class="quote">“<span class="quote">recovery pending</span>”</span> status currently kept by the
+	Resource Managers associated to the current 
+	<code class="varname">LIXA_PROFILE</code>, you must specify the
+	<code class="option">--bypass-bqual-check</code> (<code class="option">-b</code>) option.
+      </p>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp74082784"></a>Side effect of <code class="filename">lixac_conf.xml</code> changes</h4></div></div></div>
+	
+	<p>
+	  This paragraph explains a side effect of the behavior explained
+	  above.
+	</p>
+	<p>
+	  Suppose the following scenario happens:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		your LIXA Transaction Manager saved the state of a 
+		<span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transaction inside
+		the LIXA state server
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		you are not aware of the existence of that 
+		<span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transaction
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		you change the content of <code class="filename">lixac_conf.xml</code>
+		file
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		lately you discover there is a 
+		<span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transaction
+		that can not be automatically recovered by LIXA Transaction
+		Manager and you perform manual recovery
+	    </p></li></ul></div><p>
+	  unfortunately, LIXA state server will keep some records related
+	  to the manually recovered transaction <span class="quote">“<span class="quote">forever</span>”</span>.
+	</p>
+	<p>
+	  Manual recovery does query LIXA state server to retrieve the list
+	  of <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transactions because
+	  it is designed to solve the issue <span class="quote">“<span class="quote">state server does not
+	    have information</span>”</span> related to some transactions.
+	  </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	      The <span class="command"><strong>lixad</strong></span> option 
+	      <code class="option">--clean-failed</code> explained in 
+	      <a class="xref" href="ch09s03.html#Recoverying_recovery_failed_transaction" title="Recoverying a “recovery failed” transaction">the section called “Recoverying a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction”</a>
+	      does not help because the transaction was not in
+	      <span class="quote">“<span class="quote">recovery failed</span>”</span> state.
+	  </p></div><p>
+	  </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	      At the time of this writing <span class="emphasis"><em>there is not</em></span>
+	      a specific tool to remove this type of <span class="quote">“<span class="quote">ghosts</span>”</span>
+	      from LIXA state server, you can clean-up those records
+	      using a cold start as explained in 
+	      <a class="xref" href="ch09s03.html#Recoverying_forgotten_transactions" title="Recoverying forgotten transactions">the section called “Recoverying forgotten transactions”</a>.
+	      You must pay attention to avoid <span class="quote">“<span class="quote">in flight transaction
+		purge</span>”</span>.
+	  </p></div><p>
+	</p>
+	<p>
+	  In a future release this behavior could be improved if any user
+	  asked for it.
+	</p>
+      </div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74096832"></a>Recoverying a transaction managed by a different Transaction Manager</h3></div></div></div>
+      
+      <p>
+	The LIXA project technology can help you dealing with a different
+	Transaction Manager 
+	(see <a class="xref" href="ch01s03.html" title="Transaction Manager and Transaction Monitor">the section called “Transaction Manager and Transaction Monitor”</a>) 
+	too: the <span class="command"><strong>lixar</strong></span> utility program can be used to
+	inspect (and manually recover) a transaction managed by a different
+	Transaction Manager using two command options together:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">--bypass-bqual-check</code> (<code class="option">-b</code>):
+	      to bypass branch qualifier based filtering
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <code class="option">--bypass-formatid-check</code> (<code class="option">-B</code>):
+	      to bypass format ID based filtering
+	  </p></li></ul></div><p>
+	If you use the above command options together, 
+	<span class="command"><strong>lixar</strong></span> utility program will inspect (and eventually
+	commit/rollback) any XA transaction known by the Resource Managers
+	associated to the current <code class="varname">LIXA_PROFILE</code>.
+      </p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  It's <span class="emphasis"><em>your own</em></span> responsability to define a
+	  LIXA profile that's compatible with the configuration of the
+	  third party Transaction Manager used when managing the transaction:
+	  it <span class="emphasis"><em>must</em></span> contain the <span class="emphasis"><em>same</em></span>
+	  Resource Managers in the <span class="emphasis"><em>same</em></span> order
+	  with the <span class="emphasis"><em>same</em></span> options.
+      </p></div>
+      <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	  LIXA software is libre/free/open source software and you use it
+	  <span class="emphasis"><em>exclusively and consciously without any
+	  warranty at your own risk</em></span>.
+	  Using LIXA software technology will probably put you in an
+	  <span class="emphasis"><em>unsupported</em></span> state regarding to the
+	  third party Transaction Manager supplier.
+      </p></div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74110560"></a>Picking up the LIXA format id and branch qualifier</h3></div></div></div>
+      
+      <p>
+	In the previous sections we have dealt with 
+	<span class="quote">“<span class="quote">format id</span>”</span> and <span class="quote">“<span class="quote">branch qualifier</span>”</span>;
+	you could ask 
+	<span class="quote">“<span class="quote">How can I discover the
+	  <span class="quote">‘<span class="quote">format id</span>’</span> and the <span class="quote">‘<span class="quote">branch qualifier</span>’</span>
+	  branch qualifier associated to my own Application Program?</span>”</span>
+      </p>
+      <p>
+	The easiest way to pick-up them is to use <span class="command"><strong>lixat</strong></span>
+	utility program using the <span class="emphasis"><em>same</em></span>
+	<code class="varname">LIXA_PROFILE</code> you use when running your
+	Application Program:
+	</p><pre class="screen">
+tiian@ubuntu:~/src/lixa$ sudo su - lixa
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
+lixa      8122     1  0 23:02 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
+lixa@ubuntu:~$ exit
+logout
+tiian@ubuntu:~/src/lixa$ /opt/lixa/bin/lixat -c
+tx_open(): 0
+tx_begin(): 0
+tx_info(): 1
+	xid/formatID.gtrid.bqual = 1279875137.56af7a66398f4eca82b8826fe10165ad.9e4c11057107c73366c9fc421eaa85ca
+tx_commit(): 0
+tx_close(): 0
+tiian@ubuntu:~/src/lixa$ /opt/lixa/bin/lixat -c
+tx_open(): 0
+tx_begin(): 0
+tx_info(): 1
+	xid/formatID.gtrid.bqual = 1279875137.218f05b733fb4bc1aa3d21eeaf01fbab.9e4c11057107c73366c9fc421eaa85ca
+tx_commit(): 0
+tx_close(): 0	  
+	</pre><p>
+	From the above terminal output:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      <span class="quote">“<span class="quote">formatID</span>”</span> is constant and the LIXA Transaction
+	      Manager uses the exadecimal value 1279875137 (that's the 
+	      ASCII sequence of string <span class="quote">“<span class="quote">LIXA</span>”</span>)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <span class="quote">“<span class="quote">branch qualifier</span>”</span> is computed as explained in
+	      <a class="xref" href="ch09s02.html#Application_Program_equivalence" title="Application Program equivalence">the section called “Application Program equivalence”</a> and the
+	      value in the above example is
+	      <span class="quote">“<span class="quote">9e4c11057107c73366c9fc421eaa85ca</span>”</span>
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <span class="quote">“<span class="quote">global transaction id</span>”</span> must be different for
+	      any transaction and you can see two different values in the
+	      above examples (it's computed using
+	      <code class="function">uuid_generate()</code> function).
+	  </p></li></ul></div><p>
+      </p>
+      <p>
+	If you were interested in retrieving them programmatically
+	(from your own C language program) you could use the standard
+	<code class="function">tx_info()</code> function that returns a 
+	<span class="type">TXINFO</span> struct ([<a class="citation" href="bi01.html#idp74462368"><span class="citation">TXspec</span></a>]).
+	Please pay attention the
+	<span class="type">XID</span> struct contains <span class="emphasis"><em>binary data</em></span>
+	(it does not contain ASCII data).
+      </p>
+    </div>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp73901216" class="footnote"><p><a href="#idp73901216" class="para"><sup class="para">[48] </sup></a>
+	  This should never happen: it could be a bug in LIXA project
+	  software or it might be the consequence of a 
+	  <span class="quote">“<span class="quote">cold start</span>”</span> (you removed the state files) of
+	  <span class="command"><strong>lixad</strong></span>
+      </p></div><div id="ftn.idp74033232" class="footnote"><p><a href="#idp74033232" class="para"><sup class="para">[49] </sup></a>
+	    The state server can be analyzed without stopping it
+	    (<span class="command"><strong>pkill lixad</strong></span>), but it may happen you will
+	    not see the current content because the state server 
+	    has not yet synchronized
+	    the state file(s). If the LIXA state server is processing many
+	    transactions per second you will probably see an up-to-date
+	    state, but if it was <span class="quote">“<span class="quote">sleeping</span>”</span> you wouldn't.
+	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch10.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Automatic recovery concepts </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 10. In Depth</td></tr></table></div></body></html>

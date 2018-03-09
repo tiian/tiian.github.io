@@ -1,439 +1,258 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>A tuning example</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch10.html" title="Chapter 10. Tuning" /><link rel="prev" href="ch10.html" title="Chapter 10. Tuning" /><link rel="next" href="bi01.html" title="Bibliography" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">A tuning example</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><th width="60%" align="center">Chapter 10. Tuning</th><td width="20%" align="right"> <a accesskey="n" href="bi01.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tuning_example"></a>A tuning example</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tracing</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch10.html" title="Chapter 10. In Depth" /><link rel="prev" href="ch10.html" title="Chapter 10. In Depth" /><link rel="next" href="ch10s03.html" title="Non root installation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tracing</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><th width="60%" align="center">Chapter 10. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch10s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tracing"></a>Tracing</h2></div></div></div>
     
     <p>
-      This section explains a tuning example you can use as a starting point
-      to develop your own tuning strategy.
-    </p>
-    <p>
-      The utility program <span class="command"><strong>lixat</strong></span>, introduced in
-      <a class="xref" href="ch04s02.html" title="Starting the test utility (lixat)">the section called “Starting the test utility (<span class="command"><strong>lixat</strong></span>)”</a> can be used as a benchmark tool
-      specifying <em class="parameter"><code>-b</code></em> 
-      (<em class="parameter"><code>--benchmark</code></em>) option.
-      The available command options can be retrieved with
-      <em class="parameter"><code>--help</code></em>:
+      The LIXA project can produce a lot of traces when the software is 
+      running; the tracing functions are included in the code by default but
+      you can disable them when you configure the software before the build 
+      phase:
       </p><pre class="screen">
-tiian@ubuntu:~$ /opt/lixa/bin/lixat --help
-Usage:
-  lixat [OPTION...] - LIXA test utility
-
-Help Options:
-  -?, --help                  Show help options
-
-Application Options:
-  -c, --commit                Perform a commit transaction
-  -r, --rollback              Perform a rollback transaction
-  -v, --version               Print package info and exit
-  -b, --benchmark             Perform benchmark execution
-  -o, --open-close            Execute tx_open &amp; tx_close for every transaction [benchmark only]
-  -s, --csv                   Send result to stdout using CSV format [benchmark only]
-  -l, --clients               Number of clients (threads) will stress the state server [benchmark only]
-  -d, --medium-delay          Medium (random) delay between TX functions [benchmark only]
-  -D, --delta-delay           Delta (random) delay between TX functions [benchmark only]
-  -p, --medium-processing     Medium (random) delay introduced by Resource Managers operations between tx_begin and tx_commit/tx_rollback [benchmark only]
-  -P, --delta-processing      Delta (random) delay introduced by Resource Managers operations between tx_begin and tx_commit/tx_rollback [benchmark only]
+	./configure --disable-trace
+	make
+	...
       </pre><p>
-      These are the interesting options in benchmark mode:
-      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	    commit transactions (<em class="parameter"><code>-c</code></em> or
-	    <em class="parameter"><code>--commit</code></em>)
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    rollback transactions (<em class="parameter"><code>-r</code></em> or
-	    <em class="parameter"><code>--rollback</code></em>)
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    one couple of <code class="function">tx_open()/tx_close()</code> for every
-	    transaction (<em class="parameter"><code>-o</code></em> or
-	    <em class="parameter"><code>--open-close</code></em>); alternatively only one
-	    couple of <code class="function">tx_open()/tx_close()</code> will be used
-	    for all the transactions (<code class="function">tx_open()/tx_begin()/tx_commit()/tx_begin()/tx_commit()/.../tx_close()</code>)
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    number of clients connected to the LIXA state server
-	    (<em class="parameter"><code>-l</code></em> or <em class="parameter"><code>--clients</code></em>)
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    delay introduced by Application Program logic between 
-	    <code class="function">tx_*</code> functions (
-	    <em class="parameter"><code>-d, --medium-delay, -D, --delta-delay</code></em>)
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	    delay introduced by Resource Managers logic between
-	    <code class="function">tx_begin</code> and <code class="function">tx_commit</code>
-	    (or <code class="function">tx_rollback</code>) functions (
-	    <em class="parameter"><code>-p, --medium-processing, -P, --delta-processing</code></em>)
-	</p></li></ul></div><p>
+      </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	  Excluding tracing functions can reduce CPU and memory usage when
+	  the software is running, but you should disable tracing 
+	  <span class="emphasis"><em>only if you are really sure about it:
+	  </em></span>without tracing you have no instruments
+	  to understand what's happening inside LIXA code when it's running.
+      </p></div><p>
+      In the case you didn't disable the tracing feature at build time (see
+      above), you could activate the message production when you need it.
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74182144"></a><span class="command"><strong>lixat</strong></span> benchmark behavior</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Tracing_modules"></a>Tracing modules</h3></div></div></div>
       
       <p>
-	This is a sketch of <span class="command"><strong>lixat</strong></span> algorithm when
-	<em class="parameter"><code>-o</code></em> or <em class="parameter"><code>--open-close</code></em>
-	option is specified:
+	The trace messages produced by LIXA code are divided by 
+	<span class="emphasis"><em>modules</em></span>: you can activate the trace messages for
+	one or more modules. There is not a concept of <span class="quote">“<span class="quote">severity</span>”</span>
+	for the trace messages: if you activate the trace for a module, it
+	will print all the trace messages of that module.
+      </p>
+      <p>
+	The table below shows how the LIXA software is partitioned in modules:
+	</p><div class="table"><a id="idp74158608"></a><p class="title"><strong>Table 10.1. Tracing module flags</strong></p><div class="table-contents">
+	  
+	  <table summary="Tracing module flags" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th align="center">Module Trace Label</th><th align="center">Hex Flag</th><th align="center">Component</th><th align="center">Function</th></tr></thead><tbody><tr><td align="left">LIXA_TRACE_MOD_SERVER</td><td align="left">0x00000001</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">main program</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_CONFIG</td><td align="left">0x00000002</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">configuration: config file parsing and environment 
+		  variable detection</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_LISTENER</td><td align="left">0x00000004</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">network listener and signal handler</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_MANAGER</td><td align="left">0x00000008</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">session client manager, thread manager, 
+		  network I/O manager</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_STATUS</td><td align="left">0x00000010</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">persistent state</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_XA</td><td align="left">0x00000040</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">XA logic called by client</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_REPLY</td><td align="left">0x00000080</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">replies to client messages</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_RECOVERY</td><td align="left">0x00000100</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">logic necessary to answer the client recovery 
+		  calls</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_TX</td><td align="left">0x00001000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">transaction demarcation (TX) functions:
+		  <code class="function">tx_open()</code>,
+		  <code class="function">tx_begin()</code>, ...</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_XA</td><td align="left">0x00002000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">XA function wrapper:
+		  <code class="function">xa_open()</code>,
+		  <code class="function">xa_start()</code>, 
+		  <code class="function">ax_reg()</code>, ...</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_CONN</td><td align="left">0x00004000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">function necessary to connect to the state server 
+		  (<span class="command"><strong>lixad</strong></span>)</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_CONFIG</td><td align="left">0x00008000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">configuration: config file parsing and environment 
+		  variable detection</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_XA_SWITCH</td><td align="left">0x00010000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">XA switch file implementation of the dummy resource
+		managers provided by LIXA and of the XA wrappers for the
+		resource managers without a standard switch file</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_STATUS</td><td align="left">0x00020000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">client status management</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_RECOVERY</td><td align="left">0x00040000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">warm and cold recovery of the transaction(s)</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_GENERIC</td><td align="left">0x00080000</td><td align="left"><code class="systemitem">lixac</code>
+		  (client library)</td><td align="left">generic client functions</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_CONFIG</td><td align="left">0x01000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">configuration stuff common to all components</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_XML_MSG</td><td align="left">0x02000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">functions related to XML messages serialization and
+		deserialization</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_STATUS</td><td align="left">0x04000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">convenience functions used to manage the status on
+		client and server side</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_UTILS</td><td align="left">0x08000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">utility functions used by all the components</td></tr><tr><td align="left">LIXA_TRACE_MOD_COMMON_XID</td><td align="left">0x10000000</td><td align="left"><code class="systemitem">lixab</code>
+		  (common base library)</td><td align="left">functions specialized for XID (transaction ID)
+		management</td></tr></tbody></table>
+	</div></div><p><br class="table-break" />
+	You can trace any module combination creating any
+	<span class="emphasis"><em>trace mask</em></span> ORing the bits; for example:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc">
+	    <p>0x00000003 will produce all the messages of
+	    <code class="constant">LIXA_TRACE_MOD_SERVER</code> and
+	    <code class="constant">LIXA_TRACE_MOD_SERVER_CONFIG</code></p>
+	  </li><li class="listitem" style="list-style-type: disc">
+	    <p>0xffffffff will produce all the messages</p>
+	  </li><li class="listitem" style="list-style-type: disc">
+	    <p>0x00000000 will disable all the messages</p>
+	  </li></ul></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74231152"></a>Improve troubleshooting with trace</h3></div></div></div>
+      
+      <p>
+	The trace can be activated setting the environment variable
+	<code class="varname">LIXA_TRACE_MASK</code> before starting the execution of
+	the traced program. Try the following example...
+      </p>
+      <p>
+	Check the state server is not active:
 	</p><pre class="screen">
-loop (1..100)
-    sleep(random[d-D/2, d+D/2])
-    tx_open()
-    sleep(random[d-D/2, d+D/2])
-    tx_begin()
-    sleep(random[p-P/2, p+P/2])
-    tx_commit()
-    sleep(random[d-D/2, d+D/2])
-    tx_close()
-    sleep(random[d-D/2, d+D/2])
-end loop
+tiian@ubuntu:~$ ps -ef|grep lixad|grep -v grep
 	</pre><p>
-	With default delays the sleeping pauses are the following:
+	try to execute <span class="command"><strong>lixat</strong></span>, the LIXA test program:
 	</p><pre class="screen">
-sleep(random[d-D/2, d+D/2]) --&gt; [500, 1500] microseconds
-sleep(random[p-P/2, p+P/2]) --&gt;  [50, 150]  milliseconds	  
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+tx_open(): -7
 	</pre><p>
-        without <em class="parameter"><code>-o</code></em> or 
-	<em class="parameter"><code>--open-close</code></em> option <span class="command"><strong>lixat</strong></span>
-	does not
-	call <code class="function">tx_open()/tx_close()</code> for every cycle and
-	the algorithm becomes the following one:
+	it gives us few information (<code class="constant">TX_FAIL = -7</code>): from
+	<code class="filename">/opt/lixa/include/tx.h</code> we can retrieve the
+	meaning: <span class="quote">“<span class="quote">fatal error</span>”</span>... Not so much...
+	We could try to trace the <span class="quote">“<span class="quote">CLIENT TX</span>”</span> module:
 	</p><pre class="screen">
-tx_open()
-loop (1..100)
-    sleep(random[d-D/2, d+D/2])
-    sleep(random[d-D/2, d+D/2])
-    tx_begin()
-    sleep(random[p-P/2, p+P/2])
-    tx_commit()
-    sleep(random[d-D/2, d+D/2])
-    sleep(random[d-D/2, d+D/2])
-end loop
-tx_close()
+tiian@ubuntu:~$ export LIXA_TRACE_MASK=0x00001000
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+2011-12-04 12:19:49.235007 [8899/3073612464] lixa_tx_open
+2011-12-04 12:19:49.241544 [8899/3073612464] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
+tx_open(): -7
 	</pre><p>
-      </p>
-      <p>
-	Using <em class="parameter"><code>--open-close</code></em> parameter you will simulate 
-	an Application Program that creates and destroy the transactional
-	environment for every transaction.
-      </p>
-      <p>
-	Omitting <em class="parameter"><code>--open-close</code></em> parameter you will 
-	simulate an Application Program that reuses the transactional
-	environment for 100 transactions.
-      </p>
-      <p>
-	Your Application Program could live in the middle, 
-	<span class="command"><strong>lixat</strong></span> can help you to figure out two different 
-	theoretical scenarios.
-      </p>
-      <p>
-	A shell command you can use to measure the performance of LIXA for
-	10, 20, 30, ... 100 clients is the following one:
+	<span class="quote">“<span class="quote">ret_cod=-138</span>”</span> can be inspected inside
+	<code class="filename">src/common/lixa_errors.h</code>:
 	</p><pre class="screen">
-for l in 10 20 30 40 50 60 70 80 90 100 ; do /opt/lixa/bin/lixat -b -s -l $l ; done | grep -v '^ ' &gt; /tmp/bench_result.csv
+[...]
+/**
+ * "connect" function error
+ */
+#define LIXA_RC_CONNECT_ERROR                  -138
+[...]
+	</pre><p>
+	now we know the errors happens using <code class="function">connect()</code>
+	function; <span class="quote">“<span class="quote">errno=111</span>”</span> can be inspected inside
+	<code class="filename">/usr/include/asm-generic/errno.h</code>:
+	</p><pre class="screen">
+[...]
+#define ECONNREFUSED    111     /* Connection refused */
+[...]
+	</pre><p>
+	The error happens because the LIXA state server 
+	(<span class="command"><strong>lixad</strong></span>) is not running, but we can improve our
+	diagnosis with a more detailed tracing adding
+	<span class="quote">“<span class="quote">CLIENT CONN</span>”</span> module:
+	</p><pre class="screen">
+tiian@ubuntu:~$ export LIXA_TRACE_MASK=0x00005000
+tiian@ubuntu:~$ /opt/lixa/bin/lixat
+2011-12-04 17:00:49.447866 [4514/3074067120] lixa_tx_open
+2011-12-04 17:00:49.452624 [4514/3074067120] client_connect
+2011-12-04 17:00:49.452678 [4514/3074067120] client_connect: connecting socket 4 to server '127.0.0.1' port 2345
+2011-12-04 17:00:49.454033 [4514/3074067120] client_connect/excp=2/ret_cod=-138/errno=111
+2011-12-04 17:00:49.454872 [4514/3074067120] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
+tx_open(): -7
+	</pre><p>
+	the client is not able to contact the state server that is configured
+	to listen port <code class="systemitem">2345</code> 
+	at address 
+	<code class="systemitem">127.0.0.1</code>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74233456"></a>Activating trace for <span class="command"><strong>lixad</strong></span> in 
+	<span class="emphasis"><em>daemon</em></span> mode</h3></div></div></div>
+      
+      <p>
+	When running the state server (<span class="command"><strong>lixad</strong></span>) in
+	<span class="emphasis"><em>daemon</em></span>
+	mode, you must explicitly ask <span class="command"><strong>lixad</strong></span> to use a
+	trace file. Try the following steps...
+	</p><pre class="screen">
+tiian@ubuntu:~$ sudo su - lixa
+lixa@ubuntu:~$ export LIXA_TRACE_MASK=0x00000005
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad -d
+2011-12-04 17:14:46.976067 [4888/3074164464] lixad/daemonize: fork()
+2011-12-04 17:14:46.978399 [4889/3074164464] lixad/daemonize: setsid()
+2011-12-04 17:14:46.979740 [4889/3074164464] lixad/daemonize: signal()
+2011-12-04 17:14:46.980513 [4889/3074164464] lixad/daemonize: fork()
+2011-12-04 17:14:46.982516 [4890/3074164464] lixad/daemonize: chdir()
+2011-12-04 17:14:46.984002 [4890/3074164464] lixad/daemonize: umask()
+	</pre><p>
+	the process is tracing the initial operations and after the
+	<span class="emphasis"><em>daemonization</em></span> it does not produce any more
+	messages. By default <code class="filename">stderr</code> is used as the
+	standard tracing file, but the
+	<span class="emphasis"><em>daemon</em></span> disconnects from the terminal
+	and closes the <code class="filename">stderr</code> file.
+	To avoid this issue you can specify a specific trace file name using
+	the <code class="option">-t</code> (<code class="option">--trace-file</code>) dedicated
+	option:
+	</p><pre class="screen">
+lixa@ubuntu:~$ /opt/lixa/sbin/lixad -d -t /tmp/lixad.trace
+lixa@ubuntu:~$ ls -la /tmp/lixad.trace
+-rw-r--r-- 1 lixa lixa 349 2011-12-04 17:29 /tmp/lixad.trace
+lixa@ubuntu:~$ pkill lixad
+	</pre><p>
+	inspecting the content of <code class="filename">/tmp/lixad.trace</code>
+	you can now find messages related to the listener module too:
+	</p><pre class="screen">
+2011-12-04 17:29:12.435474 [5187/3074373360] lixad/daemonize: fork()
+2011-12-04 17:29:12.436593 [5188/3074373360] lixad/daemonize: setsid()
+2011-12-04 17:29:12.437187 [5188/3074373360] lixad/daemonize: signal()
+2011-12-04 17:29:12.437245 [5188/3074373360] lixad/daemonize: fork()
+2011-12-04 17:29:12.435474 [5187/3074373360] lixad/daemonize: fork()
+2011-12-04 17:29:12.439878 [5189/3074373360] lixad/daemonize: now daemonized!
+2011-12-04 17:29:12.441874 [5189/3074373360] lixad/main: starting
+2011-12-04 17:29:12.447862 [5189/3074373360] server_listener
+2011-12-04 17:29:12.447940 [5189/3074373360] server_listener: resolving address '127.0.0.1' for listener # 0
+2011-12-04 17:29:12.448001 [5189/3074373360] server_listener: creating socket for listener # 0
+2011-12-04 17:29:12.448033 [5189/3074373360] server_listener: socket for listener 0 is 10
+2011-12-04 17:29:12.448044 [5189/3074373360] server_listener: setting SO_REUSE option for listener # 0
+2011-12-04 17:29:12.448142 [5189/3074373360] server_listener: resolving address '0.0.0.0' for listener # 1
+2011-12-04 17:29:12.448156 [5189/3074373360] server_listener: creating socket for listener # 1
+2011-12-04 17:29:12.448174 [5189/3074373360] server_listener: socket for listener 1 is 11
+2011-12-04 17:29:12.448183 [5189/3074373360] server_listener: setting SO_REUSE option for listener # 1
+2011-12-04 17:29:12.448213 [5189/3074373360] server_listener_signal
+2011-12-04 17:29:12.448262 [5189/3074373360] server_listener_signal/excp=3/ret_cod=0/errno=0
+2011-12-04 17:29:12.448275 [5189/3074373360] server_listener_loop
+2011-12-04 17:29:12.448284 [5189/3074373360] server_listener_loop: entering poll...
+2011-12-04 17:29:23.499666 [5189/3074373360] server_listener_signal_action: signo=15
+2011-12-04 17:29:23.499850 [5189/3074373360] server_listener_signal_action: sending message to thread id 0
+2011-12-04 17:29:23.499877 [5189/3074373360] server_listener_signal_action: sending message to thread id 1
+2011-12-04 17:29:23.499904 [5189/3074373360] server_listener_signal_action: sending message to thread id 2
+2011-12-04 17:29:23.499942 [5189/3074373360] server_listener_signal_action: sending message to thread id 3
+2011-12-04 17:29:23.499991 [5189/3074373360] server_listener_loop: ready file descriptors = 1
+2011-12-04 17:29:23.500003 [5189/3074373360] server_listener_loop: slot=0, fd=2, POLLIN=1, POLLERR=0, POLLHUP=0, POLLNVAL=0
+2011-12-04 17:29:23.500025 [5189/3074373360] server_listener_loop: waiting thread (1) id 3074329488 termination...
+2011-12-04 17:29:23.521138 [5189/3074373360] server_listener_loop: waiting thread (2) id 3065920400 termination...
+2011-12-04 17:29:23.521169 [5189/3074373360] server_listener_loop: waiting thread (3) id 3057511312 termination...
+2011-12-04 17:29:23.521180 [5189/3074373360] server_listener_loop/excp=8/ret_cod=0/errno=4
+2011-12-04 17:29:23.521190 [5189/3074373360] server_listener/excp=8/ret_cod=0/errno=4
+2011-12-04 17:29:23.521558 [5189/3074373360] lixad/main: exiting
+	</pre><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    The trace file is written using the 
+	    <code class="systemitem">stdio</code>
+	    and the output is not flushed after every message: if you look
+	    at the trace file of a running <span class="command"><strong>lixad</strong></span> state
+	    server, you will not be able to read the last messages due to
+	    the buffering of <code class="systemitem">stdio</code>
+	    library. After the
+	    server termination you are sure every trace message is inside the
+	    trace file.
+	</p></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74257040"></a>Redirecting the trace messages</h3></div></div></div>
+      
+      <p>
+	In the previous section you discovered how you can send the trace
+	messages of <span class="command"><strong>lixad</strong></span>. The
+	<code class="systemitem">lixac</code> library sends the
+	trace messages to the <code class="filename">stderr</code> file associated to
+	the terminal of the user that's running the process; many times you
+	would send the messages to a specific disk hosted file. You can
+	obtain this behavior using redirection:
+	</p><pre class="screen">
+tiian@ubuntu:~$ export LIXA_TRACE_MASK=0x00005000
+tiian@ubuntu:~$ /opt/lixa/bin/lixat 2&gt;/tmp/lixat.trace
+tx_open(): -7
+tiian@ubuntu:~$ ls -la /tmp/lixat.trace
+-rw-r--r-- 1 tiian tiian 417 2011-12-04 17:43 /tmp/lixat.trace
+	</pre><p>
+	You can inspect the content of the file
+	<code class="filename">/tmp/lixat.trace</code>:
+	</p><pre class="screen">
+2011-12-04 17:43:36.078314 [5544/3074013872] lixa_tx_open
+2011-12-04 17:43:36.083822 [5544/3074013872] client_connect
+2011-12-04 17:43:36.083890 [5544/3074013872] client_connect: connecting socket 4 to server '127.0.0.1' port 2345
+2011-12-04 17:43:36.084862 [5544/3074013872] client_connect/excp=2/ret_cod=-138/errno=111
+2011-12-04 17:43:36.084906 [5544/3074013872] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74192928"></a>Tuning example hardware characteristics</h3></div></div></div>
-      
-      <p>
-	This is the output of <code class="filename">/proc/cpuinfo</code> executed
-	in the system hosting <span class="command"><strong>lixad</strong></span> state server:
-	</p><pre class="screen">
-	  processor: 0
-	  vendor_id: GenuineIntel
-	  cpu family: 15
-	  model: 2
-	  model name: Intel(R) Celeron(R) CPU 2.40GHz
-	  stepping: 9
-	  cpu MHz: 2405.521
-	  cache size: 128 KB
-	  fdiv_bug: no
-	  hlt_bug: no
-	  f00f_bug: no
-	  coma_bug: no
-	  fpu: yes
-	  fpu_exception: yes
-	  cpuid level: 2
-	  wp: yes
-	  flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe up pebs bts cid xtpr
-	  bogomips: 4811.04
-	  clflush size: 64
-	</pre><p>
-	This is the output of <code class="filename">/proc/cpuinfo</code> executed
-	in the system hosting <span class="command"><strong>lixat</strong></span> benchmark process:
-	</p><pre class="screen">
-	  processor: 0
-	  vendor_id: GenuineIntel
-	  cpu family: 6
-	  model: 23
-	  model name: Genuine Intel(R) CPU           U7300  @ 1.30GHz
-	  stepping: 10
-	  cpu MHz: 800.000
-	  cache size: 3072 KB
-	  physical id: 0
-	  siblings: 2
-	  core id: 0
-	  cpu cores: 2
-	  apicid: 0
-	  initial apicid: 0
-	  fpu: yes
-	  fpu_exception: yes
-	  cpuid level: 13
-	  wp: yes
-	  flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 xsave lahf_lm tpr_shadow vnmi flexpriority
-	  bogomips: 2593.73
-	  clflush size: 64
-	  cache_alignment: 64
-	  address sizes: 36 bits physical, 48 bits virtual
-	  power management:
-
-	  processor: 1
-	  vendor_id: GenuineIntel
-	  cpu family: 6
-	  model: 23
-	  model name: Genuine Intel(R) CPU           U7300  @ 1.30GHz
-	  stepping: 10
-	  cpu MHz: 800.000
-	  cache size: 3072 KB
-	  physical id: 0
-	  siblings: 2
-	  core id: 1
-	  cpu cores: 2
-	  apicid: 1
-	  initial apicid: 1
-	  fpu: yes
-	  fpu_exception: yes
-	  cpuid level: 13
-	  wp: yes
-	  flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 xsave lahf_lm tpr_shadow vnmi flexpriority
-	  bogomips: 2593.50
-	  clflush size: 64
-	  cache_alignment: 64
-	  address sizes: 36 bits physical, 48 bits virtual
-	  power management:
-	</pre><p>
-      </p>
-      <p>
-	From the above specs you can guess these are not powerful 
-	<span class="quote">“<span class="quote">server systems</span>”</span>. The systems are connected with a
-	100 Mbit/s connection with an average latency of 95 microseconds:
-	</p><pre class="screen">
---- 192.168.10.2 ping statistics ---
-50 packets transmitted, 50 received, 0% packet loss, time 48997ms
-rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
-	</pre><p>
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74200624"></a>Results obtained with <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div>
-      
-      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
-	<p>
-	  All the tests saturated the CPU of the host executing 
-	  <span class="command"><strong>lixad</strong></span> state server for the higher values of
-	  connected clients.
-	</p>
-      </div>
-      <p>
-	The first picture shows the elapsed time associated to
-	<code class="function">tx_open()</code> increases quite linearly with the 
-	number of connected clients. A <span class="command"><strong>lixad</strong></span> state server 
-	configured with 3 managers
-	(threads), <em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=100</code></em> exploits the best
-	scalability (purple line); a <span class="command"><strong>lixad</strong></span> state server 
-	configured with 3 managers,
-	<em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=50</code></em> shows a scalability
-	very near to the best (light green line).
-	<span class="emphasis"><em>The second one is a more robust configuration and should
-	  be preferred</em></span>.
-      </p>
-      <div class="figure"><a id="tuning_01"></a><p class="title"><strong>Figure 10.1. Elapsed time of tx_open() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for every 
-	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_01.png" alt="Elapsed time of tx_open() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <p>
-	A completely different behavior is shown by
-	<code class="function">tx_begin(), tx_commit(), tx_close()</code> functions:
-	the best scalability is obtained with 1 manager (thread), 
-	<em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=100</code></em>
-	(yellow line); a quite optimal
-	performance can be obtained with 1 manager (thread), 
-	<em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=50</code></em> (orange line). 
-	The second 
-	configuration should be preferred because it's more robust than the
-	first one. Using more threads does not give any benefit for these
-	three functions.
-      </p>
-      <div class="figure"><a id="tuning_02"></a><p class="title"><strong>Figure 10.2. Elapsed time of tx_begin() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for every 
-	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_02.png" alt="Elapsed time of tx_begin() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <div class="figure"><a id="tuning_03"></a><p class="title"><strong>Figure 10.3. Elapsed time of tx_commit() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for every 
-	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_03.png" alt="Elapsed time of tx_commit() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <div class="figure"><a id="tuning_04"></a><p class="title"><strong>Figure 10.4. Elapsed time of tx_close() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for every 
-	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_04.png" alt="Elapsed time of tx_close() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <p>
-	In the last chart 
-	you may note the aggregated values for all the transactions
-	(100 transactions, the elapsed time is now expressed in seconds):
-	the purple line (best configuration for <code class="function">tx_open()</code>)
-	is the best overall configuration. This time too, there are many
-	performance equivalent configurations:
-	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	      3 managers (thread), 
-	      <em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
-	      <em class="parameter"><code>max_elapsed_sync_time=100</code></em>
-	      (purple line)
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	      3 managers (thread), 
-	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>	      
-	      (light green line)
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	      2 managers (thread), 
-	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>	      
-	      (red line)
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	      1 managers (thread), 
-	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>	      
-	      (orange line)
-	  </p></li></ul></div><p>
-	The second configuration of the above list (light green) could be 
-	considered the
-	best from an overall performance point of view and from a safety
-	point of view: the minimum elapsed synchronization time is 
-	10 milliseconds.
-      </p>
-      <div class="figure"><a id="tuning_05"></a><p class="title"><strong>Figure 10.5. Overall elapsed time when the Application Program 
-	  uses a couple of tx_open()/tx_close() for every 
-	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_05.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74200912"></a>Results obtained without <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div>
-      
-      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
-	<p>
-	  All the tests saturated the CPU of the host executing 
-	  <span class="command"><strong>lixad</strong></span> state server for the higher values of
-	  connected clients.
-	</p>
-      </div>
-      <p>
-	Avoiding a lot of <code class="function">tx_open()/tx_close()</code> the
-	behavior of the system is quite different. It's interesting to note
-	the system has two distinct modes:
-	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	      in the range [10,50] clients the scalability is quite linear 
-	      if you adopt a super safe configuration with 
-	      <em class="parameter"><code>min_elapsed_sync_time=0</code></em> and
-	      <em class="parameter"><code>max_elapsed_sync_time=0</code></em>
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	      in the range [10,50] clients the scalability is
-	      <span class="quote">“<span class="quote">superlinear</span>”</span>
-	      <a href="#ftn.idp74240512" class="footnote" id="idp74240512"><sup class="footnote">[47]</sup></a>
-	      if you adopt an asynchronous
-	      conifiguration with 
-	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>
-	      or higher values
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	      in the range [60,100] clients the system tends to saturate
-	      and the <span class="quote">“<span class="quote">superlinear</span>”</span> characteristic is vanishing;
-	      neverthless, asynchronous configurations exploit lower
-	      response time than synchronous ones
-	  </p></li></ul></div><p>
-      </p>
-      <div class="figure"><a id="tuning_06"></a><p class="title"><strong>Figure 10.6. Elapsed time of tx_open() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for a 
-	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_06.png" alt="Elapsed time of tx_open() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <div class="figure"><a id="tuning_07"></a><p class="title"><strong>Figure 10.7. Elapsed time of tx_begin() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for a 
-	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_07.png" alt="Elapsed time of tx_begin() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <div class="figure"><a id="tuning_08"></a><p class="title"><strong>Figure 10.8. Elapsed time of tx_commit() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for a 
-	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_08.png" alt="Elapsed time of tx_commit() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <div class="figure"><a id="tuning_09"></a><p class="title"><strong>Figure 10.9. Elapsed time of tx_close() when the Application Program 
-	  uses a couple of tx_open()/tx_close() for a 
-	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_09.png" alt="Elapsed time of tx_close() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <p>
-	The last chart shows the average elapsed time spent for 
-	<code class="function">tx_*</code> functions by 100 transactions.
-	The best performace is obtained with the less safe configuration:
-	<em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=100</code></em>
-	(purple, cyan and yellow lines).
-	The intermediate performance is obtained with the intermediate
-	configuration:
-	<em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=50</code></em>
-	(dark yellow, red and orange lines).
-	The worst performance is obtained with the safest configuration:
-	<em class="parameter"><code>min_elapsed_sync_time=0</code></em> and
-	<em class="parameter"><code>max_elapsed_sync_time=0</code></em>
-	(green, light green and blue lines).
-      </p>
-      <div class="figure"><a id="tuning_10"></a><p class="title"><strong>Figure 10.10. Overall elapsed time when the Application Program 
-	  uses a couple of tx_open()/tx_close() for a 
-	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents">
-	
-	<div class="mediaobject"><img src="../images/LIXA_Tuning_10.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div>
-      </div></div><br class="figure-break" />
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp74262496"></a>Conclusions</h4></div></div></div>
-	
-	<p>
-	  The LIXA project gives you some parameters you can change to tune
-	  your installation and get the best performance.
-	  There is not a magic recipe you can adopt, but there are some
-	  rules of thumb:
-	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-		if possible, avoid the usage of 
-		<code class="function">tx_open()/tx_close()</code> for every 
-		transaction: if your business logic could batch more than
-		one transaction inside the same session, your overall
-		response time would be lower
-	    </p></li><li class="listitem" style="list-style-type: disc"><p>
-		delayed disk synchronization will help you in obtaining
-		better performance with the same hardware, but introducing
-		too high delays will not give you extra performance
-	    </p></li><li class="listitem" style="list-style-type: disc"><p>
-		delay disk synchronization introduce the risk to perform
-		manual recovery as explained in
-		<a class="xref" href="ch03s02.html#Delayed_synchronization_effects" title="Delayed synchronization effects">the section called “Delayed synchronization effects”</a>.
-	    </p></li></ul></div><p>
-	  Write your own test program, with real Resource Managers,
-	  and measure it: with a test environment you would be able to
-	  fine tune your own installation.
-	</p>
-      </div>
-    </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp74240512" class="footnote">
-		<p><a href="#idp74240512" class="para"><sup class="para">[47] </sup></a>
-		  <code class="function">tx_begin(), tx_commit(), tx_close()</code>
-		  response times change very few when the number of clients
-		  rises
-		</p>
-	      </div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch10.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="bi01.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 10. Tuning </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Bibliography</td></tr></table></div></body></html>
+  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch10.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch10s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 10. In Depth </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Non root installation</td></tr></table></div></body></html>
