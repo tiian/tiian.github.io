@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with WebSphere MQ, MySQL and PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s14.html" title="An example with WebSphere MQ" /><link rel="next" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with WebSphere MQ, MySQL and PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s14.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example13_wmq_mys_pql"></a>An example with WebSphere MQ, MySQL and PostgreSQL</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with WebSphere MQ, MySQL and PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s14.html" title="An example with WebSphere MQ" /><link rel="next" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with WebSphere MQ, MySQL and PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s14.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example13_wmq_mys_pql"></a>An example with WebSphere MQ, MySQL and PostgreSQL</h2></div></div></div>
     
     <p>
       The example of this paragraph is quite complex because it involves
@@ -19,7 +19,7 @@
       
       <div class="mediaobject"><img src="../images/LIXA_Development_13.png" alt="Deploy model of an example with WebSphere MQ, MySQL and PostgreSQL" /></div>
     </div></div><br class="figure-break" />
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73041504"></a>Set-up WebSphere MQ, MySQL, PostgreSQL and LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73202560"></a>Set-up WebSphere MQ, MySQL, PostgreSQL and LIXA environment</h3></div></div></div>
       
       <p>
 	Please follow the instructions explained 
@@ -38,7 +38,7 @@
 	  </p></li></ul></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73048720"></a>Build the client program (SRV mode)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73209776"></a>Build the client program (SRV mode)</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -113,7 +113,7 @@ WebSphereMQ     yes     (SRV)
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73058592"></a>Set-up LIXA environment (SRV mode)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73219648"></a>Set-up LIXA environment (SRV mode)</h3></div></div></div>
       
       <p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
@@ -129,7 +129,7 @@ MQS_DYN_MYS_STA_PQL_STA
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73061168"></a>Some checks before program execution (SRV mode)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73222224"></a>Some checks before program execution (SRV mode)</h3></div></div></div>
       
       <p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
@@ -160,7 +160,7 @@ MQS_DYN_MYS_STA_PQL_STA
 	for XA.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73067136"></a>Program execution (SRV mode)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73228192"></a>Program execution (SRV mode)</h3></div></div></div>
       
       <p>
 	You should open three terminal sessions: one for the execution shell,
@@ -388,7 +388,7 @@ Sample AMQSGET0 end
 	<code class="function">tx_rollback()</code> instead of
 	<code class="function">tx_commit()</code>.
       </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp73069984"></a>Static registration</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp73231040"></a>Static registration</h4></div></div></div>
 	
 	<p>
 	  If you want to use WebSphere MQ with static registration instead of
@@ -406,7 +406,7 @@ MQS_STA_MYS_STA_PQL_STA
 	</p>
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73115248"></a>Adapting the example to WebSphere MQ Extended Transactional Client (ETC)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73276304"></a>Adapting the example to WebSphere MQ Extended Transactional Client (ETC)</h3></div></div></div>
       
       <p>
 	To try this example using Extended Transactional Client (ETC) for

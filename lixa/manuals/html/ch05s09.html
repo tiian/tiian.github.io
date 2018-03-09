@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; IBM DB2</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s08.html" title="An example with PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s10.html" title="An example with MySQL/MariaDB" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; IBM DB2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s08.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example7_pql_ora"></a>An example with PostgreSQL &amp; IBM DB2</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; IBM DB2</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs" /><link rel="prev" href="ch05s08.html" title="An example with PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s10.html" title="An example with MySQL/MariaDB" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; IBM DB2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s08.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs</th><td width="20%" align="right"> <a accesskey="n" href="ch05s10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example7_pql_ora"></a>An example with PostgreSQL &amp; IBM DB2</h2></div></div></div>
     
     <div class="figure"><a id="develop7"></a><p class="title"><strong>Figure 5.7. Deploy model of an example showing a distributed transaction with PostgreSQL and IBM DB2</strong></p><div class="figure-contents">
       
@@ -61,7 +61,7 @@
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72405792"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72568064"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -136,7 +136,7 @@ tiian@ubuntu:~/tmp$ ldd example7_pql_db2
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72414272"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72578944"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	Set-up the necessary environment variables:
@@ -157,7 +157,7 @@ PQL_STA_DB2_DYN
 	<code class="varname">PATH</code>.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72422560"></a>Some checks before program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72583616"></a>Some checks before program execution</h3></div></div></div>
       
       <p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
@@ -183,11 +183,11 @@ PQL_STA_DB2_DYN
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp72427328" class="footnote" id="idp72427328"><sup class="footnote">[32]</sup></a>
-	<a href="#ftn.idp72430240" class="footnote" id="idp72430240"><sup class="footnote">[33]</sup></a>. 
+	<a href="#ftn.idp72588192" class="footnote" id="idp72588192"><sup class="footnote">[32]</sup></a>
+	<a href="#ftn.idp72591296" class="footnote" id="idp72591296"><sup class="footnote">[33]</sup></a>. 
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72433440"></a>Program execution (dynamic registration)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72594272"></a>Program execution (dynamic registration)</h3></div></div></div>
       
       <p>
 	It is suggested to open three different terminals: 
@@ -394,18 +394,18 @@ tiian@ubuntu:~/tmp$ ./example7_pql_db2 delete org 2&gt;&amp;1 | grep ax_reg
 	  It is left as an exercise to the reader.
       </p></div>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72427328" class="footnote">
-	  <p><a href="#idp72427328" class="para"><sup class="para">[32] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72588192" class="footnote">
+	  <p><a href="#idp72588192" class="para"><sup class="para">[32] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp74117712"><span class="citation">XAspec</span></a>].
+	    documented in [<a class="citation" href="bi01.html#idp74278704"><span class="citation">XAspec</span></a>].
 	  </p>
-	</div><div id="ftn.idp72430240" class="footnote">
-	  <p><a href="#idp72430240" class="para"><sup class="para">[33] </sup></a>
+	</div><div id="ftn.idp72591296" class="footnote">
+	  <p><a href="#idp72591296" class="para"><sup class="para">[33] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    documented at IBM Infocenter: search the string
 	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation

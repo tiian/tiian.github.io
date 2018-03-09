@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>A tuning example</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch10.html" title="Chapter 10. Tuning" /><link rel="prev" href="ch10.html" title="Chapter 10. Tuning" /><link rel="next" href="bi01.html" title="Bibliography" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">A tuning example</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><th width="60%" align="center">Chapter 10. Tuning</th><td width="20%" align="right"> <a accesskey="n" href="bi01.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tuning_example"></a>A tuning example</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>A tuning example</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch10.html" title="Chapter 10. Tuning" /><link rel="prev" href="ch10.html" title="Chapter 10. Tuning" /><link rel="next" href="bi01.html" title="Bibliography" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">A tuning example</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><th width="60%" align="center">Chapter 10. Tuning</th><td width="20%" align="right"> <a accesskey="n" href="bi01.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tuning_example"></a>A tuning example</h2></div></div></div>
     
     <p>
       This section explains a tuning example you can use as a starting point
@@ -60,7 +60,7 @@ Application Options:
 	    <em class="parameter"><code>-p, --medium-processing, -P, --delta-processing</code></em>)
 	</p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74021152"></a><span class="command"><strong>lixat</strong></span> benchmark behavior</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74182144"></a><span class="command"><strong>lixat</strong></span> benchmark behavior</h3></div></div></div>
       
       <p>
 	This is a sketch of <span class="command"><strong>lixat</strong></span> algorithm when
@@ -126,7 +126,7 @@ for l in 10 20 30 40 50 60 70 80 90 100 ; do /opt/lixa/bin/lixat -b -s -l $l ; d
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74031936"></a>Tuning example hardware characteristics</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74192928"></a>Tuning example hardware characteristics</h3></div></div></div>
       
       <p>
 	This is the output of <code class="filename">/proc/cpuinfo</code> executed
@@ -217,7 +217,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74039632"></a>Results obtained with <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74200624"></a>Results obtained with <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div>
       
       <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
 	<p>
@@ -321,7 +321,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	<div class="mediaobject"><img src="../images/LIXA_Tuning_05.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div>
       </div></div><br class="figure-break" />
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74039920"></a>Results obtained without <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp74200912"></a>Results obtained without <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div>
       
       <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
 	<p>
@@ -342,7 +342,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      in the range [10,50] clients the scalability is
 	      <span class="quote">“<span class="quote">superlinear</span>”</span>
-	      <a href="#ftn.idp74079520" class="footnote" id="idp74079520"><sup class="footnote">[47]</sup></a>
+	      <a href="#ftn.idp74240512" class="footnote" id="idp74240512"><sup class="footnote">[47]</sup></a>
 	      if you adopt an asynchronous
 	      conifiguration with 
 	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
@@ -402,7 +402,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	
 	<div class="mediaobject"><img src="../images/LIXA_Tuning_10.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div>
       </div></div><br class="figure-break" />
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp74101504"></a>Conclusions</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp74262496"></a>Conclusions</h4></div></div></div>
 	
 	<p>
 	  The LIXA project gives you some parameters you can change to tune
@@ -430,8 +430,8 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	</p>
       </div>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp74079520" class="footnote">
-		<p><a href="#idp74079520" class="para"><sup class="para">[47] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp74240512" class="footnote">
+		<p><a href="#idp74240512" class="para"><sup class="para">[47] </sup></a>
 		  <code class="function">tx_begin(), tx_commit(), tx_close()</code>
 		  response times change very few when the number of clients
 		  rises

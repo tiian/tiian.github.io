@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.2)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71509776"></a>Configuring LIXA components</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.3.4)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71674288"></a>Configuring LIXA components</h2></div></div></div>
     
     <p>
       The picture below emphasizes the LIXA components that must be configured
@@ -15,13 +15,13 @@
       <code class="filename">etc/lixac_conf.xml</code> file; the server component
       (<span class="command"><strong>lixad</strong></span>) is configured using the
       <code class="filename">etc/lixad_conf.xml</code> file
-      <a href="#ftn.idp71516320" class="footnote" id="idp71516320"><sup class="footnote">[16]</sup></a>.
+      <a href="#ftn.idp71680976" class="footnote" id="idp71680976"><sup class="footnote">[16]</sup></a>.
     </p>
     <p>
       If a node hosts both the client and the server components, both the
       files must be configured. If a node hosts only one component, only
       one configuration file is necessary
-      <a href="#ftn.idp71518704" class="footnote" id="idp71518704"><sup class="footnote">[17]</sup></a>.
+      <a href="#ftn.idp71683408" class="footnote" id="idp71683408"><sup class="footnote">[17]</sup></a>.
     </p>
     <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div>
       
@@ -163,7 +163,7 @@
 	</p>
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71555536"></a>Configuring the client</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71720384"></a>Configuring the client</h3></div></div></div>
       
       <p>
 	The default configuration file is 
@@ -460,12 +460,12 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	</div>
       </div>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71516320" class="footnote"><p><a href="#idp71516320" class="para"><sup class="para">[16] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71680976" class="footnote"><p><a href="#idp71680976" class="para"><sup class="para">[16] </sup></a>
 	  Both the files reside in <code class="filename">/opt/lixa/etc/</code>
 	  directory and must be managed by
 	  <code class="systemitem">lixa</code> user, the
 	  LIXA administrative user
-      </p></div><div id="ftn.idp71518704" class="footnote"><p><a href="#idp71518704" class="para"><sup class="para">[17] </sup></a>
+      </p></div><div id="ftn.idp71683408" class="footnote"><p><a href="#idp71683408" class="para"><sup class="para">[17] </sup></a>
 	  The standard installation procedure installs both the files with
 	  default content; it's your responsability to customize the content
 	  of the files.
