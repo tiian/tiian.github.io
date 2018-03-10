@@ -63,7 +63,7 @@
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72741392"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70578944"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -138,7 +138,7 @@ tiian@ubuntu:~/tmp$ ldd example7_pql_db2
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72749872"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70587424"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	Set-up the necessary environment variables:
@@ -159,7 +159,7 @@ PQL_STA_DB2_DYN
 	<code class="varname">PATH</code>.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72758160"></a>Some checks before program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70595712"></a>Some checks before program execution</h3></div></div></div>
       
       <p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
@@ -185,11 +185,11 @@ PQL_STA_DB2_DYN
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp72762928" class="footnote" id="idp72762928"><sup class="footnote">[34]</sup></a>
-	<a href="#ftn.idp72765840" class="footnote" id="idp72765840"><sup class="footnote">[35]</sup></a>. 
+	<a href="#ftn.idp70600480" class="footnote" id="idp70600480"><sup class="footnote">[34]</sup></a>
+	<a href="#ftn.idp70603392" class="footnote" id="idp70603392"><sup class="footnote">[35]</sup></a>. 
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72769040"></a>Program execution (dynamic registration)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70606592"></a>Program execution (dynamic registration)</h3></div></div></div>
       
       <p>
 	It is suggested to open three different terminals: 
@@ -396,18 +396,18 @@ tiian@ubuntu:~/tmp$ ./example7_pql_db2 delete org 2&gt;&amp;1 | grep ax_reg
 	  It is left as an exercise to the reader.
       </p></div>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72762928" class="footnote">
-	  <p><a href="#idp72762928" class="para"><sup class="para">[34] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70600480" class="footnote">
+	  <p><a href="#idp70600480" class="para"><sup class="para">[34] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp74467168"><span class="citation">XAspec</span></a>].
+	    documented in [<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>].
 	  </p>
-	</div><div id="ftn.idp72765840" class="footnote">
-	  <p><a href="#idp72765840" class="para"><sup class="para">[35] </sup></a>
+	</div><div id="ftn.idp70603392" class="footnote">
+	  <p><a href="#idp70603392" class="para"><sup class="para">[35] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    documented at IBM Infocenter: search the string
 	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation

@@ -27,7 +27,7 @@
     </p></div>
     <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_DB2_environment"></a>Set-up DB2 environment</h3></div></div></div>
       
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72354352"></a>Start-up the DB2 server</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp70191696"></a>Start-up the DB2 server</h4></div></div></div>
 	
 	<p>
 	  If your server didn't start-up automatically at boot time, you
@@ -250,7 +250,7 @@ DB20000I  The QUIT command completed successfully.
 	</p>
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72380128"></a>Start the LIXA state server</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70217472"></a>Start the LIXA state server</h3></div></div></div>
       
       <p>
 	Start the state server as shown below:
@@ -264,7 +264,7 @@ lixa     12866     1  0 21:35 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72382128"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70219472"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -313,7 +313,7 @@ tiian@ubuntu:~/tmp$ ldd example3_db2
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72387920"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70225264"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
@@ -328,7 +328,7 @@ DB2_DYN
 	set at login (see <a class="xref" href="ch05s05.html#Development_setup_DB2_environment" title="Set-up DB2 environment">the section called “Set-up DB2 environment”</a>).
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72391248"></a>Some checks before program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70228592"></a>Some checks before program execution</h3></div></div></div>
       
       <p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
@@ -350,10 +350,10 @@ DB2_DYN
     &lt;rsrmgr name="IBMDB2_dynreg" switch_file="/opt/lixa/lib/switch_ibmdb2_dynreg.so" xa_open_info="axlib=/opt/lixa/lib/liblixac.so,db=sample,tpm=lixa" xa_close_info="" /&gt;
 	</pre><p>
 	we can discover how the DB2 database is configured for XA
-	<a href="#ftn.idp72395248" class="footnote" id="idp72395248"><sup class="footnote">[27]</sup></a>.
+	<a href="#ftn.idp70232592" class="footnote" id="idp70232592"><sup class="footnote">[27]</sup></a>.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72396944"></a>Program execution (dynamic registration)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70234288"></a>Program execution (dynamic registration)</h3></div></div></div>
       
       <p>
 	It is suggested to open two different terminals: the first one
@@ -590,7 +590,7 @@ tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72416112"></a>Program execution (static registration)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70253456"></a>Program execution (static registration)</h3></div></div></div>
       
       <p>
 	If you desire static transaction registration instead of the
@@ -647,7 +647,7 @@ tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
 	</pre><p>
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72395248" class="footnote"><p><a href="#idp72395248" class="para"><sup class="para">[27] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70232592" class="footnote"><p><a href="#idp70232592" class="para"><sup class="para">[27] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    documented at IBM Infocenter: search the string
 	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation

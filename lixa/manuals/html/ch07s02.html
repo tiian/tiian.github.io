@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>A TC TX usage example with Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch07.html" title="Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions" /><link rel="prev" href="ch07.html" title="Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions" /><link rel="next" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">A TC TX usage example with Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07.html">Prev</a> </td><th width="60%" align="center">Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</th><td width="20%" align="right"> <a accesskey="n" href="ch08.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp73724608"></a>A TC TX usage example with Oracle</h2></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>A TC TX usage example with Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch07.html" title="Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions" /><link rel="prev" href="ch07.html" title="Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions" /><link rel="next" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">A TC TX usage example with Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07.html">Prev</a> </td><th width="60%" align="center">Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions</th><td width="20%" align="right"> <a accesskey="n" href="ch08.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71562016"></a>A TC TX usage example with Oracle</h2></div></div></div>
     
-    <div class="figure"><a id="idp73723616"></a><p class="title"><strong>Figure 7.1. Deployment model of two example applications with Oracle DBMS</strong></p><div class="figure-contents">
+    <div class="figure"><a id="idp71563200"></a><p class="title"><strong>Figure 7.1. Deployment model of two example applications with Oracle DBMS</strong></p><div class="figure-contents">
       
       <div class="mediaobject"><img src="../images/LIXA_Development_15.png" alt="Deployment model of two example applications with Oracle DBMS" /></div>
     </div></div><br class="figure-break" />
@@ -47,7 +47,7 @@ cc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
         LIXA must be configured to support the Oracle Resource Manager as explained in <a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73744864"></a>Set the environment variables</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71581904"></a>Set the environment variables</h3></div></div></div>
       
       <p>
         Set up the required environment variables:
@@ -74,7 +74,7 @@ cc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
         </table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73747952"></a>Build the client programs</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71587840"></a>Build the client programs</h3></div></div></div>
       
       <p>
         Prepare the client (Application Program) using the below commands:
@@ -125,7 +125,7 @@ cc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
         </table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73760496"></a>Configure the LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71597616"></a>Configure the LIXA environment</h3></div></div></div>
       
       <p>
         Set up the <code class="varname">LIXA_PROFILE</code> environment variable:
@@ -148,7 +148,7 @@ ORA_STA
         See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional information on creating the profile configuration file.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73766464"></a>Test program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71603744"></a>Test program execution</h3></div></div></div>
       
       <p>
         This shows how a transaction was suspended and resumed within the same thread of control. The example in <code class="filename">example15_transaction_coupling.c</code> does not interact with the actual Oracle database, but loads the switch file.
@@ -160,7 +160,7 @@ ORA_STA
 	  <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>.
         </p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp73770304"></a>Successful execution</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71607792"></a>Successful execution</h4></div></div></div>
         
         <p>
           The transaction is suspended, resumed and then rolled back:
@@ -190,7 +190,7 @@ tx_close(): 0
         </table></div><p>
         </p>
       </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp73775424"></a>Conclusion</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp71608528"></a>Conclusion</h4></div></div></div>
         
         <p>
           This example shows a basic usage of the extended TX interface API calls. A more elaborate use case will include developing two application programs that communicate with each other and share the XID obtained from <code class="function">tx_info</code> so that the second application program can join the existing transaction.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 1. Introduction</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="prev" href="pr01.html" title="Preface" /><link rel="next" href="ch01s02.html" title="Supported Programming Models" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 1. Introduction</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pr01.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp71566896"></a>Chapter 1. Introduction</h1></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 1. Introduction</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="prev" href="pr01.html" title="Preface" /><link rel="next" href="ch01s02.html" title="Supported Programming Models" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 1. Introduction</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pr01.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp58748672"></a>Chapter 1. Introduction</h1></div></div></div>
   
-  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71567712"></a>Why should I use LIXA project?</h2></div></div></div>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58750560"></a>Why should I use LIXA project?</h2></div></div></div>
     
     <p>
       LIXA project allows you to develop Application Programs that perform
@@ -11,19 +11,19 @@
       Isolation, Durability) transactionality.
       XA specification is not the only two phase commit protocol implementation
       but it is probably the best known and widespread. For a detailed
-      explanation please refer to [<a class="citation" href="bi01.html#idp74457488"><span class="citation">RefModel</span></a>].
+      explanation please refer to [<a class="citation" href="bi01.html#idp72322944"><span class="citation">RefModel</span></a>].
     </p>
   </div>
   <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
     <p>
-      The reference model ([<a class="citation" href="bi01.html#idp74457488"><span class="citation">RefModel</span></a>]) technical guide
+      The reference model ([<a class="citation" href="bi01.html#idp72322944"><span class="citation">RefModel</span></a>]) technical guide
       available on the <span class="trademark">Open Group</span>™ web site is more
-      recent than the XA specification ([<a class="citation" href="bi01.html#idp74467168"><span class="citation">XAspec</span></a>]); 
+      recent than the XA specification ([<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>]); 
       after XA, the X/Open Company developed the XA+ specification and the 
       reference model was improved with the concepts necessary for XA+. 
       LIXA project does <span class="emphasis"><em>not</em></span> implement
       the XA+ specification, but only XA and the following concepts explained 
-      in [<a class="citation" href="bi01.html#idp74457488"><span class="citation">RefModel</span></a>] do not apply to the LIXA project:
+      in [<a class="citation" href="bi01.html#idp72322944"><span class="citation">RefModel</span></a>] do not apply to the LIXA project:
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>3.1: Superior Node</p></li><li class="listitem" style="list-style-type: disc"><p>3.1: Subordinate Node</p></li><li class="listitem" style="list-style-type: disc"><p>3.1: Communication Resource Manager (<acronym class="acronym">CRM</acronym>)</p></li><li class="listitem" style="list-style-type: disc"><p>3.5: Distributed Communication Facilities</p></li><li class="listitem" style="list-style-type: disc"><p>3.6: Activity between Functional Components Involving Two or More APs</p></li><li class="listitem" style="list-style-type: disc"><p>3.7: CRM Communication Paradigms with APs</p></li><li class="listitem" style="list-style-type: disc"><p>3.8: High-level TP Language</p></li></ul></div><p>
       XA specification was designed to implement the two phase commit protocol
       in the case there is only one Application Program running inside a
@@ -40,12 +40,12 @@
     implementation of the following concepts:
       <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>Superior Node</p></li><li class="listitem" style="list-style-type: disc"><p>Subordinate Node</p></li><li class="listitem" style="list-style-type: disc"><p>Activity between Functional Components Involving Two or More APs</p></li></ul></div>
       by mean of XTA (XA Transactional API)
-      <a href="#ftn.idp71580976" class="footnote" id="idp71580976"><sup class="footnote">[1]</sup></a>. 
+      <a href="#ftn.idp69394592" class="footnote" id="idp69394592"><sup class="footnote">[1]</sup></a>. 
   </div>
   
   
   
   
-<div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71580976" class="footnote"><p><a href="#idp71580976" class="para"><sup class="para">[1] </sup></a>
+<div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp69394592" class="footnote"><p><a href="#idp69394592" class="para"><sup class="para">[1] </sup></a>
 	See <a class="xref" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface">Chapter 8, <em>Developing Application Programs using XTA (XA Transactional API) interface</em></a> for more information on XTA.
       </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="pr01.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch01s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Preface </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Supported Programming Models</td></tr></table></div></body></html>

@@ -2,18 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Transaction Manager and Transaction Monitor</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch01.html" title="Chapter 1. Introduction" /><link rel="prev" href="ch01s02.html" title="Supported Programming Models" /><link rel="next" href="ch01s04.html" title="LIXA Architecture" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Transaction Manager and Transaction Monitor</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Introduction</th><td width="20%" align="right"> <a accesskey="n" href="ch01s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Transaction_Manager_and_Transaction_Monitor"></a>Transaction Manager and Transaction Monitor</h2></div></div></div>
     
     <p>
-      As explained in Appendix A of [<a class="citation" href="bi01.html#idp74457488"><span class="citation">RefModel</span></a>] a 
+      As explained in Appendix A of [<a class="citation" href="bi01.html#idp72322944"><span class="citation">RefModel</span></a>] a 
       Transaction Manager can be though as a subset of a Transaction Monitor.
       Most commercial products tend to merge the features
       in a single bundle; this is good if you need a Transaction Monitor,
       this may be bad if you only need a Transaction Manager.
     </p>
     <p>
-      IBM TXSeries<a href="#ftn.idp71588128" class="footnote" id="idp71588128"><sup class="footnote">[3]</sup></a> is a Transaction Monitor with an
+      IBM TXSeries<a href="#ftn.idp69401744" class="footnote" id="idp69401744"><sup class="footnote">[3]</sup></a> is a Transaction Monitor with an
       integrated Transaction Manager.
-      Oracle (BEA) Tuxedo<a href="#ftn.idp71588752" class="footnote" id="idp71588752"><sup class="footnote">[4]</sup></a> is a Transaction Monitor with an
+      Oracle (BEA) Tuxedo<a href="#ftn.idp69402368" class="footnote" id="idp69402368"><sup class="footnote">[4]</sup></a> is a Transaction Monitor with an
       integrated Transaction Manager.
-      JBoss<a href="#ftn.idp71589264" class="footnote" id="idp71589264"><sup class="footnote">[5]</sup></a> is a <acronym class="acronym">JEE</acronym>
+      JBoss<a href="#ftn.idp69402880" class="footnote" id="idp69402880"><sup class="footnote">[5]</sup></a> is a <acronym class="acronym">JEE</acronym>
       (Java Enterprise Edition) application server; it is a Transaction
       Monitor with an integrated Transaction Manager for Java based
       applications.
@@ -35,20 +35,20 @@
       Transaction
       Manager, while in the C language arena it is not easy to find out one.
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71594048"></a>LIXA behavior when the TX Transaction Demarcation Specification
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp69407664"></a>LIXA behavior when the TX Transaction Demarcation Specification
       is used to develop applications</h3></div></div></div>
       
       <p>
 	The LIXA project implements a stand-alone Transaction Manager that your
 	Application Program can use in many different ways:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>from a C application launched from shell or via CGI
-	  inside a web server</p></li><li class="listitem" style="list-style-type: disc"><p>from a COBOL application launched from shell</p></li><li class="listitem" style="list-style-type: disc"><p>from a scripting language application<a href="#ftn.idp71597328" class="footnote" id="idp71597328"><sup class="footnote">[6]</sup></a>.</p></li></ul></div><p>
+	  inside a web server</p></li><li class="listitem" style="list-style-type: disc"><p>from a COBOL application launched from shell</p></li><li class="listitem" style="list-style-type: disc"><p>from a scripting language application<a href="#ftn.idp69411168" class="footnote" id="idp69411168"><sup class="footnote">[6]</sup></a>.</p></li></ul></div><p>
 	With the aid of the LIXA Transaction Manager potentially any web server
 	can be converted in an Application Server with two phase commit
 	support.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71598896"></a>LIXA behavior when XTA is used to develop applications</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp69412640"></a>LIXA behavior when XTA is used to develop applications</h3></div></div></div>
       
       <p>
 	The LIXA project implements a distributed Transaction Manager that your
@@ -57,7 +57,7 @@
 	systems.
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp71588128" class="footnote"><p><a href="#idp71588128" class="para"><sup class="para">[3] </sup></a>TXSeries is a registered trademark of 
-	  IBM corporation</p></div><div id="ftn.idp71588752" class="footnote"><p><a href="#idp71588752" class="para"><sup class="para">[4] </sup></a>Tuxedo is a registered trademark of
-	  Oracle corporation</p></div><div id="ftn.idp71589264" class="footnote"><p><a href="#idp71589264" class="para"><sup class="para">[5] </sup></a>JBoss is a registered trademark of Red Hat
-	  corporation</p></div><div id="ftn.idp71597328" class="footnote"><p><a href="#idp71597328" class="para"><sup class="para">[6] </sup></a>You must wrap the TX C API to be able to use it from Perl, PHP, Python, Ruby...</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Supported Programming Models </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> LIXA Architecture</td></tr></table></div></body></html>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp69401744" class="footnote"><p><a href="#idp69401744" class="para"><sup class="para">[3] </sup></a>TXSeries is a registered trademark of 
+	  IBM corporation</p></div><div id="ftn.idp69402368" class="footnote"><p><a href="#idp69402368" class="para"><sup class="para">[4] </sup></a>Tuxedo is a registered trademark of
+	  Oracle corporation</p></div><div id="ftn.idp69402880" class="footnote"><p><a href="#idp69402880" class="para"><sup class="para">[5] </sup></a>JBoss is a registered trademark of Red Hat
+	  corporation</p></div><div id="ftn.idp69411168" class="footnote"><p><a href="#idp69411168" class="para"><sup class="para">[6] </sup></a>You must wrap the TX C API to be able to use it from Perl, PHP, Python, Ruby...</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Supported Programming Models </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> LIXA Architecture</td></tr></table></div></body></html>

@@ -63,7 +63,7 @@
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72639040"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70478688"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -138,7 +138,7 @@ tiian@ubuntu:~/tmp$ ldd example6_pql_ora
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72653824"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70491536"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	There are four unresolved references that can be fixed setting up
@@ -272,8 +272,8 @@ XE
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp72678608" class="footnote" id="idp72678608"><sup class="footnote">[32]</sup></a>
-	<a href="#ftn.idp72682176" class="footnote" id="idp72682176"><sup class="footnote">[33]</sup></a>. 
+	<a href="#ftn.idp70516576" class="footnote" id="idp70516576"><sup class="footnote">[32]</sup></a>
+	<a href="#ftn.idp70519488" class="footnote" id="idp70519488"><sup class="footnote">[33]</sup></a>. 
       </p>
       <p>
 	Verify no (Oracle) trace file exists:
@@ -283,7 +283,7 @@ ls: cannot access /tmp/xa*: No such file or directory
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72684800"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70522272"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div>
       
       <p>
 	It is suggested to open three different terminals: 
@@ -469,18 +469,18 @@ tiian@ubuntu:~/tmp$ ls -la /tmp/xa_NULL09202011.trc
 	</table></div><p>
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72678608" class="footnote">
-	  <p><a href="#idp72678608" class="para"><sup class="para">[32] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70516576" class="footnote">
+	  <p><a href="#idp70516576" class="para"><sup class="para">[32] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp74467168"><span class="citation">XAspec</span></a>].
+	    documented in [<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>].
 	  </p>
-	</div><div id="ftn.idp72682176" class="footnote">
-	  <p><a href="#idp72682176" class="para"><sup class="para">[33] </sup></a>
+	</div><div id="ftn.idp70519488" class="footnote">
+	  <p><a href="#idp70519488" class="para"><sup class="para">[33] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"

@@ -77,7 +77,7 @@
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
     </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73011248"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70848800"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -145,7 +145,7 @@ tiian@ubuntu:~/tmp$ ldd example10_mys_pql_ora
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73021488"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70859040"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	There are five unresolved references that can be fixed setting up
@@ -227,7 +227,7 @@ MYS_STA_PQL_STA_ORA_DYN
 	<code class="varname">PATH</code>.
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73035120"></a>Some checks before program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70872672"></a>Some checks before program execution</h3></div></div></div>
       
       <p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
@@ -256,9 +256,9 @@ MYS_STA_PQL_STA_ORA_DYN
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp73040800" class="footnote" id="idp73040800"><sup class="footnote">[40]</sup></a>
-	<a href="#ftn.idp73043168" class="footnote" id="idp73043168"><sup class="footnote">[41]</sup></a>
-	<a href="#ftn.idp73044992" class="footnote" id="idp73044992"><sup class="footnote">[42]</sup></a>. 
+	<a href="#ftn.idp70878352" class="footnote" id="idp70878352"><sup class="footnote">[40]</sup></a>
+	<a href="#ftn.idp70880720" class="footnote" id="idp70880720"><sup class="footnote">[41]</sup></a>
+	<a href="#ftn.idp70882544" class="footnote" id="idp70882544"><sup class="footnote">[42]</sup></a>. 
       </p>
       <p>
 	Verify no (Oracle) trace file exists:
@@ -268,7 +268,7 @@ ls: cannot access /tmp/xa*: No such file or directory
 	</pre><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp73048320"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70885872"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div>
       
       <p>
 	It is suggested to open four different terminals: 
@@ -508,24 +508,24 @@ tiian@ubuntu:~/tmp$ ls -la /tmp/xa_NULL11112011.trc
 	</table></div><p>
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp73040800" class="footnote">
-	  <p><a href="#idp73040800" class="para"><sup class="para">[40] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70878352" class="footnote">
+	  <p><a href="#idp70878352" class="para"><sup class="para">[40] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
 	  </p>
-	</div><div id="ftn.idp73043168" class="footnote">
-	  <p><a href="#idp73043168" class="para"><sup class="para">[41] </sup></a>
+	</div><div id="ftn.idp70880720" class="footnote">
+	  <p><a href="#idp70880720" class="para"><sup class="para">[41] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp74467168"><span class="citation">XAspec</span></a>].
+	    documented in [<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>].
 	  </p>
-	</div><div id="ftn.idp73044992" class="footnote">
-	  <p><a href="#idp73044992" class="para"><sup class="para">[42] </sup></a>
+	</div><div id="ftn.idp70882544" class="footnote">
+	  <p><a href="#idp70882544" class="para"><sup class="para">[42] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"

@@ -82,7 +82,7 @@ mariadb-libs-5.5.52-1.el7.x86_64
     </p></div>
     <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_MySQL_environment"></a>Set-up MySQL environment</h3></div></div></div>
       
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp72823760"></a>Start-up the MySQL server</h4></div></div></div>
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp70661312"></a>Start-up the MySQL server</h4></div></div></div>
 	
 	<p>
 	  If your server didn't start-up automatically at boot time, you
@@ -99,7 +99,7 @@ mysql     1607     1  0 22:43 ?        00:00:00 /usr/sbin/mysqld
 	    </pre></td></tr></tbody>
 	  </table></div><p>
 	  Create a new user authorization and a new database
-	  <a href="#ftn.idp72826640" class="footnote" id="idp72826640"><sup class="footnote">[36]</sup></a>:
+	  <a href="#ftn.idp70664192" class="footnote" id="idp70664192"><sup class="footnote">[36]</sup></a>:
 	  </p><div class="table"><table frame="box">
 	    <thead><tr><td>[Shell terminal session]</td></tr></thead>
 	    <tbody><tr><td><pre class="screen">
@@ -183,7 +183,7 @@ Empty set (0.00 sec)
 	</p>
       </div>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72837568"></a>Start the LIXA state server</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70675120"></a>Start the LIXA state server</h3></div></div></div>
       
       <p>
 	Start the state server as shown below:
@@ -200,7 +200,7 @@ lixa      1804     1  0 22:45 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72840880"></a>Build the client program</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70678432"></a>Build the client program</h3></div></div></div>
       
       <p>
 	Prepare the client (Application Program) using the below commands
@@ -243,7 +243,7 @@ tiian@ubuntu1204-64:/tmp/tmp$ ldd example8_mys
 	</table></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72850480"></a>Set-up LIXA environment</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70688032"></a>Set-up LIXA environment</h3></div></div></div>
       
       <p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
@@ -368,7 +368,7 @@ MYS_STA
 	</p></div><p>
       </p>
     </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp72896832"></a>Program execution</h3></div></div></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70734384"></a>Program execution</h3></div></div></div>
       
       <p>
 	It is suggested to open two different terminals: the first one
@@ -461,7 +461,7 @@ Empty set (0.00 sec)
 	you can verify in file
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>
 	that <span class="quote">“<span class="quote">MYS_STA</span>”</span> is associated to static registration
-	<a href="#ftn.idp72918368" class="footnote" id="idp72918368"><sup class="footnote">[37]</sup></a>
+	<a href="#ftn.idp70755920" class="footnote" id="idp70755920"><sup class="footnote">[37]</sup></a>
 	.
 	Execute the program:
 	</p><div class="table"><table frame="box">
@@ -490,10 +490,10 @@ Deleting a row from the table...
 	</table></div><p>
       </p>
     </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp72826640" class="footnote"><p><a href="#idp72826640" class="para"><sup class="para">[36] </sup></a>
+  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70664192" class="footnote"><p><a href="#idp70664192" class="para"><sup class="para">[36] </sup></a>
 	      You need the password of MySQL root user to execute
 	      these commands
-	  </p></div><div id="ftn.idp72918368" class="footnote"><p><a href="#idp72918368" class="para"><sup class="para">[37] </sup></a>
+	  </p></div><div id="ftn.idp70755920" class="footnote"><p><a href="#idp70755920" class="para"><sup class="para">[37] </sup></a>
 	    The current implementation does not support dynamic registration
 	    for MySQL.
 	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s09.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s11.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with PostgreSQL &amp; IBM DB2 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL &amp; PostgreSQL</td></tr></table></div></body></html>
