@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with two MySQL servers</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s14.html" title="An example with WebSphere MQ" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with two MySQL servers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s12.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s14.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example11_mys_mys"></a>An example with two MySQL servers</h2></div></div></div>
-    
-    <div class="figure"><a id="develop11"></a><p class="title"><strong>Figure 5.11. Deploy model of an example showing a distributed transaction with
-	two MySQL servers</strong></p><div class="figure-contents">
-      
-      <div class="mediaobject"><img src="../images/LIXA_Development_11.png" alt="Deploy model of an example showing a distributed transaction with two MySQL servers" /></div>
-    </div></div><br class="figure-break" />
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with two MySQL servers</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s14.html" title="An example with WebSphere MQ" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with two MySQL servers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s12.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s14.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example11_mys_mys"></a>An example with two MySQL servers</h2></div></div></div><div class="figure"><a id="develop11"></a><p class="title"><strong>Figure 5.11. Deploy model of an example showing a distributed transaction with
+	two MySQL servers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_11.png" alt="Deploy model of an example showing a distributed transaction with two MySQL servers" /></div></div></div><br class="figure-break" /><p>
       This example shows as
       you can implement DTP (Distributed Transaction Processing) with two
       Resource Managers of the same type (MySQL) 
@@ -16,9 +10,7 @@
       examples previously shown in this chapter (see
       <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface">Chapter 5, <em>Developing C Application Programs using TX (Transaction
   Demarcation) interface</em></a>) before starting this more complex one.
-    </p>
-    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
-      <p>
+    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	If you did not yet installed the software provided by MySQL,
 	please refer to the official MySQL site to download the
 	software and to pick-up the information necessary to install 
@@ -26,10 +18,7 @@
 	the database. This manual does not give you information related
 	to MySQL technology: it is assumed you already installed and
 	configured the database.
-      </p>
-    </div>
-    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
-      <p>
+      </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	The LIXA software must be configured to support the MySQL 
 	resource managers as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
@@ -39,9 +28,7 @@
 	</pre><p>
 	Please don't forget you must compile and install every time you
 	re-configure.
-      </p>
-    </div>
-    <p>
+      </p></div><p>
       Please follow the instructions explained 
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    in <a class="xref" href="ch05s10.html#Development_setup_MySQL_environment" title="Set-up MySQL environment">the section called “Set-up MySQL environment”</a>
@@ -68,32 +55,24 @@
       and change the parameter
       <em class="parameter"><code>bind-address</code></em> in the file
       <code class="filename">/etc/mysql/my.cnf</code> to allow network reachability:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Host:192.168.1.3 /etc/mysql/my.cnf]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Host:192.168.1.3 /etc/mysql/my.cnf]</td></tr></thead><tbody><tr><td><pre class="screen">
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
 #bind-address            = 127.0.0.1
 bind-address            = 192.168.1.3
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       restart MySQL server:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Host:192.168.1.3 terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Host:192.168.1.3 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ sudo /etc/init.d/mysql restart
 [sudo] password for tiian:
  * Stopping MySQL database server mysqld                                 [ OK ]
  * Starting MySQL database server mysqld                                 [ OK ]
  * Checking for corrupt, not cleanly closed and upgrade needing tables.
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       connect to that MySQL server from the remote host and grant access to
       user <code class="systemitem">lixa</code> from the server 
       <code class="systemitem">192.168.1.2</code>:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Host:192.168.1.3 terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Host:192.168.1.3 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@mojan:~$ mysql -u root -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -104,15 +83,12 @@ Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 
 mysql&gt; GRANT ALL ON lixa.* TO 'lixa'@'192.168.1.2';
 Query OK, 0 rows affected (0.00 sec)
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       now you should be able to connect to the server running at
       <code class="systemitem">192.168.1.3</code> 
       from the server 
       <code class="systemitem">192.168.1.2</code>:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Host:192.168.1.2 terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Host:192.168.1.2 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mysql -h 192.168.1.3 -u lixa lixa
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -122,12 +98,9 @@ Your MySQL connection id is 13
 Server version: 5.0.51a-3ubuntu5.8 (Ubuntu)
 
 Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       and you must create the table necessary for the example program:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; CREATE TABLE authors (id INTEGER NOT NULL PRIMARY KEY, last_name TEXT, first_name TEXT) ENGINE=InnoDB;
 Query OK, 0 rows affected (0.01 sec)
 
@@ -140,30 +113,21 @@ mysql&gt; DESCRIBE authors;
 | first_name | text    | YES  |     | NULL    |       |
 +------------+---------+------+-----+---------+-------+
 3 rows in set (0.01 sec)
-	</pre></td></tr></tbody>
-      </table></div><p>
-    </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70975360"></a>Build the client program</h3></div></div></div>
-      
-      <p>
+	</pre></td></tr></tbody></table></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67155680"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
 	a single line):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mkdir tmp
 tiian@ubuntu:~$ cd tmp
 tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example11_mys_mys.c .
 tiian@ubuntu:~/tmp$ gcc example11_mys_mys.c $(/opt/lixa/bin/lixa-config -c -f -m -d) \
 &gt; $(mysql_config --include --libs_r) -o example11_mys_mys
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ldd example11_mys_mys
         linux-gate.so.1 =&gt;  (0xb777d000)
         liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb7762000)
@@ -185,32 +149,20 @@ tiian@ubuntu:~/tmp$ ldd example11_mys_mys
         /lib/ld-linux.so.2 (0xb777e000)
         libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb7159000)
         libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb7155000)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70986384"></a>Set-up LIXA environment</h3></div></div></div>
-      
-      <p>
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67178976"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
 
 tiian@ubuntu:~/tmp$ export LIXA_PROFILE=MYS_STA_MYS_STA
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
 MYS_STA_MYS_STA
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	It is suggested to set the necessary environment variable
 	(<code class="varname">LIXA_PROFILE</code>) in your 
 	profile if you are going to execute the programs many times.
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70990640"></a>Some checks before program execution</h3></div></div></div>
-      
-      <p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67189104"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MYS_STA_MYS_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -234,20 +186,14 @@ MYS_STA_MYS_STA
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp70995472" class="footnote" id="idp70995472"><sup class="footnote">[43]</sup></a>. 
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70997856"></a>Program execution</h3></div></div></div>
-      
-      <p>
+	<a href="#ftn.idp67193616" class="footnote" id="idp67193616"><sup class="footnote">[43]</sup></a>. 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67189664"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> local MySQL database,
 	the second one connected to <span class="quote">“<span class="quote">lixa</span>”</span> remote MySQL database
 	and the	third one pointing to the directory where the compiled program 
 	example11_mys_mys lives.
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (local) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (local) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mysql -h localhost -u lixa lixa
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -259,11 +205,8 @@ Server version: 5.0.51a-3ubuntu5.8 (Ubuntu)
 Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 
 mysql&gt;
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mysql -h 192.168.1.3 -u lixa lixa
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -273,49 +216,34 @@ Your MySQL connection id is 7
 Server version: 5.0.51a-3ubuntu5.8 (Ubuntu)
 
 Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la
 total 168
 drwxr-xr-x  2 tiian tiian  4096 2011-11-13 21:04 .
 drwxr-xr-x 40 tiian tiian  4096 2011-11-13 19:09 ..
 -rwxr-xr-x  1 tiian tiian  9201 2011-11-13 21:04 example11_mys_mys
 -rw-r--r--  1 tiian tiian  3977 2011-11-13 21:04 example11_mys_mys.c
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the (local) MySQL table (<span class="quote">“<span class="quote">authors</span>”</span>):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (local) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (local) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.02 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the (remote) MySQL table (<span class="quote">“<span class="quote">authors</span>”</span>):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.01 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Insert a row in all the tables and check the contents of the tables
 	after the transaction execution:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example11_mys_mys insert
 Inserting a row in MySQL(1) table...
 Inserting a row in MySQL(2) table...
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Now you can verify the content of the tables after the transaction:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (local) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (local) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 +----+-----------+------------+
 | id | last_name | first_name |
@@ -323,11 +251,8 @@ mysql&gt; SELECT * FROM authors;
 |  1 | Foo       | Bar        |
 +----+-----------+------------+
 1 row in set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 +----+-----------+------------+
 | id | last_name | first_name |
@@ -335,46 +260,31 @@ mysql&gt; SELECT * FROM authors;
 |  1 | Foo       | Bar        |
 +----+-----------+------------+
 1 row in set (0.01 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	With the opposite command you can remove the rows from the tables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example11_mys_mys delete
 Deleting a row from MySQL(1) table...
 Deleting a row from MySQL(2) table...
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	and check the content of the tables again:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (local) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (local) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Finally, you can verify the two phase commit protocol is running as
 	expected. Insert a row in all the tables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example11_mys_mys insert
 Inserting a row in MySQL(1) table...
 Inserting a row in MySQL(2) table...
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	manually remove the row from the local MySQL server only:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (local) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (local) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 +----+-----------+------------+
 | id | last_name | first_name |
@@ -388,31 +298,22 @@ Query OK, 1 row affected (0.01 sec)
 
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	try to insert the row again in all the tables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example11_mys_mys insert
 Inserting a row in MySQL(1) table...
 Inserting a row in MySQL(2) table...
 INSERT INTO authors: 1062/Duplicate entry '1' for key 1
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	the first (local) INSERT is ok, while the second one can not be
 	performed due to a duplicated key. 
 	Check the content of the tables again:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (local) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (local) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 +----+-----------+------------+
 | id | last_name | first_name |
@@ -420,13 +321,10 @@ mysql&gt; SELECT * FROM authors;
 |  1 | Foo       | Bar        |
 +----+-----------+------------+
 1 row in set (0.01 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	If you inspect the program
 	source code you will discover what the program will do:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td><code class="filename">example11_mys_mys.c</code></td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td><code class="filename">example11_mys_mys.c</code></td></tr></thead><tbody><tr><td><pre class="screen">
         [...]
 
         printf("Inserting a row in MySQL(2) table...\n");
@@ -438,8 +336,7 @@ mysql&gt; SELECT * FROM authors;
         }
 
         [...]
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	in case of error the program exits closing the connections...
 	XA protocol is a <span class="quote">“<span class="quote">two phase commit with presumed 
 	rollback</span>”</span>: if the transaction does not complete 
@@ -448,22 +345,15 @@ mysql&gt; SELECT * FROM authors;
 	you can rollback the current transaction and start a new one without
 	program (and connection) termination.
 	Clean up the (remote) table:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL (remote) terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; DELETE FROM authors;
 Query OK, 1 row affected (0.04 sec)
 
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-      </p>
-    </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70995472" class="footnote">
-	  <p><a href="#idp70995472" class="para"><sup class="para">[43] </sup></a>
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp67193616" class="footnote"><p><a href="#idp67193616" class="para"><sup class="para">[43] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
-	  </p>
-	</div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s12.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s14.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL, PostgreSQL &amp; Oracle </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with WebSphere MQ</td></tr></table></div></body></html>
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s12.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s14.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL, PostgreSQL &amp; Oracle </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with WebSphere MQ</td></tr></table></div></body></html>

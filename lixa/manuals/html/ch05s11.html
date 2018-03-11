@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with MySQL &amp; PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s10.html" title="An example with MySQL/MariaDB" /><link rel="next" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with MySQL &amp; PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example9_mys_pql"></a>An example with MySQL &amp; PostgreSQL</h2></div></div></div>
-    
-    <div class="figure"><a id="develop9"></a><p class="title"><strong>Figure 5.9. Deploy model of an example showing a distributed transaction with
-	MySQL and PostgreSQL</strong></p><div class="figure-contents">
-      
-      <div class="mediaobject"><img src="../images/LIXA_Development_9.png" alt="Deploy model of an example showing a distributed transaction with MySQL and PostgreSQL" /></div>
-    </div></div><br class="figure-break" />
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with MySQL &amp; PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s10.html" title="An example with MySQL/MariaDB" /><link rel="next" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with MySQL &amp; PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example9_mys_pql"></a>An example with MySQL &amp; PostgreSQL</h2></div></div></div><div class="figure"><a id="develop9"></a><p class="title"><strong>Figure 5.9. Deploy model of an example showing a distributed transaction with
+	MySQL and PostgreSQL</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_9.png" alt="Deploy model of an example showing a distributed transaction with MySQL and PostgreSQL" /></div></div></div><br class="figure-break" /><p>
       This example shows as
       you can implement DTP (Distributed Transaction Processing) with two
       Resource Managers (MySQL and PostgreSQL)
@@ -16,9 +10,7 @@
       examples previously shown in this chapter (see
       <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface">Chapter 5, <em>Developing C Application Programs using TX (Transaction
   Demarcation) interface</em></a>) before starting this more complex one.
-    </p>
-    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
-      <p>
+    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	If you did not yet installed the software provided by PostgreSQL,
 	please refer to the official PostgreSQL site to download the
 	software and to pick-up the information necessary to install 
@@ -26,8 +18,7 @@
 	the database. This manual does not give you information related
 	to PostgreSQL technology: it is assumed you already installed and
 	configured the database.
-      </p>
-      <p>
+      </p><p>
 	If you did not yet installed the software provided by MySQL,
 	please refer to the official MySQL site to download the
 	software and to pick-up the information necessary to install 
@@ -35,10 +26,7 @@
 	the database. This manual does not give you information related
 	to MySQL technology: it is assumed you already installed and
 	configured the database.
-      </p>
-    </div>
-    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
-      <p>
+      </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	The LIXA software must be configured to support the MySQL and 
 	PostgreSQL and resource managers as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
@@ -54,9 +42,7 @@
 	</pre><p>
 	Please don't forget you must compile and install every time you
 	re-configure.
-      </p>
-    </div>
-    <p>
+      </p></div><p>
       Please follow the instructions explained 
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    in <a class="xref" href="ch05s10.html#Development_setup_MySQL_environment" title="Set-up MySQL environment">the section called “Set-up MySQL environment”</a>
@@ -68,29 +54,21 @@
 	    in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70777328"></a>Build the client program</h3></div></div></div>
-      
-      <p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67015280"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
 	a single line):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mkdir tmp
 tiian@ubuntu:~$ cd tmp
 tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example9_mys_pql.c .
 tiian@ubuntu:~/tmp$ gcc example9_mys_pql.c $(/opt/lixa/bin/lixa-config -c -f -m -p -d) \
 &gt; $(mysql_config --include --libs_r) -I/usr/include/postgresql -lpq \
 &gt; -o example9_mys_pql
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ldd example9_mys_pql
         linux-gate.so.1 =&gt;  (0xb76f6000)
         liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb76db000)
@@ -130,32 +108,20 @@ tiian@ubuntu:~/tmp$ ldd example9_mys_pql
         libtasn1.so.3 =&gt; /usr/lib/libtasn1.so.3 (0xb6d3a000)
         libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb6cec000)
         libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb6ce8000)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70787456"></a>Set-up LIXA environment</h3></div></div></div>
-      
-      <p>
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67015792"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
 
 tiian@ubuntu:~/tmp$ export LIXA_PROFILE=MYS_STA_PQL_STA
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
 MYS_STA_PQL_STA
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	It is suggested to set the necessary environment variable
 	(<code class="varname">LIXA_PROFILE</code>) in your 
 	profile if you are going to execute the programs many times.
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70791712"></a>Some checks before program execution</h3></div></div></div>
-      
-      <p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67027056"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MYS_STA_PQL_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -179,22 +145,16 @@ MYS_STA_PQL_STA
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp70796480" class="footnote" id="idp70796480"><sup class="footnote">[38]</sup></a>
-	<a href="#ftn.idp70798848" class="footnote" id="idp70798848"><sup class="footnote">[39]</sup></a>.
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70801856"></a>Program execution</h3></div></div></div>
-      
-      <p>
+	<a href="#ftn.idp67031552" class="footnote" id="idp67031552"><sup class="footnote">[38]</sup></a>
+	<a href="#ftn.idp67033280" class="footnote" id="idp67033280"><sup class="footnote">[39]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67027616"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> MySQL database,
 	the second one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database
 	and the
 	third one pointing to the directory where the compiled program 
 	example9_mys_pql lives.
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mysql -h localhost -u lixa lixa
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -206,11 +166,8 @@ Server version: 5.0.51a-3ubuntu5.8 (Ubuntu)
 Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 
 mysql&gt;
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ psql testdb
 Welcome to psql 8.3.15, the PostgreSQL interactive terminal.
 
@@ -221,51 +178,36 @@ Type:  \copyright for distribution terms
        \q to quit
 
 testdb=&gt;
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la
 total 28
 drwxr-xr-x  2 tiian tiian  4096 2011-09-20 21:53 .
 drwxr-xr-x 40 tiian tiian  4096 2011-09-19 20:54 ..
 -rwxr-xr-x  1 tiian tiian 10096 2011-11-03 20:45 example9_mys_pql
 -rw-r--r--  1 tiian tiian  4602 2011-11-03 20:45 example9_mys_pql.c
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the MySQL table (<span class="quote">“<span class="quote">authors</span>”</span>):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.02 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the PostgreSQL table (<span class="quote">“<span class="quote">AUTHORS</span>”</span>):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from AUTHORS;
  id | last_name | first_name
 ----+-----------+------------
 (0 rows)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Insert a row in all the tables and check the contents of the tables
 	after the transaction execution:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Third terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Third terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example9_mys_pql insert
 Inserting a row in MySQL table...
 Inserting a row in PostgreSQL table...
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Now you can verify the content of the tables after the transaction:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 +----+-----------+------------+
 | id | last_name | first_name |
@@ -273,60 +215,41 @@ mysql&gt; SELECT * FROM authors;
 |  1 | Foo       | Bar        |
 +----+-----------+------------+
 1 row in set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from AUTHORS;
  id | last_name | first_name
 ----+-----------+------------
   1 | Foo       | Bar
 (1 row)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	With the opposite command you can remove the rows from the tables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example9_mys_pql delete
 Deleting a row from MySQL  table...
 Deleting a row from PostgreSQL table...
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	and check the content of the tables again:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[MySQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[MySQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from AUTHORS;
  id | last_name | first_name
 ----+-----------+------------
 (0 rows)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-      </p>
-    </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70796480" class="footnote">
-	  <p><a href="#idp70796480" class="para"><sup class="para">[38] </sup></a>
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp67031552" class="footnote"><p><a href="#idp67031552" class="para"><sup class="para">[38] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
-	  </p>
-	</div><div id="ftn.idp70798848" class="footnote">
-	  <p><a href="#idp70798848" class="para"><sup class="para">[39] </sup></a>
+	  </p></div><div id="ftn.idp67033280" class="footnote"><p><a href="#idp67033280" class="para"><sup class="para">[39] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>].
-	  </p>
-	</div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL/MariaDB </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL, PostgreSQL &amp; Oracle</td></tr></table></div></body></html>
+	    documented in [<a class="citation" href="bi01.html#idp68296992"><span class="citation">XAspec</span></a>].
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL/MariaDB </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL, PostgreSQL &amp; Oracle</td></tr></table></div></body></html>

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Starting the recovery utility (lixar)</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch04.html" title="Chapter 4. Execution" /><link rel="prev" href="ch04s02.html" title="Starting the test utility (lixat)" /><link rel="next" href="ch04s04.html" title="Starting the transaction monitoring utility (lixatpm)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Starting the recovery utility (<span class="command"><strong>lixar</strong></span>)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s02.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Execution</th><td width="20%" align="right"> <a accesskey="n" href="ch04s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp69871984"></a>Starting the recovery utility (<span class="command"><strong>lixar</strong></span>)</h2></div></div></div>
-    
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Starting the recovery utility (lixar)</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch04.html" title="Chapter 4. Execution" /><link rel="prev" href="ch04s02.html" title="Starting the test utility (lixat)" /><link rel="next" href="ch04s04.html" title="Starting the transaction monitoring utility (lixatpm)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Starting the recovery utility (<span class="command"><strong>lixar</strong></span>)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s02.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Execution</th><td width="20%" align="right"> <a accesskey="n" href="ch04s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp66256272"></a>Starting the recovery utility (<span class="command"><strong>lixar</strong></span>)</h2></div></div></div><p>
       The LIXA project supplies a recovery utility you must use to 
       perform some special tasks related to distributed transaction
       recovery. The command is named <span class="command"><strong>lixar</strong></span> and is
       located in the <code class="filename">bin</code> directory; use 
       <code class="option">--help</code> option to retrieve the list of 
       the available options:
-    </p>
-    <pre class="screen">
+    </p><pre class="screen">
 tiian@ubuntu:~$ /opt/lixa/bin/lixar --help
 Usage:
   lixar [OPTION...] - LIXA recovery utility
@@ -27,30 +24,25 @@ Application Options:
   -b, --bypass-bqual-check        Bypass xid branch qualifier check
   -B, --bypass-formatid-check     Bypass xid format id check
   -e, --use-tmendrscan-flag       Use TMENDRSCAN flag for last xa_recover call
-    </pre>
-    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+    </pre><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	The LIXA test utility is a LIXA client program and it does 
 	<span class="emphasis"><em>not</em></span> need
 	any special authorization to run because it does not need to write
 	the content of <code class="filename">/opt/lixa/var/</code> directory.
-    </p></div>
-    <p>
+    </p></div><p>
       The usage of the <span class="command"><strong>lixar</strong></span> command is strictly related
       to <span class="emphasis"><em>recovery</em></span> tasks and is explained in
       <a class="xref" href="ch09.html" title="Chapter 9. Recovery">Chapter 9, <em>Recovery</em></a>.
-    </p>
-    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
       All the option except <code class="option">--commit</code> and 
       <code class="option">--rollback</code> are <span class="emphasis"><em>safe</em></span>; only
       specifying <span class="quote">“<span class="quote">commit</span>”</span> and <span class="quote">“<span class="quote">rollback</span>”</span> can
       damage the state of the data managed by your resource managers.
-    </div>
-    <p>
+    </div><p>
       You must start the state server before you can start 
       <span class="command"><strong>lixar</strong></span>; if you don't start the state server, you
       will get something like shown below:
-    </p>
-    <pre class="screen">
+    </p><pre class="screen">
 tiian@ubuntu:~$ /opt/lixa/bin/lixar
 Execution options:
         - print report = no
@@ -61,5 +53,4 @@ Execution options:
         - use TMENDRSCAN flag for last xa_recover call = no
 
 tx_open() returned TX_FAIL: unable to proceed
-    </pre>
-  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Starting the test utility (<span class="command"><strong>lixat</strong></span>) </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Starting the transaction monitoring utility (<span class="command"><strong>lixatpm</strong></span>)</td></tr></table></div></body></html>
+    </pre></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Starting the test utility (<span class="command"><strong>lixat</strong></span>) </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Starting the transaction monitoring utility (<span class="command"><strong>lixatpm</strong></span>)</td></tr></table></div></body></html>

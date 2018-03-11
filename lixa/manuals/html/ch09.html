@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 9. Recovery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="next" href="ch09s02.html" title="Automatic recovery concepts" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 9. Recovery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Recovery"></a>Chapter 9. Recovery</h1></div></div></div>
-   
-  <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 9. Recovery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="prev" href="ch08s02.html" title="The XTA Programming Model" /><link rel="next" href="ch09s02.html" title="Automatic recovery concepts" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 9. Recovery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Recovery"></a>Chapter 9. Recovery</h1></div></div></div><p>
     This chapter explains some advanced concepts that the LIXA system
     administrator should know to solve some complex issues the XA 
     technology could generate.
@@ -16,77 +14,47 @@
 	  it is invoked by <span class="command"><strong>lixar</strong></span> utility
 	  to solve the transactions that cannot be automatically recovered
       </p></li></ul></div><p>	
-  </p>
-  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71660672"></a>Automatic (warm) recovery</h2></div></div></div>
-    
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71662144"></a>Scenario 1: autonoumos rollback</h3></div></div></div>
-      
-      <p>
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp67743136"></a>Automatic (warm) recovery</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67743520"></a>Scenario 1: autonoumos rollback</h3></div></div></div><p>
 	If your environment is configured and runs as designed, when an
 	Application Program fails an automatic recovery operation fix the
 	problem as soon as possible. Below there is a first trivial
 	scenarios:
-	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc">
-	    <p>the Application Program crashes before it reaches the
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>the Application Program crashes before it reaches the
 	      <code class="function">xa_prepare()</code> function
 	      (called by <code class="function">tx_commit()</code>)
-	    </p>
-	  </li><li class="listitem" style="list-style-type: disc">
-	    <p>the Resource Managers 
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>the Resource Managers 
 	      <span class="emphasis"><em>autonoumosly</em></span> roll back the
-	      work in progress and the environment is cleaned up</p>
-	  </li></ul></div><p>	
+	      work in progress and the environment is cleaned up</p></li></ul></div><p>	
 	the distributed transaction started but it did not initiated the
 	two phase commit protocol: there is no relevant difference between
 	this scenario and a single Resource Manager (one phase commit)
 	scenario. The LIXA Transaction Manager does <span class="emphasis"><em>not</em></span>
 	manage a recovery phase.
-	</p><div class="figure"><a id="recover1"></a><p class="title"><strong>Figure 9.1. The Application Program crashes before <code class="function">xa_prepare()</code></strong></p><div class="figure-contents">
-	  
-	  <div class="mediaobject"><img src="../images/LIXA_Recovery_01.png" alt="The Application Program crashes before xa_prepare()" /></div>
-	</div></div><p><br class="figure-break" />
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp71671744"></a>Scenario 2: a second Application Program triggers the recovery action</h3></div></div></div>
-      
-      <p>
+	</p><div class="figure"><a id="recover1"></a><p class="title"><strong>Figure 9.1. The Application Program crashes before <code class="function">xa_prepare()</code></strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Recovery_01.png" alt="The Application Program crashes before xa_prepare()" /></div></div></div><p><br class="figure-break" />
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67750192"></a>Scenario 2: a second Application Program triggers the recovery action</h3></div></div></div><p>
 	The following scenario is slightly different:
-	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc">
-	    <p>the Application Program crashes after it has passed the
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>the Application Program crashes after it has passed the
 	      <code class="function">xa_prepare()</code> function but before it
 	      reaches the <code class="function">xa_commit()</code> function
-	    </p>
-	  </li><li class="listitem" style="list-style-type: disc">
-	    <p>the Resource Managers keep the <span class="emphasis"><em>prepared</em></span>
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>the Resource Managers keep the <span class="emphasis"><em>prepared</em></span>
 	    transaction <span class="quote">“<span class="quote">in flight</span>”</span> until the Transaction
-	    Manager decides the proper recovery action</p>
-	  </li><li class="listitem" style="list-style-type: disc">
-	    <p>an <span class="quote">“<span class="quote">equivalent</span>”</span> Application Program starts 
+	    Manager decides the proper recovery action</p></li><li class="listitem" style="list-style-type: disc"><p>an <span class="quote">“<span class="quote">equivalent</span>”</span> Application Program starts 
 	      and activates
 	      the LIXA Transaction Manager with <code class="function">tx_open()</code>
-	    </p>
-	  </li><li class="listitem" style="list-style-type: disc">
-	    <p>the LIXA Transaction Manager discovers there is a
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>the LIXA Transaction Manager discovers there is a
 	      <span class="emphasis"><em>prepared</em></span> transaction and establishes that
 	      it must commit the transaction
-	    </p>
-	  </li><li class="listitem" style="list-style-type: disc">
-	    <p>the second Application Program implicitly and inconsciously
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>the second Application Program implicitly and inconsciously
 	    started the recovery process of a previously crashed
-	    Application Program</p>
-	  </li></ul></div><p>	
-	</p><div class="figure"><a id="recover2"></a><p class="title"><strong>Figure 9.2. The Application Program crashes after <code class="function">xa_prepare()</code></strong></p><div class="figure-contents">
-	  
-	  <div class="mediaobject"><img src="../images/LIXA_Recovery_02.png" alt="The Application Program crashes after xa_prepare()" /></div>
-	</div></div><p><br class="figure-break" />
+	    Application Program</p></li></ul></div><p>	
+	</p><div class="figure"><a id="recover2"></a><p class="title"><strong>Figure 9.2. The Application Program crashes after <code class="function">xa_prepare()</code></strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Recovery_02.png" alt="The Application Program crashes after xa_prepare()" /></div></div></div><p><br class="figure-break" />
 	The above pattern is the result of the LIXA design: the Transaction
 	Manager is not an active component, but it's a passive one and
 	is embedded in the Application Program when it links the
 	<code class="systemitem">lixac</code> library 
 	and activates it with the
 	<code class="function">tx_open()</code> function.
-      </p>
-      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  Depending on the crash time: slightly before the 
 	  <span class="emphasis"><em>prepare phase</em></span>,
 	  in the middle of the <span class="emphasis"><em>prepare phase</em></span>,
@@ -95,9 +63,4 @@
 	  operation between
 	  <code class="function">xa_commit()</code> and 
 	  <code class="function">xa_rollback()</code>.
-      </p></div>
-    </div>
-  </div>
-  
-  
-</div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Automatic recovery concepts</td></tr></table></div></body></html>
+      </p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The XTA Programming Model </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Automatic recovery concepts</td></tr></table></div></body></html>

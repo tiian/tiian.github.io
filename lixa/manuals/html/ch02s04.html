@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure, build and install</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch02.html" title="Chapter 2. Installation" /><link rel="prev" href="ch02s03.html" title="Software download" /><link rel="next" href="ch02s05.html" title="Checking" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configure, build and install</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Installation</th><td width="20%" align="right"> <a accesskey="n" href="ch02s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp69516288"></a>Configure, build and install</h2></div></div></div>
-    
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure, build and install</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch02.html" title="Chapter 2. Installation" /><link rel="prev" href="ch02s03.html" title="Software download" /><link rel="next" href="ch02s05.html" title="Checking" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configure, build and install</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Installation</th><td width="20%" align="right"> <a accesskey="n" href="ch02s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp65970992"></a>Configure, build and install</h2></div></div></div><p>
       LIXA project tries to adhere to the GNU <span class="emphasis"><em>de facto</em></span>
       standard. Supposing you downloaded the package 
       <code class="filename">lixa-X.Y.Z.tar.gz</code>, the basic sequence is:
@@ -87,40 +85,29 @@ drwxr-xr-x 9 lixa root 4096 2011-03-30 23:14 ..
 	  The <span class="command"><strong>chown</strong></span> command must be executed after every
 	  <span class="command"><strong>make install</strong></span> execution.
       </p></div><p>
-    </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp69518064"></a>Advanced configuration</h3></div></div></div>
-      
-      <p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp65971552"></a>Advanced configuration</h3></div></div></div><p>
 	There are many options you can pass to the <span class="command"><strong>configure</strong></span>
 	command to meet your needs (see below). Skip this section and
 	jump directly to
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>
 	if you are not expert in LIXA configuration.
-      </p>
-      <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
-	<p>
+      </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	  It is strongly suggested you issue the 
 	  <span class="command"><strong>make clean</strong></span> command every time you re-configure
 	  the package. If you didn't clean the previous build, you might
 	  catch some strange undebuggable errors related to not aligned
 	  libraries.
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69537744"></a>Choosing a different installation <code class="envar">PATH</code></h4></div></div></div>
-	
-	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp65989792"></a>Choosing a different installation <code class="envar">PATH</code></h4></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	    The commands explained in the previous section should be
 	    adapted to different paths, if you choosed a non standard
 	    installation path.
-	</p></div>
-	<p>
+	</p></div><p>
 	  to perform the very first installation <code class="filename">/tmp</code> 
 	  could be a good destination:
 	  </p><pre class="screen">
 ./configure --prefix=/tmp/lixa
 	  </pre><p>
-	</p>
-	<p>
+	</p><p>
 	  After some testing, you might prefer your home directory:
 	  </p><pre class="screen">
 ./configure --prefix=$HOME/lixa
@@ -134,17 +121,12 @@ $HOME/lixa/lib
 $HOME/lixa/sbin
 $HOME/lixa/var
 	  </pre><p>
-	</p>
-	<p>
+	</p><p>
 	  You can split code and data with something like this:
 	  </p><pre class="screen">
 ./configure --prefix=/ --exec-prefix=/usr/local
 	  </pre><p>
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69543344"></a>Producing this manual too</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp65994400"></a>Producing this manual too</h4></div></div></div><p>
 	  To produce LIXA manual in HTML format you need 
 	  <span class="command"><strong>xsltproc</strong></span> installed in your current search
 	  path and <code class="filename">chunk.xsl docbook.xsl</code> stylesheet 
@@ -158,11 +140,7 @@ $HOME/lixa/var
 	  </p><pre class="screen">
 ./configure --with-docbook=/path/to/father/of/xhtml/dir
 	  </pre><p>
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69547136"></a>Locating pre-requisites libraries</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp65994960"></a>Locating pre-requisites libraries</h4></div></div></div><p>
 	  If any of the pre-requisite library include files are not in the
 	  standard search <code class="envar">PATH</code>, you can export 
 	  <code class="envar">CPPFLAGS</code> before the configure process to add 
@@ -178,47 +156,31 @@ make
 	  </p><pre class="screen">
 ./configure --help
 	  </pre><p>
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69550640"></a>Optional features</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66000384"></a>Optional features</h4></div></div></div><p>
 	  The supplied defaults are generally good enought to start 
 	  working with LIXA, but if you want to perform some hacking 
 	  you might be interested
 	  in activating/deactivating some optional features.
-	</p>
-	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp69552240"></a>Tracing</h5></div></div></div>
-	  
-	  <p>
+	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp66001280"></a>Tracing</h5></div></div></div><p>
 	    The tracing feature is enabled by default: the binary objects
 	    produced by the build procedure contains a lot of messages that can
 	    be displayed turning on tracing at run time.
-	  </p>
-	  <p>
+	  </p><p>
 	    Removing the tracing feature can save RAM (smaller binary objects)
 	    and CPU (every trace message is tested against run time 
 	    configuration).
-	  </p>
-	  <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
-	    <p>
+	  </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	      Disabling tracing seems a good way to increase the performance of
 	      the software, but unfortunately without a trace it is quite 
 	      impossible to debug some issues. Only rock stable software can
 	      be compiled without tracing, and this is not the case of LIXA.
-	    </p>
-	  </div>
-	  <p>
+	    </p></div><p>
 	    To disable tracing, use <code class="option">--disable-trace</code> on
 	    <span class="command"><strong>./configure</strong></span> command line:
 	    </p><pre class="screen">
 ./configure --disable-trace
 	    </pre><p>
-	  </p>
-	</div>
-	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp69557456"></a>Extra debug code</h5></div></div></div>
-	  
-	  <p>
+	  </p></div><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp66005072"></a>Extra debug code</h5></div></div></div><p>
 	    To enable extra debug code, that's basically some redundant check
 	    code use <code class="option">--enable-debug</code> on
 	    <span class="command"><strong>./configure</strong></span> command line:
@@ -228,11 +190,7 @@ make
 	    This feature could be interesting when porting the LIXA project
 	    software to a different platform; for normal use, the extra
 	    debugging code is useless.
-	  </p>
-	</div>
-	<div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp69559504"></a>Crash simulation</h5></div></div></div>
-	  
-	  <p>
+	  </p></div><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp66007392"></a>Crash simulation</h5></div></div></div><p>
 	    This feature is useful when testing the software: with crash
 	    simulation the software can be tested against simulated software
 	    crashes and, on some extents, power outages.
@@ -241,21 +199,12 @@ make
 	    </p><pre class="screen">
 ./configure --enable-crash
 	    </pre><p>
-	  </p>
-	</div>
-      </div>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Linking_third_party_resource_managers"></a>Linking third party resource managers</h3></div></div></div>
-      
-      <p>
+	  </p></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Linking_third_party_resource_managers"></a>Linking third party resource managers</h3></div></div></div><p>
 	To link an already tested third party resource manager you can use
 	a specific option on <span class="command"><strong>./configure</strong></span> command; to
 	link a new resource manager, you have to hack the Makefiles and
 	put all you need in place or you can perform a manual link.
-      </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69565552"></a>IBM DB2 Express-C 9.7, 11.1<a href="#ftn.idp69566224" class="footnote" id="idp69566224"><sup class="footnote">[9]</sup></a></h4></div></div></div>
-	
-	<p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66011344"></a>IBM DB2 Express-C 9.7, 11.1<a href="#ftn.idp66011808" class="footnote" id="idp66011808"><sup class="footnote">[9]</sup></a></h4></div></div></div><p>
 	  This step is useful if you want to use IBM DB2 as a Resource
 	  Manager coordinated by LIXA; only versions Express-C 9.7 and 11.1 
       have been tested, but there should not be relevant differences with a
@@ -268,14 +217,10 @@ make
         ./configure --with-ibmdb2=/opt/ibm/db2/V11.1
       </pre><p>
 	  to create a loadable module containing the switch structure.
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69569040"></a>MySQL 5.0, 5.1, 5.5, 5.6<a href="#ftn.idp69569648" class="footnote" id="idp69569648"><sup class="footnote">[10]</sup></a>
-	</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66014320"></a>MySQL 5.0, 5.1, 5.5, 5.6<a href="#ftn.idp66014752" class="footnote" id="idp66014752"><sup class="footnote">[10]</sup></a>
+	</h4></div></div></div><p>
 	  This step is useful if you want to use MySQL
-	  <a href="#ftn.idp69572160" class="footnote" id="idp69572160"><sup class="footnote">[11]</sup></a>
+	  <a href="#ftn.idp66017040" class="footnote" id="idp66017040"><sup class="footnote">[11]</sup></a>
 	  as a Resource
 	  Manager coordinated by LIXA; only versions 5.0, 5.1, 5.5 and 5.6 have been
 	  tested, but there should not be relevant differences with a
@@ -290,8 +235,7 @@ make
 	  to create a loadable module containing the switch structure. It's
 	  not necessary to specify the MySQL installation directory because
 	  the <span class="command"><strong>mysql_config</strong></span> utility command is used.
-	</p>
-	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	    MySQL does not supply an XA standard switch structure, but
 	    only some SQL non standard statements (
 	    <code class="code">XA START, XA END, XA PREPARE, XA COMMIT, XA ROLLBACK, 
@@ -300,11 +244,10 @@ make
 	    This is good enough to build a loadable module that can be
 	    used by the LIXA transaction manager, but some XA standard features
 	    - like dynamic registration - can not be implemented.
-	</p></div>
-	<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	</p></div><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
 	  Some old versions of the software are affected by a
-	    <a class="ulink" href="http://bugs.mysql.com/bug.php?id=12161" target="_top">
-	      serious documented bug (# 12161)</a>
+	    
+	      serious documented bug (# 12161)
 	    related to the XA implementation of MySQL. The symptoms perceived
 	    while developing LIXA are described below:
 	    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
@@ -321,7 +264,7 @@ make
 	      </p></li></ol></div><p>
 	    This behavior violates the XA specification: below there is an 
 	    excerpt for <code class="function">xa_prepare</code> from man page (
-	    [<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>], page 44)
+	    [<a class="citation" href="bi01.html#idp68296992"><span class="citation">XAspec</span></a>], page 44)
 	    <span class="quote">“<span class="quote">Once this function successfully returns, 
 	      the resource manager 
 	      must guarantee that the transaction branch may be either 
@@ -330,17 +273,11 @@ make
 	      transaction manager calls either xa_commit() or xa_rollback () 
 	      to complete the branch
 	    </span>”</span>.
-	  </p>
-	  <p>
+	  </p><p>
 	    The impact of this bug is quite severe and seriously compromises
 	    the ACID properties of the resulting system (application program
 	    + MySQL resource manager + LIXA transaction manager).
-	  </p>
-	</div>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69584224"></a>Oracle XE 10.2/11.2 (server)<a href="#ftn.idp69584832" class="footnote" id="idp69584832"><sup class="footnote">[12]</sup></a></h4></div></div></div>
-	
-	<p>
+	  </p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66027088"></a>Oracle XE 10.2/11.2 (server)<a href="#ftn.idp66027472" class="footnote" id="idp66027472"><sup class="footnote">[12]</sup></a></h4></div></div></div><p>
 	  This step is useful if you want to use Oracle Database as a Resource
 	  Manager coordinated by LIXA; only version XE 10.2/11.2 has been
 	  tested, but there should not be relevant differences with a
@@ -354,15 +291,10 @@ make
 ./configure --with-oracle=/u01/app/oracle/product/11.2.0/xe
 	  </pre><p>
 	  to create a loadable module containing the switch structure.
-	</p>
-	<p>
+	</p><p>
 	  Extra configuration is needed in order to use Oracle DBMS; the
 	  necessary steps are documented in the configuration chapter.
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69588272"></a>Oracle SE 12.1 (Instant Client)<a href="#ftn.idp69589008" class="footnote" id="idp69589008"><sup class="footnote">[13]</sup></a></h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66030400"></a>Oracle SE 12.1 (Instant Client)<a href="#ftn.idp66030832" class="footnote" id="idp66030832"><sup class="footnote">[13]</sup></a></h4></div></div></div><p>
 	  This step is useful if you want to use Oracle Database Instant
 	  Client as a Resource Manager coordinated by LIXA; only version 
 	  Standard Edition 12.1 has been tested, but there should not be 
@@ -373,15 +305,10 @@ make
             --with-oracle-lib=/opt/oracle/instantclient_12_1/
 	  </pre><p>
 	  to create a loadable module containing the switch structure.
-	</p>
-	<p>
+	</p><p>
 	  Extra configuration is needed in order to use Oracle DBMS; the
 	  necessary steps are documented in the configuration chapter.
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69592032"></a>PostgreSQL 8.3, 8.4, 9.2, 9.3<a href="#ftn.idp69592720" class="footnote" id="idp69592720"><sup class="footnote">[14]</sup></a></h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66033440"></a>PostgreSQL 8.3, 8.4, 9.2, 9.3<a href="#ftn.idp66033872" class="footnote" id="idp66033872"><sup class="footnote">[14]</sup></a></h4></div></div></div><p>
 	  This step is useful if you want to use PostgreSQL as a Resource
 	  Manager coordinated by LIXA; only versions 8.3, 8.4 and 9.3 have been
 	  tested, but there should not be relevant differences with a
@@ -390,13 +317,12 @@ make
 ./configure --with-postgresql-include=/usr/include/postgresql --with-postgresql-lib=/usr/lib
 	  </pre><p>
 	  or something like this (CentOS)
-	  <a href="#ftn.idp69595248" class="footnote" id="idp69595248"><sup class="footnote">[15]</sup></a>:
+	  <a href="#ftn.idp66036368" class="footnote" id="idp66036368"><sup class="footnote">[15]</sup></a>:
 	  </p><pre class="screen">
 ./configure --with-postgresql-include=/usr/include --with-postgresql-lib=/usr/lib
 	  </pre><p>
 	  to create a loadable module containing the switch structure.
-	</p>
-	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	    PostgreSQL does not supply an XA standard switch structure, but
 	    only some SQL non standard statements (
 	    <code class="code">PREPARE TRANSACTION, COMMIT PREPARED, ROLLBACK PREPARED</code>
@@ -404,11 +330,7 @@ make
 	    This is good enough to build a loadable module that can be
 	    used by the LIXA transaction manager, but some XA standard features
 	    - like dynamic registration - can not be implemented.
-	</p></div>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69597136"></a>WebSphere MQ 7.1<a href="#ftn.idp69598848" class="footnote" id="idp69598848"><sup class="footnote">[16]</sup></a></h4></div></div></div>
-	
-	<p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66038736"></a>WebSphere MQ 7.1<a href="#ftn.idp66039120" class="footnote" id="idp66039120"><sup class="footnote">[16]</sup></a></h4></div></div></div><p>
 	  If you want to use WebSphere MQ with server/bind mode, you have to
 	  use something like this when configuring LIXA:
 	  </p><pre class="screen">
@@ -424,11 +346,7 @@ make
 	  give you the best performance.
 	  If you don't have the queue manager inside the host, you 
 	  will have to use the Extended Transactional Client mode (ETC).
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69601968"></a>Two or more resource managers</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66041824"></a>Two or more resource managers</h4></div></div></div><p>
 	  If you want to use two or more resource managers, and this is a
 	  typical condition for the XA usage, you must concatenate two or more
 	  <em class="parameter"><code>--with-</code></em> parameters.
@@ -440,12 +358,7 @@ make
 &gt; --with-postgresql-include=/usr/include/postgresql --with-postgresql-lib=/usr/lib \
 &gt; --with-mysql
 	  </pre><p>
-	</p>
-      </div>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp69604736"></a>Summary</h3></div></div></div>
-      
-      <p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66043824"></a>Summary</h3></div></div></div><p>
 	The options illustrated above can be combined to obtain a specific
 	configuration. This is an example of a IBM DB2 + Oracle enabled
 	installation using an alternate installation path:
@@ -456,33 +369,31 @@ cd lixa-X.Y.Z
 make
 sudo make install
 	</pre><p>
-      </p>
-    </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp69566224" class="footnote"><p><a href="#idp69566224" class="para"><sup class="para">[9] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp66011808" class="footnote"><p><a href="#idp66011808" class="para"><sup class="para">[9] </sup></a>
 	      IBM and DB2 are trademarks of <span class="trademark">IBM</span>™
 	      corporation
-	</p></div><div id="ftn.idp69569648" class="footnote"><p><a href="#idp69569648" class="para"><sup class="para">[10] </sup></a>
+	</p></div><div id="ftn.idp66014752" class="footnote"><p><a href="#idp66014752" class="para"><sup class="para">[10] </sup></a>
 	      MySQL is a trademark of <span class="trademark">Oracle</span>™ 
 	      corporation; details are available at this link:
-	      <a class="ulink" href="http://www.mysql.com/about/legal/" target="_top">
-		http://www.mysql.com/about/legal/</a>
-	  </p></div><div id="ftn.idp69572160" class="footnote"><p><a href="#idp69572160" class="para"><sup class="para">[11] </sup></a>
+	      
+		http://www.mysql.com/about/legal/
+	  </p></div><div id="ftn.idp66017040" class="footnote"><p><a href="#idp66017040" class="para"><sup class="para">[11] </sup></a>
 	      These are the necessary packages on CentOS: 
 	      mysql.i686 mysql-devel.i686 mysql-server.i686
-	  </p></div><div id="ftn.idp69584832" class="footnote"><p><a href="#idp69584832" class="para"><sup class="para">[12] </sup></a>
+	  </p></div><div id="ftn.idp66027472" class="footnote"><p><a href="#idp66027472" class="para"><sup class="para">[12] </sup></a>
 	      Oracle is a trademark of <span class="trademark">Oracle</span>™
 	      corporation
-	</p></div><div id="ftn.idp69589008" class="footnote"><p><a href="#idp69589008" class="para"><sup class="para">[13] </sup></a>
+	</p></div><div id="ftn.idp66030832" class="footnote"><p><a href="#idp66030832" class="para"><sup class="para">[13] </sup></a>
 	      Oracle is a trademark of <span class="trademark">Oracle</span>™
 	      corporation
-	</p></div><div id="ftn.idp69592720" class="footnote"><p><a href="#idp69592720" class="para"><sup class="para">[14] </sup></a>
+	</p></div><div id="ftn.idp66033872" class="footnote"><p><a href="#idp66033872" class="para"><sup class="para">[14] </sup></a>
 	      The Trademark Policy of PostgreSQL is available at this link:
-	      <a class="ulink" href="http://wiki.postgresql.org/wiki/Trademark_Policy" target="_top">
-		http://wiki.postgresql.org/wiki/Trademark_Policy</a>
-	</p></div><div id="ftn.idp69595248" class="footnote"><p><a href="#idp69595248" class="para"><sup class="para">[15] </sup></a>
+	      
+		http://wiki.postgresql.org/wiki/Trademark_Policy
+	</p></div><div id="ftn.idp66036368" class="footnote"><p><a href="#idp66036368" class="para"><sup class="para">[15] </sup></a>
 	      These are the necessary packages on CentOS: 
 	      postgresql-server.i686 postgresql.i686 postgresql-devel.i686
-	  </p></div><div id="ftn.idp69598848" class="footnote"><p><a href="#idp69598848" class="para"><sup class="para">[16] </sup></a>
+	  </p></div><div id="ftn.idp66039120" class="footnote"><p><a href="#idp66039120" class="para"><sup class="para">[16] </sup></a>
 	      WebSphere and WebSphere MQ are trademarks of 
 	      <span class="trademark">IBM</span>™ corporation
 	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Software download </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Checking</td></tr></table></div></body></html>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 4. Execution</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="prev" href="ch03s03.html" title="Environment variables" /><link rel="next" href="ch04s02.html" title="Starting the test utility (lixat)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Execution</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp69814656"></a>Chapter 4. Execution</h1></div></div></div>
-  
-  <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 4. Execution</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="prev" href="ch03s03.html" title="Environment variables" /><link rel="next" href="ch04s02.html" title="Starting the test utility (lixat)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Execution</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="idp66205408"></a>Chapter 4. Execution</h1></div></div></div><p>
     Once you have installed (see <a class="xref" href="ch02.html" title="Chapter 2. Installation">Chapter 2, <em>Installation</em></a>)
     and configured (see <a class="xref" href="ch03.html" title="Chapter 3. Configuration">Chapter 3, <em>Configuration</em></a>)
     your environment, you are ready to run LIXA.
@@ -11,15 +9,11 @@
 	installed the software at a different path, you'd need to adjust
 	the shown commands consequently.
     </p></div><p>
-  </p>
-  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp69817376"></a>Starting the state server (<span class="command"><strong>lixad</strong></span>)</h2></div></div></div>
-    
-    <p>
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp66213920"></a>Starting the state server (<span class="command"><strong>lixad</strong></span>)</h2></div></div></div><p>
       The first step you must perform is starting the
       <span class="emphasis"><em>state server</em></span>; it's name is 
       <span class="command"><strong>lixad</strong></span> (LIXA daemon). The command
-    </p>
-    <pre class="screen">
+    </p><pre class="screen">
 tiian@ubuntu:~$ /opt/lixa/sbin/lixad --help
 Usage:
   lixad [OPTION...] - LIXA server
@@ -35,11 +29,9 @@ Application Options:
   -t, --trace-file       Specify trace file name
   -l, --clean-failed     Clean recovery failed transactions at start-up
   -v, --version          Print package info and exit
-    </pre>
-    <p>
+    </pre><p>
       displays the available command line options. 
-    </p>
-    <p>
+    </p><p>
       If you tried to start the state server without the appropriate 
       privileges it should happen something like this:
       </p><pre class="screen">
@@ -64,39 +56,31 @@ lixa@ubuntu:~$ /opt/lixa/sbin/lixad
       you are debugging some issue. Use these commands, from a different
       terminal, to retrieve the PID
       (process id) and to stop the state server:
-    </p>
-    <pre class="screen">
+    </p><pre class="screen">
 tiian@ubuntu:~$ sudo su - lixa
 lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
 lixa      5909  5906  0 22:56 pts/1    00:00:00 /opt/lixa/sbin/lixad
 lixa@ubuntu:~$ kill 5909
 lixa@ubuntu:~$ exit
 logout
-    </pre>
-    <p>
+    </pre><p>
       Alternatively you can strike ^C to break the foreground execution.
       A foreground execution is generally more useful if some 
       tracing is enabled:
-    </p>
-    <pre class="screen">
+    </p><pre class="screen">
 lixa@ubuntu:~$ export LIXA_TRACE_MASK=0x00000001
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad 
 2011-03-31 22:58:32.244333 [5920/3073509104] lixad/main: starting
 2011-03-31 22:58:34.864062 [5920/3073509104] lixad/main: exiting
-    </pre>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Background_execution"></a>Background (<span class="emphasis"><em>daemon</em></span>) execution</h3></div></div></div>
-      
-      <p>
+    </pre><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Background_execution"></a>Background (<span class="emphasis"><em>daemon</em></span>) execution</h3></div></div></div><p>
 	The most useful command option is <code class="option">--daemon</code>: it
 	allows you to run the state server as a <span class="emphasis"><em>daemon</em></span>
 	detached from any terminal:
-      </p>
-      <pre class="screen">
+      </p><pre class="screen">
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon
 lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
 lixa      5926     1  0 22:59 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
-      </pre>
-      <p>
+      </pre><p>
 	when running the state server as a daemon you need to perform some 
 	special tasks to understand the process is up &amp; running.
 	With <span class="command"><strong>ps -ef|grep lixad|grep -v grep</strong></span> you can
@@ -105,37 +89,28 @@ lixa      5926     1  0 22:59 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
 	<code class="filename">/opt/lixa/var/run.pid</code>; if the content of the file
 	is different than the result retrieved with the <span class="command"><strong>grep</strong></span>
 	command, something is not running well.
-      </p>
-      <pre class="screen">
+      </p><pre class="screen">
 lixa@ubuntu:~$ cat /opt/lixa/var/run.pid 
 5926
-      </pre>
-      <p>
+      </pre><p>
 	To stop a daemonized state server you must use the
 	<span class="command"><strong>kill</strong></span> command as shown below:
-      </p>
-      <pre class="screen">
+      </p><pre class="screen">
 lixa@ubuntu:~$ kill $(cat /opt/lixa/var/run.pid)
 lixa@ubuntu:~$ ps -ef|grep lixad|grep -v grep
-      </pre>
-      <p>
+      </pre><p>
 	The <span class="command"><strong>grep</strong></span> command returns an empty result because
 	the state server is not running. The state server publishes some
 	messages using the <code class="function">syslog</code> facility; Ubuntu 8.04
 	sends default messages to the file
 	<code class="filename">/var/log/daemon.log</code>; below there are some standard
 	messages:
-      </p>
-      <pre class="screen">
+      </p><pre class="screen">
 tiian@ubuntu:~$ sudo su -c "cat /var/log/daemon.log|grep lixad|grep 5926"
 Mar 31 22:59:11 ubuntu lixad[5926]: LXD014N LIXA server entered daemon status
 Mar 31 23:00:48 ubuntu lixad[5926]: LXD019N received signal 15, server immediate shutdown in progress...
 Mar 31 23:00:48 ubuntu lixad[5926]: LXD006N server terminated activities
-      </pre>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Maintenance_mode_execution"></a>Maintenance mode execution</h3></div></div></div>
-      
-      <p>
+      </pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Maintenance_mode_execution"></a>Maintenance mode execution</h3></div></div></div><p>
 	The <code class="option">--maintenance</code> option allows you to start
 	the state server to perform some special actions; only special
 	clients can connect to the server when the server is operating
@@ -144,22 +119,16 @@ Mar 31 23:00:48 ubuntu lixad[5926]: LXD006N server terminated activities
 	A special client is <span class="command"><strong>lixar</strong></span>: a command line
 	utility designed for recovery purposes
 	(see <a class="xref" href="ch09.html" title="Chapter 9. Recovery">Chapter 9, <em>Recovery</em></a> for more information).
-      </p>
-      <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
+      </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
 	A state server that's operating in maintenance mode is not
 	serving the LIXA infrastructure and Distributed Transaction
 	Processing can not be performed: use this option 
 	<span class="emphasis"><em>only</em></span> if you really need it.
-      </div>
-      <p>
+      </div><p>
 	There's no way to turn a server operating in maintenance mode in
 	a server operating in standard mode: you have to stop and start
 	the LIXA state server again.
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="lixad_dump_execution"></a>Dump execution</h3></div></div></div>
-      
-      <p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="lixad_dump_execution"></a>Dump execution</h3></div></div></div><p>
 	Use <code class="option">--dump</code> option to get a dump of the content
 	of the state currently persisted in the status files. The option
 	must specify one or more flags:
@@ -174,13 +143,11 @@ Mar 31 23:00:48 ubuntu lixad[5926]: LXD006N server terminated activities
 	  </p></li></ul></div><p>
 	You may specify two or more flags on the same command line:
 	the output will duplicate some blocks.
-      </p>
-      <p>
+      </p><p>
 	The example below shows the output produced when dumping the
 	content of a single status file with no current transactions
 	in progress (the free block chain contains all the blocks):
-      </p>
-      <pre class="screen">
+      </p><pre class="screen">
 tiian@ubuntu:~$ sudo su - lixa
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --dump f
 ========================================================================
@@ -221,41 +188,27 @@ Block type: unknown (0)
 ------------------------------------------------------------------------
 Block: 9, next block in chain: 0
 Block type: unknown (0)
-      </pre>
-      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      </pre><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
 	The dump can be performed while the state server is running:
 	the dump will output the content of the currently sinchronized
 	status file and you will not be able to see the last updates.
 	Dumps performed at different times may produce different
 	results if there is a running state server.
-      </div>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp69852928"></a>Additional options</h3></div></div></div>
-      
-      <p>
+      </div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66242288"></a>Additional options</h3></div></div></div><p>
 	Some additional options are available: they don't radically change the 
 	state server behavior, but supply some features.
-      </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69854272"></a>Specifying a different configuration file</h4></div></div></div>
-	
-	<p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66243072"></a>Specifying a different configuration file</h4></div></div></div><p>
 	  With option <code class="option">--config-file</code> you can specify a
 	  non default configuration file; this option can be useful if you
 	  want to test a different configuration without damaging your
 	  production config file. It can be used if you want to
 	  run different instances of the state server in the same
 	  operating system image, too.
-	</p>
-	<p>
+	</p><p>
 	  Below there is a sample invocation:
-	</p>
-	<pre class="screen">
+	</p><pre class="screen">
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --config-file /tmp/lixad_conf.xml
-	</pre>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69857248"></a>Specifying a trace file</h4></div></div></div>
-	
-	<p>
+	</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66244928"></a>Specifying a trace file</h4></div></div></div><p>
 	  With option <code class="option">--trace-file</code> you can specify a
 	  different trace file instead of the default 
 	  <span class="emphasis"><em>stderr</em></span>
@@ -263,22 +216,16 @@ lixa@ubuntu:~$ /opt/lixa/sbin/lixad --config-file /tmp/lixad_conf.xml
 	  running the state server as a daemon (see
 	  <a class="xref" href="ch04.html#Background_execution" title="Background (daemon) execution">the section called “Background (<span class="emphasis"><em>daemon</em></span>) execution”</a>).
 	  Below there is a sample invocation:
-	</p>
-	<pre class="screen">
+	</p><pre class="screen">
 lixa@ubuntu:~$ export LIXA_TRACE_MASK=0x01
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon --trace-file /tmp/lixad.trace
 lixa@ubuntu:~$ ls -la /tmp/lixad.trace
 -rw-r--r-- 1 lixa lixa 349 2011-03-18 16:14 /tmp/lixad.trace
-	</pre>
-	<p>
+	</pre><p>
 	  Take a look to
 	  <a class="xref" href="ch10s02.html" title="Tracing">the section called “Tracing”</a>
 	  for additional details.
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69862176"></a>Clean-up recovery failed transactions</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66248816"></a>Clean-up recovery failed transactions</h4></div></div></div><p>
 	  Use option <code class="option">--clean-failed</code> to clean-up the
 	  state of the transactions that LIXA was not able to recover
 	  automatically: this option is useful to remove useless information
@@ -295,32 +242,18 @@ lixa@ubuntu:~$ ls -la /tmp/lixad.trace
 	    </p></li></ul></div><p>
 	  Don't use this option without a deep review of the content of
 	  <a class="xref" href="ch09.html" title="Chapter 9. Recovery">Chapter 9, <em>Recovery</em></a>.	  
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp69867536"></a>Retrieving software version</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp66252976"></a>Retrieving software version</h4></div></div></div><p>
 	  Use option <code class="option">--version</code> to retrieve the 
 	  version of the installed software as shown below:
-	</p>
-	<pre class="screen">
+	</p><pre class="screen">
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --version
 LIXA: a Libre XA implementation
 Copyright (c) 2009-2012, Christian Ferrari; all rights reserved.
 License: GPL (GNU Public License) version 2
 Package name: lixa; package version: 0.5.29
 Access http://sourceforge.net/projects/lixa/ to report bugs and partecipate to the project
-	</pre>
-	<p>
+	</pre><p>
 	  The <span class="command"><strong>lixad</strong></span> command does not start a real state 
 	  server: it prints version information on 
 	  <span class="emphasis"><em>stdout</em></span> and exits.
-	</p>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-</div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s03.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Environment variables </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Starting the test utility (<span class="command"><strong>lixat</strong></span>)</td></tr></table></div></body></html>
+	</p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s03.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Environment variables </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Starting the test utility (<span class="command"><strong>lixat</strong></span>)</td></tr></table></div></body></html>

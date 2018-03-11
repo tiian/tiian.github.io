@@ -1,42 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp69682640"></a>Configuring LIXA components</h2></div></div></div>
-    
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp66101408"></a>Configuring LIXA components</h2></div></div></div><p>
       The picture below emphasizes the LIXA components that must be configured
       in a simple scenario:
-    </p>
-    <div class="figure"><a id="config6"></a><p class="title"><strong>Figure 3.6. The LIXA components and the necessary configuration files</strong></p><div class="figure-contents">
-      
-      <div class="mediaobject"><img src="../images/LIXA_Configuration_6.png" alt="The LIXA components and the necessary configuration files" /></div>
-    </div></div><br class="figure-break" />
-    <p>
+    </p><div class="figure"><a id="config6"></a><p class="title"><strong>Figure 3.6. The LIXA components and the necessary configuration files</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Configuration_6.png" alt="The LIXA components and the necessary configuration files" /></div></div></div><br class="figure-break" /><p>
       The client component (<code class="systemitem">lixac</code>) 
       is configured using the
       <code class="filename">etc/lixac_conf.xml</code> file; the server component
       (<span class="command"><strong>lixad</strong></span>) is configured using the
       <code class="filename">etc/lixad_conf.xml</code> file
-      <a href="#ftn.idp69689328" class="footnote" id="idp69689328"><sup class="footnote">[18]</sup></a>.
-    </p>
-    <p>
+      <a href="#ftn.idp66105984" class="footnote" id="idp66105984"><sup class="footnote">[18]</sup></a>.
+    </p><p>
       If a node hosts both the client and the server components, both the
       files must be configured. If a node hosts only one component, only
       one configuration file is necessary
-      <a href="#ftn.idp69691760" class="footnote" id="idp69691760"><sup class="footnote">[19]</sup></a>.
-    </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div>
-      
-      <p>
+      <a href="#ftn.idp66108176" class="footnote" id="idp66108176"><sup class="footnote">[19]</sup></a>.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div><p>
 	The default configuration file is 
 	<code class="filename">etc/lixad_conf.xml</code>
 	and is located at the root installation path (i.e.
 	<code class="filename">/opt/lixa/etc/lixad_conf.xml</code>).
-      </p>
-      <p>
+      </p><p>
 	The file is composed of three sections:
-	</p><div class="figure"><a id="config7"></a><p class="title"><strong>Figure 3.7. The structure of lixad_conf.xml</strong></p><div class="figure-contents">
-	  
-	  <div class="mediaobject"><img src="../images/LIXA_Configuration_7.png" alt="The structure of lixad_conf.xml" /></div>
-	</div></div><p><br class="figure-break" />
+	</p><div class="figure"><a id="config7"></a><p class="title"><strong>Figure 3.7. The structure of lixad_conf.xml</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Configuration_7.png" alt="The structure of lixad_conf.xml" /></div></div></div><p><br class="figure-break" />
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	      the <span class="emphasis"><em>server</em></span> section contains the global
 	      parameters of the server
@@ -48,8 +33,7 @@
 	      the <span class="emphasis"><em>managers</em></span> section specifies how many
 	      parallel threads must be activated to serve the LIXA clients
 	  </p></li></ul></div><p>
-      </p>
-      <p>
+      </p><p>
 	Below there is a sample configuration file:
 	</p><pre class="screen">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
@@ -125,18 +109,14 @@
 	      is used as a prefix: every manager (thread) creates two files
 	      with the same prefix and different suffixes.
 	  </p></li></ul></div><p>
-      </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Delayed_synchronization_effects"></a>Delayed synchronization effects</h4></div></div></div>
-	
-	<p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Delayed_synchronization_effects"></a>Delayed synchronization effects</h4></div></div></div><p>
 	  Parameters
 	  <em class="parameter"><code>min_elapsed_sync_time</code></em> and
 	  <em class="parameter"><code>max_elapsed_sync_time</code></em>
 	  have a great relevance with the performance of the LIXA system
 	  as explained in <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> but they have a relevance
 	  with system robustness as well:
-	</p>
-	<p>
+	</p><p>
 	  <span class="emphasis"><em>
 	    the higher the delay between the time a client ask a disk
 	    synchronization and the time the state server performs it
@@ -144,8 +124,7 @@
 	    the chance the disk status files will not contain the correct
 	    state for some transactions if the state server crashes.
 	  </em></span>
-	</p>
-	<p>
+	</p><p>
 	  The risk is not related to data corruption: data integrity is
 	  guaranteed by the Resource Managers your Application Programs use.
 	  The risk is some <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span>
@@ -153,30 +132,20 @@
 	  (see <a class="xref" href="ch09s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a>) by LIXA
 	  infrastructure; those transactions will need
 	  manual recovery (see <a class="xref" href="ch09s03.html" title="Manual (cold) recovery">the section called “Manual (cold) recovery”</a>).
-	</p>
-	<p>
+	</p><p>
 	  <span class="emphasis"><em>
 	    During the interval between state server crash and
 	    manual recovery your Resource Managers will keep some locks on
 	    data: this could be the real damage for your application.
 	  </em></span>
-	</p>
-      </div>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp69728736"></a>Configuring the client</h3></div></div></div>
-      
-      <p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66139360"></a>Configuring the client</h3></div></div></div><p>
 	The default configuration file is 
 	<code class="filename">etc/lixac_conf.xml</code>
 	and is located at the root installation path (i.e.
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>). 
-      </p>
-      <p>
+      </p><p>
 	The file is composed of three sections:
-	</p><div class="figure"><a id="config8"></a><p class="title"><strong>Figure 3.8. The structure of lixac_conf.xml</strong></p><div class="figure-contents">
-	  
-	  <div class="mediaobject"><img src="../images/LIXA_Configuration_8.png" alt="The structure of lixac_conf.xml" /></div>
-	</div></div><p><br class="figure-break" />
+	</p><div class="figure"><a id="config8"></a><p class="title"><strong>Figure 3.8. The structure of lixac_conf.xml</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Configuration_8.png" alt="The structure of lixac_conf.xml" /></div></div></div><p><br class="figure-break" />
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	      the <span class="emphasis"><em>state servers</em></span> section 
 	      contains a list of the available LIXA state servers and how they
@@ -194,8 +163,7 @@
 	      a set of servers and a set of Resource Managers that must be
 	      used to support the Application Program.
 	  </p></li></ul></div><p>
-      </p>
-      <p>
+      </p><p>
 	Below there is a sample configuration file:
 	</p><pre class="screen">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
@@ -319,10 +287,7 @@
 	      between a "dynamic" and a "static" version of the same resource
 	      manager, the "dynamic" one is more efficient	    
 	  </p></li></ul></div><p>
-      </p>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Client_configuration_explanation"></a>Client configuration explanation</h4></div></div></div>
-	
-	<p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Client_configuration_explanation"></a>Client configuration explanation</h4></div></div></div><p>
 	  The client configuration file contains three sections:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 		<code class="varname">sttsrvs</code>: is the list of the LIXA daemons 
@@ -354,15 +319,11 @@
 		(APP1DEV, APP2DEV, APP3DEV, APP1TEST,
 		APP2TEST, APP3TEST, APP1PROD, APP2PROD, APP3PROD).
 	    </p></li></ul></div><p>
-	</p>
-	<p>
+	</p><p>
 	  The picture below models an environment that's using the sample
 	  <code class="filename">etc/lixac_conf.xml</code>
 	  showed above:
-	  </p><div class="figure"><a id="config9"></a><p class="title"><strong>Figure 3.9. A "real" environment</strong></p><div class="figure-contents">
-	    
-	    <div class="mediaobject"><img src="../images/LIXA_Configuration_9.png" alt="A &quot;real&quot; environment" /></div>
-	  </div></div><p><br class="figure-break" />
+	  </p><div class="figure"><a id="config9"></a><p class="title"><strong>Figure 3.9. A "real" environment</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Configuration_9.png" alt="A &quot;real&quot; environment" /></div></div></div><p><br class="figure-break" />
 	  The scenario is composed of three distinct applications:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 		GT71: it's an application that uses both an Oracle and an
@@ -386,8 +347,7 @@
 	    </p></li></ul></div><p>
 	  The scenario uses two distinct LIXA state servers: this is an
 	  unusual situation but it works.
-	</p>
-	<p>
+	</p><p>
 	  The <code class="varname">LIXA_PROFILE</code> environment variable must be used 
 	  to specify the transactional profile associated to the Application 
 	  Program.
@@ -414,11 +374,7 @@ export LIXA_PROFILE=AG71
 [...]
 export LIXA_PROFILE=VZ67
 	  </pre><p>
-	</p>
-      </div>
-      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Client_configuration_caution"></a>Client configuration caution</h4></div></div></div>
-	
-	<p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Client_configuration_caution"></a>Client configuration caution</h4></div></div></div><p>
 	  If you change the content of <code class="filename">lixac_conf.xml</code>
 	  you will change the signature associated to the configuration file
 	  from LIXA Transaction Manager. The signature is very important
@@ -435,13 +391,10 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	  Manager (client) issues an error (LXC001E): this behavior is
 	  necessary to protect the whole system against undesired recovery
 	  operation that could damage your data inside the Resource Managers.
-	</p>
-	<p>
+	</p><p>
 	  This protection has a cost explained in 
 	  <a class="xref" href="ch09s03.html#Recoverying_transaction_associated_different_job" title="Recoverying a transaction associated to a different job">the section called “Recoverying a transaction associated to a different job”</a>.
-	</p>
-	<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
-	  <p>
+	</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	    Before editing (and saving) <code class="filename">lixac_conf.xml</code>,
 	    be sure <span class="emphasis"><em>there are no</em></span>
 	    <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span> transactions
@@ -449,23 +402,18 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	    <a class="xref" href="ch04.html#lixad_dump_execution" title="Dump execution">the section called “Dump execution”</a> and in
 	    <a class="xref" href="ch09s03.html#Recoverying_recovery_failed_transaction" title="Recoverying a “recovery failed” transaction">the section called “Recoverying a <span class="quote">“<span class="quote">recovery failed</span>”</span> transaction”</a>
 	    to verify the content of the state server).
-	  </p>
-	  <p>
+	  </p><p>
 	    Create a different config file and use 
 	    <code class="varname">LIXA_CONFIG_FILE</code> environment variable
 	    as explained in
 	    <a class="xref" href="ch03s03.html" title="Environment variables">the section called “Environment variables”</a> until you are not sure 
 	    about the changes you are performing.
-	  </p>
-	</div>
-      </div>
-    </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp69689328" class="footnote"><p><a href="#idp69689328" class="para"><sup class="para">[18] </sup></a>
+	  </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp66105984" class="footnote"><p><a href="#idp66105984" class="para"><sup class="para">[18] </sup></a>
 	  Both the files reside in <code class="filename">/opt/lixa/etc/</code>
 	  directory and must be managed by
 	  <code class="systemitem">lixa</code> user, the
 	  LIXA administrative user
-      </p></div><div id="ftn.idp69691760" class="footnote"><p><a href="#idp69691760" class="para"><sup class="para">[19] </sup></a>
+      </p></div><div id="ftn.idp66108176" class="footnote"><p><a href="#idp66108176" class="para"><sup class="para">[19] </sup></a>
 	  The standard installation procedure installs both the files with
 	  default content; it's your responsability to customize the content
 	  of the files.

@@ -1,45 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The first example</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s03.html" title="LIXA library linkage" /><link rel="next" href="ch06s05.html" title="An example with PostgreSQL" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The first example</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s03.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp71341872"></a>The first example</h2></div></div></div>
-    
-    <div class="figure"><a id="develop1_cobol"></a><p class="title"><strong>Figure 6.1. Deploy model of an example with two dummy resource managers</strong></p><div class="figure-contents">
-      
-      <div class="mediaobject"><img src="../images/LIXA_Development_1.png" alt="Deploy model of an example with two dummy resource managers" /></div>
-    </div></div><br class="figure-break" />
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The first example</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s03.html" title="LIXA library linkage" /><link rel="next" href="ch06s05.html" title="An example with PostgreSQL" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The first example</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s03.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp67472928"></a>The first example</h2></div></div></div><div class="figure"><a id="develop1_cobol"></a><p class="title"><strong>Figure 6.1. Deploy model of an example with two dummy resource managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_1.png" alt="Deploy model of an example with two dummy resource managers" /></div></div></div><br class="figure-break" /><p>
       Copy file <code class="filename">EXAMPLE1.cob</code> in your working dir:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Shell terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/cobol/EXAMPLE1.cob .
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       Substitute <span class="quote">“<span class="quote">lixa-X.Y.Z</span>”</span> with the actual version of
       the software you installed.
-    </p>
-    <p>
+    </p><p>
       Set up your shell environment:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Shell terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ export PATH=$PATH:/opt/lixa/bin
 tiian@ubuntu1404-64:/tmp$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lixa/lib
 tiian@ubuntu1404-64:/tmp$ export COB_LDFLAGS=-Wl,--no-as-needed
-	</pre></td></tr></tbody>
-      </table></div><p>
-    </p>
-    <p>
+	</pre></td></tr></tbody></table></div><p>
+    </p><p>
       Compile and link the COBOL example program:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Shell terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cobc -x $(lixa-config -f -l) EXAMPLE1.cob
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       Check the output of the linker:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Shell terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE1
 	linux-vdso.so.1 =&gt;  (0x00007fffbd9fe000)
 	libcob.so.1 =&gt; /usr/lib/libcob.so.1 (0x00007fe904068000)
@@ -61,26 +42,20 @@ tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE1
 	libz.so.1 =&gt; /lib/x86_64-linux-gnu/libz.so.1 (0x00007fe901a16000)
 	liblzma.so.5 =&gt; /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007fe9017f3000)
 	libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007fe9015ee000)
-</pre></td></tr></tbody>
-      </table></div><p>
+</pre></td></tr></tbody></table></div><p>
       Now you are ready to start your first application:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Shell terminal session]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ ./EXAMPLE1 
 Executing EXAMPLE1
 TXOPEN returned value -000000007
 Exiting...
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       The <code class="function">TXOPEN</code> routine returned the value 
       <span class="quote">“<span class="quote">-7</span>”</span> (<code class="constant">TX-FAIL</code>) 
       because the state server is not running.
       Start the state server (see <a class="xref" href="ch04.html#Background_execution" title="Background (daemon) execution">the section called “Background (<span class="emphasis"><em>daemon</em></span>) execution”</a>)
       and try again:
-      </p><div class="table"><table frame="box">
-	<thead><tr><td>[Shell terminal session (Ubuntu)]</td></tr></thead>
-	<tbody><tr><td><pre class="screen">
+      </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session (Ubuntu)]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:~/tmp$ sudo su - lixa
 lixa@ubuntu1404-64:~$ /opt/lixa/sbin/lixad --daemon
 lixa@ubuntu1404-64:~$ exit
@@ -157,13 +132,10 @@ TXINFORM returned value +000000000
 TXBEGIN returned value +000000000
 TXROLLBACK returned value +000000000
 TXCLOSE returned value +000000000
-	</pre></td></tr></tbody>
-      </table></div><p>
+	</pre></td></tr></tbody></table></div><p>
       Your first COBOL Application Program has connected to the state server 
       and has performed two dummy distributed transactions: 
       <span class="emphasis"><em>commit</em></span> and <span class="emphasis"><em>rollback</em></span>.
-    </p>
-    <p>
+    </p><p>
       Refer to <a class="xref" href="ch05s03.html#first_example_details" title="Some details about the example">the section called “Some details about the example”</a> to get some further insights.
-    </p>
-  </div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch06s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">LIXA library linkage </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with PostgreSQL</td></tr></table></div></body></html>
+    </p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch06s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">LIXA library linkage </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with PostgreSQL</td></tr></table></div></body></html>

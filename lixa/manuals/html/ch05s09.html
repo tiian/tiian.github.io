@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; IBM DB2</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA reference guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s08.html" title="An example with PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s10.html" title="An example with MySQL/MariaDB" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; IBM DB2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s08.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example7_pql_ora"></a>An example with PostgreSQL &amp; IBM DB2</h2></div></div></div>
-    
-    <div class="figure"><a id="develop7"></a><p class="title"><strong>Figure 5.7. Deploy model of an example showing a distributed transaction with PostgreSQL and IBM DB2</strong></p><div class="figure-contents">
-      
-      <div class="mediaobject"><img src="../images/LIXA_Development_7.png" alt="Deploy model of an example showing a distributed transaction with PostgreSQL and IBM DB2" /></div>
-    </div></div><br class="figure-break" />
-    <p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; IBM DB2</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s08.html" title="An example with PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s10.html" title="An example with MySQL/MariaDB" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; IBM DB2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s08.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example7_pql_ora"></a>An example with PostgreSQL &amp; IBM DB2</h2></div></div></div><div class="figure"><a id="develop7"></a><p class="title"><strong>Figure 5.7. Deploy model of an example showing a distributed transaction with PostgreSQL and IBM DB2</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_7.png" alt="Deploy model of an example showing a distributed transaction with PostgreSQL and IBM DB2" /></div></div></div><br class="figure-break" /><p>
       This example shows as
       you can implement DTP (Distributed Transaction Processing) with two
       Resource Managers (PostgreSQL and IBM DB2)
@@ -15,9 +9,7 @@
       examples previously shown in this chapter (see
       <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface">Chapter 5, <em>Developing C Application Programs using TX (Transaction
   Demarcation) interface</em></a>) before starting this more complex one.
-    </p>
-    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
-      <p>
+    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	If you did not yet installed the software provided by PostgreSQL,
 	please refer to the official PostgreSQL site to download the
 	software and to pick-up the information necessary to install 
@@ -25,8 +17,7 @@
 	the database. This manual does not give you information related
 	to PostgreSQL technology: it is assumed you already installed and
 	configured the database.
-      </p>
-      <p>
+      </p><p>
 	If you did not yet installed the software provided by IBM,
 	please refer to the official IBM site to download the
 	software and to pick-up the information necessary to install 
@@ -34,10 +25,7 @@
 	the database. This manual does not give you information related
 	to IBM DB2 technology: it is assumed you already installed and
 	configured the database.
-      </p>
-    </div>
-    <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
-      <p>
+      </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	The LIXA software must be configured to support the PostgreSQL and
 	the IBM DB2 resource managers as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
@@ -48,9 +36,7 @@
 	</pre><p>
 	Please don't forget you must compile and install every time you
 	re-configure.
-      </p>
-    </div>
-    <p>
+      </p></div><p>
       Please follow the instructions explained 
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    in <a class="xref" href="ch05s07.html#Development_setup_PostgreSQL_environment" title="Set-up PostgreSQL environment">the section called “Set-up PostgreSQL environment”</a>
@@ -62,17 +48,12 @@
 	    in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70578944"></a>Build the client program</h3></div></div></div>
-      
-      <p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66853952"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
 	a single line):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ mkdir tmp
 tiian@ubuntu:~$ cd tmp
 tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example7_pql_db2.c .
@@ -80,12 +61,9 @@ tiian@ubuntu:~/tmp$ gcc example7_pql_db2.c $(/opt/lixa/bin/lixa-config -c -f -p 
 &gt; -I/usr/include/postgresql -lpq \
 &gt; -I/opt/ibm/db2/V9.7/include -L/opt/ibm/db2/V9.7/lib32 -ldb2 \
 &gt; -o example7_pql_db2
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ldd example7_pql_db2
         linux-gate.so.1 =&gt;  (0xb7780000)
         liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb7765000)
@@ -134,34 +112,22 @@ tiian@ubuntu:~/tmp$ ldd example7_pql_db2
         libtasn1.so.3 =&gt; /usr/lib/libtasn1.so.3 (0xb4f07000)
         libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb4eba000)
         libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb4eb6000)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70587424"></a>Set-up LIXA environment</h3></div></div></div>
-      
-      <p>
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66854464"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
 
 tiian@ubuntu:~/tmp$ export LIXA_PROFILE=PQL_STA_DB2_DYN
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
 PQL_STA_DB2_DYN
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	It is suggested to set the necessary environment variables in your 
 	profile if you are going to execute the programs many times.
 	This is the list of the suggested variables:
 	<code class="varname">LIXA_PROFILE</code>,
 	<code class="varname">PATH</code>.
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70595712"></a>Some checks before program execution</h3></div></div></div>
-      
-      <p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66866944"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">PQL_STA_DB2_DYN</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -185,21 +151,15 @@ PQL_STA_DB2_DYN
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp70600480" class="footnote" id="idp70600480"><sup class="footnote">[34]</sup></a>
-	<a href="#ftn.idp70603392" class="footnote" id="idp70603392"><sup class="footnote">[35]</sup></a>. 
-      </p>
-    </div>
-    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp70606592"></a>Program execution (dynamic registration)</h3></div></div></div>
-      
-      <p>
+	<a href="#ftn.idp66871536" class="footnote" id="idp66871536"><sup class="footnote">[34]</sup></a>
+	<a href="#ftn.idp66874000" class="footnote" id="idp66874000"><sup class="footnote">[35]</sup></a>. 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp66867504"></a>Program execution (dynamic registration)</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">TESTDB</span>”</span> PostgreSQL database,
 	the second one connected to <span class="quote">“<span class="quote">SAMPLE</span>”</span> DB2 database
 	and the	third one pointing to the directory where the compiled program 
 	example7_pql_db2 lives.
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ psql testdb
 Welcome to psql 8.3.15, the PostgreSQL interactive terminal.
 
@@ -210,11 +170,8 @@ Type:  \copyright for distribution terms
        \q to quit
 
 testdb=&gt;
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[IBM DB2 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~$ . /home/db2inst1/sqllib/db2profile
 tiian@ubuntu:~$ db2
 (c) Copyright IBM Corporation 1993,2007
@@ -246,34 +203,25 @@ db2 =&gt; connect to SAMPLE
  Local database alias   = SAMPLE
 
 db2 =&gt;
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la
 total 32
 drwxr-xr-x  2 tiian tiian  4096 2011-09-25 17:11 .
 drwxr-xr-x 40 tiian tiian  4096 2011-09-22 22:24 ..
 -rwxr-xr-x  1 tiian tiian 12429 2011-09-22 22:47 example7_pql_db2
 -rw-r--r--  1 tiian tiian  7541 2011-09-22 22:46 example7_pql_db2.c
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the PostgreSQL table (<span class="quote">“<span class="quote">AUTHORS</span>”</span>):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from AUTHORS;
  id | last_name | first_name
 ----+-----------+------------
 (0 rows)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the DB2 tables (<span class="quote">“<span class="quote">DB2INST1.ORG</span>”</span> and
 	<span class="quote">“<span class="quote">DB2INST1.DEPT</span>”</span>):
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[IBM DB2 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
 
 DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
@@ -287,33 +235,24 @@ DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
 ------ ------------------------------------ ------ -------- ----------------
 
   0 record(s) selected.
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	Insert a row in PostgreSQL <span class="quote">“<span class="quote">AUTHORS</span>”</span> table and in
 	DB2 <span class="quote">“<span class="quote">ORG</span>”</span> table and check the contents of the tables
 	after the transaction execution:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Third terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Third terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ . /home/db2inst1/sqllib/db2profile
 tiian@ubuntu:~/tmp$ ./example7_pql_db2 insert org
 Executing DB2 statement 'INSERT INTO DB2INST1.ORG(DEPTNUMB, DEPTNAME, MANAGER, DIVISION, LOCATION) VALUES(150, 'Europe', 231, 'R&amp;D', 'Mojan')'...
-Executing PostgreSQL statement 'INSERT INTO authors VALUES(1, 'Foo', 'Bar');'...	  </pre></td></tr></tbody>
-	</table></div><p>
+Executing PostgreSQL statement 'INSERT INTO authors VALUES(1, 'Foo', 'Bar');'...	  </pre></td></tr></tbody></table></div><p>
 	Now you can verify the content of the tables after the transaction:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from authors;
  id | last_name | first_name
 ----+-----------+------------
   1 | Foo       | Bar
 (1 row)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[IBM DB2 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
 
 DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
@@ -321,37 +260,28 @@ DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
      150 Europe             231 R&amp;D        Mojan
 
   1 record(s) selected.
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	If you try to insert the same row again you can verify an automatic
 	rollback due to an error thrown by the second resource manager:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example7_pql_db2 insert org
 Executing DB2 statement 'INSERT INTO DB2INST1.ORG(DEPTNUMB, DEPTNAME, MANAGER, DIVISION, LOCATION) VALUES(150, 'Europe', 231, 'R&amp;D', 'Mojan')'...
 Executing PostgreSQL statement 'INSERT INTO authors VALUES(1, 'Foo', 'Bar');'...
 PostgreSQL error: ERROR:  duplicate key value violates unique constraint "authors_pkey"
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	DB2 table (<span class="quote">“<span class="quote">ORG</span>”</span>) allows multiple rows, PostgreSQL table
 	(<span class="quote">“<span class="quote">AUTHORS</span>”</span>) does not allow multiple rows: the error stops
 	the program execution and the resource managers automatically
 	rollback the changes. You can verify there is only one row in the
 	tables:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from authors;
  id | last_name | first_name
 ----+-----------+------------
   1 | Foo       | Bar
 (1 row)
-	  </pre></td></tr></tbody>
-	</table></div><p>
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[IBM DB2 terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[IBM DB2 terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 db2 =&gt; select * from DB2INST1.ORG where DEPTNUMB = 150
 
 DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
@@ -359,23 +289,17 @@ DEPTNUMB DEPTNAME       MANAGER DIVISION   LOCATION
      150 Europe             231 R&amp;D        Mojan
 
   1 record(s) selected.
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	You can easily verify there are no prepared transactions inside
 	PostgreSQL database:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[PostgreSQL terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 testdb=&gt; select * from pg_prepared_xacts;
  transaction | gid | prepared | owner | database
 -------------+-----+----------+-------+----------
 (0 rows)
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	We can verify that DB2 is using dynamic registration:
-	</p><div class="table"><table frame="box">
-	  <thead><tr><td>[Shell terminal session]</td></tr></thead>
-	  <tbody><tr><td><pre class="screen">
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
 tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
 0x00002000
@@ -384,37 +308,29 @@ tiian@ubuntu:~/tmp$ ./example7_pql_db2 delete org 2&gt;&amp;1 | grep ax_reg
 2011-09-25 18:15:38.500405 [13586/3035527472] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.0565b518222345ba852b4c4a09a660ae.725d0414e912e62f9ef42209ef693f36' will be returned
 2011-09-25 18:15:38.500970 [13586/3035527472] ax_reg: sending 153 bytes to the server for step 8
 2011-09-25 18:15:38.501415 [13586/3035527472] ax_reg/excp=7/ret_cod=0/errno=0
-	  </pre></td></tr></tbody>
-	</table></div><p>
+	  </pre></td></tr></tbody></table></div><p>
 	If you used <span class="quote">“<span class="quote">PQL_STA_DB2_STA</span>”</span> profile instead of 
 	<span class="quote">“<span class="quote">PQL_STA_DB2_DYN</span>”</span> you could switch the DB2 to
 	static behavior.
-      </p>
-      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  Combining the previous two examples you can realize a program that
 	  access 3 resource managers: PostgreSQL, Oracle and DB2.
 	  It is left as an exercise to the reader.
-      </p></div>
-    </div>
-  <div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp70600480" class="footnote">
-	  <p><a href="#idp70600480" class="para"><sup class="para">[34] </sup></a>
+      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp66871536" class="footnote"><p><a href="#idp66871536" class="para"><sup class="para">[34] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp72332624"><span class="citation">XAspec</span></a>].
-	  </p>
-	</div><div id="ftn.idp70603392" class="footnote">
-	  <p><a href="#idp70603392" class="para"><sup class="para">[35] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp68296992"><span class="citation">XAspec</span></a>].
+	  </p></div><div id="ftn.idp66874000" class="footnote"><p><a href="#idp66874000" class="para"><sup class="para">[35] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    documented at IBM Infocenter: search the string
 	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation
 	    relevant to your installed version; this is a link
-	    <a class="ulink" href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/topic/com.ibm.db2.luw.admin.2pc.doc/doc/r0005080.html" target="_top">
+	    
 	      http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/topic/com.ibm.db2.luw.admin.2pc.doc/doc/r0005080.html
-	    </a>
+	    
 	    but it may change in the future.
-	  </p>
-	</div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s08.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s10.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with PostgreSQL &amp; Oracle </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL/MariaDB</td></tr></table></div></body></html>
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s08.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s10.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with PostgreSQL &amp; Oracle </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL/MariaDB</td></tr></table></div></body></html>
