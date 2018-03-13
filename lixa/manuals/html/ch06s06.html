@@ -27,7 +27,7 @@
 	  Start the LIXA state server as explained in
 	  <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67364880"></a>Set environment variables</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57493680"></a>Set environment variables</h3></div></div></div><p>
 	Create a shell script file, for example 
 	<code class="filename">oracle_env.sh</code>
 	with some useful environment variables as below:
@@ -57,7 +57,7 @@ tiian@ubuntu1404-64:/tmp$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lixa/lib
 tiian@ubuntu1404-64:/tmp$ echo $LD_LIBRARY_PATH
 /opt/oracle/instantclient_12_1::/opt/lixa/lib
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67368432"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57497232"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/cobol/EXAMPLE2_ORA.pco .
@@ -108,7 +108,7 @@ tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE2_ORA
     liblzma.so.5 =&gt; /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007f43437eb000)
     libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007f43435e5000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67376304"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57505104"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ echo $LIXA_PROFILE
@@ -120,7 +120,7 @@ ORAIC_DYN
       </p><p>
 	See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional details on
 	the profile.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67380224"></a>Program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57509024"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to Oracle database and the second
 	one pointing to the directory where the compiled program

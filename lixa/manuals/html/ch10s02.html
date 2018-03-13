@@ -26,7 +26,7 @@
 	will print all the trace messages of that module.
       </p><p>
 	The table below shows how the LIXA software is partitioned in modules:
-	</p><div class="table"><a id="idp67908336"></a><p class="title"><strong>Table 10.1. Tracing module flags</strong></p><div class="table-contents"><table summary="Tracing module flags" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th align="center">Module Trace Label</th><th align="center">Hex Flag</th><th align="center">Component</th><th align="center">Function</th></tr></thead><tbody><tr><td align="left">LIXA_TRACE_MOD_SERVER</td><td align="left">0x00000001</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">main program</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_CONFIG</td><td align="left">0x00000002</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">configuration: config file parsing and environment 
+	</p><div class="table"><a id="idp58056368"></a><p class="title"><strong>Table 10.1. Tracing module flags</strong></p><div class="table-contents"><table summary="Tracing module flags" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th align="center">Module Trace Label</th><th align="center">Hex Flag</th><th align="center">Component</th><th align="center">Function</th></tr></thead><tbody><tr><td align="left">LIXA_TRACE_MOD_SERVER</td><td align="left">0x00000001</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">main program</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_CONFIG</td><td align="left">0x00000002</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">configuration: config file parsing and environment 
 		  variable detection</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_LISTENER</td><td align="left">0x00000004</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">network listener and signal handler</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_MANAGER</td><td align="left">0x00000008</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">session client manager, thread manager, 
 		  network I/O manager</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_STATUS</td><td align="left">0x00000010</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">persistent state</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_XA</td><td align="left">0x00000040</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">XA logic called by client</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_REPLY</td><td align="left">0x00000080</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">replies to client messages</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_RECOVERY</td><td align="left">0x00000100</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">logic necessary to answer the client recovery 
 		  calls</td></tr><tr><td align="left">LIXA_TRACE_MOD_CLIENT_TX</td><td align="left">0x00001000</td><td align="left"><code class="systemitem">lixac</code>
@@ -60,7 +60,7 @@
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>0x00000003 will produce all the messages of
 	    <code class="constant">LIXA_TRACE_MOD_SERVER</code> and
 	    <code class="constant">LIXA_TRACE_MOD_SERVER_CONFIG</code></p></li><li class="listitem" style="list-style-type: disc"><p>0xffffffff will produce all the messages</p></li><li class="listitem" style="list-style-type: disc"><p>0x00000000 will disable all the messages</p></li></ul></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67956896"></a>Improve troubleshooting with trace</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58104928"></a>Improve troubleshooting with trace</h3></div></div></div><p>
 	The trace can be activated setting the environment variable
 	<code class="varname">LIXA_TRACE_MASK</code> before starting the execution of
 	the traced program. Try the following example...
@@ -121,7 +121,7 @@ tx_open(): -7
 	to listen port <code class="systemitem">2345</code> 
 	at address 
 	<code class="systemitem">127.0.0.1</code>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67958288"></a>Activating trace for <span class="command"><strong>lixad</strong></span> in 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58106320"></a>Activating trace for <span class="command"><strong>lixad</strong></span> in 
 	<span class="emphasis"><em>daemon</em></span> mode</h3></div></div></div><p>
 	When running the state server (<span class="command"><strong>lixad</strong></span>) in
 	<span class="emphasis"><em>daemon</em></span>
@@ -201,7 +201,7 @@ lixa@ubuntu:~$ pkill lixad
 	    server termination you are sure every trace message is inside the
 	    trace file.
 	</p></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67970688"></a>Redirecting the trace messages</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58118720"></a>Redirecting the trace messages</h3></div></div></div><p>
 	In the previous section you discovered how you can send the trace
 	messages of <span class="command"><strong>lixad</strong></span>. The
 	<code class="systemitem">lixac</code> library sends the

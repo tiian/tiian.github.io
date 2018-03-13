@@ -2,12 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="prev" href="ch07s02.html" title="A TC TX usage example with Oracle" /><link rel="next" href="ch08s02.html" title="The XTA Programming Model" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Development_XTA"></a>Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</h1></div></div></div><p>
     This chapter explains what XTA is and how you can develop applications
     that use XTA interface.
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp67511488"></a>XTA introduction</h2></div></div></div><p>
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57640496"></a>XTA introduction</h2></div></div></div><p>
       This section introduces some basic concepts for a better comprehension of
       XTA topic.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67512240"></a>Why XTA?</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57641280"></a>Why XTA?</h3></div></div></div><p>
 	The TX Transaction Demarcation Specification
-	[<a class="citation" href="bi01.html#idp68147920"><span class="citation">TXspec</span></a>], published in 1995 by
+	[<a class="citation" href="bi01.html#idp58295872"><span class="citation">TXspec</span></a>], published in 1995 by
 	X/Open is a programming interface that has been designed for:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    C and COBOL programming languages
@@ -20,7 +20,7 @@
 	  </p></li></ul></div><p>
       </p><p>
 	The DTP Reference Model Version 3
-	[<a class="citation" href="bi01.html#idp68143248"><span class="citation">RefModel</span></a>], published in 1996 by X/Open is a
+	[<a class="citation" href="bi01.html#idp58291424"><span class="citation">RefModel</span></a>], published in 1996 by X/Open is a
 	programming model that has been designed for:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    applications executed under the control of TP Monitors
@@ -40,8 +40,8 @@
 	that can be used by cloud native applications that, for one reason or
 	another, require two phase commit ACID transactions among distributed
 	applications.
-	<a href="#ftn.idp67519648" class="footnote" id="idp67519648"><sup class="footnote">[47]</sup></a>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67520416"></a>XTA architecture</h3></div></div></div><p>
+	<a href="#ftn.idp57648736" class="footnote" id="idp57648736"><sup class="footnote">[47]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57649504"></a>XTA architecture</h3></div></div></div><p>
 	</p><div class="figure"><a id="xta_arch01"></a><p class="title"><strong>Figure 8.1. Software stacks of an XTA application</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_01.png" alt="Software stacks of an XTA application" /></div></div></div><p><br class="figure-break" />
 	The above picture explains the software stack architecture for an XTA
 	application: the <span class="emphasis"><em>Application Program</em></span> interacts
@@ -120,7 +120,7 @@
 	      <span class="emphasis"><em>Application Programs</em></span> can be called using
 	      consecutive calls or can run in concurrent branches
 	    </p></li></ul></div><p>
-	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp67519648" class="footnote"><p><a href="#idp67519648" class="para"><sup class="para">[47] </sup></a>
+	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57648736" class="footnote"><p><a href="#idp57648736" class="para"><sup class="para">[47] </sup></a>
 	  Many authors consider two phase commit the root of every evil in
 	  the realm of massively distributed applications, but the author of
 	  XTA thinks that some specific use cases can take advantage from 

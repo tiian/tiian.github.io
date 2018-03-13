@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>High Availability configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch10.html" title="Chapter 10. In Depth" /><link rel="prev" href="ch10s04.html" title="Workload balanced environments" /><link rel="next" href="ch10s06.html" title="LIXA Very Stupid Robot (lixavsr)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">High Availability configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10s04.html">Prev</a> </td><th width="60%" align="center">Chapter 10. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch10s06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp68002992"></a>High Availability configuration</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>High Availability configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch10.html" title="Chapter 10. In Depth" /><link rel="prev" href="ch10s04.html" title="Workload balanced environments" /><link rel="next" href="ch10s06.html" title="LIXA Very Stupid Robot (lixavsr)" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">High Availability configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10s04.html">Prev</a> </td><th width="60%" align="center">Chapter 10. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch10s06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58151024"></a>High Availability configuration</h2></div></div></div><p>
       If you were using LIXA software project in a mission critical
       environment, you should set-up an high availability configuration.
       If you take a look to <a class="xref" href="ch03.html#config1" title="Figure 3.1. Typical LIXA topology">Figure 3.1, “Typical LIXA topology”</a> you will notice the
@@ -12,18 +12,18 @@
       To avoid the issues related to <span class="quote">“<span class="quote">single point of failure
       pathology</span>”</span> the suggested configuration is
       <span class="quote">“<span class="quote">Active/passive</span>”</span> as described in 
-      
-	Wikipedia <span class="quote">“<span class="quote">High-availability cluster</span>”</span> page.
+      <a class="link" href="http://en.wikipedia.org/wiki/High-availability_cluster#Node_configurations" target="_top">
+	Wikipedia <span class="quote">“<span class="quote">High-availability cluster</span>”</span> page</a>.
       You can use:
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    any cluster manager, for example
-	    Linux-HA
-	      Heartbeat
+	    <a class="link" href="http://www.linux-ha.org/wiki/Main_Page" target="_top">Linux-HA
+	      Heartbeat</a>
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	    any shared disk technology like 
-	    SAN (Storage Area Network), 
-	    NAS (Network Attached Storage) or disk replication technology like
-	    DR:BD
+	    <a class="link" href="http://en.wikipedia.org/wiki/Storage_area_network" target="_top">SAN (Storage Area Network)</a>, 
+	    <a class="link" href="http://en.wikipedia.org/wiki/Network-attached_storage" target="_top">NAS (Network Attached Storage)</a> or disk replication technology like
+	    <a class="link" href="http://www.drbd.org/" target="_top">DR:BD</a>
 	</p></li></ul></div><p>
       <span class="command"><strong>lixad</strong></span> requires that the filesystem and the
       block device support <code class="function">mmap()</code>, 

@@ -70,7 +70,7 @@
 	    Start the LIXA state server
 	    as explained in <a class="xref" href="ch05s07.html" title="An example with PostgreSQL">the section called “An example with PostgreSQL”</a>
 	  </p></li></ul></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67418784"></a>Set environment variables</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57547584"></a>Set environment variables</h3></div></div></div><p>
 	Create a shell script file, for example 
 	<code class="filename">oracle_env.sh</code>
 	with some useful environment variables as below:
@@ -100,7 +100,7 @@ tiian@ubuntu1404-64:/tmp$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lixa/lib
 tiian@ubuntu1404-64:/tmp$ echo $LD_LIBRARY_PATH
 /opt/oracle/instantclient_12_1::/opt/lixa/lib
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67422336"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57551136"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/cobol/EXAMPLE6_PQL_ORA.pco .
@@ -180,7 +180,7 @@ tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE6_PQL_ORA
     libcrypt.so.1 =&gt; /lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007eff1d1b1000)
     libffi.so.6 =&gt; /usr/lib/x86_64-linux-gnu/libffi.so.6 (0x00007eff1cfa9000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67432688"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57561488"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ export LIXA_PROFILE=PQL_STA_ORAIC_STA
@@ -190,7 +190,7 @@ PQL_STA_ORAIC_STA
       </p><p>
 	See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional details on
 	the profile.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp67436576"></a>Program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57565376"></a>Program execution</h3></div></div></div><p>
 	This example behaves has the sum of 
 	<code class="filename">EXAMPLE2_ORA</code> explained in 
 	<a class="xref" href="ch06s06.html" title="An example with Oracle Pro*COBOL">the section called “An example with Oracle Pro*COBOL”</a> and of
@@ -199,7 +199,7 @@ PQL_STA_ORAIC_STA
 	the program tries to insert a row inside the Oracle database and a
 	row inside the PostgreSQL database.
 	The following paragraphs show the type of behavior that you try.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp67439600"></a>Happy path executions</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp57568400"></a>Happy path executions</h4></div></div></div><p>
 	  Both databases can insert the row:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ ./EXAMPLE6_PQL_ORA INSERT
@@ -221,7 +221,7 @@ PQexec DELETE
 Status: +0000000001
 Execution terminated!
 	    </pre></td></tr></tbody></table></div><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp67444704"></a>Backed out executions</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp57573504"></a>Backed out executions</h4></div></div></div><p>
 	  Oracle database can not insert the row:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ ./EXAMPLE6_PQL_ORA INSERT
@@ -278,7 +278,7 @@ SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
 
 no rows selected
 	    </pre></td></tr></tbody></table></div><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp67454464"></a>Conclusion</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp57583264"></a>Conclusion</h4></div></div></div><p>
 	  This example shows a real two phase commit transaction using a
 	  COBOL program (GnuCOBOL) that accesses an Oracle database
 	  (Pro*COBOL) and a PostgreSQL database (direct COBOL calls).
