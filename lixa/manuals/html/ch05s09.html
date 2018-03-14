@@ -48,7 +48,7 @@
 	    in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56804416"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57010048"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -113,7 +113,7 @@ tiian@ubuntu:~/tmp$ ldd example7_pql_db2
         libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb4eba000)
         libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb4eb6000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56804928"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57010560"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
@@ -127,7 +127,7 @@ PQL_STA_DB2_DYN
 	This is the list of the suggested variables:
 	<code class="varname">LIXA_PROFILE</code>,
 	<code class="varname">PATH</code>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56817408"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57023040"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">PQL_STA_DB2_DYN</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -151,9 +151,9 @@ PQL_STA_DB2_DYN
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp56822000" class="footnote" id="idp56822000"><sup class="footnote">[34]</sup></a>
-	<a href="#ftn.idp56824464" class="footnote" id="idp56824464"><sup class="footnote">[35]</sup></a>. 
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56817968"></a>Program execution (dynamic registration)</h3></div></div></div><p>
+	<a href="#ftn.idp57027632" class="footnote" id="idp57027632"><sup class="footnote">[34]</sup></a>
+	<a href="#ftn.idp57030096" class="footnote" id="idp57030096"><sup class="footnote">[35]</sup></a>. 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57023600"></a>Program execution (dynamic registration)</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">TESTDB</span>”</span> PostgreSQL database,
 	the second one connected to <span class="quote">“<span class="quote">SAMPLE</span>”</span> DB2 database
@@ -316,15 +316,15 @@ tiian@ubuntu:~/tmp$ ./example7_pql_db2 delete org 2&gt;&amp;1 | grep ax_reg
 	  Combining the previous two examples you can realize a program that
 	  access 3 resource managers: PostgreSQL, Oracle and DB2.
 	  It is left as an exercise to the reader.
-      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp56822000" class="footnote"><p><a href="#idp56822000" class="para"><sup class="para">[34] </sup></a>
+      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57027632" class="footnote"><p><a href="#idp57027632" class="para"><sup class="para">[34] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp58300640"><span class="citation">XAspec</span></a>].
-	  </p></div><div id="ftn.idp56824464" class="footnote"><p><a href="#idp56824464" class="para"><sup class="para">[35] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp58509056"><span class="citation">XAspec</span></a>].
+	  </p></div><div id="ftn.idp57030096" class="footnote"><p><a href="#idp57030096" class="para"><sup class="para">[35] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    documented at IBM Infocenter: search the string
 	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation

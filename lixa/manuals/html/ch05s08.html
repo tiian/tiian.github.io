@@ -48,7 +48,7 @@
 	    in <a class="xref" href="ch05s04.html#Development_start_LIXA_server" title="Start the LIXA state server">the section called “Start the LIXA state server”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56721856"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56927488"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -110,7 +110,7 @@ tiian@ubuntu:~/tmp$ ldd example6_pql_ora
         libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb6f28000)
         libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb6f24000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56722368"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56928000"></a>Set-up LIXA environment</h3></div></div></div><p>
 	There are four unresolved references that can be fixed setting up
 	the environment properly; you can fix the environment manually or
 	using this script supplied by Oracle:
@@ -223,15 +223,15 @@ XE
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp56754560" class="footnote" id="idp56754560"><sup class="footnote">[32]</sup></a>
-	<a href="#ftn.idp56757024" class="footnote" id="idp56757024"><sup class="footnote">[33]</sup></a>. 
+	<a href="#ftn.idp56960192" class="footnote" id="idp56960192"><sup class="footnote">[32]</sup></a>
+	<a href="#ftn.idp56962656" class="footnote" id="idp56962656"><sup class="footnote">[33]</sup></a>. 
       </p><p>
 	Verify no (Oracle) trace file exists:
 	</p><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
 ls: cannot access /tmp/xa*: No such file or directory
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56759008"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56964640"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database,
 	the second one connected to Oracle database and the
@@ -365,15 +365,15 @@ no rows selected
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa_NULL09202011.trc
 -rw-r--r-- 1 tiian tiian 12042 2011-09-20 22:22 /tmp/xa_NULL09202011.trc
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp56754560" class="footnote"><p><a href="#idp56754560" class="para"><sup class="para">[32] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp56960192" class="footnote"><p><a href="#idp56960192" class="para"><sup class="para">[32] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp58300640"><span class="citation">XAspec</span></a>].
-	  </p></div><div id="ftn.idp56757024" class="footnote"><p><a href="#idp56757024" class="para"><sup class="para">[33] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp58509056"><span class="citation">XAspec</span></a>].
+	  </p></div><div id="ftn.idp56962656" class="footnote"><p><a href="#idp56962656" class="para"><sup class="para">[33] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"

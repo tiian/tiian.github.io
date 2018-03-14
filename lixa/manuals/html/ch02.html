@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 2. Installation</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="prev" href="ch01s05.html" title="LIXA and X/OPEN CAE specifications" /><link rel="next" href="ch02s02.html" title="Certified and Tested configurations" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 2. Installation</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s05.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Installation"></a>Chapter 2. Installation</h1></div></div></div><p>
     This chapter explains how to download, install and verify the software
     released by LIXA project.
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp55890480"></a>System requirements</h2></div></div></div><p>
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp56071504"></a>System requirements</h2></div></div></div><p>
       LIXA project is developed on an x86-64 based 
       <a class="link" href="http://www.ubuntu.com/" target="_top">
 	<em class="citetitle">Ubuntu 14.04 system</em>
@@ -21,7 +21,7 @@
       If you successfully installed LIXA on a different system, you might
       publish your experience on the public forum hosted on SourceForge.net 
       and share your results with other users. 
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp55894352"></a>Pre-requisites</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56075376"></a>Pre-requisites</h3></div></div></div><p>
 	To compile LIXA software the GNU tools are needed: gcc, gmake, libtool.
 	Autoconf and automake are used, but they should not be necessary if 
 	you install from the original tarball.
@@ -37,7 +37,7 @@
 	<span class="application">libxml2</span> are discovered with 
 	<span class="command"><strong>pkg-config</strong></span> command, while the others must be in
 	standard include <code class="envar">PATH</code>.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55895792"></a>Packages for Linux Ubuntu</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56076816"></a>Packages for Linux Ubuntu</h4></div></div></div><p>
 	  <span class="application">xsltproc</span>,
 	  <span class="application">docbook-xsl</span> and
 	  <span class="application">docbook-xml</span> are necessary
@@ -46,7 +46,7 @@
 	  <span class="application">automake</span> and 
 	  <span class="application">autoconf</span> are 
 	  necessary to run the test suite (<span class="command"><strong>make check</strong></span>).
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55906144"></a>Packages for Linux CentOS (7.x)</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56087168"></a>Packages for Linux CentOS (7.x)</h4></div></div></div><p>
 	  This packages are necessary to create a build environment:
  	  <span class="application">glib2-devel.i686</span>,
  	  <span class="application">libuuid-devel.i686</span>,
@@ -57,11 +57,11 @@
 	</p><p>
 	  <span class="application">docbook5-style-xsl.noarch</span> is necessary
 	  to produce this manual.
-	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp55909856"></a>CentOS, RHEL and derivative notes</h5></div></div></div><p>
+	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp56090880"></a>CentOS, RHEL and derivative notes</h5></div></div></div><p>
 	    Version 6 of CentOS, RHEL and derivative linux distributions ships
 	    a very old glib version and can't be used to compile LIXA source
 	    code since LIXA 1.3.2
-	  </p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55910688"></a>Low level software pre-requisites</h4></div></div></div><p>
+	  </p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56091712"></a>Low level software pre-requisites</h4></div></div></div><p>
 	  If you are trying to install LIXA software on a different operating
 	  system, these are some fundamental requirements:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p><code class="function">poll</code>: 
@@ -79,7 +79,7 @@
 	    </p></li></ul></div><p>
 	  Without the above functions, a specific porting process is necessary
 	  to adapt LIXA to your system.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55915296"></a>Hardware requirements</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56096320"></a>Hardware requirements</h4></div></div></div><p>
 	  There's no specific hardware requirement for the client part of LIXA
 	  (libraries and utilities): the type of hardware you are using for
 	  your application will be sufficient to run your application even if
@@ -91,7 +91,7 @@
 	  the better. The best performance should be expected by a storage
 	  array with battery-backed cache or a technology with equivalent
 	  speed.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp55917552"></a>Co-requisites</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56098576"></a>Co-requisites</h3></div></div></div><p>
 	An XA transaction manager is used to coordinate one or more XA
 	resource managers. From a LIXA perspective there are basically 3 type
 	of resource managers:
@@ -114,7 +114,7 @@
 		IBM DB2 Express-C 9.7 (32 bit) / IBS DB2 Express0C 11.1 (64 bit)
 	  </span></p></li><li class="listitem" style="list-style-type: disc"><p><span class="productname">
 		MySQL 5.0 (32 bit) / MySQL 5.1 (64 bit) / MySQL 5.6.34 (64 bit)
-		<a href="#ftn.idp55923680" class="footnote" id="idp55923680"><sup class="footnote">[8]</sup></a>
+		<a href="#ftn.idp56104704" class="footnote" id="idp56104704"><sup class="footnote">[8]</sup></a>
 	  </span></p></li><li class="listitem" style="list-style-type: disc"><p><span class="productname">
 		Oracle XE 10.2 (32 bit) / Oracle XE 11.2 (64 bit)
 	  </span></p></li><li class="listitem" style="list-style-type: disc"><p><span class="productname">
@@ -124,14 +124,14 @@
 	  </span></p></li><li class="listitem" style="list-style-type: disc"><p><span class="productname">
 		WebSphere MQ 7.1 (32 bit)
 	  </span></p></li></ul></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp55926672"></a>Authorization</h3></div></div></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56107696"></a>Authorization</h3></div></div></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	The software produced by the LIXA project 
 	<span class="emphasis"><em>does</em></span> not require any
 	special authorization to run.
       </p></div><p>
 	You can run the processes with the desired UNIX user you prefer but
 	in this manual specific user and group will be used as a suggestion.
-	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp55928240"></a>Create <code class="systemitem">lixa</code>
+	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp56109264"></a>Create <code class="systemitem">lixa</code>
 	    user with Ubuntu</h5></div></div></div>
 	  Use this commands in an Ubuntu based Linux system to create the
 	  <code class="systemitem">lixa</code> user and the
@@ -152,7 +152,7 @@ uid=106(lixa) gid=113(lixa) groups=113(lixa)
 root@ubuntu:~# exit
 logout
 	  </pre></div><p>
-	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp55931584"></a>Create <code class="systemitem">lixa</code>
+	</p><div class="section"><div class="titlepage"><div><div><h5 class="title"><a id="idp56112608"></a>Create <code class="systemitem">lixa</code>
 	    user with CentOS</h5></div></div></div>
 	  Use this commands in an Ubuntu based Linux system to create the
 	  <code class="systemitem">lixa</code> user and the
@@ -180,7 +180,7 @@ logout
 	  <span class="command"><strong>lixad</strong></span> has to access the files.
 	  The LIXA client can be considered <span class="emphasis"><em>stateless</em></span>
 	  because all the state information is persisted by the LIXA server.
-      </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp55923680" class="footnote"><p><a href="#idp55923680" class="para"><sup class="para">[8] </sup></a>
+      </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp56104704" class="footnote"><p><a href="#idp56104704" class="para"><sup class="para">[8] </sup></a>
 		    You must use InnoDB back-end to perform transactions with
 		    MySQL; MyISAM back-end is not supported.
 		</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s05.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch02s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">LIXA and X/OPEN CAE specifications </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Certified and Tested configurations</td></tr></table></div></body></html>
