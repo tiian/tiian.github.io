@@ -1,163 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with MySQL/MariaDB</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s09.html" title="An example with PostgreSQL &amp; IBM DB2" /><link rel="next" href="ch05s11.html" title="An example with MySQL &amp; PostgreSQL" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with MySQL/MariaDB</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s09.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s11.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example8_mys"></a>An example with MySQL/MariaDB</h2></div></div></div><div class="figure"><a id="develop8"></a><p class="title"><strong>Figure 5.8. Deploy model of an example with MySQL/MariaDB DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_8.png" alt="Deploy model of an example with MySQL/MariaDB DBMS" /></div></div></div><br class="figure-break" /><p>
-      This example has been developed using MySQL 5.5.54 (or upper) and
-      MariaDB 5.5.52 for Linux. 
-      Here is a brief list of the tested versions for Ubuntu 12.04,
-      14.04, 16.04 and CentOS/RHEL 7.3 and the installed packages:
-      </p><pre class="screen">
-tiian@ubuntu1204-64:~$ dpkg -l | grep -i mysql
-ii  libdbd-mysql-perl                4.020-1ubuntu0.1                    Perl5 database interface to the MySQL database
-ii  libmysqlclient-dev               5.5.54-0ubuntu0.12.04.1             MySQL database development files
-ii  libmysqlclient18                 5.5.54-0ubuntu0.12.04.1             MySQL database client library
-ii  mysql-client-5.5                 5.5.54-0ubuntu0.12.04.1             MySQL database client binaries
-ii  mysql-client-core-5.5            5.5.54-0ubuntu0.12.04.1             MySQL database core client binaries
-ii  mysql-common                     5.5.54-0ubuntu0.12.04.1             MySQL database common files, e.g. /etc/mysql/my.cnf
-ii  mysql-server                     5.5.54-0ubuntu0.12.04.1             MySQL database server (metapackage depending on the latest version)
-ii  mysql-server-5.5                 5.5.54-0ubuntu0.12.04.1             MySQL database server binaries and system database setup
-ii  mysql-server-core-5.5            5.5.54-0ubuntu0.12.04.1             MySQL database server binaries
-
-tiian@ubuntu1404-64:~$ dpkg -l | grep -i mysql
-ii  libdbd-mysql-perl                   4.025-1ubuntu0.1                    amd64        Perl5 database interface to the MySQL database
-ii  libmysqlclient-dev                  5.5.54-0ubuntu0.14.04.1             amd64        MySQL database development files
-ii  libmysqlclient18:amd64              5.5.54-0ubuntu0.14.04.1             amd64        MySQL database client library
-ii  mysql-client-5.5                    5.5.54-0ubuntu0.14.04.1             amd64        MySQL database client binaries
-ii  mysql-client-core-5.5               5.5.54-0ubuntu0.14.04.1             amd64        MySQL database core client binaries
-ii  mysql-common                        5.5.54-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
-ii  mysql-server                        5.5.54-0ubuntu0.14.04.1             all          MySQL database server (metapackage depending on the latest version)
-ii  mysql-server-5.5                    5.5.54-0ubuntu0.14.04.1             amd64        MySQL database server binaries and system database setup
-ii  mysql-server-core-5.5               5.5.54-0ubuntu0.14.04.1             amd64        MySQL database server binaries
-
-tiian@ubuntu1604:~$ dpkg -l | grep -i mysql
-ii  libmysqlclient-dev                 5.7.17-0ubuntu0.16.04.1             amd64        MySQL database development files
-ii  libmysqlclient20:amd64             5.7.17-0ubuntu0.16.04.1             amd64        MySQL database client library
-ii  mysql-client-5.7                   5.7.17-0ubuntu0.16.04.1             amd64        MySQL database client binaries
-ii  mysql-client-core-5.7              5.7.17-0ubuntu0.16.04.1             amd64        MySQL database core client binaries
-ii  mysql-common                       5.7.17-0ubuntu0.16.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
-ii  mysql-server                       5.7.17-0ubuntu0.16.04.1             all          MySQL database server (metapackage depending on the latest version)
-ii  mysql-server-5.7                   5.7.17-0ubuntu0.16.04.1             amd64        MySQL database server binaries and system database setup
-ii  mysql-server-core-5.7              5.7.17-0ubuntu0.16.04.1             amd64        MySQL database server binaries
-
-[tiian@centos71-64 ~]$ rpm -qa | grep -i maria
-mariadb-5.5.52-1.el7.x86_64
-mariadb-server-5.5.52-1.el7.x86_64
-mariadb-libs-5.5.52-1.el7.x86_64
-mariadb-devel-5.5.52-1.el7.x86_64
-
-[tiian@rhel73 ~]$ rpm -qa | grep -i maria
-mariadb-devel-5.5.52-1.el7.x86_64
-mariadb-5.5.52-1.el7.x86_64
-mariadb-server-5.5.52-1.el7.x86_64
-mariadb-libs-5.5.52-1.el7.x86_64
-      </pre><p>
-      If you were using a different version you would need to adapt some
-      commands to your environment.
-    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-	If you did not yet installed the software, please refer to the 
-	official site for your Linux distribution or to the official site
-	of MySQL/MariaDB if your operating system does not distribute the
-	software or you want to use a different MySQL/MariaDB version.
-	This manual does not give you information related
-	to MySQL/MariaDB: it is assumed that you have already installed and
-	configured the database.
-    </p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-	This example requires you are running the database and the application
-	on the same host: this is not a technical limitation, but a way to
-	make it easy. Client/server configuration must work as well, but
-	it needs some MySQL/MariaDB extra configuration: please refer to the
-	database documentation.
-    </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
-	The LIXA software must be configured to support the MySQL/MariaDB
-	server resource manager as explained in 
-	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_MySQL_environment"></a>Set-up MySQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp57077520"></a>Start-up the MySQL server</h4></div></div></div><p>
-	  If your server didn't start-up automatically at boot time, you
-	  could start it with the following commands:
-	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:/tmp$ sudo service mysql start
-mysql start/running, process 1607
-tiian@ubuntu1204-64:/tmp$ sudo service mysql status
-mysql start/running, process 1607
-tiian@ubuntu1204-64:/tmp$ ps -ef|grep mysql|grep -v grep
-mysql     1607     1  0 22:43 ?        00:00:00 /usr/sbin/mysqld
-	    </pre></td></tr></tbody></table></div><p>
-	  Create a new user authorization and a new database
-	  <a href="#ftn.idp57080864" class="footnote" id="idp57080864"><sup class="footnote">[36]</sup></a>:
-	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:/tmp$ mysql -u root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 36
-Server version: 5.5.54-0ubuntu0.12.04.1 (Ubuntu)
-
-Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; GRANT ALL ON lixa.* TO 'lixa'@'localhost';
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; CREATE DATABASE lixa;
-Query OK, 1 row affected (0.00 sec)
-
-mysql&gt; quit
-Bye
-	    </pre></td></tr></tbody></table></div><p>
-	  The <code class="systemitem">lixa@localhost</code> user
-	  has been created with all privileges on the <span class="quote">“<span class="quote">lixa</span>”</span>
-	  database. Now a sample table must be created using this new user:
-	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:/tmp$ mysql -h localhost -u lixa lixa
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 37
-Server version: 5.5.54-0ubuntu0.12.04.1 (Ubuntu)
-
-Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; SELECT DATABASE();
-+------------+
-| DATABASE() |
-+------------+
-| lixa       |
-+------------+
-1 row in set (0.01 sec)
-
-mysql&gt; CREATE TABLE authors (id INTEGER NOT NULL PRIMARY KEY, last_name TEXT, first_name TEXT) ENGINE=InnoDB;
-Query OK, 0 rows affected (0.02 sec)
-
-mysql&gt; DESCRIBE authors;
-+------------+---------+------+-----+---------+-------+
-| Field      | Type    | Null | Key | Default | Extra |
-+------------+---------+------+-----+---------+-------+
-| id         | int(11) | NO   | PRI | NULL    |       |
-| last_name  | text    | YES  |     | NULL    |       |
-| first_name | text    | YES  |     | NULL    |       |
-+------------+---------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
-
-mysql&gt; SELECT * FROM authors;
-Empty set (0.00 sec)
-	    </pre></td></tr></tbody></table></div><p>
-	  OK, the <span class="quote">“<span class="quote">authors</span>”</span> table was created using 
-	  the <span class="quote">“<span class="quote">InnoDB</span>”</span> engine. 
-	  If something went wrong, you should refer to MySQL
-	  documentation to fix the issue before the next step because
-	  you would not be able to execute the sample program without a
-	  basic running installation.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57078032"></a>Start the LIXA state server</h3></div></div></div><p>
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s11.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example8_mys"></a>An example with MySQL/MariaDB</h2></div></div></div><p>
+      Please follow the instructions explained in
+      <a class="xref" href="apa.html#App_RM_Config_MySQL" title="MySQL Configuration">the section called “MySQL Configuration”</a>                            
+      to set-up a running environment for MySQL or MariaDB server.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57274304"></a>Start the LIXA state server</h3></div></div></div><p>
 	Start the state server as shown below:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:/tmp$ sudo su - lixa
@@ -167,7 +14,7 @@ logout
 tiian@ubuntu1204-64:/tmp$ ps -ef|grep lixad|grep -v grep
 lixa      1804     1  0 22:45 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57092064"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57277296"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -200,7 +47,7 @@ tiian@ubuntu1204-64:/tmp/tmp$ ldd example8_mys
 	libpcre.so.3 =&gt; /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007fd64c632000)
 	libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007fd64c42c000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57092624"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57277856"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:/tmp/tmp$ echo $LIXA_PROFILE
@@ -301,7 +148,7 @@ MYS_STA
 	    consider to move some parameters to <code class="filename">mycnf</code> file
 	    (see MySQL official documentation to pick-up the details).
 	</p></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57137776"></a>Program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57323008"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to <span class="quote">“<span class="quote">lixa</span>”</span> MySQL database and the second
 	one pointing to the directory where the compiled program
@@ -371,7 +218,7 @@ Empty set (0.00 sec)
 	you can verify in file
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>
 	that <span class="quote">“<span class="quote">MYS_STA</span>”</span> is associated to static registration
-	<a href="#ftn.idp57155440" class="footnote" id="idp57155440"><sup class="footnote">[37]</sup></a>
+	<a href="#ftn.idp57340672" class="footnote" id="idp57340672"><sup class="footnote">[35]</sup></a>
 	.
 	Execute the program:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -392,10 +239,7 @@ tiian@ubuntu1204-64:/tmp/tmp$ unset LIXA_TRACE_MASK
 tiian@ubuntu1204-64:/tmp/tmp$ ./example8_mys delete
 Deleting a row from the table...
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57080864" class="footnote"><p><a href="#idp57080864" class="para"><sup class="para">[36] </sup></a>
-	      You need the password of MySQL root user to execute
-	      these commands
-	  </p></div><div id="ftn.idp57155440" class="footnote"><p><a href="#idp57155440" class="para"><sup class="para">[37] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57340672" class="footnote"><p><a href="#idp57340672" class="para"><sup class="para">[35] </sup></a>
 	    The current implementation does not support dynamic registration
 	    for MySQL.
 	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s09.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s11.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with PostgreSQL &amp; IBM DB2 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL &amp; PostgreSQL</td></tr></table></div></body></html>

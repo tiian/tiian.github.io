@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The XTA Programming Model</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="next" href="ch09.html" title="Chapter 9. Recovery" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The XTA Programming Model</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57883328"></a>The XTA Programming Model</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The XTA Programming Model</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="next" href="ch09.html" title="Chapter 9. Recovery" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The XTA Programming Model</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58068544"></a>The XTA Programming Model</h2></div></div></div><p>
       XTA support 4 different patterns:
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	  <span class="quote">“<span class="quote">Single Application</span>”</span>:
@@ -34,7 +34,7 @@
 	  <span class="emphasis"><em>Application Programs</em></span> is
 	  <span class="quote">“<span class="quote">Pseudo Asynchronous</span>”</span>
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57895488"></a>The
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58080704"></a>The
       <span class="quote">“<span class="quote">Single Application</span>”</span>
       Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	    <td>Architecture:</td>
@@ -82,9 +82,9 @@
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    The Application Program (AP) creates the native
 	    objects/connections/handles
-	    <a href="#ftn.idp57910544" class="footnote" id="idp57910544"><sup class="footnote">[48]</sup></a>
+	    <a href="#ftn.idp58095760" class="footnote" id="idp58095760"><sup class="footnote">[46]</sup></a>
 	    that are necessary to operate with the Resource Managers
-	    <a href="#ftn.idp57912208" class="footnote" id="idp57912208"><sup class="footnote">[49]</sup></a>
+	    <a href="#ftn.idp58097424" class="footnote" id="idp58097424"><sup class="footnote">[47]</sup></a>
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	    The AP creates some XTA objects: a
 	    <code class="function">TransactionManager</code>,
@@ -120,7 +120,63 @@
 	</p><pre class="screen">tm = xta_transaction_manager_new()</pre><p> and
 	</p><pre class="screen">tx.Commit()</pre><p> translates to
 	</p><pre class="screen">xta_transaction_commit(tx, FALSE)</pre><p> in C.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57923200"></a>The
+      </p></div><p>
+	The supplied example (<code class="filename">example_xta_sa01.c</code>) uses
+	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span> and MySQL
+	(or MariaDB) in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span>; please
+	refer to the instructions explained 
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="apa.html#App_RM_Config_MySQL" title="MySQL Configuration">the section called “MySQL Configuration”</a>
+	    to set-up a running environment for MySQL server
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="apas02.html" title="PostgreSQL Configuration">the section called “PostgreSQL Configuration”</a>
+	    to set-up a running environment for PostgreSQL server
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
+	    to start up the LIXA state server
+	  </p></li></ul></div><p>
+      </p><p>
+	Create a working directory in a place you are comfortable with:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~$ cd
+tiian@ubuntu1404-64:~$ mkdir tmp
+tiian@ubuntu1404-64:~$ cd tmp
+tiian@ubuntu1404-64:~/tmp$ 
+	  </pre></td></tr></tbody></table></div><p>
+      </p><p>
+	Copy file <code class="filename">example_xta_sa01.c</code> in your working dir:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+	    tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/example_xta_sa01.c .
+	  </pre></td></tr></tbody></table></div><p>
+	Substitute <span class="quote">“<span class="quote">lixa-X.Y.Z</span>”</span> with the actual version of
+	the software you installed.
+      </p><p>
+	Compile and link the C example program:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ . /opt/lixa/bin/lixa_env.sh 
+tiian@ubuntu1404-64:~/tmp$ gcc example_xta_sa01.c $(lixa-config -x -c -f -l -d) -lpq $(mysql_config --libs_r) -o example_xta_sa01
+	  </pre></td></tr></tbody></table></div><p>
+      </p><p>
+	If the previous steps worked for you, you would have an executable file
+	of name <code class="filename">example_xta_sa01</code> in your current 
+	directory:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:/tmp$ ls -l
+total 32
+-rwxrwxr-x 1 tiian tiian 18603 mar 20 22:56 example_xta_sa01
+-rw-r--r-- 1 tiian tiian  8302 mar 20 22:50 example_xta_sa01.c
+	  </pre></td></tr></tbody></table></div><p>
+	The example program accepts two arguments:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    commit (or rollback): use <span class="quote">“<span class="quote">1</span>”</span> if you want to perform
+	    a global commit or <span class="quote">“<span class="quote">0</span>”</span> if you want to perform a global
+	    rollback
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    insert (or delete): use <span class="quote">“<span class="quote">1</span>”</span> if you want to insert rows
+	    in databases or <span class="quote">“<span class="quote">0</span>”</span> if you want to delete rows from
+	    databases
+	  </p></li></ul></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58130048"></a>The
       <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
       Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	    <td>Architecture:</td>
@@ -137,7 +193,7 @@
 	  </tr><tr>
 	    <td>Concurrency among Application Programs:</td>
 	    <td>no, strictly consecutive executive</td>
-	  </tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57934160"></a>The
+	  </tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58138432"></a>The
       <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
       Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	    <td>Architecture:</td>
@@ -154,7 +210,7 @@
 	  </tr><tr>
 	    <td>Concurrency among Application Programs:</td>
 	    <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	  </tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57942672"></a>The
+	  </tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58146944"></a>The
       <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>
       Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	    <td>Architecture:</td>
@@ -171,10 +227,10 @@
 	  </tr><tr>
 	    <td>Concurrency among Application Programs:</td>
 	    <td>yes, subordinate AP creates a new branch and then executes asynchronously</td>
-	  </tr></tbody></table></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57910544" class="footnote"><p><a href="#idp57910544" class="para"><sup class="para">[48] </sup></a>
+	  </tr></tbody></table></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58095760" class="footnote"><p><a href="#idp58095760" class="para"><sup class="para">[46] </sup></a>
 	      Examples: <code class="function">mysql_real_connect</code> for MySQL,
 	      <code class="function">PQconnectDB</code> for PostgreSQL.
-	    </p></div><div id="ftn.idp57912208" class="footnote"><p><a href="#idp57912208" class="para"><sup class="para">[49] </sup></a>
+	    </p></div><div id="ftn.idp58097424" class="footnote"><p><a href="#idp58097424" class="para"><sup class="para">[47] </sup></a>
 	      Some Resource Managers, like for example Oracle Database Server,
 	      don't allow to be created as <span class="quote">“<span class="quote">normal</span>”</span> connections
 	      and then transformed in <span class="emphasis"><em>XA connections</em></span>:
