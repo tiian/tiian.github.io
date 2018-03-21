@@ -12,9 +12,9 @@
   </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
     This chapter is focused on the C programming language. The COBOL 
     programming language is addressed by another dedicated chapter.
-  </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp56685376"></a>The TX (Transaction Demarcation) Specification</h2></div></div></div><p>
+  </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp56647104"></a>The TX (Transaction Demarcation) Specification</h2></div></div></div><p>
       LIXA project adopts the standard described in 
-      [<a class="citation" href="bi01.html#idp58708656"><span class="citation">TXspec</span></a>] as the API you should use when developing
+      [<a class="citation" href="bi01.html#idp58714640"><span class="citation">TXspec</span></a>] as the API you should use when developing
       an Application Program.
     </p><p>
       The API is very easy, it supplies C functions and COBOL routines.
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 }
       </pre><p>
       These are the available C functions (the descriptions come from
-      [<a class="citation" href="bi01.html#idp58708656"><span class="citation">TXspec</span></a>]):
+      [<a class="citation" href="bi01.html#idp58714640"><span class="citation">TXspec</span></a>]):
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    <code class="function">tx_begin</code>: begin a global transaction
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
@@ -85,8 +85,8 @@ int main(int argc, char *argv[])
 	    <em class="parameter"><code>transaction_timeout</code></em> 
 	    characteristic
 	</p></li></ul></div><p>
-      Refer to [<a class="citation" href="bi01.html#idp58708656"><span class="citation">TXspec</span></a>] for the complete description.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56700752"></a>Access to the resource managers</h3></div></div></div><p>
+      Refer to [<a class="citation" href="bi01.html#idp58714640"><span class="citation">TXspec</span></a>] for the complete description.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56662448"></a>Access to the resource managers</h3></div></div></div><p>
 	A program developed for TX (Transaction Demarcation) Specification
 	<span class="emphasis"><em>must</em></span> access the resource managers coordinated by
 	the transaction manager using specific functions.

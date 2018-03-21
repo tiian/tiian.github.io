@@ -68,7 +68,7 @@ postgresql-libs-9.2.18-1.el7.x86_64
 	The LIXA software must be configured to support the PostgreSQL
 	server resource manager as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58760000"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58765984"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
 	  If your server didn't start-up automatically at boot time, you
 	  could start it with the following commands:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -88,7 +88,7 @@ postgres  1834  1829  0 23:00 ?        00:00:00 postgres: stats collector proces
 	    </pre></td></tr></tbody></table></div><p>
 	  Switch to user <code class="systemitem">postgres</code>,
 	  associate your user to a matching database user
-	  <a href="#ftn.idp58764624" class="footnote" id="idp58764624"><sup class="footnote">[52]</sup></a>
+	  <a href="#ftn.idp58770608" class="footnote" id="idp58770608"><sup class="footnote">[53]</sup></a>
 	  ; my personal account is 
 	  <code class="systemitem">tiian</code>
 	  and I created the same user inside PostgreSQL database:
@@ -151,7 +151,7 @@ max_prepared_transactions = 10          # zero disables the feature
 	  and restart the PostgreSQL server with something like
 	  </p><pre class="screen">service postgresql restart</pre><p> (Ubuntu, CentOS and RHEL) using
 	  <code class="systemitem">root</code> user.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58764624" class="footnote"><p><a href="#idp58764624" class="para"><sup class="para">[52] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58770608" class="footnote"><p><a href="#idp58770608" class="para"><sup class="para">[53] </sup></a>
 	      If you wanted to use a database user different than your own
 	      UNIX user, as it ever happens when the database is hosted on
 	      a different system, you should configure

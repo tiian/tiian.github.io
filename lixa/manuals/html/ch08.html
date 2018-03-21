@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="prev" href="ch07s02.html" title="A TC TX usage example with Oracle" /><link rel="next" href="ch08s02.html" title="The XTA Programming Model" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Development_XTA"></a>Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</h1></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="prev" href="ch07s02.html" title="A TC TX usage example with Oracle" /><link rel="next" href="ch08s02.html" title="The“Single Application”Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="Development_XTA"></a>Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</h1></div></div></div><p>
     This chapter explains what XTA is and how you can develop applications
     that use XTA interface.
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58031376"></a>XTA introduction</h2></div></div></div><p>
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57993104"></a>XTA Introduction</h2></div></div></div><p>
       This section introduces some basic concepts for a better comprehension of
       XTA topic.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58032160"></a>Why XTA?</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57993888"></a>Why XTA?</h3></div></div></div><p>
 	The TX Transaction Demarcation Specification
-	[<a class="citation" href="bi01.html#idp58708656"><span class="citation">TXspec</span></a>], published in 1995 by
+	[<a class="citation" href="bi01.html#idp58714640"><span class="citation">TXspec</span></a>], published in 1995 by
 	X/Open is a programming interface that has been designed for:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    C and COBOL programming languages
@@ -20,7 +20,7 @@
 	  </p></li></ul></div><p>
       </p><p>
 	The DTP Reference Model Version 3
-	[<a class="citation" href="bi01.html#idp58704208"><span class="citation">RefModel</span></a>], published in 1996 by X/Open is a
+	[<a class="citation" href="bi01.html#idp58710192"><span class="citation">RefModel</span></a>], published in 1996 by X/Open is a
 	programming model that has been designed for:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    applications executed under the control of TP Monitors
@@ -40,8 +40,8 @@
 	that can be used by cloud native applications that, for one reason or
 	another, require two phase commit ACID transactions among distributed
 	applications.
-	<a href="#ftn.idp58039616" class="footnote" id="idp58039616"><sup class="footnote">[45]</sup></a>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58040384"></a>XTA architecture</h3></div></div></div><p>
+	<a href="#ftn.idp58001344" class="footnote" id="idp58001344"><sup class="footnote">[45]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58002112"></a>XTA Architecture</h3></div></div></div><p>
 	</p><div class="figure"><a id="xta_arch01"></a><p class="title"><strong>Figure 8.1. Software stacks of an XTA application</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_01.png" alt="Software stacks of an XTA application" /></div></div></div><p><br class="figure-break" />
 	The above picture explains the software stack architecture for an XTA
 	application: the <span class="emphasis"><em>Application Program</em></span> interacts
@@ -120,9 +120,74 @@
 	      <span class="emphasis"><em>Application Programs</em></span> can be called using
 	      consecutive calls or can run in concurrent branches
 	    </p></li></ul></div><p>
-	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58039616" class="footnote"><p><a href="#idp58039616" class="para"><sup class="para">[45] </sup></a>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58030272"></a>XTA Technology Matrix</h3></div></div></div><p>
+	XTA strongly depends from the type of XA support provided by the
+	different Resource Managers and from the language bindings supplied
+	with the Resource Managers' libraries. The following table is updated
+	with the tested configurations:
+	<a href="#ftn.idp58031168" class="footnote" id="idp58031168"><sup class="footnote">[46]</sup></a>
+	</p><div class="table"><a id="XTA_technology_matrix"></a><p class="title"><strong>Table 8.1. Resouce Managers and Programming Languages for XTA</strong></p><div class="table-contents"><table summary="Resouce Managers and Programming Languages for XTA" border="1"><colgroup><col /><col /><col /><col /><col /><col /></colgroup><thead><tr><th>Resource Manager</th><th>C</th><th>C++<a href="#ftn.idp58035312" class="footnote" id="idp58035312"><sup class="footnote">[a]</sup></a></th><th>Java<a href="#ftn.idp58036144" class="footnote" id="idp58036144"><sup class="footnote">[b]</sup></a></th><th>PHP<a href="#ftn.idp58036928" class="footnote" id="idp58036928"><sup class="footnote">[c]</sup></a></th><th>Python<a href="#ftn.idp58037664" class="footnote" id="idp58037664"><sup class="footnote">[d]</sup></a></th></tr></thead><tbody align="center"><tr><td align="center">MySQL, MariaDB</td><td align="center">Y<a href="#ftn.idp58039216" class="footnote" id="idp58039216"><sup class="footnote">[e]</sup></a></td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Oracle DBMS</td><td align="center">Y</td><td align="center">-</td><td align="center">-</td><td align="center">N<a href="#ftn.idp58042864" class="footnote" id="idp58042864"><sup class="footnote">[f]</sup></a></td><td align="center">N<a href="#ftn.idp58043536" class="footnote" id="idp58043536"><sup class="footnote">[g]</sup></a></td></tr><tr><td align="center">PostgreSQL</td><td align="center">Y<a href="#ftn.idp58044624" class="footnote" id="idp58044624"><sup class="footnote">[h]</sup></a></td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr></tbody><tbody class="footnotes"><tr><td colspan="6"><div id="ftn.idp58035312" class="footnote"><p><a href="#idp58035312" class="para"><sup class="para">[a] </sup></a>Planned a C++ wrapper, not yet implemented
+		</p></div><div id="ftn.idp58036144" class="footnote"><p><a href="#idp58036144" class="para"><sup class="para">[b] </sup></a>Planned a JNI based wrapper with access to XA native
+		Java classes, not yet implemented
+		</p></div><div id="ftn.idp58036928" class="footnote"><p><a href="#idp58036928" class="para"><sup class="para">[c] </sup></a>Planned a SWIG wrapper, not yet implemented
+		</p></div><div id="ftn.idp58037664" class="footnote"><p><a href="#idp58037664" class="para"><sup class="para">[d] </sup></a>Planned a SWIG wrapper, not yet implemented
+		</p></div><div id="ftn.idp58039216" class="footnote"><p><a href="#idp58039216" class="para"><sup class="para">[e] </sup></a><span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
+		pattern is not
+		available because MySQL/MariaDB don't support TMSUSPEND and
+		TMRESUME standard XA flags
+		</p></div><div id="ftn.idp58042864" class="footnote"><p><a href="#idp58042864" class="para"><sup class="para">[f] </sup></a>No known way to re-use a standard OCI connection as an 
+		XA OCI connection
+		</p></div><div id="ftn.idp58043536" class="footnote"><p><a href="#idp58043536" class="para"><sup class="para">[g] </sup></a>No known way to re-use a standard OCI connection as an 
+		XA OCI connection
+		</p></div><div id="ftn.idp58044624" class="footnote"><p><a href="#idp58044624" class="para"><sup class="para">[h] </sup></a><span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
+		pattern is not
+		available because MySQL/MariaDB don't support TMSUSPEND and
+		TMRESUME standard XA flags
+		</p></div></td></tr></tbody></table></div></div><p><br class="table-break" />
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58046896"></a>The XTA Programming Model</h3></div></div></div><p>
+	XTA support 4 different patterns:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    <span class="quote">“<span class="quote">Single Application</span>”</span>:
+	    single <span class="emphasis"><em>Application Program</em></span> with single or 
+	    multiple <span class="emphasis"><em>Resource Managers</em></span> as supported by
+	    the TX Transaction Demarcation Specification
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>:
+	    multiple <span class="emphasis"><em>Application Programs</em></span> with single or
+	    multiple <span class="emphasis"><em>Resource Managers</em></span>, only one
+	    <span class="emphasis"><em>Application Program</em></span> is working as part of a
+	    transaction at a specified time, the XA global transaction is
+	    composed by a single transaction branch
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo
+	    Synchronous</span>”</span>:
+	    multiple <span class="emphasis"><em>Application Programs</em></span> with single or
+	    multiple <span class="emphasis"><em>Resource Managers</em></span>, many 
+	    <span class="emphasis"><em>Application Programs</em></span> are concurrently working
+	    as part of a transaction at a specified time, the XA global
+	    transaction is composed by multiple transaction branches, the
+	    type of interaction among the
+	    <span class="emphasis"><em>Application Programs</em></span> is
+	    <span class="quote">“<span class="quote">Pseudo Synchronous</span>”</span>
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo
+	    Asynchronous</span>”</span>:
+	    multiple <span class="emphasis"><em>Application Programs</em></span> with single or
+	    multiple <span class="emphasis"><em>Resource Managers</em></span>, many 
+	    <span class="emphasis"><em>Application Programs</em></span> are concurrently working
+	    as part of a transaction at a specified time, the XA global
+	    transaction is composed by multiple transaction branches, the
+	    type of interaction among the
+	    <span class="emphasis"><em>Application Programs</em></span> is
+	    <span class="quote">“<span class="quote">Pseudo Asynchronous</span>”</span>
+	  </p></li></ul></div><p>
+      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58001344" class="footnote"><p><a href="#idp58001344" class="para"><sup class="para">[45] </sup></a>
 	  Many authors consider two phase commit the root of every evil in
 	  the realm of massively distributed applications, but the author of
 	  XTA thinks that some specific use cases can take advantage from 
 	  two phase commit transactionality
-	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">A TC TX usage example with Oracle </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The XTA Programming Model</td></tr></table></div></body></html>
+	</p></div><div id="ftn.idp58031168" class="footnote"><p><a href="#idp58031168" class="para"><sup class="para">[46] </sup></a>
+	  Sometimes software versions make the difference, but this table don't
+	  cope with them and must not be intended like a compatibility and
+	  support matrix.
+	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">A TC TX usage example with Oracle </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The<span class="quote">“<span class="quote">Single Application</span>”</span>Pattern</td></tr></table></div></body></html>

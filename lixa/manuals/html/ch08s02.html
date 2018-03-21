@@ -1,57 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The XTA Programming Model</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface" /><link rel="next" href="ch09.html" title="Chapter 9. Recovery" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The XTA Programming Model</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58068544"></a>The XTA Programming Model</h2></div></div></div><p>
-      XTA support 4 different patterns:
-      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	  <span class="quote">“<span class="quote">Single Application</span>”</span>:
-	  single <span class="emphasis"><em>Application Program</em></span> with single or 
-	  multiple <span class="emphasis"><em>Resource Managers</em></span> as supported by
-	  the TX Transaction Demarcation Specification
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	  <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>:
-	  multiple <span class="emphasis"><em>Application Programs</em></span> with single or
-	  multiple <span class="emphasis"><em>Resource Managers</em></span>, only one
-	  <span class="emphasis"><em>Application Program</em></span> is working as part of a
-	  transaction at a specified time, the XA global transaction is
-	  composed by a single transaction branch
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	  <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>:
-	  multiple <span class="emphasis"><em>Application Programs</em></span> with single or
-	  multiple <span class="emphasis"><em>Resource Managers</em></span>, many 
-	  <span class="emphasis"><em>Application Programs</em></span> are concurrently working
-	  as part of a transaction at a specified time, the XA global
-	  transaction is composed by multiple transaction branches, the
-	  type of interaction among the
-	  <span class="emphasis"><em>Application Programs</em></span> is
-	  <span class="quote">“<span class="quote">Pseudo Synchronous</span>”</span>
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	  <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>:
-	  multiple <span class="emphasis"><em>Application Programs</em></span> with single or
-	  multiple <span class="emphasis"><em>Resource Managers</em></span>, many 
-	  <span class="emphasis"><em>Application Programs</em></span> are concurrently working
-	  as part of a transaction at a specified time, the XA global
-	  transaction is composed by multiple transaction branches, the
-	  type of interaction among the
-	  <span class="emphasis"><em>Application Programs</em></span> is
-	  <span class="quote">“<span class="quote">Pseudo Asynchronous</span>”</span>
-	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58080704"></a>The
-      <span class="quote">“<span class="quote">Single Application</span>”</span>
-      Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
-	    <td>Architecture:</td>
-	    <td>see <a class="xref" href="ch08.html#xta_arch02" title="Figure 8.2. Single application layout">Figure 8.2, “Single application layout”</a></td>
-	  </tr><tr>
-	    <td>Number of Application Programs:</td>
-	    <td>exactly 1</td>
-	  </tr><tr>
-	    <td>Number of Resource Managers:</td>
-	    <td>many, if 1 single phase commit will be used</td>
-	  </tr><tr>
-	    <td>Number of Branches in the Gloabal Transaction:</td>
-	    <td>exactly 1</td>
-	  </tr><tr>
-	    <td>Concurrency among Application Programs:</td>
-	    <td>not applicable</td>
-	  </tr></tbody></table></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The“Single Application”Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="next" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The<span class="quote">“<span class="quote">Single Application</span>”</span>Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58059008"></a>The<span class="quote">“<span class="quote">Single Application</span>”</span>Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
+	  <td>Architecture:</td>
+	  <td>see <a class="xref" href="ch08.html#xta_arch02" title="Figure 8.2. Single application layout">Figure 8.2, “Single application layout”</a></td>
+	</tr><tr>
+	  <td>Number of Application Programs:</td>
+	  <td>exactly 1</td>
+	</tr><tr>
+	  <td>Number of Resource Managers:</td>
+	  <td>many, if 1 single phase commit will be used</td>
+	</tr><tr>
+	  <td>Number of Branches in the Gloabal Transaction:</td>
+	  <td>exactly 1</td>
+	</tr><tr>
+	  <td>Concurrency among Application Programs:</td>
+	  <td>not applicable</td>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58067296"></a>Description</h3></div></div></div><p>
 	This is a traditional Distributed Transaction Processing pattern: a
 	single Application Program uses two or more Resource Managers and
 	performs a transaction that change the state of both. Here is a list
@@ -72,47 +35,46 @@
 	  </p></li></ul></div><p>
 	The pattern can be implemented even using the standard TX Transaction
 	Demarcation interface, but XTA is much more object oriented.
-	</p><div class="figure"><a id="xta_pattern01"></a><p class="title"><strong>Figure 8.4. simplified sequence diagram for the <span class="quote">“<span class="quote">Single Application
-	  Program</span>”</span> Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_04.png" alt="simplified sequence diagram for the “Single Application Program” Pattern" /></div></div></div><p><br class="figure-break" />
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58070736"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern01"></a><p class="title"><strong>Figure 8.4. simplified sequence diagram for the <span class="quote">“<span class="quote">Single Application
+	Program</span>”</span> Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_04.png" alt="simplified sequence diagram for the “Single Application Program” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
 	application; it's <span class="emphasis"><em>not</em></span> a formally correct UML
 	sequence diagram (all the XTA objects are in the same lifeline), but
 	it should be clear enough to understand the
 	proper operations sequence:
-	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
-	    The Application Program (AP) creates the native
-	    objects/connections/handles
-	    <a href="#ftn.idp58095760" class="footnote" id="idp58095760"><sup class="footnote">[46]</sup></a>
-	    that are necessary to operate with the Resource Managers
-	    <a href="#ftn.idp58097424" class="footnote" id="idp58097424"><sup class="footnote">[47]</sup></a>
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP creates some XTA objects: a
-	    <code class="function">TransactionManager</code>,
-	    two <code class="function">XaResource</code>
-	    and one <code class="function">Transaction</code>
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP <span class="quote">“<span class="quote">enlists</span>”</span> the XA resources that 
-	    <span class="emphasis"><em>must be controlled by the transaction</em></span>
-	    using <code class="function">EnlistResource()</code> method
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP uses the <code class="function">Open()</code> method
-	    to initialized the <code class="function">XaResource</code> objects
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP uses the <code class="function">Start()</code> method
-	    to start a new XA distributed transaction
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP interacts with the Resource Managers, using the native
-	    objects/connections/handles to operate
-	    (<span class="quote">“<span class="quote">doSomething</span>”</span> method in the diagram)
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP uses the <code class="function">Commit()</code> method to commit the
-	    distributed transaction, or the <code class="function">Rollback()</code>
-	    method to rollback all the changes since
-	    <code class="function">Start()</code>
-	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	    The AP cleans-up the environment
-	  </p></li></ul></div><p>
-      </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	  The Application Program (AP) creates the native
+	  objects/connections/handles
+	  <a href="#ftn.idp58074768" class="footnote" id="idp58074768"><sup class="footnote">[47]</sup></a>
+	  that are necessary to operate with the Resource Managers
+	  <a href="#ftn.idp58076240" class="footnote" id="idp58076240"><sup class="footnote">[48]</sup></a>
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP creates some XTA objects: a
+	  <code class="function">TransactionManager</code>,
+	  two <code class="function">XaResource</code>
+	  and one <code class="function">Transaction</code>
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP <span class="quote">“<span class="quote">enlists</span>”</span> the XA resources that 
+	  <span class="emphasis"><em>must be controlled by the transaction</em></span>
+	  using <code class="function">EnlistResource()</code> method
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP uses the <code class="function">Open()</code> method
+	  to initialized the <code class="function">XaResource</code> objects
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP uses the <code class="function">Start()</code> method
+	  to start a new XA distributed transaction
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP interacts with the Resource Managers, using the native
+	  objects/connections/handles to operate
+	  (<span class="quote">“<span class="quote">doSomething</span>”</span> method in the diagram)
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP uses the <code class="function">Commit()</code> method to commit the
+	  distributed transaction, or the <code class="function">Rollback()</code>
+	  method to rollback all the changes since
+	  <code class="function">Start()</code>
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The AP cleans-up the environment
+	</p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	The methods listed in the above description must be considered
 	<span class="quote">“<span class="quote">pseudo-code</span>”</span>: the real name and signature is language
 	dependent. As an example, 
@@ -120,7 +82,7 @@
 	</p><pre class="screen">tm = xta_transaction_manager_new()</pre><p> and
 	</p><pre class="screen">tx.Commit()</pre><p> translates to
 	</p><pre class="screen">xta_transaction_commit(tx, FALSE)</pre><p> in C.
-      </p></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58087072"></a>Example</h3></div></div></div><p>
 	The supplied example (<code class="filename">example_xta_sa01.c</code>) uses
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span> and MySQL
 	(or MariaDB) in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span>; please
@@ -176,63 +138,139 @@ total 32
 	    in databases or <span class="quote">“<span class="quote">0</span>”</span> if you want to delete rows from
 	    databases
 	  </p></li></ul></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58130048"></a>The
-      <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
-      Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
-	    <td>Architecture:</td>
-	    <td>see <a class="xref" href="ch08.html#xta_arch03" title="Figure 8.3. Multiple applications layout">Figure 8.3, “Multiple applications layout”</a></td>
-	  </tr><tr>
-	    <td>Number of Application Programs:</td>
-	    <td>2 or more</td>
-	  </tr><tr>
-	    <td>Number of Resource Managers:</td>
-	    <td>1 or more for every Application Program</td>
-	  </tr><tr>
-	    <td>Number of Branches in the Gloabal Transaction:</td>
-	    <td>1 for every Application Program</td>
-	  </tr><tr>
-	    <td>Concurrency among Application Programs:</td>
-	    <td>no, strictly consecutive executive</td>
-	  </tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58138432"></a>The
-      <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
-      Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
-	    <td>Architecture:</td>
-	    <td>see <a class="xref" href="ch08.html#xta_arch03" title="Figure 8.3. Multiple applications layout">Figure 8.3, “Multiple applications layout”</a></td>
-	  </tr><tr>
-	    <td>Number of Application Programs:</td>
-	    <td>2 or more</td>
-	  </tr><tr>
-	    <td>Number of Resource Managers:</td>
-	    <td>1 or more for every Application Program</td>
-	  </tr><tr>
-	    <td>Number of Branches in the Gloabal Transaction:</td>
-	    <td>1 for every Application Program</td>
-	  </tr><tr>
-	    <td>Concurrency among Application Programs:</td>
-	    <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	  </tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58146944"></a>The
-      <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>
-      Pattern</h3></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
-	    <td>Architecture:</td>
-	    <td>see <a class="xref" href="ch08.html#xta_arch03" title="Figure 8.3. Multiple applications layout">Figure 8.3, “Multiple applications layout”</a></td>
-	  </tr><tr>
-	    <td>Number of Application Programs:</td>
-	    <td>2 or more</td>
-	  </tr><tr>
-	    <td>Number of Resource Managers:</td>
-	    <td>1 or more for every Application Program</td>
-	  </tr><tr>
-	    <td>Number of Branches in the Gloabal Transaction:</td>
-	    <td>1 for every Application Program</td>
-	  </tr><tr>
-	    <td>Concurrency among Application Programs:</td>
-	    <td>yes, subordinate AP creates a new branch and then executes asynchronously</td>
-	  </tr></tbody></table></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58095760" class="footnote"><p><a href="#idp58095760" class="para"><sup class="para">[46] </sup></a>
-	      Examples: <code class="function">mysql_real_connect</code> for MySQL,
-	      <code class="function">PQconnectDB</code> for PostgreSQL.
-	    </p></div><div id="ftn.idp58097424" class="footnote"><p><a href="#idp58097424" class="para"><sup class="para">[47] </sup></a>
-	      Some Resource Managers, like for example Oracle Database Server,
-	      don't allow to be created as <span class="quote">“<span class="quote">normal</span>”</span> connections
-	      and then transformed in <span class="emphasis"><em>XA connections</em></span>:
-	      they must be directly created by XTA.
-	    </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch08.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 8. Developing Application Programs using XTA (XA Transactional API) interface </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 9. Recovery</td></tr></table></div></body></html>
+      </p><p>
+	Open three terminal sessions: one for example execution,
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - example]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ls -la
+total 40
+drwxrwxr-x  2 tiian tiian  4096 mar 20 23:13 .
+drwxr-xr-x 12 tiian tiian  4096 mar 21 22:17 ..
+-rwxrwxr-x  1 tiian tiian 18603 mar 20 23:13 example_xta_sa01
+-rw-r--r--  1 tiian tiian  8302 mar 20 23:08 example_xta_sa01.c
+	  </pre></td></tr></tbody></table></div><p>
+	one for PostgreSQL queries
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~$ psql testdb
+psql (9.3.22)
+Type "help" for help.
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	and one for MySQL queries
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~$ mysql -h localhost -u lixa lixa
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 5.5.59-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	insert rows in tables and commit:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - example]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_sa01 1 1
+PostgreSQL, executing &gt;INSERT INTO authors VALUES(1921, 'Rigoni Stern', 'Mario')&lt;
+MySQL, executing &gt;INSERT INTO authors VALUES(1919, 'Levi', 'Primo')&lt;
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	check PostgreSQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+testdb=&gt; select * from authors;
+  id  |  last_name   | first_name 
+------+--------------+------------
+ 1921 | Rigoni Stern | Mario
+(1 row)
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	check MySQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+mysql&gt; select * from authors;
++------+-----------+------------+
+| id   | last_name | first_name |
++------+-----------+------------+
+| 1919 | Levi      | Primo      |
++------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	delete rows from tables, but rollback:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - example]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_sa01 0 0
+PostgreSQL, executing &gt;DELETE FROM authors WHERE id=1921&lt;
+MySQL, executing &gt;DELETE FROM authors WHERE id=1919&lt;
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	check PostgreSQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+testdb=&gt; select * from authors;
+  id  |  last_name   | first_name 
+------+--------------+------------
+ 1921 | Rigoni Stern | Mario
+(1 row)
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	check MySQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+mysql&gt; select * from authors;
++------+-----------+------------+
+| id   | last_name | first_name |
++------+-----------+------------+
+| 1919 | Levi      | Primo      |
++------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	delete rows and commit:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - example]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_sa01 1 0
+PostgreSQL, executing &gt;DELETE FROM authors WHERE id=1921&lt;
+MySQL, executing &gt;DELETE FROM authors WHERE id=1919&lt;
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	check PostgreSQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+testdb=&gt; select * from authors;
+ id | last_name | first_name 
+----+-----------+------------
+(0 rows)
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	check MySQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+mysql&gt; select * from authors;
+Empty set (0.00 sec)
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58109248"></a>Source Code</h3></div></div></div><p>
+	Source code for program <code class="filename">example_xta_sa01.c</code> is
+	installed in directory
+	<code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
+	is available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/example_xta_sa01.c" target="_top">GitHub</a>. Source code is fully
+	commented for readability.
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58074768" class="footnote"><p><a href="#idp58074768" class="para"><sup class="para">[47] </sup></a>
+	    Examples: <code class="function">mysql_real_connect</code> for MySQL,
+	    <code class="function">PQconnectDB</code> for PostgreSQL.
+	  </p></div><div id="ftn.idp58076240" class="footnote"><p><a href="#idp58076240" class="para"><sup class="para">[48] </sup></a>
+	    Some Resource Managers, like for example Oracle Database Server,
+	    don't allow to be created as <span class="quote">“<span class="quote">normal</span>”</span> connections
+	    and then transformed in <span class="emphasis"><em>XA connections</em></span>:
+	    they must be directly created by XTA.
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch08.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch08s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The
+    <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
+    Pattern</td></tr></table></div></body></html>
