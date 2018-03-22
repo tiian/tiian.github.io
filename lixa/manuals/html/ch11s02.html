@@ -56,7 +56,7 @@ Application Options:
 	    (or <code class="function">tx_rollback</code>) functions (
 	    <em class="parameter"><code>-p, --medium-processing, -P, --delta-processing</code></em>)
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58628432"></a><span class="command"><strong>lixat</strong></span> benchmark behavior</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58580016"></a><span class="command"><strong>lixat</strong></span> benchmark behavior</h3></div></div></div><p>
 	This is a sketch of <span class="command"><strong>lixat</strong></span> algorithm when
 	<em class="parameter"><code>-o</code></em> or <em class="parameter"><code>--open-close</code></em>
 	option is specified:
@@ -114,7 +114,7 @@ tx_close()
 	</p><pre class="screen">
 for l in 10 20 30 40 50 60 70 80 90 100 ; do /opt/lixa/bin/lixat -b -s -l $l ; done | grep -v '^ ' &gt; /tmp/bench_result.csv
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58653184"></a>Tuning example hardware characteristics</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58604768"></a>Tuning example hardware characteristics</h3></div></div></div><p>
 	This is the output of <code class="filename">/proc/cpuinfo</code> executed
 	in the system hosting <span class="command"><strong>lixad</strong></span> state server:
 	</p><pre class="screen">
@@ -200,7 +200,7 @@ for l in 10 20 30 40 50 60 70 80 90 100 ; do /opt/lixa/bin/lixat -b -s -l $l ; d
 50 packets transmitted, 50 received, 0% packet loss, time 48997ms
 rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58660192"></a>Results obtained with <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58611776"></a>Results obtained with <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  All the tests saturated the CPU of the host executing 
 	  <span class="command"><strong>lixad</strong></span> state server for the higher values of
 	  connected clients.
@@ -275,7 +275,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	10 milliseconds.
       </p><div class="figure"><a id="tuning_05"></a><p class="title"><strong>Figure 11.5. Overall elapsed time when the Application Program 
 	  uses a couple of tx_open()/tx_close() for every 
-	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_05.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58684480"></a>Results obtained without <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_05.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58636064"></a>Results obtained without <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  All the tests saturated the CPU of the host executing 
 	  <span class="command"><strong>lixad</strong></span> state server for the higher values of
 	  connected clients.
@@ -291,7 +291,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      in the range [10,50] clients the scalability is
 	      <span class="quote">“<span class="quote">superlinear</span>”</span>
-	      <a href="#ftn.idp58689728" class="footnote" id="idp58689728"><sup class="footnote">[51]</sup></a>
+	      <a href="#ftn.idp58641312" class="footnote" id="idp58641312"><sup class="footnote">[54]</sup></a>
 	      if you adopt an asynchronous
 	      conifiguration with 
 	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
@@ -329,7 +329,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	(green, light green and blue lines).
       </p><div class="figure"><a id="tuning_10"></a><p class="title"><strong>Figure 11.10. Overall elapsed time when the Application Program 
 	  uses a couple of tx_open()/tx_close() for a 
-	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_10.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58704480"></a>Conclusions</h4></div></div></div><p>
+	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_10.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58656064"></a>Conclusions</h4></div></div></div><p>
 	  The LIXA project gives you some parameters you can change to tune
 	  your installation and get the best performance.
 	  There is not a magic recipe you can adopt, but there are some
@@ -352,7 +352,7 @@ rtt min/avg/max/mdev = 0.133/0.190/0.226/0.024 ms
 	  Write your own test program, with real Resource Managers,
 	  and measure it: with a test environment you would be able to
 	  fine tune your own installation.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58689728" class="footnote"><p><a href="#idp58689728" class="para"><sup class="para">[51] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58641312" class="footnote"><p><a href="#idp58641312" class="para"><sup class="para">[54] </sup></a>
 		  <code class="function">tx_begin(), tx_commit(), tx_close()</code>
 		  response times change very few when the number of clients
 		  rises
