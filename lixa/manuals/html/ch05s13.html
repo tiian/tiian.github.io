@@ -114,7 +114,7 @@ mysql&gt; DESCRIBE authors;
 +------------+---------+------+-----+---------+-------+
 3 rows in set (0.01 sec)
 	</pre></td></tr></tbody></table></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57366528"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57602464"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -150,7 +150,7 @@ tiian@ubuntu:~/tmp$ ldd example11_mys_mys
         libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb7159000)
         libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb7155000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57389808"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57625744"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
@@ -162,7 +162,7 @@ MYS_STA_MYS_STA
 	It is suggested to set the necessary environment variable
 	(<code class="varname">LIXA_PROFILE</code>) in your 
 	profile if you are going to execute the programs many times.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57399936"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57635872"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MYS_STA_MYS_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -186,8 +186,8 @@ MYS_STA_MYS_STA
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp57404448" class="footnote" id="idp57404448"><sup class="footnote">[41]</sup></a>. 
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57400496"></a>Program execution</h3></div></div></div><p>
+	<a href="#ftn.idp57640384" class="footnote" id="idp57640384"><sup class="footnote">[41]</sup></a>. 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57636432"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> local MySQL database,
 	the second one connected to <span class="quote">“<span class="quote">lixa</span>”</span> remote MySQL database
@@ -352,7 +352,7 @@ Query OK, 1 row affected (0.04 sec)
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57404448" class="footnote"><p><a href="#idp57404448" class="para"><sup class="para">[41] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57640384" class="footnote"><p><a href="#idp57640384" class="para"><sup class="para">[41] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.

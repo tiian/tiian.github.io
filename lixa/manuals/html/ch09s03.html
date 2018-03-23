@@ -8,7 +8,7 @@
     </p><p>
       If, for any reason, the LIXA state server (<span class="command"><strong>lixad</strong></span>)
       forgot the state of a transaction
-      <a href="#ftn.idp58203152" class="footnote" id="idp58203152"><sup class="footnote">[52]</sup></a>
+      <a href="#ftn.idp58446432" class="footnote" id="idp58446432"><sup class="footnote">[52]</sup></a>
       or the transaction is in state <span class="quote">“<span class="quote">recovery failed</span>”</span> because
       a previous automatic (warm) recovery failed, you have to manually
       recover the transaction.
@@ -549,7 +549,7 @@ lixa@ubuntu:~$ exit
 logout
 	  </pre></td></tr></tbody></table></div><p>
 	and inspect the content of file <code class="filename">/tmp/bar</code>
-	<a href="#ftn.idp58316848" class="footnote" id="idp58316848"><sup class="footnote">[53]</sup></a>:
+	<a href="#ftn.idp58560128" class="footnote" id="idp58560128"><sup class="footnote">[53]</sup></a>:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Content of file /tmp/bar]</td></tr></thead><tbody><tr><td><pre class="screen">
 ========================================================================
 Second file ('/opt/lixa/var/lixad_status1_2') will be dumped
@@ -730,10 +730,10 @@ Dumping records following used block chain: 1
 tiian@ubuntu:~/tmp$ sudo su - lixa
 lixa@ubuntu:~$ pkill lixad
 lixa@ubuntu:~$ /opt/lixa/sbin/lixad --daemon --clean-failed
-lixa@ubuntu:~$ pkill lixad<a href="#ftn.idp58331040" class="footnote" id="idp58331040"><sup class="footnote">[a]</sup></a>
+lixa@ubuntu:~$ pkill lixad<a href="#ftn.idp58574320" class="footnote" id="idp58574320"><sup class="footnote">[a]</sup></a>
 lixa@ubuntu:~$ exit
 logout
-	  </pre></td></tr></tbody><tbody class="footnotes"><tr><td colspan="50"><div id="ftn.idp58331040" class="footnote"><p><a href="#idp58331040" class="para"><sup class="para">[a] </sup></a>
+	  </pre></td></tr></tbody><tbody class="footnotes"><tr><td colspan="50"><div id="ftn.idp58574320" class="footnote"><p><a href="#idp58574320" class="para"><sup class="para">[a] </sup></a>
 The LIXA state server is stopped after start-up to guarantee the content
 of the state file(s) on the disk are up-to-date before dumping them.
 </p></div></td></tr></tbody></table></div><p>
@@ -830,7 +830,7 @@ logout
 	Resource Managers associated to the current 
 	<code class="varname">LIXA_PROFILE</code>, you must specify the
 	<code class="option">--bypass-bqual-check</code> (<code class="option">-b</code>) option.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58354400"></a>Side effect of <code class="filename">lixac_conf.xml</code> changes</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58597680"></a>Side effect of <code class="filename">lixac_conf.xml</code> changes</h4></div></div></div><p>
 	  This paragraph explains a side effect of the behavior explained
 	  above.
 	</p><p>
@@ -877,7 +877,7 @@ logout
 	</p><p>
 	  In a future release this behavior could be improved if any user
 	  asked for it.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58375296"></a>Recoverying a transaction managed by a different Transaction Manager</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58618576"></a>Recoverying a transaction managed by a different Transaction Manager</h3></div></div></div><p>
 	The LIXA project technology can help you dealing with a different
 	Transaction Manager 
 	(see <a class="xref" href="ch01s03.html" title="Transaction Manager and Transaction Monitor">the section called “Transaction Manager and Transaction Monitor”</a>) 
@@ -909,7 +909,7 @@ logout
 	  Using LIXA software technology will probably put you in an
 	  <span class="emphasis"><em>unsupported</em></span> state regarding to the
 	  third party Transaction Manager supplier.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58385888"></a>Picking up the LIXA format id and branch qualifier</h3></div></div></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58629168"></a>Picking up the LIXA format id and branch qualifier</h3></div></div></div><p>
 	In the previous sections we have dealt with 
 	<span class="quote">“<span class="quote">format id</span>”</span> and <span class="quote">“<span class="quote">branch qualifier</span>”</span>;
 	you could ask 
@@ -963,16 +963,16 @@ tx_close(): 0
 	If you were interested in retrieving them programmatically
 	(from your own C language program) you could use the standard
 	<code class="function">tx_info()</code> function that returns a 
-	<span class="type">TXINFO</span> struct ([<a class="citation" href="bi01.html#idp58666224"><span class="citation">TXspec</span></a>]).
+	<span class="type">TXINFO</span> struct ([<a class="citation" href="bi01.html#idp58909552"><span class="citation">TXspec</span></a>]).
 	Please pay attention the
 	<span class="type">XID</span> struct contains <span class="emphasis"><em>binary data</em></span>
 	(it does not contain ASCII data).
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58203152" class="footnote"><p><a href="#idp58203152" class="para"><sup class="para">[52] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58446432" class="footnote"><p><a href="#idp58446432" class="para"><sup class="para">[52] </sup></a>
 	  This should never happen: it could be a bug in LIXA project
 	  software or it might be the consequence of a 
 	  <span class="quote">“<span class="quote">cold start</span>”</span> (you removed the state files) of
 	  <span class="command"><strong>lixad</strong></span>
-      </p></div><div id="ftn.idp58316848" class="footnote"><p><a href="#idp58316848" class="para"><sup class="para">[53] </sup></a>
+      </p></div><div id="ftn.idp58560128" class="footnote"><p><a href="#idp58560128" class="para"><sup class="para">[53] </sup></a>
 	    The state server can be analyzed without stopping it
 	    (<span class="command"><strong>pkill lixad</strong></span>), but it may happen you will
 	    not see the current content because the state server 

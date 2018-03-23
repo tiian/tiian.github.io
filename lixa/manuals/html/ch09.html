@@ -14,7 +14,16 @@
 	  it is invoked by <span class="command"><strong>lixar</strong></span> utility
 	  to solve the transactions that cannot be automatically recovered
       </p></li></ul></div><p>	
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58117168"></a>Automatic (warm) recovery</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58117600"></a>Scenario 1: autonoumos rollback</h3></div></div></div><p>
+  </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+      <span class="command"><strong>lixar</strong></span> utility was designed to operate with statically
+      defined XA Resource Managers described in
+      <code class="filename">lixac_conf.xml</code> configuration file.
+      XTA, explained in
+      <a class="xref" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface">Chapter 8, <em>Developing Application Programs using XTA (XA Transaction API) interface</em></a>,
+      introduces dynamically defined XA Resource Managers that can't be managed
+      by <span class="command"><strong>lixar</strong></span> utility if they are not defined in
+      <code class="filename">lixac_conf.xml</code> too
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58357552"></a>Automatic (warm) recovery</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58360816"></a>Scenario 1: autonoumos rollback</h3></div></div></div><p>
 	If your environment is configured and runs as designed, when an
 	Application Program fails an automatic recovery operation fix the
 	problem as soon as possible. Below there is a first trivial
@@ -31,7 +40,7 @@
 	scenario. The LIXA Transaction Manager does <span class="emphasis"><em>not</em></span>
 	manage a recovery phase.
 	</p><div class="figure"><a id="recover1"></a><p class="title"><strong>Figure 9.1. The Application Program crashes before <code class="function">xa_prepare()</code></strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Recovery_01.png" alt="The Application Program crashes before xa_prepare()" /></div></div></div><p><br class="figure-break" />
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58124368"></a>Scenario 2: a second Application Program triggers the recovery action</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58367648"></a>Scenario 2: a second Application Program triggers the recovery action</h3></div></div></div><p>
 	The following scenario is slightly different:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>the Application Program crashes after it has passed the
 	      <code class="function">xa_prepare()</code> function but before it

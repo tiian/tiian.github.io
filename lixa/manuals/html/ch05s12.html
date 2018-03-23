@@ -61,7 +61,7 @@
 	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57283296"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57519232"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -119,7 +119,7 @@ tiian@ubuntu:~/tmp$ ldd example10_mys_pql_ora
         libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb6d40000)
         libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb6d3c000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57283808"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57519744"></a>Set-up LIXA environment</h3></div></div></div><p>
 	There are five unresolved references that can be fixed setting up
 	the environment properly:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -188,7 +188,7 @@ MYS_STA_PQL_STA_ORA_DYN
 	<code class="varname">ORACLE_HOME</code>,
 	<code class="varname">ORACLE_SID</code>,
 	<code class="varname">PATH</code>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57292640"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57528576"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MYS_STA_PQL_STA_ORA_DYN</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -215,16 +215,16 @@ MYS_STA_PQL_STA_ORA_DYN
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp57309184" class="footnote" id="idp57309184"><sup class="footnote">[38]</sup></a>
-	<a href="#ftn.idp57310912" class="footnote" id="idp57310912"><sup class="footnote">[39]</sup></a>
-	<a href="#ftn.idp57313312" class="footnote" id="idp57313312"><sup class="footnote">[40]</sup></a>. 
+	<a href="#ftn.idp57545120" class="footnote" id="idp57545120"><sup class="footnote">[38]</sup></a>
+	<a href="#ftn.idp57546848" class="footnote" id="idp57546848"><sup class="footnote">[39]</sup></a>
+	<a href="#ftn.idp57549248" class="footnote" id="idp57549248"><sup class="footnote">[40]</sup></a>. 
       </p><p>
 	Verify no (Oracle) trace file exists:
 	</p><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
 ls: cannot access /tmp/xa*: No such file or directory
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57315104"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57551040"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
 	It is suggested to open four different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> MySQL database,
 	the second one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database,
@@ -397,19 +397,19 @@ no rows selected
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa_NULL11112011.trc
 -rw-r--r-- 1 tiian tiian 22112 2011-11-11 21:47 /tmp/xa_NULL11112011.trc
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57309184" class="footnote"><p><a href="#idp57309184" class="para"><sup class="para">[38] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57545120" class="footnote"><p><a href="#idp57545120" class="para"><sup class="para">[38] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
-	  </p></div><div id="ftn.idp57310912" class="footnote"><p><a href="#idp57310912" class="para"><sup class="para">[39] </sup></a>
+	  </p></div><div id="ftn.idp57546848" class="footnote"><p><a href="#idp57546848" class="para"><sup class="para">[39] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp58670992"><span class="citation">XAspec</span></a>].
-	  </p></div><div id="ftn.idp57313312" class="footnote"><p><a href="#idp57313312" class="para"><sup class="para">[40] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp58914320"><span class="citation">XAspec</span></a>].
+	  </p></div><div id="ftn.idp57549248" class="footnote"><p><a href="#idp57549248" class="para"><sup class="para">[40] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"
