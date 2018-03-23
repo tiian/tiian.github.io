@@ -1,7 +1,6 @@
 var xta__xid_8h =
 [
     [ "xta_xid_t", "structxta__xid__t.html", "structxta__xid__t" ],
-    [ "LIXA_TRACE_MODULE", "xta__xid_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9", null ],
     [ "xta_xid_branch_qualifier_is_multibranch", "xta__xid_8h.html#ad23aedb67d70b43987d3cd9a2a29404a", null ],
     [ "xta_xid_branch_qualifier_set_multibranch", "xta__xid_8h.html#a2452b4974825a9c2fd23333199b8d2fa", null ],
     [ "xta_xid_branch_qualifier_unset_multibranch", "xta__xid_8h.html#adb4eadef1a63a368082149d03f1c3706", null ],

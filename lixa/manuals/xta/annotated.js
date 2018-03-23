@@ -1,13 +1,7 @@
 var annotated =
 [
-    [ "act_rsrmgr_config_s", "structact__rsrmgr__config__s.html", "structact__rsrmgr__config__s" ],
-    [ "actual_config_s", "structactual__config__s.html", "structactual__config__s" ],
-    [ "client_config_coll_s", "structclient__config__coll__s.html", "structclient__config__coll__s" ],
     [ "lixa_iface_s", "structlixa__iface__s.html", "structlixa__iface__s" ],
     [ "lixa_job_u", "unionlixa__job__u.html", "unionlixa__job__u" ],
-    [ "profile_config_s", "structprofile__config__s.html", "structprofile__config__s" ],
-    [ "rsrmgr_config_s", "structrsrmgr__config__s.html", "structrsrmgr__config__s" ],
-    [ "sttsrv_config_s", "structsttsrv__config__s.html", "structsttsrv__config__s" ],
     [ "xa_switch_t", "structxa__switch__t.html", "structxa__switch__t" ],
     [ "xid_t", "structxid__t.html", "structxid__t" ],
     [ "xta_acquired_xa_resource_t", "structxta__acquired__xa__resource__t.html", "structxta__acquired__xa__resource__t" ],

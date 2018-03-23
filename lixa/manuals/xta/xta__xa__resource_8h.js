@@ -1,7 +1,6 @@
 var xta__xa__resource_8h =
 [
     [ "xta_xa_resource_s", "structxta__xa__resource__s.html", "structxta__xa__resource__s" ],
-    [ "LIXA_TRACE_MODULE", "xta__xa__resource_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9", null ],
     [ "xta_transaction_t", "xta__xa__resource_8h.html#a87c87064c795665eea48ca8e873db100", null ],
     [ "xta_xa_resource_config_t", "xta__xa__resource_8h.html#a16635f94e4c6ebfe6673090ac6806dd8", null ],
     [ "xta_xa_resource_t", "xta__xa__resource_8h.html#a9d045f9305c64b2c35541332d3b7b1a1", null ],

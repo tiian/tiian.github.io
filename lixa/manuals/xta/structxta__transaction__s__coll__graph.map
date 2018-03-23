@@ -1,8 +1,0 @@
-<map id="xta_transaction_s" name="xta_transaction_s">
-<area shape="rect" id="node2" href="$structxta__xid__t.html" title="xta_xid_t" alt="" coords="5,187,79,213"/>
-<area shape="rect" id="node3" href="$structxid__t.html" title="xid_t" alt="" coords="17,96,68,123"/>
-<area shape="rect" id="node4" href="$structclient__config__coll__s.html" title="client_config_coll_s" alt="" coords="104,187,239,213"/>
-<area shape="rect" id="node5" href="$unionlixa__job__u.html" title="lixa_job_u" alt="" coords="112,96,191,123"/>
-<area shape="rect" id="node6" href="$structactual__config__s.html" title="actual_config_s" alt="" coords="217,96,329,123"/>
-<area shape="rect" id="node7" href="$structsttsrv__config__s.html" title="sttsrv_config_s" alt="" coords="218,5,328,32"/>
-</map>

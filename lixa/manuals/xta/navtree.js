@@ -25,8 +25,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"pages.html",
-"xta__native__xa__resource_8c.html#ab5a4957f1474393aff09d71e769bad03"
+"structxta__iface__s.html#a78c60b35c791cf96a20e88ba195823ae",
+"xta__transaction__manager_8c.html#a8c0cab64535b49fc2f0845312f894870"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

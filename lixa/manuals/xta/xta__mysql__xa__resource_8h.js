@@ -1,7 +1,6 @@
 var xta__mysql__xa__resource_8h =
 [
     [ "xta_mysql_xa_resource_t", "structxta__mysql__xa__resource__t.html", "structxta__mysql__xa__resource__t" ],
-    [ "LIXA_TRACE_MODULE", "xta__mysql__xa__resource_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9", null ],
     [ "xta_mysql_xa_close", "xta__mysql__xa__resource_8h.html#aea698eae6136b1abc1efc883ac895735", null ],
     [ "xta_mysql_xa_commit", "xta__mysql__xa__resource_8h.html#ae7717f0fc4a63eb0eaaa9a7c74f9cc5d", null ],
     [ "xta_mysql_xa_end", "xta__mysql__xa__resource_8h.html#ad2dda4c2a4843692f5f06bc0c944fa2b", null ],

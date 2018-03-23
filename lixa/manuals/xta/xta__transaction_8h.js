@@ -1,8 +1,8 @@
 var xta__transaction_8h =
 [
     [ "xta_transaction_s", "structxta__transaction__s.html", "structxta__transaction__s" ],
-    [ "LIXA_TRACE_MODULE", "xta__transaction_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9", null ],
-    [ "xta_transaction_config_t", "xta__transaction_8h.html#a2f271aa83bf1100d66bff4dc0089e4e1", null ],
+    [ "xta_transaction_client_status_t", "xta__transaction_8h.html#ae641cadd94729c66f2db04b475599358", null ],
+    [ "xta_transaction_config_t", "xta__transaction_8h.html#aae4cc3ae4d77c7d835ce44b45ae1e733", null ],
     [ "xta_transaction_t", "xta__transaction_8h.html#a25c9bd62309a30c5daaad30cef048d49", null ],
     [ "xta_xa_resource_t", "xta__transaction_8h.html#ab96eea5a616bd00dd3d28866c80758db", null ],
     [ "xta_transaction_branch", "xta__transaction_8h.html#a974db38c0d745a7342d741bdad64fe44", null ],

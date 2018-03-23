@@ -1,6 +1,5 @@
 var files =
 [
-    [ "client_config.h", "client__config_8h.html", "client__config_8h" ],
     [ "lixa_config.h", "lixa__config_8h.html", "lixa__config_8h" ],
     [ "lixa_errors.h", "lixa__errors_8h.html", "lixa__errors_8h" ],
     [ "lixa_iface.h", "lixa__iface_8h.html", "lixa__iface_8h" ],
@@ -8,8 +7,6 @@ var files =
     [ "xta.h", "xta_8h.html", "xta_8h" ],
     [ "xta_acquired_xa_resource.c", "xta__acquired__xa__resource_8c.html", "xta__acquired__xa__resource_8c" ],
     [ "xta_acquired_xa_resource.h", "xta__acquired__xa__resource_8h.html", "xta__acquired__xa__resource_8h" ],
-    [ "xta_errors.c", "xta__errors_8c.html", "xta__errors_8c" ],
-    [ "xta_errors.h", "xta__errors_8h.html", "xta__errors_8h" ],
     [ "xta_iface.h", "xta__iface_8h.html", "xta__iface_8h" ],
     [ "xta_init.c", "xta__init_8c.html", "xta__init_8c" ],
     [ "xta_init.h", "xta__init_8h.html", "xta__init_8h" ],
