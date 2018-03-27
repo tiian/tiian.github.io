@@ -1,160 +1,577 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PostgreSQL Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apa.html" title="Appendix A. Resource Managers Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PostgreSQL Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> </td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_PostgreSQL"></a>PostgreSQL Configuration</h2></div></div></div><p>
-      The following diagram represents a simplified vision of the components
-      necessary to run an example program (<code class="filename">example5_mys</code>
-      in the picture) that uses PostgreSQL as an XA Resource Manager.
-    </p><div class="figure"><a id="develop5"></a><p class="title"><strong>Figure A.2. Deploy model of an example with PostgreSQL DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_5.png" alt="Deploy model of an example with PostgreSQL DBMS" /></div></div></div><br class="figure-break" /><p>
-      This section has been developed using PostgreSQL 9.1.24 (and upper)
-      for Linux. Here is a brief list of the tested versions for Ubuntu 12.04,
-      14.04, 16.04 and CentOS/RHEL 7.3 and the installed packages:
-      </p><pre class="screen">
-tiian@ubuntu1204-64:/tmp$ dpkg -l | grep -i -e pq -e postgresql
-ii  libpq-dev                        9.1.24-0ubuntu0.12.04               header files for libpq5 (PostgreSQL library)
-ii  libpq5                           9.1.24-0ubuntu0.12.04               PostgreSQL C client library
-ii  postgresql                       9.1+129ubuntu1                      object-relational SQL database (supported version)
-ii  postgresql-9.1                   9.1.24-0ubuntu0.12.04               object-relational SQL database, version 9.1 server
-ii  postgresql-client-9.1            9.1.24-0ubuntu0.12.04               front-end programs for PostgreSQL 9.1
-ii  postgresql-client-common         129ubuntu1                          manager for multiple PostgreSQL client versions
-ii  postgresql-common                129ubuntu1                          PostgreSQL database-cluster manager
-
-tiian@ubuntu1404-64:/tmp$ dpkg -l | grep -i -e pq -e postgresql
-ii  libpq-dev                           9.3.16-0ubuntu0.14.04               amd64        header files for libpq5 (PostgreSQL library)
-ii  libpq5                              9.3.16-0ubuntu0.14.04               amd64        PostgreSQL C client library
-ii  postgresql                          9.3+154ubuntu1                      all          object-relational SQL database (supported version)
-ii  postgresql-9.3                      9.3.16-0ubuntu0.14.04               amd64        object-relational SQL database, version 9.3 server
-ii  postgresql-client-9.3               9.3.16-0ubuntu0.14.04               amd64        front-end programs for PostgreSQL 9.3
-ii  postgresql-client-common            154ubuntu1                          all          manager for multiple PostgreSQL client versions
-ii  postgresql-common                   154ubuntu1                          all          PostgreSQL database-cluster manager
-
-tiian@ubuntu1604:~$ dpkg -l | grep -i -e pq -e postgresql
-ii  libpq-dev                          9.5.6-0ubuntu0.16.04                amd64        header files for libpq5 (PostgreSQL library)
-ii  libpq5:amd64                       9.5.6-0ubuntu0.16.04                amd64        PostgreSQL C client library
-ii  postgresql                         9.5+173                             all          object-relational SQL database (supported version)
-ii  postgresql-9.5                     9.5.6-0ubuntu0.16.04                amd64        object-relational SQL database, version 9.5 server
-ii  postgresql-client-9.5              9.5.6-0ubuntu0.16.04                amd64        front-end programs for PostgreSQL 9.5
-ii  postgresql-client-common           173                                 all          manager for multiple PostgreSQL client versions
-ii  postgresql-common                  173                                 all          PostgreSQL database-cluster manager
-ii  postgresql-contrib-9.5             9.5.6-0ubuntu0.16.04                amd64        additional facilities for PostgreSQL
-
-[tiian@centos71-64 tmp]$ rpm -qa | grep -i -e pq -e postgresql
-postgresql-libs-9.2.18-1.el7.x86_64
-postgresql-devel-9.2.18-1.el7.x86_64
-postgresql-9.2.18-1.el7.x86_64
-postgresql-server-9.2.18-1.el7.x86_64
-
-[tiian@rhel73 tmp]$ rpm -qa | grep -i -e pq -e postgresql
-postgresql-devel-9.2.18-1.el7.x86_64
-postgresql-9.2.18-1.el7.x86_64
-postgresql-server-9.2.18-1.el7.x86_64
-postgresql-libs-9.2.18-1.el7.x86_64
-      </pre><p>
-      If you were using a different version you would need to adapt some
-      commands to your environment.
-    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-	If you did not yet installed the software, please refer to the 
-	official site for your Linux distribution or to the official site
-	of PostgreSQL if your operating system does not distribute the
-	software or you want to use a different PostgreSQL version.
-	This manual does not give you information related
-	to PostgreSQL: it is assumed that you have already installed and
-	configured the database.
-    </p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-	This example requires you are running the database and the application
-	on the same host: this is not a technical limitation, but a way to
-	make it easy. Client/server configuration must work as well, but
-	it needs some PostgreSQL extra configuration: please refer to the
-	database documentation.
-    </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
-	The LIXA software must be configured to support the PostgreSQL
-	server resource manager as explained in 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Oracle DMBS Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="next" href="apas03.html" title="PostgreSQL Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Oracle DMBS Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> <a accesskey="n" href="apas03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_Oracle"></a>Oracle DMBS Configuration</h2></div></div></div><p>
+      The following picture shows the overall architecture from the logical
+      point of view.
+      </p><div class="figure"><a id="develop2"></a><p class="title"><strong>Figure A.2. Deploy model of an example with Oracle Database Server</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_App_RM_2.png" alt="Deploy model of an example with Oracle Database Server" /></div></div></div><p><br class="figure-break" />
+    </p><p>
+      The configurations explained in this section was developed using
+      different software versions: 
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	  Oracle Database 10g Release 2 and 11g Release 2 Express Edition 
+	  using a <span class="emphasis"><em>local</em></span> connection
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  Oracle Database 12c Release 1 (12.1) Standard Edition using a
+	  <span class="emphasis"><em>remote (SqlNet)</em></span> connection
+	</p></li></ul></div><p>
+      If you use a different configuration, you will need to fix some of the
+      details shown by these examples.
+      </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	If you have not yet installed the software provided by Oracle,
+	please refer to the official Oracle site to download the
+	software and to pick-up the information necessary to install 
+	and configure
+	the database. This manual does not give you information related
+	to Oracle technology: it is assumed that you have already installed 
+	and configured the database.
+      </p></div><p>
+      </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	The LIXA software must be configured, compiled and installed to
+	support the Oracle Database Server resource manager as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58960880"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
-	  If your server didn't start-up automatically at boot time, you
-	  could start it with the following commands:
-	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:~$ sudo service postgresql status
-Running clusters: 
-tiian@ubuntu1204-64:~$ ps -ef|grep postgres|grep -v grep
-tiian@ubuntu1204-64:~$ sudo service postgresql start
- * Starting PostgreSQL 9.1 database server                               [ OK ]
-tiian@ubuntu1204-64:~$ sudo service postgresql status
-Running clusters: 9.1/main 
-tiian@ubuntu1204-64:~$ ps -ef|grep postgres|grep -v grep
-postgres  1829     1  1 23:00 ?        00:00:00 /usr/lib/postgresql/9.1/bin/postgres -D /var/lib/postgresql/9.1/main -c config_file=/etc/postgresql/9.1/main/postgresql.conf
-postgres  1831  1829  0 23:00 ?        00:00:00 postgres: writer process
-postgres  1832  1829  0 23:00 ?        00:00:00 postgres: wal writer process
-postgres  1833  1829  0 23:00 ?        00:00:00 postgres: autovacuum launcher process
-postgres  1834  1829  0 23:00 ?        00:00:00 postgres: stats collector process
-	    </pre></td></tr></tbody></table></div><p>
-	  Switch to user <code class="systemitem">postgres</code>,
-	  associate your user to a matching database user
-	  <a href="#ftn.idp58965504" class="footnote" id="idp58965504"><sup class="footnote">[56]</sup></a>
-	  ; my personal account is 
-	  <code class="systemitem">tiian</code>
-	  and I created the same user inside PostgreSQL database:
-	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:~$ sudo su - postgres
-[sudo] password for tiian:
-postgres@ubuntu1204-64:~$ createuser --createdb tiian
-Shall the new role be a superuser? (y/n) n
-Shall the new role be allowed to create more new roles? (y/n) n
-postgres@ubuntu1204-64:~$ exit
-logout
-	    </pre></td></tr></tbody></table></div><p>
-	  Create a new database and a table necessary to store some data:
-	  </p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:~$ createdb testdb
-tiian@ubuntu1204-64:~$ psql testdb
-psql (9.1.24)
-Type "help" for help.
-
-testdb=&gt;
-testdb=&gt; CREATE TABLE "authors" (
-testdb(&gt; "id" integer NOT NULL,
-testdb(&gt; "last_name" text,
-testdb(&gt; "first_name" text,
-testdb(&gt; Constraint "authors_pkey" Primary Key ("id"));
-NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "authors_pkey" for table "authors"
-CREATE TABLE
-
-testdb=&gt; select * from authors;
- id | last_name | first_name
-----+-----------+------------
-(0 rows)
-	    </pre></td></tr></tbody></table></div><p>
-	  OK, the <span class="quote">“<span class="quote">authors</span>”</span> table was created. 
-	  If something went wrong, you should refer to PostgreSQL
-	  documentation to fix the issue before the next step because
-	  you would not be able to execute the sample program without a
-	  basic running installation.
-	</p><p>
-	  Change the 
-	  <code class="systemitem">max_prepared_transactions</code>
-	  parameter in file
-	  <code class="filename">postgresql.conf</code>
-	  to allow the desired number of prepared transactions (i.e. 10):
+      </p></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_Config_Oracle_Local"></a>Local configuration (Server) and OCI</h3></div></div></div><p>
+	The following example is based on Oracle XE 10.2 and 11.2, but
+	there shouldn't be too much differences with other Oracle
+	versions.
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55983392"></a>Start-up the Oracle server</h4></div></div></div><p>
+	  If the database server was not running, you can start it
+	  with these commands
 	  </p><pre class="screen">
-shared_buffers = 24MB                   # min 128kB
-                                        # (change requires restart)
-#temp_buffers = 8MB                     # min 800kB
-max_prepared_transactions = 10          # zero disables the feature
-#max_prepared_transactions = 0          # zero disables the feature
-                                        # (change requires restart)
-# Note:  Increasing max_prepared_transactions costs ~600 bytes of shared memory
-# per transaction slot, plus lock space (see max_locks_per_transaction).
-# It is not advisable to set max_prepared_transactions nonzero unless you
-# actively intend to use prepared transactions.
-#work_mem = 1MB                         # min 64kB
-#maintenance_work_mem = 16MB            # min 1MB
-#max_stack_depth = 2MB                  # min 100kB
+tiian@ubuntu:~/tmp$ sudo /etc/init.d/oracle-xe enable
+tiian@ubuntu:~/tmp$ sudo /etc/init.d/oracle-xe start
+Starting Oracle Net Listener.
+Starting Oracle Database 10g Express Edition Instance.
 	  </pre><p>
-	  and restart the PostgreSQL server with something like
-	  </p><pre class="screen">service postgresql restart</pre><p> (Ubuntu, CentOS and RHEL) using
-	  <code class="systemitem">root</code> user.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58965504" class="footnote"><p><a href="#idp58965504" class="para"><sup class="para">[56] </sup></a>
-	      If you wanted to use a database user different than your own
-	      UNIX user, as it ever happens when the database is hosted on
-	      a different system, you should configure
-	      <code class="filename">pg_hba.conf</code> as well. Look at the PostgreSQL
-	      documentation to pick up all the necessary details.
-	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="apa.html">Up</a></td><td width="40%" align="right"> </td></tr><tr><td width="40%" align="left" valign="top">Appendix A. Resource Managers Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>
+	  on some systems, like Ubuntu 10.04, you use somethig like
+	  this:
+	  </p><pre class="screen">
+tiian@ubuntu:~/tmp$ sudo service oracle-xe enable
+tiian@ubuntu:~/tmp$ sudo service oracle-xe start
+Starting Oracle Net Listener.
+Starting Oracle Database 11g Express Edition Instance.
+	  </pre><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55985360"></a>Create the XA related views</h4></div></div></div><p>
+	  First of all you must be able to connect as <span class="quote">“<span class="quote">SYSDBA</span>”</span>
+	  from a terminal session; the commands below show what happens when
+	  I connect to the Oracle server using the user 
+	  <code class="systemitem">sys</code> with password
+	  <span class="quote">“<span class="quote">oracle</span>”</span>
+	  <a href="#ftn.idp55988208" class="footnote" id="idp55988208"><sup class="footnote">[53]</sup></a>
+	  <a href="#ftn.idp55991280" class="footnote" id="idp55991280"><sup class="footnote">[54]</sup></a>:
+	  </p><pre class="screen">
+tiian@ubuntu:~$ sudo su - oracle
+oracle@ubuntu:~$ echo $ORACLE_HOME
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
+oracle@ubuntu:~$ sqlplus "sys/oracle as sysdba"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 7 22:23:56 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; exit
+Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	  You must check the file <code class="filename">xaview.sql</code>:
+	  </p><pre class="screen">
+oracle@ubuntu:~$ ls -la $ORACLE_HOME/rdbms/admin/xaview.sql
+-rw-r--r-- 1 oracle dba 1754 2006-02-24 06:18 /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/rdbms/admin/xaview.sql
+	  </pre><p>
+	  It contains the SQL instructions necessary to create two specific
+	  system views that could be not defined in your database; the
+	  following commands are related to a database that contains
+	  the desired views:
+	  </p><pre class="screen">
+oracle@ubuntu:~$ sqlplus "sys/oracle as sysdba"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 7 22:32:45 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; select * from v$pending_xatrans$;
+
+no rows selected
+
+SQL&gt; select * from v$xatrans$;
+
+no rows selected
+
+SQL&gt; exit
+Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	  If the command failed the views would be not defined and you
+	  would get something like this:
+	  </p><pre class="screen">
+oracle@ubuntu:~$ sqlplus "sys/oracle as sysdba"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Apr 29 22:20:01 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; select * from v$pending_xatrans$;
+select * from v$pending_xatrans$
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL&gt; select * from v$xatrans$;
+select * from v$xatrans$
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL&gt; exit
+Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	  you can create them with a command like this:
+	  </p><pre class="screen">
+oracle@ubuntu:~$ cat $ORACLE_HOME/rdbms/admin/xaview.sql | sqlplus "sys/oracle as sysdba"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Apr 29 22:25:48 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; SQL&gt; DROP VIEW v$xatrans$
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL&gt; DROP VIEW v$pending_xatrans$
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL&gt; SQL&gt; SQL&gt;   2    3    4    5    6    7    8
+View created.
+
+SQL&gt; SQL&gt; SQL&gt; SQL&gt;   2    3    4    5    6    7    8    9   10   11
+View created.
+
+SQL&gt; SQL&gt; SQL&gt; Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55985920"></a>Authorize the XA related views</h4></div></div></div><p>
+	  The example programs supplied by the LIXA project are designed
+	  to use the 
+	  <code class="systemitem">hr</code> user; you 
+	  <span class="emphasis"><em>must</em></span> grant
+	  the necessary privileges to all the users you want to use for
+	  your Application Programs. The below commands show how to grant
+	  the necessary privileges to
+	  <code class="systemitem">hr</code>:
+	  </p><pre class="screen">
+oracle@ubuntu:~$ sqlplus "sys/oracle as sysdba"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 7 22:44:44 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; grant select on dba_pending_transactions to hr;
+
+Grant succeeded.
+
+SQL&gt; grant select on v$pending_xatrans$ to hr;
+
+Grant succeeded.
+
+SQL&gt; grant select on v$xatrans$ to hr;
+
+Grant succeeded.
+
+SQL&gt; exit
+Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  If the user
+	  <code class="systemitem">hr</code> did not exist and
+	  the above commands failed,
+	  you should read Oracle documentation and pick-up the necessary
+	  information to create it.
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56005104"></a>Unlock <span class="quote">“<span class="quote"><code class="systemitem">hr</code></span>”</span> Oracle user</h4></div></div></div><p>
+	  The example programs supplied by the LIXA project are designed
+	  to use the 
+	  <code class="systemitem">hr</code> user; it might be 
+	  <span class="emphasis"><em>locked</em></span> after Oracle software installation.
+	  The below commands show how to unlock it:
+	  </p><pre class="screen">
+oracle@ubuntu:~$ sqlplus "sys/oracle as sysdba"
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 7 22:44:44 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; ALTER USER hr ACCOUNT UNLOCK;
+
+User altered.
+
+SQL&gt; ALTER USER hr IDENTIFIED BY hr;
+
+User altered.
+
+SQL&gt; exit
+Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	  You may perform the same operation using the graphical (web 
+	  based) interface.
+	  </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    Newer Oracle database versions set a default password limit: 
+	    after such a limit, Oracle will start to issue
+	    <span class="command"><strong>ORA-28002</strong></span> messages and XA functions will
+	    return with an error like below:
+	    </p><pre class="screen">
+215229.2063.1888967424.1:
+ORA-28002: the password will expire within 6 days
+
+215229.2063.1888967424.1:
+xaolgn: XAER_RMERR; logon failed. ORA-28002.
+
+215229.2063.1888967424.1:
+xaoopen: return -3
+	    </pre><p>
+	    To avoid this potential error, configure your users in the
+	    right way.
+	  </p></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="App_RM_Config_Oracle_data_table"></a>Check the data table before execution</h4></div></div></div><p>
+	  Execute the below commands to check the existence of table
+	  <code class="filename">countries</code> and to create a new table with
+	  name <code class="filename">authors</code>:
+	  </p><pre class="screen">
+tiian@ubuntu:~$ sqlplus "hr/hr"<a href="#ftn.idp56013024" class="footnote" id="idp56013024"><sup class="footnote">[55]</sup></a>
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 14 22:04:55 2011
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+
+SQL&gt; CREATE TABLE hr.authors (
+  2  id INTEGER NOT NULL,
+  3  last_name VARCHAR2(20),
+  4  first_name VARCHAR2(20));
+
+Table created.
+
+SQL&gt; exit
+Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+	  </pre><p>
+	  That's OK because the table does not contain the row we 
+	  are going to insert.
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_Config_Oracle_Remote"></a>Remote configuration (Instant Client) and OCI</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	This example has been tested using Ubuntu Server LTS 14.04
+	and Oracle Instant Client 12.1
+      </p></div><p>
+	Using a remote configuration instead of a local configuration
+	introduces two differences:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    the Oracle Database Server must be configured to be accessible
+	    from another system: a <span class="emphasis"><em>listener</em></span> must be
+	    configured
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    the Oracle Instant Client software must be installed and 
+	    configured in the system that will connect to the database
+	  </p></li></ul></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56018688"></a>Set-up the Oracle environment (server side)</h4></div></div></div><p>
+	  The first part of the Oracle Database Server is pretty the same
+	  described in 
+	  <a class="xref" href="apas02.html#App_RM_Config_Oracle_Local" title="Local configuration (Server) and OCI">the section called “Local configuration (Server) and OCI”</a>.
+	  All the statements remain valid for Oracle 12c Standard 
+	  Edition with the exception of the paths. Here's a default path 
+	  installation example:
+	  </p><pre class="screen">
+[oracle@centos7-oracle12 ~]$ ls -la $ORACLE_HOME/rdbms/admin/xaview.sql
+-rw-r--r--. 1 oracle oinstall 1941 Apr 21  2011 /u01/app/oracle/product/12.1.0/dbhome_1/rdbms/admin/xaview.sql
+	  </pre><p>	    
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="App_RM_configure_Oracle_listener"></a>Configure Oracle Listener</h4></div></div></div><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+	  Many recent Linux distributions, CentOS 7.x for example, 
+	  automatically enable an internal firewall to prevent undesired 
+	  accesses. If your firewall configuration does not allow Oracle 
+	  traffic, you have no way to reach your database instance from 
+	  a different system.
+	</p></div><p>
+	  Here's a very basic example that accepts incoming connection from
+	  any network interface (IP address 0.0.0.0):
+	  </p><pre class="screen">
+[oracle@centos7-oracle12 ~]$ cat $ORACLE_HOME/network/admin/listener.ora
+
+LISTENER =
+  (DESCRIPTION_LIST =
+    (DESCRIPTION =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 0.0.0.0)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+    )
+  )
+	  </pre><p>
+	  You can check that the listener is accepting connection with this
+	  command:
+	  </p><pre class="screen">
+[oracle@centos7-oracle12 ~]$ netstat -unta | grep 1521 | grep LISTEN
+tcp        0      0 0.0.0.0:1521            0.0.0.0:*               LISTEN     
+	  </pre><p>
+	  and you can check a connection from a different system with 
+	  something	like this (adjust your IP address, port and Global 
+	  Database Name):
+	  </p><pre class="screen">
+tiian@ubuntu1404-64:~$ sqlplus hr/hr@192.168.122.81:1521/orcl.brenta.org
+
+SQL*Plus: Release 12.1.0.2.0 Production on Fri Jan 13 21:50:46 2017
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Jan 13 2017 21:36:05 +01:00
+
+Connected to:
+Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+
+SQL&gt; exit
+Disconnected from Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+	  </pre><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="App_RM_install_Oracle_Instant_Client"></a>Install and configure Oracle Instant Client</h4></div></div></div><p>
+	  Oracle Instant Client must be retrieved from Oracle portal. 
+	  These are the suggested packages for version 12.1 if you want 
+	  to use LIXA:
+	  </p><pre class="screen">
+instantclient-basic-linux.x64-12.1.0.2.0.zip
+instantclient-precomp-linux.x64-12.1.0.2.0.zip
+instantclient-sdk-linux.x64-12.1.0.2.0.zip
+instantclient-sqlplus-linux.x64-12.1.0.2.0.zip
+	  </pre><p>
+	  For the Linux operating system you can choose between ".rpm" 
+	  packages and ".zip" archives: feel free to install the packages 
+	  that you prefer.
+	  Just as an example, here's the final layout of a tested 
+	  configuration using <code class="filename">/opt/oracle</code> as a prefix
+	  </p><pre class="screen">
+tiian@ubuntu1404-64:~/lixa$ find /opt/oracle/ | sort
+/opt/oracle/
+/opt/oracle/instantclient_12_1
+/opt/oracle/instantclient_12_1/adrci
+/opt/oracle/instantclient_12_1/BASIC_README
+/opt/oracle/instantclient_12_1/cobsqlintf.o
+/opt/oracle/instantclient_12_1/genezi
+/opt/oracle/instantclient_12_1/glogin.sql
+/opt/oracle/instantclient_12_1/libclntshcore.so.12.1
+/opt/oracle/instantclient_12_1/libclntsh.so
+/opt/oracle/instantclient_12_1/libclntsh.so.12.1
+/opt/oracle/instantclient_12_1/libipc1.so
+/opt/oracle/instantclient_12_1/libmql1.so
+/opt/oracle/instantclient_12_1/libnnz12.so
+/opt/oracle/instantclient_12_1/libocci.so
+/opt/oracle/instantclient_12_1/libocci.so.12.1
+/opt/oracle/instantclient_12_1/libociei.so
+/opt/oracle/instantclient_12_1/libocijdbc12.so
+/opt/oracle/instantclient_12_1/libons.so
+/opt/oracle/instantclient_12_1/liboramysql12.so
+/opt/oracle/instantclient_12_1/libsqlplusic.so
+/opt/oracle/instantclient_12_1/libsqlplus.so
+/opt/oracle/instantclient_12_1/network
+/opt/oracle/instantclient_12_1/network/admin
+/opt/oracle/instantclient_12_1/network/admin/tnsnames.ora
+/opt/oracle/instantclient_12_1/ojdbc6.jar
+/opt/oracle/instantclient_12_1/ojdbc7.jar
+/opt/oracle/instantclient_12_1/precomp
+/opt/oracle/instantclient_12_1/precomp/admin
+/opt/oracle/instantclient_12_1/precomp/admin/pcbcfg.cfg
+/opt/oracle/instantclient_12_1/precomp/admin/pcscfg.cfg
+/opt/oracle/instantclient_12_1/PRECOMP_README
+/opt/oracle/instantclient_12_1/sdk
+/opt/oracle/instantclient_12_1/sdk/admin
+/opt/oracle/instantclient_12_1/sdk/admin/oraaccess.xsd
+/opt/oracle/instantclient_12_1/sdk/demo
+/opt/oracle/instantclient_12_1/sdk/demo/cdemo81.c
+/opt/oracle/instantclient_12_1/sdk/demo/demo.mk
+/opt/oracle/instantclient_12_1/sdk/demo/demo_proc_ic.mk
+/opt/oracle/instantclient_12_1/sdk/demo/demo_procob_ic.mk
+/opt/oracle/instantclient_12_1/sdk/demo/occidemod.sql
+/opt/oracle/instantclient_12_1/sdk/demo/occidemo.sql
+/opt/oracle/instantclient_12_1/sdk/demo/occidml.cpp
+/opt/oracle/instantclient_12_1/sdk/demo/occiobj.cpp
+/opt/oracle/instantclient_12_1/sdk/demo/occiobj.typ
+/opt/oracle/instantclient_12_1/sdk/demo/oraaccess.xml
+/opt/oracle/instantclient_12_1/sdk/demo/procdemo.pc
+/opt/oracle/instantclient_12_1/sdk/demo/procobdemo.pco
+/opt/oracle/instantclient_12_1/sdk/demo/setuporamysql.sh
+/opt/oracle/instantclient_12_1/sdk/include
+/opt/oracle/instantclient_12_1/sdk/include/ldap.h
+/opt/oracle/instantclient_12_1/sdk/include/nzerror.h
+/opt/oracle/instantclient_12_1/sdk/include/nzt.h
+/opt/oracle/instantclient_12_1/sdk/include/occiAQ.h
+/opt/oracle/instantclient_12_1/sdk/include/occiCommon.h
+/opt/oracle/instantclient_12_1/sdk/include/occiControl.h
+/opt/oracle/instantclient_12_1/sdk/include/occiData.h
+/opt/oracle/instantclient_12_1/sdk/include/occi.h
+/opt/oracle/instantclient_12_1/sdk/include/occiObjects.h
+/opt/oracle/instantclient_12_1/sdk/include/oci1.h
+/opt/oracle/instantclient_12_1/sdk/include/oci8dp.h
+/opt/oracle/instantclient_12_1/sdk/include/ociap.h
+/opt/oracle/instantclient_12_1/sdk/include/ociapr.h
+/opt/oracle/instantclient_12_1/sdk/include/ocidef.h
+/opt/oracle/instantclient_12_1/sdk/include/ocidem.h
+/opt/oracle/instantclient_12_1/sdk/include/ocidfn.h
+/opt/oracle/instantclient_12_1/sdk/include/ociextp.h
+/opt/oracle/instantclient_12_1/sdk/include/oci.h
+/opt/oracle/instantclient_12_1/sdk/include/ocikpr.h
+/opt/oracle/instantclient_12_1/sdk/include/ocixmldb.h
+/opt/oracle/instantclient_12_1/sdk/include/ocixstream.h
+/opt/oracle/instantclient_12_1/sdk/include/odci.h
+/opt/oracle/instantclient_12_1/sdk/include/oraca.h
+/opt/oracle/instantclient_12_1/sdk/include/oratypes.h
+/opt/oracle/instantclient_12_1/sdk/include/orid.h
+/opt/oracle/instantclient_12_1/sdk/include/ori.h
+/opt/oracle/instantclient_12_1/sdk/include/orl.h
+/opt/oracle/instantclient_12_1/sdk/include/oro.h
+/opt/oracle/instantclient_12_1/sdk/include/ort.h
+/opt/oracle/instantclient_12_1/sdk/include/sql2oci.h
+/opt/oracle/instantclient_12_1/sdk/include/sqlapr.h
+/opt/oracle/instantclient_12_1/sdk/include/sqlca.h
+/opt/oracle/instantclient_12_1/sdk/include/sqlcpr.h
+/opt/oracle/instantclient_12_1/sdk/include/sqlda.h
+/opt/oracle/instantclient_12_1/sdk/include/sqlkpr.h
+/opt/oracle/instantclient_12_1/sdk/include/sqlucs2.h
+/opt/oracle/instantclient_12_1/sdk/include/xa.h
+/opt/oracle/instantclient_12_1/sdk/ott
+/opt/oracle/instantclient_12_1/sdk/ottclasses.zip
+/opt/oracle/instantclient_12_1/sdk/proc
+/opt/oracle/instantclient_12_1/sdk/procob
+/opt/oracle/instantclient_12_1/sdk/rtsora
+/opt/oracle/instantclient_12_1/sdk/SDK_README
+/opt/oracle/instantclient_12_1/sqlplus
+/opt/oracle/instantclient_12_1/SQLPLUS_README
+/opt/oracle/instantclient_12_1/uidrvci
+/opt/oracle/instantclient_12_1/xstreams.jar
+          </pre><p>
+	  If your installation layout is different, adjust the following 
+	  steps as necessary.
+	</p><p>
+	  Oracle Instant Client does not provide 
+	  <code class="filename">oracle_env.sh</code>, but some
+	  environment variables can be very handy and it is suggested you to
+	  create your own <code class="filename">oracle_env.sh</code> as below:
+	  </p><pre class="screen">
+#!/bin/sh
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1:$LD_LIBRARY_PATH
+export PATH=/opt/oracle/instantclient_12_1:/opt/oracle/instantclient_12_1/sdk:$PATH
+export ORACLE_HOME=/opt/oracle/instantclient_12_1
+	  </pre><p>
+	  and to put it inside Oracle Instant Client base directory
+	  <a href="#ftn.idp56034688" class="footnote" id="idp56034688"><sup class="footnote">[56]</sup></a>:
+	    </p><pre class="screen">
+tiian@ubuntu1404-64:~/lixa$ ls -la /opt/oracle/instantclient_12_1/oracle_env.sh
+-rwxr-xr-- 1 root root 216 mar 10 21:57 /opt/oracle/instantclient_12_1/oracle_env.sh
+	    </pre><p>
+	    Use it when it's needed with shell sourcing:
+	    </p><pre class="screen">
+tiian@ubuntu1404-64:~$ . /opt/oracle/instantclient_12_1/oracle_env.sh 
+tiian@ubuntu1404-64:~$ echo $LD_LIBRARY_PATH
+/opt/oracle/instantclient_12_1:
+tiian@ubuntu1404-64:~$ echo $PATH
+/opt/oracle/instantclient_12_1:/opt/oracle/instantclient_12_1/sdk:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+tiian@ubuntu1404-64:~$ echo $ORACLE_HOME
+/opt/oracle/instantclient_12_1
+	    </pre><p>
+	    A possible option to configure a remote database is based on the 
+	    "tnsnames.ora" file. It should be put at path 
+	    <code class="filename">$ORACLE_HOME/network/admin/tnsnames.ora</code>
+	    Here's an example:
+	    </p><pre class="screen">
+lixa_ora_db=
+  (DESCRIPTION=
+     (ADDRESS=(PROTOCOL=tcp)(HOST=centos7-oracle12.brenta.org)(PORT=1521))
+     (CONNECT_DATA=
+        (SERVICE_NAME=orcl.brenta.org)))
+	    </pre><p>
+	    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	      Configuring Oracle networking feature requires a little bit of
+	      experience: be patient and consult official documentation and
+	      user group forums to obtain a working configuration.
+	    </p></div><p>
+	    </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	      This example configuration uses <code class="filename">lixa_ora_db</code>
+	      as the name understood by the Instant Client to reach the
+	      database server.
+	    </p></div><p>
+	  </p><p>
+	    The final step is the configuration check. If everything is OK, you
+	    should obtain something like this:
+	    </p><pre class="screen">
+tiian@ubuntu1404-64:~$ sqlplus hr/hr@lixa_ora_db
+
+SQL*Plus: Release 12.1.0.2.0 Production on Fri Jan 13 21:36:05 2017
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Jan 13 2017 21:35:16 +01:00
+
+Connected to:
+Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+
+SQL&gt; select * from COUNTRIES where COUNTRY_ID = 'RS';
+
+no rows selected
+
+SQL&gt; exit
+Disconnected from Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+	  </pre><p>
+	</p><p>
+	  See the instructions reported in 
+	  <a class="xref" href="apas02.html#App_RM_Config_Oracle_data_table" title="Check the data table before execution">the section called “Check the data table before execution”</a> to configure the
+	  tables necessary for examples execution.
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp55988208" class="footnote"><p><a href="#idp55988208" class="para"><sup class="para">[53] </sup></a>
+	    I put this line (Oracle 10.2 32 bit)
+	    <code class="computeroutput">. /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh</code>
+	    or this line (Oracle 11.2 64 bit)
+	    <code class="computeroutput">. /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh</code>
+	    in the file <code class="filename">$HOME/.profile</code> of the
+	    <code class="systemitem">oracle</code> user to set-up
+	    the default administration environment; it complains about
+	    two shell errors, but for the sake of our example it's
+	    safe.
+	  </p></div><div id="ftn.idp55991280" class="footnote"><p><a href="#idp55991280" class="para"><sup class="para">[54] </sup></a>
+	    If you got some errors like these:
+	    </p><pre class="screen">
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/nls_lang.sh: 114: [[: not found
+/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/nls_lang.sh: 114: [[: not found
+	    </pre><p>
+	    you could edit the file <code class="filename">/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/nls_lang.sh</code> and substitute 
+	    <code class="computeroutput">#!/bin/sh</code> with
+	    <code class="computeroutput">#!/bin/bash</code> in the first row as explained 
+	    here:
+	    <a class="link" href="http://forums.oracle.com/forums/thread.jspa?messageID=1542334" target="_top">http://forums.oracle.com/forums/thread.jspa?messageID=1542334</a>
+	  </p></div><div id="ftn.idp56013024" class="footnote"><p><a href="#idp56013024" class="para"><sup class="para">[55] </sup></a>
+use </p><pre class="screen">sqlplus hr/hr@lixa_ora_db</pre><p> in the event that you are 
+using a remote connection as explained above
+</p></div><div id="ftn.idp56034688" class="footnote"><p><a href="#idp56034688" class="para"><sup class="para">[56] </sup></a>
+	    LIXA test suite, based on <span class="command"><strong>autotest</strong></span> looks for
+	    it: if it's not available, Oracle's tests are skipped.
+	    </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="apa.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="apas03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Appendix A. Resource Managers Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> PostgreSQL Configuration</td></tr></table></div></body></html>

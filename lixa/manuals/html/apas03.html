@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PostgreSQL Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PostgreSQL Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apas02.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> </td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_PostgreSQL"></a>PostgreSQL Configuration</h2></div></div></div><p>
+      The following diagram represents a simplified vision of the components
+      necessary to run an example program (<code class="filename">example5_mys</code>
+      in the picture) that uses PostgreSQL as an XA Resource Manager.
+    </p><div class="figure"><a id="develop5"></a><p class="title"><strong>Figure A.3. Deploy model of an example with PostgreSQL DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_App_RM_5.png" alt="Deploy model of an example with PostgreSQL DBMS" /></div></div></div><br class="figure-break" /><p>
+      This section has been developed using PostgreSQL 9.1.24 (and upper)
+      for Linux. Here is a brief list of the tested versions for Ubuntu
+      12.04, 14.04, 16.04 and CentOS/RHEL 7.3 and the installed packages:
+      </p><pre class="screen">
+tiian@ubuntu1204-64:/tmp$ dpkg -l | grep -i -e pq -e postgresql
+ii  libpq-dev                        9.1.24-0ubuntu0.12.04               header files for libpq5 (PostgreSQL library)
+ii  libpq5                           9.1.24-0ubuntu0.12.04               PostgreSQL C client library
+ii  postgresql                       9.1+129ubuntu1                      object-relational SQL database (supported version)
+ii  postgresql-9.1                   9.1.24-0ubuntu0.12.04               object-relational SQL database, version 9.1 server
+ii  postgresql-client-9.1            9.1.24-0ubuntu0.12.04               front-end programs for PostgreSQL 9.1
+ii  postgresql-client-common         129ubuntu1                          manager for multiple PostgreSQL client versions
+ii  postgresql-common                129ubuntu1                          PostgreSQL database-cluster manager
+
+tiian@ubuntu1404-64:/tmp$ dpkg -l | grep -i -e pq -e postgresql
+ii  libpq-dev                           9.3.16-0ubuntu0.14.04               amd64        header files for libpq5 (PostgreSQL library)
+ii  libpq5                              9.3.16-0ubuntu0.14.04               amd64        PostgreSQL C client library
+ii  postgresql                          9.3+154ubuntu1                      all          object-relational SQL database (supported version)
+ii  postgresql-9.3                      9.3.16-0ubuntu0.14.04               amd64        object-relational SQL database, version 9.3 server
+ii  postgresql-client-9.3               9.3.16-0ubuntu0.14.04               amd64        front-end programs for PostgreSQL 9.3
+ii  postgresql-client-common            154ubuntu1                          all          manager for multiple PostgreSQL client versions
+ii  postgresql-common                   154ubuntu1                          all          PostgreSQL database-cluster manager
+
+tiian@ubuntu1604:~$ dpkg -l | grep -i -e pq -e postgresql
+ii  libpq-dev                          9.5.6-0ubuntu0.16.04                amd64        header files for libpq5 (PostgreSQL library)
+ii  libpq5:amd64                       9.5.6-0ubuntu0.16.04                amd64        PostgreSQL C client library
+ii  postgresql                         9.5+173                             all          object-relational SQL database (supported version)
+ii  postgresql-9.5                     9.5.6-0ubuntu0.16.04                amd64        object-relational SQL database, version 9.5 server
+ii  postgresql-client-9.5              9.5.6-0ubuntu0.16.04                amd64        front-end programs for PostgreSQL 9.5
+ii  postgresql-client-common           173                                 all          manager for multiple PostgreSQL client versions
+ii  postgresql-common                  173                                 all          PostgreSQL database-cluster manager
+ii  postgresql-contrib-9.5             9.5.6-0ubuntu0.16.04                amd64        additional facilities for PostgreSQL
+
+[tiian@centos71-64 tmp]$ rpm -qa | grep -i -e pq -e postgresql
+postgresql-libs-9.2.18-1.el7.x86_64
+postgresql-devel-9.2.18-1.el7.x86_64
+postgresql-9.2.18-1.el7.x86_64
+postgresql-server-9.2.18-1.el7.x86_64
+
+[tiian@rhel73 tmp]$ rpm -qa | grep -i -e pq -e postgresql
+postgresql-devel-9.2.18-1.el7.x86_64
+postgresql-9.2.18-1.el7.x86_64
+postgresql-server-9.2.18-1.el7.x86_64
+postgresql-libs-9.2.18-1.el7.x86_64
+      </pre><p>
+      If you were using a different version you would need to adapt some
+      commands to your environment.
+    </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      If you did not yet installed the software, please refer to the 
+      official site for your Linux distribution or to the official site
+      of PostgreSQL if your operating system does not distribute the
+      software or you want to use a different PostgreSQL version.
+      This manual does not give you information related
+      to PostgreSQL: it is assumed that you have already installed and
+      configured the database.
+    </p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      This example requires you are running the database and the application
+      on the same host: this is not a technical limitation, but a way to
+      make it easy. Client/server configuration must work as well, but
+      it needs some PostgreSQL extra configuration: please refer to the
+      database documentation.
+    </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+      The LIXA software must be configured to support the PostgreSQL
+      server resource manager as explained in 
+      <a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56053360"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
+	  If your server didn't start-up automatically at boot time, you
+	  could start it with the following commands:
+	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1204-64:~$ sudo service postgresql status
+Running clusters: 
+tiian@ubuntu1204-64:~$ ps -ef|grep postgres|grep -v grep
+tiian@ubuntu1204-64:~$ sudo service postgresql start
+ * Starting PostgreSQL 9.1 database server                               [ OK ]
+tiian@ubuntu1204-64:~$ sudo service postgresql status
+Running clusters: 9.1/main 
+tiian@ubuntu1204-64:~$ ps -ef|grep postgres|grep -v grep
+postgres  1829     1  1 23:00 ?        00:00:00 /usr/lib/postgresql/9.1/bin/postgres -D /var/lib/postgresql/9.1/main -c config_file=/etc/postgresql/9.1/main/postgresql.conf
+postgres  1831  1829  0 23:00 ?        00:00:00 postgres: writer process
+postgres  1832  1829  0 23:00 ?        00:00:00 postgres: wal writer process
+postgres  1833  1829  0 23:00 ?        00:00:00 postgres: autovacuum launcher process
+postgres  1834  1829  0 23:00 ?        00:00:00 postgres: stats collector process
+	    </pre></td></tr></tbody></table></div><p>
+	  Switch to user <code class="systemitem">postgres</code>,
+	  associate your user to a matching database user
+	  <a href="#ftn.idp56058000" class="footnote" id="idp56058000"><sup class="footnote">[57]</sup></a>
+	  ; my personal account is 
+	  <code class="systemitem">tiian</code>
+	  and I created the same user inside PostgreSQL database:
+	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1204-64:~$ sudo su - postgres
+[sudo] password for tiian:
+postgres@ubuntu1204-64:~$ createuser --createdb tiian
+Shall the new role be a superuser? (y/n) n
+Shall the new role be allowed to create more new roles? (y/n) n
+postgres@ubuntu1204-64:~$ exit
+logout
+	    </pre></td></tr></tbody></table></div><p>
+	  Create a new database and a table necessary to store some data:
+	  </p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1204-64:~$ createdb testdb
+tiian@ubuntu1204-64:~$ psql testdb
+psql (9.1.24)
+Type "help" for help.
+
+testdb=&gt;
+testdb=&gt; CREATE TABLE "authors" (
+testdb(&gt; "id" integer NOT NULL,
+testdb(&gt; "last_name" text,
+testdb(&gt; "first_name" text,
+testdb(&gt; Constraint "authors_pkey" Primary Key ("id"));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "authors_pkey" for table "authors"
+CREATE TABLE
+
+testdb=&gt; select * from authors;
+ id | last_name | first_name
+----+-----------+------------
+(0 rows)
+	    </pre></td></tr></tbody></table></div><p>
+	  OK, the <span class="quote">“<span class="quote">authors</span>”</span> table was created. 
+	  If something went wrong, you should refer to PostgreSQL
+	  documentation to fix the issue before the next step because
+	  you would not be able to execute the sample program without a
+	  basic running installation.
+	</p><p>
+	  Change the 
+	  <code class="systemitem">max_prepared_transactions</code>
+	  parameter in file
+	  <code class="filename">postgresql.conf</code>
+	  to allow the desired number of prepared transactions (i.e. 10):
+	  </p><pre class="screen">
+shared_buffers = 24MB                   # min 128kB
+                                        # (change requires restart)
+#temp_buffers = 8MB                     # min 800kB
+max_prepared_transactions = 10          # zero disables the feature
+#max_prepared_transactions = 0          # zero disables the feature
+                                        # (change requires restart)
+# Note:  Increasing max_prepared_transactions costs ~600 bytes of shared memory
+# per transaction slot, plus lock space (see max_locks_per_transaction).
+# It is not advisable to set max_prepared_transactions nonzero unless you
+# actively intend to use prepared transactions.
+#work_mem = 1MB                         # min 64kB
+#maintenance_work_mem = 16MB            # min 1MB
+#max_stack_depth = 2MB                  # min 100kB
+	  </pre><p>
+	  and restart the PostgreSQL server with something like
+	  </p><pre class="screen">service postgresql restart</pre><p> (Ubuntu, CentOS and RHEL) using
+	  <code class="systemitem">root</code> user.
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp56058000" class="footnote"><p><a href="#idp56058000" class="para"><sup class="para">[57] </sup></a>
+	    If you wanted to use a database user different than your own
+	    UNIX user, as it ever happens when the database is hosted on
+	    a different system, you should configure
+	    <code class="filename">pg_hba.conf</code> as well. Look at the PostgreSQL
+	    documentation to pick up all the necessary details.
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="apas02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="apa.html">Up</a></td><td width="40%" align="right"> </td></tr><tr><td width="40%" align="left" valign="top">Oracle DMBS Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>
