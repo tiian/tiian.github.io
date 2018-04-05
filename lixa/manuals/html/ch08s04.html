@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /><link rel="next" href="ch08s05.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
-    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58200688"></a>The
+    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58153360"></a>The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
     Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	  <td>Architecture:</td>
@@ -18,7 +18,85 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	</tr></tbody></table></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch08.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58161936"></a>Description</h3></div></div></div><p>
+	This is a Distributed Transaction Processing pattern introduced by
+	XTA: two or more Application Programs use any set of Resource
+	Manager(s) and perform concurrent operations inside distinct branches
+	of a common XA global transaction. The Resource Manager(s) must 
+	support concurrent branches of the same global transaction: this is
+	part of XA standard, but some resource managers might not support it.
+      </p><p>
+	The following picture shows an example that can be implemented, for
+	example, using MySQL (or MariaDB) and PostgreSQL:
+	</p><div class="figure"><a id="xta_pattern08"></a><p class="title"><strong>Figure 8.8. example of <span class="quote">“<span class="quote">Multiple Applications, 
+	  Consecutive Calls/Pseudo Synchronous</span>”</span> with two Application
+	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
+	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
+	standard TX Transaction	Demarcation interface.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58166160"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. The
+	<span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
+	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_09.svg" alt="The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
+	The above figure shows the logic necessary to build this type of
+	applications; it's <span class="emphasis"><em>not</em></span> a formally correct UML
+	sequence diagram (all the XTA objects are in the same lifeline), but
+	it should be clear enough to understand the
+	proper operations sequence:
+      </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	  Both the Application Programs perform some some initial steps like:
+	  opening a native connection to the Resource Manager, creating a 
+	  Transaction Manager object, a XA Resource Manager object, a
+	  Transaction object and finally enlisting and opening the Resource
+	  Manager
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The first AP, named <span class="quote">“<span class="quote">superior</span>”</span> using XA terminology,
+	  <span class="emphasis"><em>starts</em></span> the global transaction and possibly
+	  updates the state of its Resource Manager
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The first AP, retrieve the XID associated to the global transaction
+	  and start some sort of <span class="quote">“<span class="quote">remote procedure call</span>”</span>
+	  <a href="#ftn.idp58172656" class="footnote" id="idp58172656"><sup class="footnote">[49]</sup></a>
+	  to invoke the second AP; it must pass the XID and all the application
+	  context necessary to operate (this is not relevant to XTA)
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The second AP, named <span class="quote">“<span class="quote">subordinate</span>”</span> using XA terminology,
+	  <span class="emphasis"><em>branches</em></span> the global transaction and
+	  possibly updates the state of its Resource Manager
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The second AP <span class="emphasis"><em>starts</em></span> the first phase of the
+	  distributed <span class="emphasis"><em>commit</em></span> specifying 
+	  <span class="quote">“<span class="quote">non_block=TRUE</span>”</span> option: this translates in performing
+	  <span class="quote">“<span class="quote">XA prepare</span>”</span> without performing <span class="quote">“<span class="quote">XA commit</span>”</span>
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  At the end of the first phase of the distributed commit, the second
+	  AP responds to first AP: typically a return code related to commit
+	  operation
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  Since then now, both the APs can run concurrently to complete the
+	  distributed <span class="emphasis"><em>commit</em></span> specifying 
+	  <span class="quote">“<span class="quote">non_block=FALSE</span>”</span> option
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The last operations are related to clean-up
+	</p></li></ul></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	These are the relevant elements of this pattern:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    it's designed for a typical client/server approach with some sort
+	    of request-response communication protocol in place
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    the Application Programs run concurrently, but synchronize 
+	    themselves by mean of the communication protocol and the LIXA
+	    state server: the second phase of the two phase commit protocol
+	    can be started only after the completion of the first phase by all
+	    the participants
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    the second Application Program can <span class="emphasis"><em>not</em></span> 
+	    terminate immediately after returning the response to the caller:
+	    it must perform the second phase of the two phase commit protocol
+	  </p></li></ul></div><p>
+      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58172656" class="footnote"><p><a href="#idp58172656" class="para"><sup class="para">[49] </sup></a>
+	    This must not be confused with a specific RPC technology: any
+	    communication technique that supports a request-response protocol
+	    can be used.
+	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch08.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The
     <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
     Pattern </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>
