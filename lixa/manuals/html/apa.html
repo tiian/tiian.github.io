@@ -87,7 +87,7 @@ mariadb-libs-5.5.52-1.el7.x86_64
 	The LIXA software must be configured to support the MySQL/MariaDB
 	server resource manager as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_MySQL_environment_"></a>Set-up MySQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58777488"></a>Start-up the MySQL server</h4></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_MySQL_environment_"></a>Set-up MySQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58748784"></a>Start-up the MySQL server</h4></div></div></div><p>
 	  If your server didn't start-up automatically at boot time, you
 	  could start it with the following commands:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -99,7 +99,7 @@ tiian@ubuntu1204-64:/tmp$ ps -ef|grep mysql|grep -v grep
 mysql     1607     1  0 22:43 ?        00:00:00 /usr/sbin/mysqld
 	    </pre></td></tr></tbody></table></div><p>
 	  Create a new user authorization and a new database
-	  <a href="#ftn.idp58780624" class="footnote" id="idp58780624"><sup class="footnote">[53]</sup></a>:
+	  <a href="#ftn.idp58752240" class="footnote" id="idp58752240"><sup class="footnote">[53]</sup></a>:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:/tmp$ mysql -u root -p
 Enter password: 
@@ -174,7 +174,7 @@ Empty set (0.00 sec)
 	  documentation to fix the issue before the next step because
 	  you would not be able to execute the sample program without a
 	  basic running installation.
-	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58780624" class="footnote"><p><a href="#idp58780624" class="para"><sup class="para">[53] </sup></a>
+	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58752240" class="footnote"><p><a href="#idp58752240" class="para"><sup class="para">[53] </sup></a>
 	      You need the password of MySQL root user to execute
 	      these commands
 	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="bi01.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="apas02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Bibliography </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Oracle DMBS Configuration</td></tr></table></div></body></html>

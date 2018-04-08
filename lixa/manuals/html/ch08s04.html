@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /><link rel="next" href="ch08s05.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
-    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58153360"></a>The
+    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58056144"></a>The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
     Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	  <td>Architecture:</td>
@@ -18,7 +18,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58161936"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58064720"></a>Description</h3></div></div></div><p>
 	This is a Distributed Transaction Processing pattern introduced by
 	XTA: two or more Application Programs use any set of Resource
 	Manager(s) and perform concurrent operations inside distinct branches
@@ -33,9 +33,9 @@
 	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
 	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
 	standard TX Transaction	Demarcation interface.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58166160"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. The
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58068944"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
 	<span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
-	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_09.svg" alt="The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
+	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_09.svg" alt="Simplified sequence diagram for the “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
 	applications; it's <span class="emphasis"><em>not</em></span> a formally correct UML
 	sequence diagram (all the XTA objects are in the same lifeline), but
@@ -52,9 +52,9 @@
 	  <span class="emphasis"><em>starts</em></span> the global transaction and possibly
 	  updates the state of its Resource Manager
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	  The first AP, retrieve the XID associated to the global transaction
-	  and start some sort of <span class="quote">“<span class="quote">remote procedure call</span>”</span>
-	  <a href="#ftn.idp58172656" class="footnote" id="idp58172656"><sup class="footnote">[49]</sup></a>
+	  The first AP retrieves the XID associated to the global transaction
+	  and starts some sort of <span class="quote">“<span class="quote">remote procedure call</span>”</span>
+	  <a href="#ftn.idp58075456" class="footnote" id="idp58075456"><sup class="footnote">[49]</sup></a>
 	  to invoke the second AP; it must pass the XID and all the application
 	  context necessary to operate (this is not relevant to XTA)
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
@@ -71,12 +71,16 @@
 	  AP responds to first AP: typically a return code related to commit
 	  operation
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
+	  The first AP performs another update to its Resource Manager
+	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  Since then now, both the APs can run concurrently to complete the
 	  distributed <span class="emphasis"><em>commit</em></span> specifying 
 	  <span class="quote">“<span class="quote">non_block=FALSE</span>”</span> option
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  The last operations are related to clean-up
-	</p></li></ul></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	</p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	The dashed red rectangle highlights the XA global transaction.
+      </p></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
 	These are the relevant elements of this pattern:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    it's designed for a typical client/server approach with some sort
@@ -91,8 +95,263 @@
 	    the second Application Program can <span class="emphasis"><em>not</em></span> 
 	    terminate immediately after returning the response to the caller:
 	    it must perform the second phase of the two phase commit protocol
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    the first Application Program can perform Resource Manager related
+	    operations <span class="emphasis"><em>before and after</em></span> the call to the
+	    second Application Program
 	  </p></li></ul></div><p>
-      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58172656" class="footnote"><p><a href="#idp58172656" class="para"><sup class="para">[49] </sup></a>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58088240"></a>Example</h3></div></div></div><p>
+	The supplied examples (<code class="filename">example_xta_macbps01.c</code> and
+	<code class="filename">example_xta_macbps02.c</code>) use
+	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
+	(or MariaDB) in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span>; please
+	refer to the instructions explained :
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="apa.html#App_RM_Config_MySQL" title="MySQL Configuration">the section called “MySQL Configuration”</a>
+	    to set-up a running environment for MySQL server
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="apas03.html" title="PostgreSQL Configuration">the section called “PostgreSQL Configuration”</a>
+	    to set-up a running environment for PostgreSQL server
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
+	    to start up the LIXA state server.
+	  </p></li></ul></div><p>
+	Both programs must be used to execute the example: 
+	<code class="filename">example_xta_macbps01</code> in the role of the superior
+	Application Program (first AP) and
+	<code class="filename">example_xta_macbps02</code> in the role of the
+	subordinate Application Program (second AP).
+      </p><p>
+	Create a working directory in a place you are comfortable with:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~$ cd
+tiian@ubuntu1404-64:~$ mkdir tmp
+tiian@ubuntu1404-64:~$ cd tmp
+tiian@ubuntu1404-64:~/tmp$ 
+	  </pre></td></tr></tbody></table></div><p>
+      </p><p>
+	Copy files <code class="filename">example_xta_macbps01.c</code> and 
+	<code class="filename">example_xta_macbps02.c</code> in your working dir:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/example_xta_macbps01.c .
+tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/example_xta_macbps02.c .
+	  </pre></td></tr></tbody></table></div><p>
+	Substitute <span class="quote">“<span class="quote">X.Y.Z</span>”</span> with the actual version of
+	the software you installed.
+      </p><p>
+	Compile and link the C example program:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ . /opt/lixa/bin/lixa_env.sh
+tiian@ubuntu1404-64:~/tmp$ gcc example_xta_macbps01.c $(lixa-config -x -c -f -l -d) $(mysql_config --libs_r) -o example_xta_macbps01
+tiian@ubuntu1404-64:~/tmp$ gcc example_xta_macbps02.c $(lixa-config -x -c -f -l -d) -lpq -o example_xta_macbps02
+	  </pre></td></tr></tbody></table></div><p>
+      </p><p>
+	If the previous steps worked for you, you should have two executable
+	files of name <code class="filename">example_xta_macbps01</code> and
+	<code class="filename">example_xta_macbps02</code> in your current directory:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ls -l
+total 96
+-rwxrwxr-x 1 tiian tiian 18499 apr  8 22:08 example_xta_macbps01
+-rw-r--r-- 1 tiian tiian 10459 apr  8 11:58 example_xta_macbps01.c
+-rwxrwxr-x 1 tiian tiian 18319 apr  8 22:08 example_xta_macbps02
+-rw-r--r-- 1 tiian tiian 11095 apr  8 11:58 example_xta_macbps02.c
+	  </pre></td></tr></tbody></table></div><p>
+	The example programs accept four arguments:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	    commit (or rollback): use <span class="quote">“<span class="quote">1</span>”</span> if you want to perform
+	    a global commit or <span class="quote">“<span class="quote">0</span>”</span> if you want to perform a global
+	    rollback
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    insert (or delete): use <span class="quote">“<span class="quote">1</span>”</span> if you want to insert rows
+	    in databases or <span class="quote">“<span class="quote">0</span>”</span> if you want to delete rows from
+	    databases
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    name of the FIFO (named pipe) that will be used to send messages
+	    from the superior AP to the subordinate AP
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	    name of the FIFO (named pipe) that will be used to return messages
+	    from the subordinate AP to the superior AP
+	  </p></li></ul></div><p>
+      </p><p>
+	Open four terminal sessions: two for the example programs execution,
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ls -l example_xta_macbps01
+-rwxrwxr-x 1 tiian tiian 18499 apr  8 22:08 example_xta_macbps01
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ls -l example_xta_macbps02
+-rwxrwxr-x 1 tiian tiian 18319 apr  8 22:08 example_xta_macbps02
+	  </pre></td></tr></tbody></table></div><p>
+	one for MySQL queries
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~$ mysql -h localhost -u lixa lixa
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 5.5.59-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	and one for PostgreSQL queries
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~$ psql testdb
+psql (9.3.22)
+Type "help" for help.
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	set <code class="varname">LIXA_PROFILE</code> environment variable to
+	<code class="constant">XTA_DYN</code>
+	a profile without static Resource Managers defined in
+	<code class="filename">lixac_conf.xml</code>:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ export LIXA_PROFILE=XTA_DYN
+tiian@ubuntu1404-64:~/tmp$ echo $LIXA_PROFILE
+XTA_DYN
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ export LIXA_PROFILE=XTA_DYN
+tiian@ubuntu1404-64:~/tmp$ echo $LIXA_PROFILE
+XTA_DYN
+	  </pre></td></tr></tbody></table></div><p>
+	create two named pipes (FIFO) to support communication between
+	superior and subordinate Application Program
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ mkfifo sup2sub
+tiian@ubuntu1404-64:~/tmp$ mkfifo sub2sup
+tiian@ubuntu1404-64:~/tmp$ ls -l su*
+prw-rw-r-- 1 tiian tiian 0 apr  8 22:22 sub2sup
+prw-rw-r-- 1 tiian tiian 0 apr  8 22:22 sup2sub
+	  </pre></td></tr></tbody></table></div><p>
+	execute both the example programs to insert rows in tables and commit:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 1 1 sup2sub sub2sup 
+MySQL, executing &gt;INSERT INTO authors VALUES(1919, 'Levi', 'Primo')&lt;
+Superior AP has sent XID '1279875137.fd55ae8297774e25bffd16c890d61705.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
+Superior AP has received 'PREPARED for COMMIT' reply from subordinate AP
+MySQL, executing &gt;INSERT INTO authors VALUES(1898, 'Remarque', 'Erich Maria')&lt;
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 1 1 sup2sub sub2sup 
+Subordinate AP has received XID '1279875137.fd55ae8297774e25bffd16c890d61705.e107cfeee0661d23da9322f1ee73faba' from superior AP
+PostgreSQL, executing &gt;INSERT INTO authors VALUES(1921, 'Rigoni Stern', 'Mario')&lt;
+Superior AP has returned 'PREPARED for COMMIT' to subordinate AP
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	check MySQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+mysql&gt; select * from authors;
++------+-----------+-------------+
+| id   | last_name | first_name  |
++------+-----------+-------------+
+| 1898 | Remarque  | Erich Maria |
+| 1919 | Levi      | Primo       |
++------+-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	check PostgreSQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+testdb=&gt; select * from authors;
+  id  |  last_name   | first_name 
+------+--------------+------------
+ 1921 | Rigoni Stern | Mario
+(1 row)
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	delete rows from tables, but rollback:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 0 0 sup2sub sub2sup 
+MySQL, executing &gt;DELETE FROM authors WHERE id=1919&lt;
+Superior AP has sent XID '1279875137.304d06148bc34c0fa8ae7d844d59ccf6.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
+Superior AP has received 'ROLLBACK' reply from subordinate AP
+MySQL, executing &gt;DELETE FROM authors WHERE id=1898&lt;
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 0 0 sup2sub sub2sup 
+Subordinate AP has received XID '1279875137.304d06148bc34c0fa8ae7d844d59ccf6.e107cfeee0661d23da9322f1ee73faba' from superior AP
+PostgreSQL, executing &gt;DELETE FROM authors WHERE id=1921&lt;
+Superior AP has returned 'ROLLBACK' to subordinate AP
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	check MySQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+mysql&gt; select * from authors;
++------+-----------+-------------+
+| id   | last_name | first_name  |
++------+-----------+-------------+
+| 1898 | Remarque  | Erich Maria |
+| 1919 | Levi      | Primo       |
++------+-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	check PostgreSQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+testdb=&gt; select * from authors;
+  id  |  last_name   | first_name 
+------+--------------+------------
+ 1921 | Rigoni Stern | Mario
+(1 row)
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	delete rows and commit:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 1 0 sup2sub sub2sup 
+MySQL, executing &gt;DELETE FROM authors WHERE id=1919&lt;
+Superior AP has sent XID '1279875137.2502979ecbfb471f823d0a60ef4c3d88.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
+Superior AP has received 'PREPARED for COMMIT' reply from subordinate AP
+MySQL, executing &gt;DELETE FROM authors WHERE id=1898&lt;
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 1 0 sup2sub sub2sup 
+Subordinate AP has received XID '1279875137.2502979ecbfb471f823d0a60ef4c3d88.e107cfeee0661d23da9322f1ee73faba' from superior AP
+PostgreSQL, executing &gt;DELETE FROM authors WHERE id=1921&lt;
+Superior AP has returned 'PREPARED for COMMIT' to subordinate AP
+tiian@ubuntu1404-64:~/tmp$
+	  </pre></td></tr></tbody></table></div><p>
+	check MySQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+mysql&gt; select * from authors;
+Empty set (0.00 sec)
+
+mysql&gt;
+	  </pre></td></tr></tbody></table></div><p>
+	check PostgreSQL table content:
+	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - PostgreSQL]</td></tr></thead><tbody><tr><td><pre class="screen">
+testdb=&gt; select * from authors;
+  id  |  last_name   | first_name 
+------+--------------+------------
+(0 rows)
+
+testdb=&gt;
+	  </pre></td></tr></tbody></table></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58111632"></a>Source Code</h3></div></div></div><p>
+	Source code for programs <code class="filename">example_xta_macbps01.c</code> 
+	and <code class="filename">example_xta_macbps02.c</code> are
+	installed in directory
+	<code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
+	are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/" target="_top">GitHub</a>. Source code is fully
+	commented for readability.
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58075456" class="footnote"><p><a href="#idp58075456" class="para"><sup class="para">[49] </sup></a>
 	    This must not be confused with a specific RPC technology: any
 	    communication technique that supports a request-response protocol
 	    can be used.
