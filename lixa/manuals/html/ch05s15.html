@@ -12,7 +12,7 @@
       <a class="xref" href="ch05s10.html" title="An example with MySQL/MariaDB">the section called “An example with MySQL/MariaDB”</a>,
       in <a class="xref" href="ch05s07.html">the section called “”</a> and
       in <a class="xref" href="ch05s14.html" title="An example with WebSphere MQ">the section called “An example with WebSphere MQ”</a>.
-    </p><div class="figure"><a id="develop13"></a><p class="title"><strong>Figure 5.10. Deploy model of an example with WebSphere MQ, MySQL and PostgreSQL</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_13.png" alt="Deploy model of an example with WebSphere MQ, MySQL and PostgreSQL" /></div></div></div><br class="figure-break" /><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57433008"></a>Set-up WebSphere MQ, MySQL, PostgreSQL and LIXA environment</h3></div></div></div><p>
+    </p><div class="figure"><a id="develop13"></a><p class="title"><strong>Figure 5.10. Deploy model of an example with WebSphere MQ, MySQL and PostgreSQL</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_13.png" alt="Deploy model of an example with WebSphere MQ, MySQL and PostgreSQL" /></div></div></div><br class="figure-break" /><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58027200"></a>Set-up WebSphere MQ, MySQL, PostgreSQL and LIXA environment</h3></div></div></div><p>
 	Please follow the instructions explained 
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	      in <a class="xref" href="ch05s14.html#Development_setup_WebSphereMQ_environment" title="Set-up WebSphere MQ environment">the section called “Set-up WebSphere MQ environment”</a>
@@ -27,7 +27,7 @@
 	      in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	      to start up the LIXA state server
 	  </p></li></ul></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57438720"></a>Build the client program (SRV mode)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58032912"></a>Build the client program (SRV mode)</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on 
 	several lines using \ to help
@@ -92,7 +92,7 @@ WebSphereMQ     yes     (SRV)
         libsasl2.so.2 =&gt; /usr/lib/libsasl2.so.2 (0x057d8000)
         libselinux.so.1 =&gt; /lib/libselinux.so.1 (0x00cc0000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57447136"></a>Set-up LIXA environment (SRV mode)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58041328"></a>Set-up LIXA environment (SRV mode)</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 [tiian@centos tmp]$ echo $LIXA_PROFILE
@@ -101,7 +101,7 @@ WebSphereMQ     yes     (SRV)
 [tiian@centos tmp]$ echo $LIXA_PROFILE
 MQS_DYN_MYS_STA_PQL_STA
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57450272"></a>Some checks before program execution (SRV mode)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58044464"></a>Some checks before program execution (SRV mode)</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MQS_DYN_MYS_STA_PQL_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -128,7 +128,7 @@ MQS_DYN_MYS_STA_PQL_STA
 	</pre><p>
 	we can discover how the Resource Managers are configured 
 	for XA.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57450848"></a>Program execution (SRV mode)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58045040"></a>Program execution (SRV mode)</h3></div></div></div><p>
 	You should open three terminal sessions: one for the execution shell,
 	one to check MySQL content and the last one to check PostgreSQL
 	content.
@@ -304,7 +304,7 @@ Sample AMQSGET0 end
 	it's empty. Now you can restore the comment around
 	<code class="function">tx_rollback()</code> instead of
 	<code class="function">tx_commit()</code>.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp57456288"></a>Static registration</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58050480"></a>Static registration</h4></div></div></div><p>
 	  If you want to use WebSphere MQ with static registration instead of
 	  dynamic registration you will use a different profile:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -314,7 +314,7 @@ Sample AMQSGET0 end
 [tiian@centos tmp]$ echo $LIXA_PROFILE
 MQS_STA_MYS_STA_PQL_STA
 	    </pre></td></tr></tbody></table></div><p>
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57494112"></a>Adapting the example to WebSphere MQ Extended Transactional Client (ETC)</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58088304"></a>Adapting the example to WebSphere MQ Extended Transactional Client (ETC)</h3></div></div></div><p>
 	To try this example using Extended Transactional Client (ETC) for
 	WebSphere MQ, you must change these steps in the sequence
 	previously described:

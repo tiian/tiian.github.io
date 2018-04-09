@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Single Application” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="next" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The <span class="quote">“<span class="quote">Single Application</span>”</span> Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57866496"></a>The <span class="quote">“<span class="quote">Single Application</span>”</span> Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Single Application” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="next" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The <span class="quote">“<span class="quote">Single Application</span>”</span> Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58460640"></a>The <span class="quote">“<span class="quote">Single Application</span>”</span> Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	  <td>Architecture:</td>
 	  <td>see <a class="xref" href="ch08.html#xta_arch02" title="Figure 8.2. Single application layout">Figure 8.2, “Single application layout”</a></td>
 	</tr><tr>
@@ -14,7 +14,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>not applicable</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57874768"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58468912"></a>Description</h3></div></div></div><p>
 	This is a traditional Distributed Transaction Processing pattern: a
 	single Application Program uses two or more Resource Managers and
 	performs a transaction that change the state of both. Here is a list
@@ -35,7 +35,7 @@
 	  </p></li></ul></div><p>
 	The pattern can be implemented even using the standard TX Transaction
 	Demarcation interface, but XTA is much more object oriented.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57878208"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern01"></a><p class="title"><strong>Figure 8.5. Simplified sequence diagram for the <span class="quote">“<span class="quote">Single Application
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58472352"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern01"></a><p class="title"><strong>Figure 8.5. Simplified sequence diagram for the <span class="quote">“<span class="quote">Single Application
 	Program</span>”</span> Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_04.svg" alt="Simplified sequence diagram for the “Single Application Program” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
 	application; it's <span class="emphasis"><em>not</em></span> a formally correct UML
@@ -45,9 +45,9 @@
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	  The Application Program (AP) creates the native
 	  objects/connections/handles
-	  <a href="#ftn.idp57882240" class="footnote" id="idp57882240"><sup class="footnote">[46]</sup></a>
+	  <a href="#ftn.idp58476384" class="footnote" id="idp58476384"><sup class="footnote">[46]</sup></a>
 	  that are necessary to operate with the Resource Managers
-	  <a href="#ftn.idp57883904" class="footnote" id="idp57883904"><sup class="footnote">[47]</sup></a>
+	  <a href="#ftn.idp58478048" class="footnote" id="idp58478048"><sup class="footnote">[47]</sup></a>
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  The AP creates some XTA objects: a
 	  <code class="function">TransactionManager</code>,
@@ -84,7 +84,7 @@
 	</p><pre class="screen">tm = xta_transaction_manager_new()</pre><p> and
 	</p><pre class="screen">tx.Commit()</pre><p> translates to
 	</p><pre class="screen">xta_transaction_commit(tx, FALSE)</pre><p> in C.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57895200"></a>Example</h3></div></div></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58489344"></a>Example</h3></div></div></div><p>
 	The supplied example (<code class="filename">example_xta_sa01.c</code>) uses
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span> and MySQL
 	(or MariaDB) in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span>; please
@@ -268,16 +268,16 @@ Empty set (0.00 sec)
 
 mysql&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57917472"></a>Source Code</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58511616"></a>Source Code</h3></div></div></div><p>
 	Source code for program <code class="filename">example_xta_sa01.c</code> is
 	installed in directory
 	<code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
 	is available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/example_xta_sa01.c" target="_top">GitHub</a>. Source code is fully
 	commented for readability.
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57882240" class="footnote"><p><a href="#idp57882240" class="para"><sup class="para">[46] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58476384" class="footnote"><p><a href="#idp58476384" class="para"><sup class="para">[46] </sup></a>
 	    Examples: <code class="function">mysql_real_connect</code> for MySQL,
 	    <code class="function">PQconnectDB</code> for PostgreSQL.
-	  </p></div><div id="ftn.idp57883904" class="footnote"><p><a href="#idp57883904" class="para"><sup class="para">[47] </sup></a>
+	  </p></div><div id="ftn.idp58478048" class="footnote"><p><a href="#idp58478048" class="para"><sup class="para">[47] </sup></a>
 	    Some Resource Managers, like for example Oracle Database Server,
 	    don't allow to be created as <span class="quote">“<span class="quote">normal</span>”</span> connections
 	    and then transformed in <span class="emphasis"><em>XA connections</em></span>:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /><link rel="next" href="ch08s05.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
-    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58056144"></a>The
+    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58650288"></a>The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
     Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	  <td>Architecture:</td>
@@ -18,7 +18,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58064720"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58658864"></a>Description</h3></div></div></div><p>
 	This is a Distributed Transaction Processing pattern introduced by
 	XTA: two or more Application Programs use any set of Resource
 	Manager(s) and perform concurrent operations inside distinct branches
@@ -27,13 +27,13 @@
 	part of XA standard, but some resource managers might not support it.
       </p><p>
 	The following picture shows an example that can be implemented, for
-	example, using MySQL (or MariaDB) and PostgreSQL:
-	</p><div class="figure"><a id="xta_pattern08"></a><p class="title"><strong>Figure 8.8. example of <span class="quote">“<span class="quote">Multiple Applications, 
+	example, using MySQL (or MariaDB) and PostgreSQL.
+	</p><div class="figure"><a id="xta_pattern08"></a><p class="title"><strong>Figure 8.8. Example of <span class="quote">“<span class="quote">Multiple Applications, 
 	  Consecutive Calls/Pseudo Synchronous</span>”</span> with two Application
-	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
+	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="Example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
 	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
 	standard TX Transaction	Demarcation interface.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58068944"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58663088"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
 	<span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
 	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_09.svg" alt="Simplified sequence diagram for the “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
@@ -54,7 +54,7 @@
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  The first AP retrieves the XID associated to the global transaction
 	  and starts some sort of <span class="quote">“<span class="quote">remote procedure call</span>”</span>
-	  <a href="#ftn.idp58075456" class="footnote" id="idp58075456"><sup class="footnote">[49]</sup></a>
+	  <a href="#ftn.idp58669600" class="footnote" id="idp58669600"><sup class="footnote">[49]</sup></a>
 	  to invoke the second AP; it must pass the XID and all the application
 	  context necessary to operate (this is not relevant to XTA)
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
@@ -71,11 +71,11 @@
 	  AP responds to first AP: typically a return code related to commit
 	  operation
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
-	  The first AP performs another update to its Resource Manager
-	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  Since then now, both the APs can run concurrently to complete the
 	  distributed <span class="emphasis"><em>commit</em></span> specifying 
-	  <span class="quote">“<span class="quote">non_block=FALSE</span>”</span> option
+	  <span class="quote">“<span class="quote">non_block=FALSE</span>”</span> option (in the provided example,
+	  the first AP performs another update to its Resource Manager before
+	  committing)
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  The last operations are related to clean-up
 	</p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
@@ -100,12 +100,12 @@
 	    operations <span class="emphasis"><em>before and after</em></span> the call to the
 	    second Application Program
 	  </p></li></ul></div><p>
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58088240"></a>Example</h3></div></div></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58682032"></a>Example</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbps01.c</code> and
 	<code class="filename">example_xta_macbps02.c</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
 	(or MariaDB) in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span>; please
-	refer to the instructions explained :
+	refer to the instructions explained:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    in <a class="xref" href="apa.html#App_RM_Config_MySQL" title="MySQL Configuration">the section called “MySQL Configuration”</a>
 	    to set-up a running environment for MySQL server
@@ -139,7 +139,7 @@ tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/example_xta_m
 	Substitute <span class="quote">“<span class="quote">X.Y.Z</span>”</span> with the actual version of
 	the software you installed.
       </p><p>
-	Compile and link the C example program:
+	Compile and link the C example programs:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:~/tmp$ . /opt/lixa/bin/lixa_env.sh
 tiian@ubuntu1404-64:~/tmp$ gcc example_xta_macbps01.c $(lixa-config -x -c -f -l -d) $(mysql_config --libs_r) -o example_xta_macbps01
@@ -183,7 +183,7 @@ tiian@ubuntu1404-64:~/tmp$ ls -l example_xta_macbps01
 tiian@ubuntu1404-64:~/tmp$ ls -l example_xta_macbps02
 -rwxrwxr-x 1 tiian tiian 18319 apr  8 22:08 example_xta_macbps02
 	  </pre></td></tr></tbody></table></div><p>
-	one for MySQL queries
+	one for MySQL queries,
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:~$ mysql -h localhost -u lixa lixa
 Reading table information for completion of table and column names
@@ -211,8 +211,8 @@ Type "help" for help.
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-	set <code class="varname">LIXA_PROFILE</code> environment variable to
-	<code class="constant">XTA_DYN</code>
+	Set <code class="varname">LIXA_PROFILE</code> environment variable to
+	<code class="constant">XTA_DYN</code>,
 	a profile without static Resource Managers defined in
 	<code class="filename">lixac_conf.xml</code>:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -226,7 +226,7 @@ tiian@ubuntu1404-64:~/tmp$ echo $LIXA_PROFILE
 XTA_DYN
 	  </pre></td></tr></tbody></table></div><p>
 	create two named pipes (FIFO) to support communication between
-	superior and subordinate Application Program
+	superior and subordinate Application Programs
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:~/tmp$ mkfifo sup2sub
 tiian@ubuntu1404-64:~/tmp$ mkfifo sub2sup
@@ -236,21 +236,31 @@ prw-rw-r-- 1 tiian tiian 0 apr  8 22:22 sup2sub
 	  </pre></td></tr></tbody></table></div><p>
 	execute both the example programs to insert rows in tables and commit:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 1 1 sup2sub sub2sup 
-MySQL, executing &gt;INSERT INTO authors VALUES(1919, 'Levi', 'Primo')&lt;
-Superior AP has sent XID '1279875137.fd55ae8297774e25bffd16c890d61705.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 1 1 sup2sub sub2sup MySQL, executing &gt;INSERT INTO authors VALUES(1919, 'Levi', 'Primo')&lt;
+Superior AP has sent XID '1279875137.b6df6743cbf54cb8b8323ca5ab771e6e.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
 Superior AP has received 'PREPARED for COMMIT' reply from subordinate AP
 MySQL, executing &gt;INSERT INTO authors VALUES(1898, 'Remarque', 'Erich Maria')&lt;
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 1 1 sup2sub sub2sup 
-Subordinate AP has received XID '1279875137.fd55ae8297774e25bffd16c890d61705.e107cfeee0661d23da9322f1ee73faba' from superior AP
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 1 1 sup2sub sub2sup
+Subordinate AP has received XID '1279875137.b6df6743cbf54cb8b8323ca5ab771e6e.e107cfeee0661d23da9322f1ee73faba' from superior AP
+Subordinate AP has created a branch with XID '1279875137.b6df6743cbf54cb8b8323ca5ab771e6e.e107cfeee0661d23af7f136da1b84c3b'
 PostgreSQL, executing &gt;INSERT INTO authors VALUES(1921, 'Rigoni Stern', 'Mario')&lt;
-Superior AP has returned 'PREPARED for COMMIT' to subordinate AP
+Subordinate AP has returned 'PREPARED for COMMIT' to superior AP
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
-	check MySQL table content:
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	    The first (superior) Application Program suspends and waits the
+	    return value from the second (subordinate) Application Program.
+	  </p><p>
+	    The XID generated by the subordinate AP differs from the XID
+	    generated by the superior AP in the last 16 hexadecimal symbols
+	    of the <span class="quote">“<span class="quote">branch qualifier</span>”</span>; the first 16 hexadecimal
+	    symbols are the same: this is not required by XA specification but
+	    can be useful for troubleshooting purposes.
+	  </p></div><p>
+	Check MySQL table content:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - MySQL]</td></tr></thead><tbody><tr><td><pre class="screen">
 mysql&gt; select * from authors;
 +------+-----------+-------------+
@@ -277,16 +287,17 @@ testdb=&gt;
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 0 0 sup2sub sub2sup 
 MySQL, executing &gt;DELETE FROM authors WHERE id=1919&lt;
-Superior AP has sent XID '1279875137.304d06148bc34c0fa8ae7d844d59ccf6.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
+Superior AP has sent XID '1279875137.1911a9c72cec45eea47ffc74cf95e000.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
 Superior AP has received 'ROLLBACK' reply from subordinate AP
 MySQL, executing &gt;DELETE FROM authors WHERE id=1898&lt;
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 0 0 sup2sub sub2sup 
-Subordinate AP has received XID '1279875137.304d06148bc34c0fa8ae7d844d59ccf6.e107cfeee0661d23da9322f1ee73faba' from superior AP
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 0 0 sup2sub sub2sup
+Subordinate AP has received XID '1279875137.1911a9c72cec45eea47ffc74cf95e000.e107cfeee0661d23da9322f1ee73faba' from superior AP
+Subordinate AP has created a branch with XID '1279875137.1911a9c72cec45eea47ffc74cf95e000.e107cfeee0661d233a125b14214944da'
 PostgreSQL, executing &gt;DELETE FROM authors WHERE id=1921&lt;
-Superior AP has returned 'ROLLBACK' to subordinate AP
+Subordinate AP has returned 'ROLLBACK' to superior AP
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
 	check MySQL table content:
@@ -316,16 +327,17 @@ testdb=&gt;
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP1]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps01 1 0 sup2sub sub2sup 
 MySQL, executing &gt;DELETE FROM authors WHERE id=1919&lt;
-Superior AP has sent XID '1279875137.2502979ecbfb471f823d0a60ef4c3d88.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
+Superior AP has sent XID '1279875137.c862b6aa72784c808e6c59388e4263a9.e107cfeee0661d23da9322f1ee73faba' to subordinate AP
 Superior AP has received 'PREPARED for COMMIT' reply from subordinate AP
 MySQL, executing &gt;DELETE FROM authors WHERE id=1898&lt;
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 1 0 sup2sub sub2sup 
-Subordinate AP has received XID '1279875137.2502979ecbfb471f823d0a60ef4c3d88.e107cfeee0661d23da9322f1ee73faba' from superior AP
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps02 1 0 sup2sub sub2sup
+Subordinate AP has received XID '1279875137.c862b6aa72784c808e6c59388e4263a9.e107cfeee0661d23da9322f1ee73faba' from superior AP
+Subordinate AP has created a branch with XID '1279875137.c862b6aa72784c808e6c59388e4263a9.e107cfeee0661d234acf9ddb30da46f9'
 PostgreSQL, executing &gt;DELETE FROM authors WHERE id=1921&lt;
-Superior AP has returned 'PREPARED for COMMIT' to subordinate AP
+Subordinate AP has returned 'PREPARED for COMMIT' to superior AP
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
 	check MySQL table content:
@@ -344,14 +356,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58111632"></a>Source Code</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58705424"></a>Source Code</h3></div></div></div><p>
 	Source code for programs <code class="filename">example_xta_macbps01.c</code> 
 	and <code class="filename">example_xta_macbps02.c</code> are
 	installed in directory
 	<code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
 	are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/" target="_top">GitHub</a>. Source code is fully
 	commented for readability.
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58075456" class="footnote"><p><a href="#idp58075456" class="para"><sup class="para">[49] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58669600" class="footnote"><p><a href="#idp58669600" class="para"><sup class="para">[49] </sup></a>
 	    This must not be confused with a specific RPC technology: any
 	    communication technique that supports a request-response protocol
 	    can be used.
