@@ -54,7 +54,7 @@
 	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57671296"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60398768"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -109,7 +109,7 @@ tiian@ubuntu:~/tmp$ ldd example9_mys_pql
         libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb6cec000)
         libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb6ce8000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57671808"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60399280"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
@@ -121,7 +121,7 @@ MYS_STA_PQL_STA
 	It is suggested to set the necessary environment variable
 	(<code class="varname">LIXA_PROFILE</code>) in your 
 	profile if you are going to execute the programs many times.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57683072"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60410544"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MYS_STA_PQL_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -145,9 +145,9 @@ MYS_STA_PQL_STA
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp57687568" class="footnote" id="idp57687568"><sup class="footnote">[32]</sup></a>
-	<a href="#ftn.idp57689296" class="footnote" id="idp57689296"><sup class="footnote">[33]</sup></a>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57683632"></a>Program execution</h3></div></div></div><p>
+	<a href="#ftn.idp60415040" class="footnote" id="idp60415040"><sup class="footnote">[32]</sup></a>
+	<a href="#ftn.idp60416768" class="footnote" id="idp60416768"><sup class="footnote">[33]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60411104"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> MySQL database,
 	the second one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database
@@ -240,16 +240,16 @@ testdb=&gt; select * from AUTHORS;
 ----+-----------+------------
 (0 rows)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57687568" class="footnote"><p><a href="#idp57687568" class="para"><sup class="para">[32] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp60415040" class="footnote"><p><a href="#idp60415040" class="para"><sup class="para">[32] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
-	  </p></div><div id="ftn.idp57689296" class="footnote"><p><a href="#idp57689296" class="para"><sup class="para">[33] </sup></a>
+	  </p></div><div id="ftn.idp60416768" class="footnote"><p><a href="#idp60416768" class="para"><sup class="para">[33] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp59320608"><span class="citation">XAspec</span></a>].
+	    documented in [<a class="citation" href="bi01.html#idp62140064"><span class="citation">XAspec</span></a>].
 	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s12.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with MySQL/MariaDB </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with MySQL, PostgreSQL &amp; Oracle</td></tr></table></div></body></html>

@@ -16,7 +16,7 @@
 	The LIXA software must be configured to support the IBM DB2
 	server resource manager as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_DB2_environment"></a>Set-up DB2 environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp57227856"></a>Start-up the DB2 server</h4></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Development_setup_DB2_environment"></a>Set-up DB2 environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59955328"></a>Start-up the DB2 server</h4></div></div></div><p>
 	  If your server didn't start-up automatically at boot time, you
 	  could start it with the following commands:
 	  </p><pre class="screen">
@@ -228,7 +228,7 @@ DB20000I  The QUIT command completed successfully.
 	  <code class="systemitem">tiian</code>	
 	  in the example above, can connect to the database and execute
 	  some query.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57243264"></a>Start the LIXA state server</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59970736"></a>Start the LIXA state server</h3></div></div></div><p>
 	Start the state server as shown below:
 	</p><pre class="screen">
 tiian@ubuntu:~$ sudo su - lixa
@@ -238,7 +238,7 @@ logout
 tiian@ubuntu:~$ ps -ef|grep lixad|grep -v grep
 lixa     12866     1  0 21:35 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57252784"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59980256"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -283,7 +283,7 @@ tiian@ubuntu:~/tmp$ ldd example3_db2
         libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb5282000)
         libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb527d000)
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57253296"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59980768"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
@@ -294,7 +294,7 @@ DB2_DYN
 	</pre><p>
 	No additional DB2 variables are needed because they are automatically
 	set at login (see <a class="xref" href="ch05s05.html#Development_setup_DB2_environment" title="Set-up DB2 environment">the section called “Set-up DB2 environment”</a>).
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57260704"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59988176"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">DB2_DYN</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -314,8 +314,8 @@ DB2_DYN
     &lt;rsrmgr name="IBMDB2_dynreg" switch_file="/opt/lixa/lib/switch_ibmdb2_dynreg.so" xa_open_info="axlib=/opt/lixa/lib/liblixac.so,db=sample,tpm=lixa" xa_close_info="" /&gt;
 	</pre><p>
 	we can discover how the DB2 database is configured for XA
-	<a href="#ftn.idp57264656" class="footnote" id="idp57264656"><sup class="footnote">[23]</sup></a>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57261216"></a>Program execution (dynamic registration)</h3></div></div></div><p>
+	<a href="#ftn.idp59992128" class="footnote" id="idp59992128"><sup class="footnote">[23]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59988688"></a>Program execution (dynamic registration)</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to <span class="quote">“<span class="quote">SAMPLE</span>”</span> DB2 database and the second
 	one pointing to the directory where the compiled program
@@ -548,7 +548,7 @@ tiian@ubuntu:~/tmp$ ./example3_db2 insert dept 2&gt;&amp;1 | grep ax_reg
 	</p><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57267840"></a>Program execution (static registration)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59995312"></a>Program execution (static registration)</h3></div></div></div><p>
 	If you desire static transaction registration instead of the
 	dynamic one, you can switch the <code class="varname">LIXA_PROFILE</code>:
 	</p><pre class="screen">
@@ -601,7 +601,7 @@ Z99    RESEARCH &amp; DEVELOPMENT               -      E01      -
 tiian@ubuntu:~/tmp$ unset LIXA_TRACE_MASK
 tiian@ubuntu:~/tmp$ ./example3_db2 delete dept
 	</pre><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57264656" class="footnote"><p><a href="#idp57264656" class="para"><sup class="para">[23] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59992128" class="footnote"><p><a href="#idp59992128" class="para"><sup class="para">[23] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    documented at IBM Infocenter: search the string
 	    <span class="quote">“<span class="quote">xa_open string formats</span>”</span> in the documentation
