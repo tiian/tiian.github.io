@@ -6,10 +6,10 @@
   </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
     This chapter is focused on the C programming language for the non-standard extensions that has been added to the TX specification to expose some of the XA interface capabilities. All the information supplied in <a class="xref" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface">Chapter 5, <em>Developing C Application Programs using TX (Transaction
   Demarcation) interface</em></a> still applies.
-  </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp61020480"></a>Non-standard TX (Transaction Demarcation) Specification Extensions</h2></div></div></div><p>
-      The LIXA project provides extensions to the [<a class="citation" href="bi01.html#idp62135296"><span class="citation">TXspec</span></a>],
+  </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp62202736"></a>Non-standard TX (Transaction Demarcation) Specification Extensions</h2></div></div></div><p>
+      The LIXA project provides extensions to the [<a class="citation" href="bi01.html#idp63317872"><span class="citation">TXspec</span></a>],
       named Transaction Coupling (TC)
-      <a href="#ftn.idp61021664" class="footnote" id="idp61021664"><sup class="footnote">[40]</sup></a>, which can be used in addition to the 
+      <a href="#ftn.idp62203888" class="footnote" id="idp62203888"><sup class="footnote">[40]</sup></a>, which can be used in addition to the 
       standard API when developing distributed Application Programs.
     </p><p>
       The API extensions are easy to use and the following C example briefly explains it:
@@ -70,9 +70,9 @@ int main(int argc, char *argv[])
         </p></li><li class="listitem" style="list-style-type: disc"><p>
           <code class="function">tx_resume</code>: resume a suspended global transaction - <span class="emphasis"><em>only from the thread that suspended the original transaction</em></span>
         </p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61033184"></a>LIXA library linkage</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp62214640"></a>LIXA library linkage</h3></div></div></div><p>
 	See <a class="xref" href="ch05s02.html" title="LIXA library linkage">the section called “LIXA library linkage”</a>.
-      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61021664" class="footnote"><p><a href="#idp61021664" class="para"><sup class="para">[40] </sup></a>
+      </p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp62203888" class="footnote"><p><a href="#idp62203888" class="para"><sup class="para">[40] </sup></a>
 	  This extension to the TX specification was designed and has been
 	  provided to the LIXA project by 
 	  <a class="ulink" href="http://www.globetom.com/" target="_top">Globetom</a>
