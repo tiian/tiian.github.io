@@ -1,0 +1,11 @@
+<map id="lixa_errors.h" name="lixa_errors.h">
+<area shape="rect" id="node2" href="$xta_8h.html" title="xta.h" alt="" coords="5,80,56,107"/>
+<area shape="rect" id="node3" href="$xta__acquired__xa__resource_8c.html" title="xta_acquired_xa_resource.c" alt="" coords="81,80,265,107"/>
+<area shape="rect" id="node4" href="$xta__mysql__xa__resource_8c.html" title="xta_mysql_xa_resource.c" alt="" coords="291,80,461,107"/>
+<area shape="rect" id="node5" href="$xta__native__xa__resource_8c.html" title="xta_native_xa_resource.c" alt="" coords="485,80,656,107"/>
+<area shape="rect" id="node6" href="$xta__postgresql__xa__resource_8c.html" title="xta_postgresql_xa_resource.c" alt="" coords="681,80,876,107"/>
+<area shape="rect" id="node7" href="$xta__transaction_8c.html" title="xta_transaction.c" alt="" coords="901,80,1024,107"/>
+<area shape="rect" id="node8" href="$xta__transaction__manager_8c.html" title="xta_transaction_manager.c" alt="" coords="1048,80,1227,107"/>
+<area shape="rect" id="node9" href="$xta__xa__resource_8c.html" title="xta_xa_resource.c" alt="" coords="1251,80,1380,107"/>
+<area shape="rect" id="node10" href="$xta__xid_8c.html" title="xta_xid.c" alt="" coords="1404,80,1477,107"/>
+</map>

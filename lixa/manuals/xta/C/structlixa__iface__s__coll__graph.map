@@ -1,0 +1,8 @@
+<map id="lixa_iface_s" name="lixa_iface_s">
+<area shape="rect" id="node2" href="$structxa__switch__t.html" title="xa_switch_t" alt="" coords="5,277,96,304"/>
+<area shape="rect" id="node3" href="$structxta__xa__resource__s.html" title="xta_xa_resource_s" alt="" coords="121,277,252,304"/>
+<area shape="rect" id="node4" href="$structxta__transaction__s.html" title="xta_transaction_s" alt="" coords="124,187,249,213"/>
+<area shape="rect" id="node5" href="$structxta__xid__t.html" title="xta_xid_t" alt="" coords="149,96,223,123"/>
+<area shape="rect" id="node6" href="$structxid__t.html" title="xid_t" alt="" coords="161,5,212,32"/>
+<area shape="rect" id="node7" href="$structxta__iface__s.html" title="xta_iface_s" alt="" coords="277,277,365,304"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="xta_acquired_xa_resource_t" name="xta_acquired_xa_resource_t">
+<area shape="rect" id="node2" href="$structxta__xa__resource__s.html" title="xta_xa_resource_s" alt="" coords="5,277,136,304"/>
+<area shape="rect" id="node3" href="$structxta__transaction__s.html" title="xta_transaction_s" alt="" coords="8,187,133,213"/>
+<area shape="rect" id="node4" href="$structxta__xid__t.html" title="xta_xid_t" alt="" coords="33,96,107,123"/>
+<area shape="rect" id="node5" href="$structxid__t.html" title="xid_t" alt="" coords="45,5,96,32"/>
+<area shape="rect" id="node6" href="$structxta__iface__s.html" title="xta_iface_s" alt="" coords="161,277,249,304"/>
+</map>
