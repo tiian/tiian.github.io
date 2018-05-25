@@ -15,41 +15,43 @@ Here are the most valuable characteristics:
 * XA Resource Managers
 * non XA Resource Managers
 
-## Serverless
+### Serverless
 
 Applications do **not** have to use a specific *application server* to use XTA.
 XTA is just a library that must be linked by applications.
 
-## Distributed Applications
+### Distributed Applications
 
 Any number of different Applications, distributed in different systems, can
 participate in the same global XA transaction. XTA requires only TCP/IP
 connectivity.
 
-## Distributes Resources
+### Distributes Resources
 
-Any number of different Resources, like SQL databases, NoSQL databases,
+Any number of different Resources like SQL databases, NoSQL databases,
 messaging brokers, etc... can participate in the same global XA transaction.
 
-## Transaction as a Service
+### Transaction as a Service
 
 XTA uses the LIXA state server to persist transaction state and to synchronize
 different applications. LIXA state server is accessed by XTA using an XML
 message oriented, protocol based on standard TCP/IP connection.
 
-## Polyglot
+### Polyglot
 
 Application developed with different programming languages can participate in
 the same global XA transacation.
 
-## XA Resource Managers
+### XA Resource Managers
 
 XTA natively recognizes XA standard Resource Managers.
 
-## non XA Resource Managers
+### non XA Resource Managers
 
 XTA provides an interface that can be implemented by any Resource Manager that
 can support two phase commit indipendently from XA standard. 
 
+## XTA documentation
 
-XTA documentation is available inside [LIXA manual](/manuals/html/index.html)
+XTA documentation is available inside the
+[LIXA manual](/manuals/html/index.html)
