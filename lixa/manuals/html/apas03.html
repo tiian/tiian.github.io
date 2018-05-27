@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PostgreSQL Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PostgreSQL Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apas02.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> </td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_PostgreSQL"></a>PostgreSQL Configuration</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PostgreSQL Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.6.0)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PostgreSQL Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apas02.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> </td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_PostgreSQL"></a>PostgreSQL Configuration</h2></div></div></div><p>
       The following diagram represents a simplified vision of the components
       necessary to run an example program (<code class="filename">example5_mys</code>
       in the picture) that uses PostgreSQL as an XA Resource Manager.
     </p><div class="figure"><a id="develop5"></a><p class="title"><strong>Figure A.3. Deploy model of an example with PostgreSQL DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_App_RM_5.png" alt="Deploy model of an example with PostgreSQL DBMS" /></div></div></div><br class="figure-break" /><p>
       This section has been developed using PostgreSQL 9.1.24 (and upper)
       for Linux. Here is a brief list of the tested versions for Ubuntu
-      12.04, 14.04, 16.04 and CentOS/RHEL 7.3 and the installed packages:
+      12.04, 14.04, 16.04, 18.04 and CentOS/RHEL 7.3 and the installed
+      packages:
       </p><pre class="screen">
 tiian@ubuntu1204-64:/tmp$ dpkg -l | grep -i -e pq -e postgresql
 ii  libpq-dev                        9.1.24-0ubuntu0.12.04               header files for libpq5 (PostgreSQL library)
@@ -35,6 +36,15 @@ ii  postgresql-client-9.5              9.5.6-0ubuntu0.16.04                amd64
 ii  postgresql-client-common           173                                 all          manager for multiple PostgreSQL client versions
 ii  postgresql-common                  173                                 all          PostgreSQL database-cluster manager
 ii  postgresql-contrib-9.5             9.5.6-0ubuntu0.16.04                amd64        additional facilities for PostgreSQL
+
+tiian@ubuntu1804:~$ dpkg -l | grep -i -e pq -e postgresql
+ii  libpq-dev                             10.3-1                             amd64        header files for libpq5 (PostgreSQL library)
+ii  libpq5:amd64                          10.3-1                             amd64        PostgreSQL C client library
+ii  postgresql                            10+190                             all          object-relational SQL database (supported version)
+ii  postgresql-10                         10.3-1                             amd64        object-relational SQL database, version 10 server
+ii  postgresql-client-10                  10.3-1                             amd64        front-end programs for PostgreSQL 10
+ii  postgresql-client-common              190                                all          manager for multiple PostgreSQL client versions
+ii  postgresql-common                     190                                all          PostgreSQL database-cluster manager
 
 [tiian@centos71-64 tmp]$ rpm -qa | grep -i -e pq -e postgresql
 postgresql-libs-9.2.18-1.el7.x86_64
@@ -68,7 +78,7 @@ postgresql-libs-9.2.18-1.el7.x86_64
       The LIXA software must be configured to support the PostgreSQL
       server resource manager as explained in 
       <a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59153968"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59174848"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
 	  If your server didn't start-up automatically at boot time, you
 	  could start it with the following commands:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -88,7 +98,7 @@ postgres  1834  1829  0 23:00 ?        00:00:00 postgres: stats collector proces
 	    </pre></td></tr></tbody></table></div><p>
 	  Switch to user <code class="systemitem">postgres</code>,
 	  associate your user to a matching database user
-	  <a href="#ftn.idp59158608" class="footnote" id="idp59158608"><sup class="footnote">[59]</sup></a>
+	  <a href="#ftn.idp59179488" class="footnote" id="idp59179488"><sup class="footnote">[59]</sup></a>
 	  ; my personal account is 
 	  <code class="systemitem">tiian</code>
 	  and I created the same user inside PostgreSQL database:
@@ -151,7 +161,7 @@ max_prepared_transactions = 10          # zero disables the feature
 	  and restart the PostgreSQL server with something like
 	  </p><pre class="screen">service postgresql restart</pre><p> (Ubuntu, CentOS and RHEL) using
 	  <code class="systemitem">root</code> user.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59158608" class="footnote"><p><a href="#idp59158608" class="para"><sup class="para">[59] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59179488" class="footnote"><p><a href="#idp59179488" class="para"><sup class="para">[59] </sup></a>
 	    If you wanted to use a database user different than your own
 	    UNIX user, as it ever happens when the database is hosted on
 	    a different system, you should configure
