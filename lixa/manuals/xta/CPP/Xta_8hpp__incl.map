@@ -1,0 +1,9 @@
+<map id="Xta.hpp" name="Xta.hpp">
+<area shape="rect" id="node3" href="$Exception_8hpp.html" title="Exception.hpp" alt="" coords="5,155,109,181"/>
+<area shape="rect" id="node6" href="$MysqlXaResource_8hpp.html" title="MysqlXaResource.hpp" alt="" coords="375,155,528,181"/>
+<area shape="rect" id="node9" href="$PostgresqlXaResource_8hpp.html" title="PostgresqlXaResource.hpp" alt="" coords="553,155,735,181"/>
+<area shape="rect" id="node10" href="$Transaction_8hpp.html" title="Transaction.hpp" alt="" coords="135,155,249,181"/>
+<area shape="rect" id="node11" href="$TransactionManager_8hpp.html" title="TransactionManager.hpp" alt="" coords="140,80,304,107"/>
+<area shape="rect" id="node7" href="$AcquiredXaResource_8hpp.html" title="AcquiredXaResource.hpp" alt="" coords="384,229,555,256"/>
+<area shape="rect" id="node8" href="$XaResource_8hpp.html" title="XaResource.hpp" alt="" coords="271,304,389,331"/>
+</map>

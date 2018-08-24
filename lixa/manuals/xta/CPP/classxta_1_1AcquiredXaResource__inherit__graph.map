@@ -1,0 +1,5 @@
+<map id="xta::AcquiredXaResource" name="xta::AcquiredXaResource">
+<area shape="rect" id="node3" href="$classxta_1_1MysqlXaResource.html" title="xta::MysqlXaResource" alt="" coords="5,155,159,181"/>
+<area shape="rect" id="node4" href="$classxta_1_1PostgresqlXaResource.html" title="xta::PostgresqlXaResource" alt="" coords="185,155,367,181"/>
+<area shape="rect" id="node2" href="$classxta_1_1XaResource.html" title="xta::XaResource" alt="" coords="119,5,239,32"/>
+</map>
