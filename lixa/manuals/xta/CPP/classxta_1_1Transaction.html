@@ -56,16 +56,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a31845c1537ff0f96bdc365fc39a6384b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a0ca76165c6e017a9ab128f0be7e636"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a0a0ca76165c6e017a9ab128f0be7e636">Close</a> (void)</td></tr>
 <tr class="separator:a0a0ca76165c6e017a9ab128f0be7e636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cf3808f248c1e5eee38490dd7cf3eda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a9cf3808f248c1e5eee38490dd7cf3eda">Commit</a> (bool NonBlocking)</td></tr>
-<tr class="separator:a9cf3808f248c1e5eee38490dd7cf3eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f704c2796a5062d5774ae6bb493ea8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a02f704c2796a5062d5774ae6bb493ea8">Commit</a> (bool NonBlocking=false)</td></tr>
+<tr class="separator:a02f704c2796a5062d5774ae6bb493ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f6a595b63afd26d75a28377b695a3d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a7f6a595b63afd26d75a28377b695a3d4">EnlistResource</a> (<a class="el" href="classxta_1_1XaResource.html">XaResource</a> *xaRes)</td></tr>
 <tr class="separator:a7f6a595b63afd26d75a28377b695a3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6e29e7afe9d56ab3fe7bfea57b09e1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#ae6e29e7afe9d56ab3fe7bfea57b09e1a">Open</a> (void)</td></tr>
 <tr class="separator:ae6e29e7afe9d56ab3fe7bfea57b09e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf272a971cd52e57eb61378d99784ca6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#acf272a971cd52e57eb61378d99784ca6">Rollback</a> (void)</td></tr>
 <tr class="separator:acf272a971cd52e57eb61378d99784ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9158d10b1939f0cc50795be32f3dbe3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#ad9158d10b1939f0cc50795be32f3dbe3">Start</a> (bool MultipleBranches)</td></tr>
-<tr class="separator:ad9158d10b1939f0cc50795be32f3dbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a035515a307f706b8c1d893ea52da1c81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a035515a307f706b8c1d893ea52da1c81">Start</a> (bool MultipleBranches=false)</td></tr>
+<tr class="separator:a035515a307f706b8c1d893ea52da1c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b33b8ee8b612abe3b922d8078bab462"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a5b33b8ee8b612abe3b922d8078bab462">Transaction</a> (xta_transaction_t *<a class="el" href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">tx</a>)</td></tr>
 <tr class="separator:a5b33b8ee8b612abe3b922d8078bab462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1545da1dc4542be72d10cb3641f81d35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a1545da1dc4542be72d10cb3641f81d35">~Transaction</a> ()</td></tr>
@@ -170,7 +170,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9cf3808f248c1e5eee38490dd7cf3eda"></a>
+<a class="anchor" id="a02f704c2796a5062d5774ae6bb493ea8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -178,7 +178,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">void xta::Transaction::Commit </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>NonBlocking</em></td><td>)</td>
+          <td class="paramname"><em>NonBlocking</em> = <code>false</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -269,7 +269,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad9158d10b1939f0cc50795be32f3dbe3"></a>
+<a class="anchor" id="a035515a307f706b8c1d893ea52da1c81"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -277,7 +277,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">void xta::Transaction::Start </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>MultipleBranches</em></td><td>)</td>
+          <td class="paramname"><em>MultipleBranches</em> = <code>false</code></td><td>)</td>
           <td></td>
         </tr>
       </table>

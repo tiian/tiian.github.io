@@ -9,10 +9,10 @@ Here is the last version of the LIXA manual as an HTML document:
 - [multiple pages](/manuals/html/index.html)
 - [single page](/manuals/html/index_all_in_one.html)
 
-XTA API Reference:
+XTA API Reference is available for the following programming languages:
 
-- [C](/manuals/xta/C/index.html).
-- [C++](/manuals/xta/CPP/index.html).
+- [C](/manuals/xta/C/index.html)
+- [C++](/manuals/xta/CPP/index.html)
 
 Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hosting site is [SourceForge](https://sourceforge.net/projects/lixa/).
 
