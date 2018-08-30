@@ -68,30 +68,32 @@ $(document).ready(function(){initNavTree('Xta_8hpp_source.html','');});
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;xta.h&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">/* include all XTA C++ header files */</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Exception_8hpp.html">Exception.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MysqlXaResource_8hpp.html">MysqlXaResource.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PostgresqlXaResource_8hpp.html">PostgresqlXaResource.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Transaction_8hpp.html">Transaction.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TransactionManager_8hpp.html">TransactionManager.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NativeXaResource_8hpp.html">NativeXaResource.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MysqlXaResource_8hpp.html">MysqlXaResource.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PostgresqlXaResource_8hpp.html">PostgresqlXaResource.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Transaction_8hpp.html">Transaction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TransactionManager_8hpp.html">TransactionManager.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace </span>xta {</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classxta_1_1Xta.html">   36</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classxta_1_1Xta.html">Xta</a> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classxta_1_1Xta.html#afe0afc0f895c5083330f8ed83266ad1d">Init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">namespace </span>xta {</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classxta_1_1Xta.html">   37</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classxta_1_1Xta.html">Xta</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classxta_1_1Xta.html#afe0afc0f895c5083330f8ed83266ad1d">Init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* XTA_HPP */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* XTA_HPP */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="TransactionManager_8hpp_html"><div class="ttname"><a href="TransactionManager_8hpp.html">TransactionManager.hpp</a></div></div>
+<div class="ttc" id="NativeXaResource_8hpp_html"><div class="ttname"><a href="NativeXaResource_8hpp.html">NativeXaResource.hpp</a></div></div>
 <div class="ttc" id="Transaction_8hpp_html"><div class="ttname"><a href="Transaction_8hpp.html">Transaction.hpp</a></div></div>
 <div class="ttc" id="MysqlXaResource_8hpp_html"><div class="ttname"><a href="MysqlXaResource_8hpp.html">MysqlXaResource.hpp</a></div></div>
 <div class="ttc" id="classxta_1_1Xta_html_afe0afc0f895c5083330f8ed83266ad1d"><div class="ttname"><a href="classxta_1_1Xta.html#afe0afc0f895c5083330f8ed83266ad1d">xta::Xta::Init</a></div><div class="ttdeci">static void Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="Xta_8cpp_source.html#l00036">Xta.cpp:36</a></div></div>
 <div class="ttc" id="Exception_8hpp_html"><div class="ttname"><a href="Exception_8hpp.html">Exception.hpp</a></div></div>
 <div class="ttc" id="PostgresqlXaResource_8hpp_html"><div class="ttname"><a href="PostgresqlXaResource_8hpp.html">PostgresqlXaResource.hpp</a></div></div>
-<div class="ttc" id="classxta_1_1Xta_html"><div class="ttname"><a href="classxta_1_1Xta.html">xta::Xta</a></div><div class="ttdef"><b>Definition:</b> <a href="Xta_8hpp_source.html#l00036">Xta.hpp:36</a></div></div>
+<div class="ttc" id="classxta_1_1Xta_html"><div class="ttname"><a href="classxta_1_1Xta.html">xta::Xta</a></div><div class="ttdef"><b>Definition:</b> <a href="Xta_8hpp_source.html#l00037">Xta.hpp:37</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
     <HR>

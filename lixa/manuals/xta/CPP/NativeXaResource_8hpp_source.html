@@ -64,15 +64,37 @@ $(document).ready(function(){initNavTree('NativeXaResource_8hpp_source.html','')
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>xta {</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classxta_1_1NativeXaResource.html">   25</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classxta_1_1NativeXaResource.html">NativeXaResource</a> : <span class="keyword">public</span> <a class="code" href="classxta_1_1XaResource.html">XaResource</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">/* include XTA header file */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;xta.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XaResource_8hpp.html">XaResource.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NATIVE_XA_RESOURCE_HPP */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classxta_1_1NativeXaResource_html"><div class="ttname"><a href="classxta_1_1NativeXaResource.html">xta::NativeXaResource</a></div><div class="ttdef"><b>Definition:</b> <a href="NativeXaResource_8hpp_source.html#l00025">NativeXaResource.hpp:25</a></div></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span>xta {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classxta_1_1NativeXaResource.html">   31</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classxta_1_1NativeXaResource.html">NativeXaResource</a> : <span class="keyword">public</span> <a class="code" href="classxta_1_1XaResource.html">XaResource</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classxta_1_1NativeXaResource.html#af7c3ee561e63f40af7328646f8aea706">NativeXaResource</a>(std::string <span class="keyword">const</span>&amp; name,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                         std::string <span class="keyword">const</span>&amp; switch_file,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                         std::string <span class="keyword">const</span>&amp; open_info,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                         std::string <span class="keyword">const</span>&amp; close_info);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classxta_1_1NativeXaResource.html#a82fe48c502f6a235c64531a122e362ed">~NativeXaResource</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classxta_1_1NativeXaResource.html#abd42bde8820ef51bcf4e6e489fb11eeb">   55</a></span>&#160;        xta_xa_resource_t *<a class="code" href="classxta_1_1NativeXaResource.html#abd42bde8820ef51bcf4e6e489fb11eeb">getCBaseXaResource</a>() {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span> (xta_xa_resource_t *)<a class="code" href="classxta_1_1NativeXaResource.html#ad014e794f380e24e3aed03bdee016b61">nxar</a>; }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classxta_1_1NativeXaResource.html#ad014e794f380e24e3aed03bdee016b61">   62</a></span>&#160;        xta_native_xa_resource_t *<a class="code" href="classxta_1_1NativeXaResource.html#ad014e794f380e24e3aed03bdee016b61">nxar</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    };</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NATIVE_XA_RESOURCE_HPP */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="XaResource_8hpp_html"><div class="ttname"><a href="XaResource_8hpp.html">XaResource.hpp</a></div></div>
+<div class="ttc" id="classxta_1_1NativeXaResource_html_af7c3ee561e63f40af7328646f8aea706"><div class="ttname"><a href="classxta_1_1NativeXaResource.html#af7c3ee561e63f40af7328646f8aea706">xta::NativeXaResource::NativeXaResource</a></div><div class="ttdeci">NativeXaResource(std::string const &amp;name, std::string const &amp;switch_file, std::string const &amp;open_info, std::string const &amp;close_info)</div><div class="ttdef"><b>Definition:</b> <a href="NativeXaResource_8cpp_source.html#l00041">NativeXaResource.cpp:41</a></div></div>
+<div class="ttc" id="classxta_1_1NativeXaResource_html_abd42bde8820ef51bcf4e6e489fb11eeb"><div class="ttname"><a href="classxta_1_1NativeXaResource.html#abd42bde8820ef51bcf4e6e489fb11eeb">xta::NativeXaResource::getCBaseXaResource</a></div><div class="ttdeci">xta_xa_resource_t * getCBaseXaResource()</div><div class="ttdef"><b>Definition:</b> <a href="NativeXaResource_8hpp_source.html#l00055">NativeXaResource.hpp:55</a></div></div>
+<div class="ttc" id="classxta_1_1NativeXaResource_html_ad014e794f380e24e3aed03bdee016b61"><div class="ttname"><a href="classxta_1_1NativeXaResource.html#ad014e794f380e24e3aed03bdee016b61">xta::NativeXaResource::nxar</a></div><div class="ttdeci">xta_native_xa_resource_t * nxar</div><div class="ttdef"><b>Definition:</b> <a href="NativeXaResource_8hpp_source.html#l00062">NativeXaResource.hpp:62</a></div></div>
+<div class="ttc" id="classxta_1_1NativeXaResource_html"><div class="ttname"><a href="classxta_1_1NativeXaResource.html">xta::NativeXaResource</a></div><div class="ttdef"><b>Definition:</b> <a href="NativeXaResource_8hpp_source.html#l00031">NativeXaResource.hpp:31</a></div></div>
+<div class="ttc" id="classxta_1_1NativeXaResource_html_a82fe48c502f6a235c64531a122e362ed"><div class="ttname"><a href="classxta_1_1NativeXaResource.html#a82fe48c502f6a235c64531a122e362ed">xta::NativeXaResource::~NativeXaResource</a></div><div class="ttdeci">~NativeXaResource()</div><div class="ttdef"><b>Definition:</b> <a href="NativeXaResource_8cpp_source.html#l00053">NativeXaResource.cpp:53</a></div></div>
 <div class="ttc" id="classxta_1_1XaResource_html"><div class="ttname"><a href="classxta_1_1XaResource.html">xta::XaResource</a></div><div class="ttdef"><b>Definition:</b> <a href="XaResource_8hpp_source.html#l00025">XaResource.hpp:25</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

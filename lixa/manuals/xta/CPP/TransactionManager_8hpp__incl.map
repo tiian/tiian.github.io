@@ -1,4 +1,5 @@
 <map id="TransactionManager.hpp" name="TransactionManager.hpp">
 <area shape="rect" id="node3" href="$Transaction_8hpp.html" title="Transaction.hpp" alt="" coords="79,80,193,107"/>
-<area shape="rect" id="node5" href="$XaResource_8hpp.html" title="XaResource.hpp" alt="" coords="182,155,300,181"/>
+<area shape="rect" id="node5" href="$Xid_8hpp.html" title="Xid.hpp" alt="" coords="171,155,237,181"/>
+<area shape="rect" id="node6" href="$XaResource_8hpp.html" title="XaResource.hpp" alt="" coords="262,155,380,181"/>
 </map>

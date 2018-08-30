@@ -60,12 +60,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a02f704c2796a5062d5774ae6bb493ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f6a595b63afd26d75a28377b695a3d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a7f6a595b63afd26d75a28377b695a3d4">EnlistResource</a> (<a class="el" href="classxta_1_1XaResource.html">XaResource</a> *xaRes)</td></tr>
 <tr class="separator:a7f6a595b63afd26d75a28377b695a3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2f612c3f5e5f708c09553425143edd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classxta_1_1Xid.html">Xid</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#ae2f612c3f5e5f708c09553425143edd5">getXid</a> ()</td></tr>
+<tr class="separator:ae2f612c3f5e5f708c09553425143edd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6e29e7afe9d56ab3fe7bfea57b09e1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#ae6e29e7afe9d56ab3fe7bfea57b09e1a">Open</a> (void)</td></tr>
 <tr class="separator:ae6e29e7afe9d56ab3fe7bfea57b09e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2852c19cc6cfaafb63471df1da07c59f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a2852c19cc6cfaafb63471df1da07c59f">Resume</a> (const string &amp;XidString, long Flags=<a class="el" href="xa_8h.html#a7e1c3c485e197ac63b1fde0d0fa21918">TMRESUME</a>)</td></tr>
+<tr class="separator:a2852c19cc6cfaafb63471df1da07c59f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf272a971cd52e57eb61378d99784ca6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#acf272a971cd52e57eb61378d99784ca6">Rollback</a> (void)</td></tr>
 <tr class="separator:acf272a971cd52e57eb61378d99784ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a035515a307f706b8c1d893ea52da1c81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a035515a307f706b8c1d893ea52da1c81">Start</a> (bool MultipleBranches=false)</td></tr>
 <tr class="separator:a035515a307f706b8c1d893ea52da1c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addfab62d3c3ffc492ea8f29b00a4e137"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#addfab62d3c3ffc492ea8f29b00a4e137">Suspend</a> (long Flags=<a class="el" href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a>)</td></tr>
+<tr class="separator:addfab62d3c3ffc492ea8f29b00a4e137"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b33b8ee8b612abe3b922d8078bab462"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a5b33b8ee8b612abe3b922d8078bab462">Transaction</a> (xta_transaction_t *<a class="el" href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">tx</a>)</td></tr>
 <tr class="separator:a5b33b8ee8b612abe3b922d8078bab462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1545da1dc4542be72d10cb3641f81d35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxta_1_1Transaction.html#a1545da1dc4542be72d10cb3641f81d35">~Transaction</a> ()</td></tr>
@@ -79,7 +85,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>XTA <a class="el" href="classxta_1_1Transaction.html">Transaction</a> Manager class </p>
 
-<p>Definition at line <a class="el" href="Transaction_8hpp_source.html#l00041">41</a> of file <a class="el" href="Transaction_8hpp_source.html">Transaction.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Transaction_8hpp_source.html#l00042">42</a> of file <a class="el" href="Transaction_8hpp_source.html">Transaction.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5b33b8ee8b612abe3b922d8078bab462"></a>
 <div class="memitem">
@@ -98,7 +104,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00037">37</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -117,7 +123,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00042">42</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -143,9 +149,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00094">94</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00109">109</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -164,9 +170,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Shut down the XA Resource Managers and the XA <a class="el" href="classxta_1_1Transaction.html">Transaction</a> Manager after transactional Unit of Work completion. From the XA specification point of view, it calls xa_close (for the Native XA Resource Managers) </p>
 
-<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00087">87</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00102">102</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -196,7 +202,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00072">72</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -223,7 +229,26 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00049">49</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="classxta_1_1XaResource.html#a0d95e2fd8970960644912655fdd2b120">xta::XaResource::getCBaseXaResource()</a>, and <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="classxta_1_1XaResource.html#a0d95e2fd8970960644912655fdd2b120">xta::XaResource::getCBaseXaResource()</a>, and <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2f612c3f5e5f708c09553425143edd5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classxta_1_1Xid.html">Xid</a> xta::Transaction::getXid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00116">116</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
+
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -244,7 +269,45 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00057">57</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2852c19cc6cfaafb63471df1da07c59f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xta::Transaction::Resume </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>XidString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>Flags</em> = <code><a class="el" href="xa_8h.html#a7e1c3c485e197ac63b1fde0d0fa21918">TMRESUME</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Resume the transaction represented by xid in this transaction object; the transaction has been previously suspended with <a class="el" href="classxta_1_1Transaction.html#addfab62d3c3ffc492ea8f29b00a4e137">Suspend</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">XidString</td><td>serialized identifier of the transaction that must be resumed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Flags</td><td>can be <a class="el" href="xa_8h.html#a7e1c3c485e197ac63b1fde0d0fa21918">TMRESUME</a> if the transaction has been suspended using <a class="el" href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a> or <a class="el" href="xa_8h.html#a19ddbf5289b6e1eddd0a7909639f92d5">TMJOIN</a> if the transaction has been suspended using <a class="el" href="xa_8h.html#a419fee50685a9163b44cfb9958a76542">TMNOFLAGS</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00094">94</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
+
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -265,7 +328,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00080">80</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -295,7 +358,34 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00064">64</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
 
-<p>References <a class="el" href="Transaction_8hpp_source.html#l00106">tx</a>.</p>
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="addfab62d3c3ffc492ea8f29b00a4e137"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xta::Transaction::Suspend </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>Flags</em> = <code><a class="el" href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Suspend the transaction represented by this transaction object; the transaction can be resumed with <a class="el" href="classxta_1_1Transaction.html#a2852c19cc6cfaafb63471df1da07c59f">Resume</a> at a later time </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">Flags</td><td>can be <a class="el" href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a> if the Resource Manager supports transaction migration and <a class="el" href="xa_8h.html#a419fee50685a9163b44cfb9958a76542">TMNOFLAGS</a> otherwise </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Transaction_8cpp_source.html#l00087">87</a> of file <a class="el" href="Transaction_8cpp_source.html">Transaction.cpp</a>.</p>
+
+<p>References <a class="el" href="Transaction_8hpp_source.html#l00127">tx</a>.</p>
 
 </div>
 </div>
@@ -319,9 +409,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Pointer to the native C object </p>
 
-<p>Definition at line <a class="el" href="Transaction_8hpp_source.html#l00106">106</a> of file <a class="el" href="Transaction_8hpp_source.html">Transaction.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Transaction_8hpp_source.html#l00127">127</a> of file <a class="el" href="Transaction_8hpp_source.html">Transaction.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Transaction_8cpp_source.html#l00094">Branch()</a>, <a class="el" href="Transaction_8cpp_source.html#l00087">Close()</a>, <a class="el" href="Transaction_8cpp_source.html#l00072">Commit()</a>, <a class="el" href="Transaction_8cpp_source.html#l00049">EnlistResource()</a>, <a class="el" href="Transaction_8cpp_source.html#l00057">Open()</a>, <a class="el" href="Transaction_8cpp_source.html#l00080">Rollback()</a>, <a class="el" href="Transaction_8cpp_source.html#l00064">Start()</a>, <a class="el" href="Transaction_8cpp_source.html#l00037">Transaction()</a>, and <a class="el" href="Transaction_8cpp_source.html#l00042">~Transaction()</a>.</p>
+<p>Referenced by <a class="el" href="Transaction_8cpp_source.html#l00109">Branch()</a>, <a class="el" href="Transaction_8cpp_source.html#l00102">Close()</a>, <a class="el" href="Transaction_8cpp_source.html#l00072">Commit()</a>, <a class="el" href="Transaction_8cpp_source.html#l00049">EnlistResource()</a>, <a class="el" href="Transaction_8cpp_source.html#l00116">getXid()</a>, <a class="el" href="Transaction_8cpp_source.html#l00057">Open()</a>, <a class="el" href="Transaction_8cpp_source.html#l00094">Resume()</a>, <a class="el" href="Transaction_8cpp_source.html#l00080">Rollback()</a>, <a class="el" href="Transaction_8cpp_source.html#l00064">Start()</a>, <a class="el" href="Transaction_8cpp_source.html#l00087">Suspend()</a>, <a class="el" href="Transaction_8cpp_source.html#l00037">Transaction()</a>, and <a class="el" href="Transaction_8cpp_source.html#l00042">~Transaction()</a>.</p>
 
 </div>
 </div>

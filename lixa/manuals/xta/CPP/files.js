@@ -10,8 +10,9 @@ var files =
     [ "MysqlXaResource.hpp", "MysqlXaResource_8hpp.html", [
       [ "MysqlXaResource", "classxta_1_1MysqlXaResource.html", "classxta_1_1MysqlXaResource" ]
     ] ],
+    [ "NativeXaResource.cpp", "NativeXaResource_8cpp.html", "NativeXaResource_8cpp" ],
     [ "NativeXaResource.hpp", "NativeXaResource_8hpp.html", [
-      [ "NativeXaResource", "classxta_1_1NativeXaResource.html", null ]
+      [ "NativeXaResource", "classxta_1_1NativeXaResource.html", "classxta_1_1NativeXaResource" ]
     ] ],
     [ "PostgresqlXaResource.cpp", "PostgresqlXaResource_8cpp.html", "PostgresqlXaResource_8cpp" ],
     [ "PostgresqlXaResource.hpp", "PostgresqlXaResource_8hpp.html", [
@@ -25,11 +26,13 @@ var files =
     [ "TransactionManager.hpp", "TransactionManager_8hpp.html", [
       [ "TransactionManager", "classxta_1_1TransactionManager.html", "classxta_1_1TransactionManager" ]
     ] ],
+    [ "xa.h", "xa_8h.html", "xa_8h" ],
     [ "XaResource.hpp", "XaResource_8hpp.html", [
       [ "XaResource", "classxta_1_1XaResource.html", "classxta_1_1XaResource" ]
     ] ],
+    [ "Xid.cpp", "Xid_8cpp.html", "Xid_8cpp" ],
     [ "Xid.hpp", "Xid_8hpp.html", [
-      [ "Xid", "classxta_1_1Xid.html", null ]
+      [ "Xid", "classxta_1_1Xid.html", "classxta_1_1Xid" ]
     ] ],
     [ "Xta.cpp", "Xta_8cpp.html", "Xta_8cpp" ],
     [ "Xta.hpp", "Xta_8hpp.html", [
