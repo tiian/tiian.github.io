@@ -18,7 +18,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58888544"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59216416"></a>Description</h3></div></div></div><p>
 	This is a Distributed Transaction Processing pattern introduced by
 	XTA: two or more Application Programs use any set of Resource
 	Manager(s) and perform concurrent operations inside distinct branches
@@ -33,7 +33,7 @@
 	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="Example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
 	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
 	standard TX Transaction	Demarcation interface.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58892768"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59220640"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
 	<span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
 	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_09.svg" alt="Simplified sequence diagram for the “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
@@ -54,7 +54,7 @@
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  The first AP retrieves the XID associated to the global transaction
 	  and starts some sort of <span class="quote">“<span class="quote">remote procedure call</span>”</span>
-	  <a href="#ftn.idp58899280" class="footnote" id="idp58899280"><sup class="footnote">[49]</sup></a>
+	  <a href="#ftn.idp59227152" class="footnote" id="idp59227152"><sup class="footnote">[49]</sup></a>
 	  to invoke the second AP; it must pass the XID and all the application
 	  context necessary to operate (this is not relevant to XTA)
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
@@ -110,7 +110,7 @@
 	    LIXA and XTA side, on the number of Resource Managers used by an
 	    Application Program
 	  </p></li></ul></div><p>
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58912976"></a>Example using C language</h3></div></div></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59240848"></a>Example using C language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbps01.c</code> and
 	<code class="filename">example_xta_macbps02.c</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -367,14 +367,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58936384"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59264256"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbps01.c</code> 
 	  and <code class="filename">example_xta_macbps02.c</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
 	  are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58981872"></a>Example using C++ language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59309744"></a>Example using C++ language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbps11.cpp</code>
 	and <code class="filename">example_xta_macbps12.cpp</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -518,7 +518,8 @@ MySQL, executing &gt;INSERT INTO authors VALUES(1898, 'Remarque', 'Erich Maria')
 tiian@ubuntu1404-64:~/tmp$
 	  </pre></td></tr></tbody></table></div><p>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session - AP2]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps12 1 1 sup2sub sub2supSubordinate AP has received XID '1279875137.a65b66b6b0874a948f8f09b7a23dd471.e107cfeee0661d23da9322f1ee73faba' from superior AP
+tiian@ubuntu1404-64:~/tmp$ ./example_xta_macbps12 1 1 sup2sub sub2sup
+Subordinate AP has received XID '1279875137.a65b66b6b0874a948f8f09b7a23dd471.e107cfeee0661d23da9322f1ee73faba' from superior AP
 Subordinate AP has created a branch with XID '1279875137.a65b66b6b0874a948f8f09b7a23dd471.e107cfeee0661d235888e12f34d54013'
 PostgreSQL, executing &gt;INSERT INTO authors VALUES(1921, 'Rigoni Stern', 'Mario')&lt;
 Subordinate AP has returned 'PREPARED_for_COMMIT' to superior AP
@@ -630,14 +631,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59005520"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59333392"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbps11.cpp</code> 
 	  and <code class="filename">example_xta_macbps12.cpp</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/cpp</code> and
 	  are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/cpp" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58899280" class="footnote"><p><a href="#idp58899280" class="para"><sup class="para">[49] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59227152" class="footnote"><p><a href="#idp59227152" class="para"><sup class="para">[49] </sup></a>
 	    This must not be confused with a specific RPC technology: any
 	    communication technique that supports a request-response protocol
 	    can be used.

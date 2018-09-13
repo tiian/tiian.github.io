@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle and IBM DB2</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0-rc)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s05.html" title="An example with IBM DB2 DBMS" /><link rel="next" href="ch05s07.html" title="" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle and IBM DB2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s05.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s07.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57395664"></a>An example with Oracle and IBM DB2</h2></div></div></div><div class="figure"><a id="develop4"></a><p class="title"><strong>Figure 5.3. Deploy model of an example showing a distributed transaction with Oracle and IBM DB2</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_4.png" alt="Deploy model of an example showing a distributed transaction with Oracle and IBM DB2" /></div></div></div><br class="figure-break" /><p>
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s07.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57723568"></a>An example with Oracle and IBM DB2</h2></div></div></div><div class="figure"><a id="develop4"></a><p class="title"><strong>Figure 5.3. Deploy model of an example showing a distributed transaction with Oracle and IBM DB2</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_4.png" alt="Deploy model of an example showing a distributed transaction with Oracle and IBM DB2" /></div></div></div><br class="figure-break" /><p>
       This example should be considered a milestone because it shows as
       you can implement DTP (Distributed Transaction Processing) with two
       Resource Managers (Oracle Database Server and IBM DB2 DBMS)
@@ -47,7 +47,7 @@
 	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57411696"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57739600"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -96,7 +96,7 @@ tiian@ubuntu:~/tmp$ ldd example4_ora_db2
         libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb522e000)
         libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb522a000)
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57412208"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57740224"></a>Set-up LIXA environment</h3></div></div></div><p>
 	There are three unresolved references that can be fixed setting up
 	the environment properly; you can fix the environment manually or
 	using these scripts supplied by Oracle and IBM:
@@ -172,7 +172,7 @@ XE
 	<code class="varname">ORACLE_HOME</code>,
 	<code class="varname">ORACLE_SID</code>,
 	<code class="varname">PATH</code>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57417680"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57745392"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">ORA_DYN_DB2_DYN</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -196,13 +196,13 @@ XE
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp57430880" class="footnote" id="idp57430880"><sup class="footnote">[24]</sup></a>. 
+	<a href="#ftn.idp57758784" class="footnote" id="idp57758784"><sup class="footnote">[24]</sup></a>. 
 	Verify no (Oracle) trace file exists:
 	</p><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
 ls: cannot access /tmp/xa*: No such file or directory
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57426688"></a>Program execution (dynamic registration)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57754592"></a>Program execution (dynamic registration)</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">SAMPLE</span>”</span> DB2 database,
 	the second one connected to Oracle database and the
@@ -429,7 +429,7 @@ tiian@ubuntu:~/tmp$ ./example4_ora_db2 iorg icountries idept rollback 2&gt;&amp;
 	that's <span class="quote">“<span class="quote">OracleXE_dynreg</span>”</span> and calls
 	<code class="function">ax_reg</code> with <em class="parameter"><code>rmid=0</code></em>
 	later.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57435792"></a>Program execution (mixed registration)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57763696"></a>Program execution (mixed registration)</h3></div></div></div><p>
 	Switching to a different registration type is quite easy; we can start
 	with dynamic registration for Oracle and static registration for
 	IBM DB2:
@@ -524,7 +524,7 @@ DEPTNO DEPTNAME                             MGRNO  ADMRDEPT LOCATION
 	a Distributed Transaction Processing example with a simple
 	Application Program, LIXA Transaction Manager and two widespread
 	Resource Managers: Oracle Database Server and IBM DB2 DBMS.
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57430880" class="footnote"><p><a href="#idp57430880" class="para"><sup class="para">[24] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57758784" class="footnote"><p><a href="#idp57758784" class="para"><sup class="para">[24] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"

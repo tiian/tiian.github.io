@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The TX (Transaction Demarcation) Specification</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0-rc)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="next" href="ch06s03.html" title="LIXA library linkage" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The TX (Transaction Demarcation) Specification</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
-  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58215152"></a>The TX (Transaction Demarcation) Specification</h2></div></div></div><p>
+  Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp58543024"></a>The TX (Transaction Demarcation) Specification</h2></div></div></div><p>
       LIXA project adopts the standard described in 
-      [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>] as the API you should use when developing
+      [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>] as the API you should use when developing
       an Application Program.
     </p><p>
       The API is very easy, it supplies COBOL routines and C functions.
@@ -66,7 +66,7 @@
             STOP RUN.
       </pre><p>
       These are the available COBOL routines (the descriptions come from
-      [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>]):
+      [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>]):
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
 	    <code class="function">TXBEGIN</code>: begin a global transaction
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
@@ -93,8 +93,8 @@
 	    <em class="parameter"><code>transaction_timeout</code></em> 
 	    characteristic
 	</p></li></ul></div><p>
-      Refer to [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>] for the complete description.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58230896"></a>Access to the resource managers</h3></div></div></div><p>
+      Refer to [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>] for the complete description.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58558768"></a>Access to the resource managers</h3></div></div></div><p>
 	A program developed for TX (Transaction Demarcation) Specification
 	<span class="emphasis"><em>must</em></span> access the resource managers coordinated by
 	the transaction manager using specific functions.
@@ -126,7 +126,7 @@
 	  outside the control of the transaction manager, the transaction
 	  manager will not be able to perform the opposite operation if
 	  asked to do it. These situations tend to generate inconsistencies.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58234784"></a>Chapter organization</h3></div></div></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58562656"></a>Chapter organization</h3></div></div></div><p>
 	This chapter focuses on differences between C and COBOL and does not
 	repeat all the configuration steps described in the previous C chapter.
 	Anyway, when necessary, a pointer to the related section that explains

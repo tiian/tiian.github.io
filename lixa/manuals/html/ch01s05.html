@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>LIXA and X/OPEN CAE specifications</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0-rc)" /><link rel="up" href="ch01.html" title="Chapter 1. Introduction" /><link rel="prev" href="ch01s04.html" title="LIXA Architecture" /><link rel="next" href="ch02.html" title="Chapter 2. Installation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">LIXA and X/OPEN CAE specifications</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Introduction</th><td width="20%" align="right"> <a accesskey="n" href="ch02.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp56774800"></a>LIXA and X/OPEN CAE specifications</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>LIXA and X/OPEN CAE specifications</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0-rc)" /><link rel="up" href="ch01.html" title="Chapter 1. Introduction" /><link rel="prev" href="ch01s04.html" title="LIXA Architecture" /><link rel="next" href="ch02.html" title="Chapter 2. Installation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">LIXA and X/OPEN CAE specifications</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Introduction</th><td width="20%" align="right"> <a accesskey="n" href="ch02.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57101232"></a>LIXA and X/OPEN CAE specifications</h2></div></div></div><p>
       The LIXA project tries to be as compliant as possible with the X/Open CAE
       specifications cited in bibliography. Below there are the features that
       are <span class="emphasis"><em>not</em></span> implemented and the features that are
       <span class="emphasis"><em>not</em></span> implementable.
-    </p><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp56776400"></a>The commit_return Characteristic</h3></div></div></div><p>
-	As explained in [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>] (3.4, 3.8.1) two values
+    </p><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp57102832"></a>The commit_return Characteristic</h3></div></div></div><p>
+	As explained in [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>] (3.4, 3.8.1) two values
 	are available:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p><code class="constant">TX_COMMIT_COMPLETED
 	    </code></p></li><li class="listitem" style="list-style-type: disc"><p><code class="constant">TX_COMMIT_DECISION_LOGGED
@@ -13,8 +13,8 @@
 	LIXA TX API implementation supports only
 	<code class="constant">TX_COMMIT_COMPLETED</code>
 	this behavior is allowed by the specification.
-      </p></div><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp56779328"></a>The transaction state element</h3></div></div></div><p>
-	As explained in [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>] (4.2, page 16)
+      </p></div><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp57105760"></a>The transaction state element</h3></div></div></div><p>
+	As explained in [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>] (4.2, page 16)
 	<code class="function">tx_info()</code> can return three values:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p><code class="constant">TX_ACTIVE
 	    </code></p></li><li class="listitem" style="list-style-type: disc"><p><code class="constant">TX_TIMEOUT_ROLLBACK_ONLY
@@ -24,8 +24,8 @@
       LIXA <code class="function">tx_info()</code> does not return
       <code class="constant">TX_ROLLBACK_ONLY</code>. This does not hurt the
       X/Open CAE specification.
-    </div><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp56783744"></a>XA -&gt; TX return code mappings</h3></div></div></div><p>
-	In [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>] (Appendix B.4, page 64) it is suggested
+    </div><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp57110176"></a>XA -&gt; TX return code mappings</h3></div></div></div><p>
+	In [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>] (Appendix B.4, page 64) it is suggested
 	to return the value <code class="constant">TX_ERROR</code> when the Resource
 	Manager returns <code class="constant">XA_RETRY</code>; this is explained in
 	<span class="quote">“<span class="quote">note 1</span>”</span>. 
@@ -38,19 +38,19 @@
 	information for the Application Program: the transaction has been
 	successfully committed/rolled back, but a new transaction can not be
 	started
-	<a href="#ftn.idp56788160" class="footnote" id="idp56788160"><sup class="footnote">[7]</sup></a>.
-      </p></div><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp56786128"></a><code class="function">xa_rollback()</code> and 
+	<a href="#ftn.idp57114592" class="footnote" id="idp57114592"><sup class="footnote">[7]</sup></a>.
+      </p></div><div class="simplesect"><div class="titlepage"><div><div><h3 class="title"><a id="idp57112560"></a><code class="function">xa_rollback()</code> and 
 	<code class="constant">XA_RETRY</code> return code</h3></div></div></div><p>
-	In [<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>] (Appendix B.5, page 69) it is 
+	In [<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>] (Appendix B.5, page 69) it is 
 	explained <code class="constant">XA_RETRY</code> is a valid return code for
 	function <code class="function">xa_rollback()</code>. Unfortunately
-	[<a class="citation" href="bi01.html#idp59781792"><span class="citation">XAspec</span></a>] does not agree with this point of view: the
+	[<a class="citation" href="bi01.html#idp60109680"><span class="citation">XAspec</span></a>] does not agree with this point of view: the
 	<code class="constant">XA_RETRY</code> is not a valid return code for 
 	function <code class="function">xa_rollback()</code>. It may be an error in
-	[<a class="citation" href="bi01.html#idp59776944"><span class="citation">TXspec</span></a>]: the same row could have been copied from 
+	[<a class="citation" href="bi01.html#idp60104912"><span class="citation">TXspec</span></a>]: the same row could have been copied from 
 	the previous table (page 68).
       </p><p>
-	[<a class="citation" href="bi01.html#idp59786640"><span class="citation">XA+spec</span></a>] does not list 
+	[<a class="citation" href="bi01.html#idp60114400"><span class="citation">XA+spec</span></a>] does not list 
 	<code class="constant">XA_RETRY</code> as a valid return code for 
 	function <code class="function">xa_rollback()</code>; it lists
 	<code class="constant">XA_RETRY_COMMFAIL</code> but it does not apply to LIXA
@@ -58,10 +58,10 @@
 	<span class="emphasis"><em>Communication Resource Manager</em></span> concept that is
 	not supported by LIXA implementation.
       </p><p>
-	The LIXA implementation sticks to [<a class="citation" href="bi01.html#idp59781792"><span class="citation">XAspec</span></a>]: if a
+	The LIXA implementation sticks to [<a class="citation" href="bi01.html#idp60109680"><span class="citation">XAspec</span></a>]: if a
 	resource manager returned <code class="constant">XA_RETRY</code> it would be
 	considered a bug inside the resource manager.
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp56788160" class="footnote"><p><a href="#idp56788160" class="para"><sup class="para">[7] </sup></a>The X/Open CAE specification document
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57114592" class="footnote"><p><a href="#idp57114592" class="para"><sup class="para">[7] </sup></a>The X/Open CAE specification document
 	    <span class="quote">“<span class="quote">suggests</span>”</span> the mapping and it seems there is some
 	    flexibility in the suggestions. From a LIXA perspective all this
 	    stuff is academic because <code class="constant">TMNOWAIT</code> is not
