@@ -53,9 +53,9 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * LIXA is distributed in the hope that it will be useful,</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * GNU Lesser General Public License for more details.</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * You should have received a copy of the GNU Lesser General Public License</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * along with LIXA.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;config.h&quot;</span></div>
@@ -85,7 +85,7 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a81fc68af659e5dfe9099b0d97e5b156f">   46</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#a81fc68af659e5dfe9099b0d97e5b156f">xta_xa_resource_init</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#ace08663849960b9d43446095707fa8f7">   46</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#ace08663849960b9d43446095707fa8f7">xta_xa_resource_init</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource,</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                         <span class="keywordtype">int</span> native)</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">enum</span> Exception { NULL_OBJECT</div>
@@ -94,20 +94,20 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_init\n&quot;</span>));</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    TRY {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (NULL == <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (NULL == xa_resource)</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            THROW(NULL_OBJECT);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">/* set resource description (first part) */</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        this-&gt;rsrmgr_config.name = NULL;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        this-&gt;rsrmgr_config.switch_file = NULL;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        this-&gt;rsrmgr_config.xa_open_info[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        this-&gt;rsrmgr_config.xa_close_info[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.name = NULL;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.switch_file = NULL;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_open_info[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_close_info[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="comment">/* set resource description (second part) */</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        this-&gt;act_rsrmgr_config.generic = &amp;this-&gt;rsrmgr_config;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        this-&gt;act_rsrmgr_config.module = NULL;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="lixa__iface_8h.html#ae47a2f835fca98a1a02fa07c4161c72c">lixa_iface_reset</a>(&amp;this-&gt;act_rsrmgr_config.lixa_iface);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">act_rsrmgr_config</a>.generic = &amp;xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">act_rsrmgr_config</a>.module = NULL;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="lixa__iface_8h.html#ae47a2f835fca98a1a02fa07c4161c72c">lixa_iface_reset</a>(&amp;xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">act_rsrmgr_config</a>.lixa_iface);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">/* set dynamic to TRUE: XTA is typically dynamic with few exceptions */</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        this-&gt;dynamic = TRUE;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        this-&gt;enlisted_tx = NULL;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a4ad2a7d77687879350f8c66b7d150a02">dynamic</a> = TRUE;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">enlisted_tx</a> = NULL;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        </div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        THROW(NONE);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    } CATCH {</div>
@@ -129,8 +129,8 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a4d046cf626ec978a5f3b9bf81f7bc896">   90</a></span>&#160;<span class="keyword">const</span> <a class="code" href="xta__xa__resource_8h.html#a16635f94e4c6ebfe6673090ac6806dd8">xta_xa_resource_config_t</a> *<a class="code" href="xta__xa__resource_8c.html#a4d046cf626ec978a5f3b9bf81f7bc896">xta_xa_resource_get_config</a>(</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">const</span> <a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>)</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a2ed3f53b798869dbbcb9d87f6ce049aa">   90</a></span>&#160;<span class="keyword">const</span> <a class="code" href="xta__xa__resource_8h.html#a16635f94e4c6ebfe6673090ac6806dd8">xta_xa_resource_config_t</a> *<a class="code" href="xta__xa__resource_8c.html#a2ed3f53b798869dbbcb9d87f6ce049aa">xta_xa_resource_get_config</a>(</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">const</span> <a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource)</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">enum</span> Exception { NULL_OBJECT</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                     , NONE } excp;</div>
@@ -139,12 +139,12 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    </div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_get_config\n&quot;</span>));</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    TRY {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span> (NULL == <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span> (NULL == xa_resource)</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            THROW(NULL_OBJECT);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">/* duplicate the config structs */</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        </div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="comment">/* return the copy of the config structs */</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        config = &amp;this-&gt;act_rsrmgr_config;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        config = &amp;xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">act_rsrmgr_config</a>;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        </div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        THROW(NONE);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    } CATCH {</div>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a2ce2d494cba732402b5571440f1049e4">  127</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#a2ce2d494cba732402b5571440f1049e4">xta_xa_resource_enlisted</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a08006bfd2117b6888a0418957753138e">  127</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#a08006bfd2117b6888a0418957753138e">xta_xa_resource_enlisted</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource,</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                             <span class="keyword">const</span> <a class="code" href="structxta__transaction__s.html">xta_transaction_t</a> *tx)</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">enum</span> Exception { NULL_OBJECT1</div>
@@ -177,27 +177,27 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    </div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_enlisted\n&quot;</span>));</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    TRY {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">if</span> (NULL == <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">if</span> (NULL == xa_resource)</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            THROW(NULL_OBJECT1);</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordflow">if</span> (NULL == tx)</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            THROW(NULL_OBJECT2);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">if</span> (NULL != this-&gt;enlisted_tx) {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">if</span> (NULL != xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">enlisted_tx</a>) {</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="comment">/* already registered resource, checking the Transaction Manager */</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordflow">if</span> (tx != this-&gt;enlisted_tx) {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordflow">if</span> (tx != xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">enlisted_tx</a>) {</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_enlisted: this resource has &quot;</span></div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                            <span class="stringliteral">&quot;been already registered by another TX: %p\n&quot;</span>,</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                            this-&gt;enlisted_tx));</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                            xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">enlisted_tx</a>));</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                THROW(RESOURCE_ALREADY_REGISTERED);</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_enlisted: this resource has &quot;</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                            <span class="stringliteral">&quot;been already registered by this TX, &quot;</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                            <span class="stringliteral">&quot;skipping...\n&quot;</span>));</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            } <span class="comment">/* if (tm != this-&gt;registered_tx) */</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            } <span class="comment">/* if (tm != xa_resource-&gt;registered_tx) */</span></div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            this-&gt;enlisted_tx = tx;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">enlisted_tx</a> = tx;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_enlisted: this resource is now &quot;</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        <span class="stringliteral">&quot;registered by TX %p\n&quot;</span>, this-&gt;enlisted_tx));</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        } <span class="comment">/* if (NULL != this-&gt;registered_tx) */</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        <span class="stringliteral">&quot;registered by TX %p\n&quot;</span>, xa_resource-&gt;<a class="code" href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">enlisted_tx</a>));</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        } <span class="comment">/* if (NULL != xa_resource-&gt;registered_tx) */</span></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        </div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        THROW(NONE);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    } CATCH {</div>
@@ -223,7 +223,7 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#aee051f64f3ef5f9bde97317869b8dc5b">  184</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="xta__xa__resource_8c.html#aee051f64f3ef5f9bde97317869b8dc5b">xta_xa_resource_clean</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>)</div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#ab7a0878c8c57907c970eb1cac5bf12a3">  184</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="xta__xa__resource_8c.html#ab7a0878c8c57907c970eb1cac5bf12a3">xta_xa_resource_clean</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource)</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;{</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keyword">enum</span> Exception { NULL_OBJECT</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                     , NONE } excp;</div>
@@ -232,7 +232,7 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_xa_resource_clean\n&quot;</span>));</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    TRY {</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="comment">/* check the object is not null */</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">if</span> (NULL == <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">if</span> (NULL == xa_resource)</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            THROW(NULL_OBJECT);</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        </div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        THROW(NONE);</div>
@@ -255,7 +255,7 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a759e32bddc78633c75e481e2c1630aab">  216</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#a759e32bddc78633c75e481e2c1630aab">xta_xa_resource_start</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#ac00a0668c314f5aad81f3629c91b756e">  216</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#ac00a0668c314f5aad81f3629c91b756e">xta_xa_resource_start</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource,</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                          <span class="keyword">const</span> <a class="code" href="structxta__xid__t.html">xta_xid_t</a> *xid,</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                          <span class="keywordtype">long</span> flag)</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;{</div>
@@ -282,7 +282,7 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#a319ea37995e027893cfa2580d2591c0e">  243</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#a319ea37995e027893cfa2580d2591c0e">xta_xa_resource_end</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#af1a300d7557e5f2db012a53131652443">  243</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#af1a300d7557e5f2db012a53131652443">xta_xa_resource_end</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource,</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                        <span class="keyword">const</span> <a class="code" href="structxta__xid__t.html">xta_xid_t</a> *xid,</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                        <span class="keywordtype">long</span> flag)</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;{</div>
@@ -309,8 +309,8 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#aa537a30c193eb3a23c4c1f3737d10d90">  270</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#aa537a30c193eb3a23c4c1f3737d10d90">xta_xa_resource_prepare</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>,</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                         <span class="keyword">const</span> <a class="code" href="structxta__xid__t.html">xta_xid_t</a> *xid)</div>
+<div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#aac88b01a4391588c76e00adbb5031ec4">  270</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#aac88b01a4391588c76e00adbb5031ec4">xta_xa_resource_prepare</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource,</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                            <span class="keyword">const</span> <a class="code" href="structxta__xid__t.html">xta_xid_t</a> *xid)</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;{</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keyword">enum</span> Exception { NONE } excp;</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordtype">int</span> ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
@@ -335,9 +335,9 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#acad9ac5f89c9cdcf7e6bf2e0ac816aa8">  296</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#acad9ac5f89c9cdcf7e6bf2e0ac816aa8">xta_xa_resource_commit</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *<span class="keyword">this</span>,</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                        <span class="keyword">const</span> <a class="code" href="structxta__xid__t.html">xta_xid_t</a> *xid,</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                        <span class="keywordtype">int</span> one_phase)</div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="xta__xa__resource_8h.html#ab5233f359472abd7b0b565c92b2e8fe8">  296</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="xta__xa__resource_8c.html#ab5233f359472abd7b0b565c92b2e8fe8">xta_xa_resource_commit</a>(<a class="code" href="structxta__xa__resource__s.html">xta_xa_resource_t</a> *xa_resource,</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                           <span class="keyword">const</span> <a class="code" href="structxta__xid__t.html">xta_xid_t</a> *xid,</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                           <span class="keywordtype">int</span> one_phase)</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;{</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keyword">enum</span> Exception { NONE } excp;</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordtype">int</span> ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
@@ -360,25 +360,29 @@ $(document).ready(function(){initNavTree('xta__xa__resource_8c_source.html','');
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">return</span> ret_cod;</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;}</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="ttc" id="xta__xa__resource_8c_html_af1a300d7557e5f2db012a53131652443"><div class="ttname"><a href="xta__xa__resource_8c.html#af1a300d7557e5f2db012a53131652443">xta_xa_resource_end</a></div><div class="ttdeci">int xta_xa_resource_end(xta_xa_resource_t *xa_resource, const xta_xid_t *xid, long flag)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00243">xta_xa_resource.c:243</a></div></div>
 <div class="ttc" id="structxta__xid__t_html"><div class="ttname"><a href="structxta__xid__t.html">xta_xid_t</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__xid_8h_source.html#l00032">xta_xid.h:32</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_a319ea37995e027893cfa2580d2591c0e"><div class="ttname"><a href="xta__xa__resource_8c.html#a319ea37995e027893cfa2580d2591c0e">xta_xa_resource_end</a></div><div class="ttdeci">int xta_xa_resource_end(xta_xa_resource_t *this, const xta_xid_t *xid, long flag)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00243">xta_xa_resource.c:243</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_a2ce2d494cba732402b5571440f1049e4"><div class="ttname"><a href="xta__xa__resource_8c.html#a2ce2d494cba732402b5571440f1049e4">xta_xa_resource_enlisted</a></div><div class="ttdeci">int xta_xa_resource_enlisted(xta_xa_resource_t *this, const xta_transaction_t *tx)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00127">xta_xa_resource.c:127</a></div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_ab5233f359472abd7b0b565c92b2e8fe8"><div class="ttname"><a href="xta__xa__resource_8c.html#ab5233f359472abd7b0b565c92b2e8fe8">xta_xa_resource_commit</a></div><div class="ttdeci">int xta_xa_resource_commit(xta_xa_resource_t *xa_resource, const xta_xid_t *xid, int one_phase)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00296">xta_xa_resource.c:296</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_a0f4235abd1c43b608c2529a4194cdd5a"><div class="ttname"><a href="lixa__errors_8h.html#a0f4235abd1c43b608c2529a4194cdd5a">LIXA_RC_NULL_OBJECT</a></div><div class="ttdeci">#define LIXA_RC_NULL_OBJECT</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00139">lixa_errors.h:139</a></div></div>
+<div class="ttc" id="structxta__xa__resource__s_html_a4ad2a7d77687879350f8c66b7d150a02"><div class="ttname"><a href="structxta__xa__resource__s.html#a4ad2a7d77687879350f8c66b7d150a02">xta_xa_resource_s::dynamic</a></div><div class="ttdeci">int dynamic</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00075">xta_xa_resource.h:75</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_ac54adb2da790232bed2b1513ab7c8201"><div class="ttname"><a href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a></div><div class="ttdeci">#define LIXA_RC_INTERNAL_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00122">lixa_errors.h:122</a></div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_ace08663849960b9d43446095707fa8f7"><div class="ttname"><a href="xta__xa__resource_8c.html#ace08663849960b9d43446095707fa8f7">xta_xa_resource_init</a></div><div class="ttdeci">int xta_xa_resource_init(xta_xa_resource_t *xa_resource, int native)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00046">xta_xa_resource.c:46</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_a767d4ddf00001db74b47dac2aa7f7a9b"><div class="ttname"><a href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a></div><div class="ttdeci">#define LIXA_RC_OK</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00115">lixa_errors.h:115</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_acad9ac5f89c9cdcf7e6bf2e0ac816aa8"><div class="ttname"><a href="xta__xa__resource_8c.html#acad9ac5f89c9cdcf7e6bf2e0ac816aa8">xta_xa_resource_commit</a></div><div class="ttdeci">int xta_xa_resource_commit(xta_xa_resource_t *this, const xta_xid_t *xid, int one_phase)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00296">xta_xa_resource.c:296</a></div></div>
 <div class="ttc" id="xta__xa__resource_8h_html"><div class="ttname"><a href="xta__xa__resource_8h.html">xta_xa_resource.h</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_aa537a30c193eb3a23c4c1f3737d10d90"><div class="ttname"><a href="xta__xa__resource_8c.html#aa537a30c193eb3a23c4c1f3737d10d90">xta_xa_resource_prepare</a></div><div class="ttdeci">int xta_xa_resource_prepare(xta_xa_resource_t *this, const xta_xid_t *xid)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00270">xta_xa_resource.c:270</a></div></div>
 <div class="ttc" id="structxta__transaction__s_html"><div class="ttname"><a href="structxta__transaction__s.html">xta_transaction_s</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction_8h_source.html#l00058">xta_transaction.h:58</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_a4d046cf626ec978a5f3b9bf81f7bc896"><div class="ttname"><a href="xta__xa__resource_8c.html#a4d046cf626ec978a5f3b9bf81f7bc896">xta_xa_resource_get_config</a></div><div class="ttdeci">const xta_xa_resource_config_t * xta_xa_resource_get_config(const xta_xa_resource_t *this)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00090">xta_xa_resource.c:90</a></div></div>
 <div class="ttc" id="lixa__iface_8h_html_ae47a2f835fca98a1a02fa07c4161c72c"><div class="ttname"><a href="lixa__iface_8h.html#ae47a2f835fca98a1a02fa07c4161c72c">lixa_iface_reset</a></div><div class="ttdeci">void lixa_iface_reset(lixa_iface_t *iface)</div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_aac88b01a4391588c76e00adbb5031ec4"><div class="ttname"><a href="xta__xa__resource_8c.html#aac88b01a4391588c76e00adbb5031ec4">xta_xa_resource_prepare</a></div><div class="ttdeci">int xta_xa_resource_prepare(xta_xa_resource_t *xa_resource, const xta_xid_t *xid)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00270">xta_xa_resource.c:270</a></div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_ac00a0668c314f5aad81f3629c91b756e"><div class="ttname"><a href="xta__xa__resource_8c.html#ac00a0668c314f5aad81f3629c91b756e">xta_xa_resource_start</a></div><div class="ttdeci">int xta_xa_resource_start(xta_xa_resource_t *xa_resource, const xta_xid_t *xid, long flag)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00216">xta_xa_resource.c:216</a></div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_a2ed3f53b798869dbbcb9d87f6ce049aa"><div class="ttname"><a href="xta__xa__resource_8c.html#a2ed3f53b798869dbbcb9d87f6ce049aa">xta_xa_resource_get_config</a></div><div class="ttdeci">const xta_xa_resource_config_t * xta_xa_resource_get_config(const xta_xa_resource_t *xa_resource)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00090">xta_xa_resource.c:90</a></div></div>
+<div class="ttc" id="structxta__xa__resource__s_html_a737ebaf36bbba396aad7e44cf8231588"><div class="ttname"><a href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">xta_xa_resource_s::act_rsrmgr_config</a></div><div class="ttdeci">struct act_rsrmgr_config_s act_rsrmgr_config</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00069">xta_xa_resource.h:69</a></div></div>
 <div class="ttc" id="structxta__xa__resource__s_html"><div class="ttname"><a href="structxta__xa__resource__s.html">xta_xa_resource_s</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00059">xta_xa_resource.h:59</a></div></div>
 <div class="ttc" id="xta__xa__resource_8h_html_a16635f94e4c6ebfe6673090ac6806dd8"><div class="ttname"><a href="xta__xa__resource_8h.html#a16635f94e4c6ebfe6673090ac6806dd8">xta_xa_resource_config_t</a></div><div class="ttdeci">struct act_rsrmgr_config_s xta_xa_resource_config_t</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00044">xta_xa_resource.h:44</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_a81fc68af659e5dfe9099b0d97e5b156f"><div class="ttname"><a href="xta__xa__resource_8c.html#a81fc68af659e5dfe9099b0d97e5b156f">xta_xa_resource_init</a></div><div class="ttdeci">int xta_xa_resource_init(xta_xa_resource_t *this, int native)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00046">xta_xa_resource.c:46</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_a759e32bddc78633c75e481e2c1630aab"><div class="ttname"><a href="xta__xa__resource_8c.html#a759e32bddc78633c75e481e2c1630aab">xta_xa_resource_start</a></div><div class="ttdeci">int xta_xa_resource_start(xta_xa_resource_t *this, const xta_xid_t *xid, long flag)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00216">xta_xa_resource.c:216</a></div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_ab7a0878c8c57907c970eb1cac5bf12a3"><div class="ttname"><a href="xta__xa__resource_8c.html#ab7a0878c8c57907c970eb1cac5bf12a3">xta_xa_resource_clean</a></div><div class="ttdeci">void xta_xa_resource_clean(xta_xa_resource_t *xa_resource)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00184">xta_xa_resource.c:184</a></div></div>
+<div class="ttc" id="structxta__xa__resource__s_html_a81dd78c4eb2230baa775b36df121981a"><div class="ttname"><a href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">xta_xa_resource_s::rsrmgr_config</a></div><div class="ttdeci">struct rsrmgr_config_s rsrmgr_config</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00064">xta_xa_resource.h:64</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_a9ce9ea0dd447a2393acd3e81cc5ab428"><div class="ttname"><a href="lixa__errors_8h.html#a9ce9ea0dd447a2393acd3e81cc5ab428">LIXA_RC_RESOURCE_ALREADY_REGISTERED</a></div><div class="ttdeci">#define LIXA_RC_RESOURCE_ALREADY_REGISTERED</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00563">lixa_errors.h:563</a></div></div>
-<div class="ttc" id="xta__xa__resource_8c_html_aee051f64f3ef5f9bde97317869b8dc5b"><div class="ttname"><a href="xta__xa__resource_8c.html#aee051f64f3ef5f9bde97317869b8dc5b">xta_xa_resource_clean</a></div><div class="ttdeci">void xta_xa_resource_clean(xta_xa_resource_t *this)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00184">xta_xa_resource.c:184</a></div></div>
+<div class="ttc" id="structxta__xa__resource__s_html_a0439c803f2ce1c76d6ac0386d4be24ad"><div class="ttname"><a href="structxta__xa__resource__s.html#a0439c803f2ce1c76d6ac0386d4be24ad">xta_xa_resource_s::enlisted_tx</a></div><div class="ttdeci">const xta_transaction_t * enlisted_tx</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00085">xta_xa_resource.h:85</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html"><div class="ttname"><a href="lixa__errors_8h.html">lixa_errors.h</a></div></div>
+<div class="ttc" id="xta__xa__resource_8c_html_a08006bfd2117b6888a0418957753138e"><div class="ttname"><a href="xta__xa__resource_8c.html#a08006bfd2117b6888a0418957753138e">xta_xa_resource_enlisted</a></div><div class="ttdeci">int xta_xa_resource_enlisted(xta_xa_resource_t *xa_resource, const xta_transaction_t *tx)</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8c_source.html#l00127">xta_xa_resource.c:127</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
     <HR>

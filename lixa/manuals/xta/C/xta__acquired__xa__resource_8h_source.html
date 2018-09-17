@@ -53,9 +53,9 @@ $(document).ready(function(){initNavTree('xta__acquired__xa__resource_8h_source.
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * LIXA is distributed in the hope that it will be useful,</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * GNU Lesser General Public License for more details.</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * You should have received a copy of the GNU Lesser General Public License</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * along with LIXA.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef XTA_ACQUIRED_XA_RESOURCE_H</span></div>
@@ -86,35 +86,36 @@ $(document).ready(function(){initNavTree('xta__acquired__xa__resource_8h_source.
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="xta__acquired__xa__resource_8h.html#a4f06b70bb9657422ff483f10d803b38a">xta_acquired_xa_resource_init</a>(<a class="code" href="structxta__acquired__xa__resource__t.html">xta_acquired_xa_resource_t</a> *<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="xta__acquired__xa__resource_8h.html#a50566a18b12aa3746d7b3036a4d4165c">xta_acquired_xa_resource_init</a>(<a class="code" href="structxta__acquired__xa__resource__t.html">xta_acquired_xa_resource_t</a> *xa_resource,</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                      <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structxta__iface__s.html">xta_iface_s</a> *iface,</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                      <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structxta__iface__s.html#a304f4da8848106b2dee27c6b87548130">name</a>,</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                      <span class="keyword">const</span> <span class="keywordtype">char</span> *open_info);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="xta__acquired__xa__resource_8h.html#ab9cf58af9ba67b9f48880dd4876503c2">xta_acquired_xa_resource_clean</a>(<a class="code" href="structxta__acquired__xa__resource__t.html">xta_acquired_xa_resource_t</a> *<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="xta__acquired__xa__resource_8h.html#a8ee94f1d3c227e1d140d621b439ed67e">xta_acquired_xa_resource_clean</a>(</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="structxta__acquired__xa__resource__t.html">xta_acquired_xa_resource_t</a> *xa_resource);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* XTA_RESOURCE_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* XTA_RESOURCE_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="structxta__acquired__xa__resource__t_html"><div class="ttname"><a href="structxta__acquired__xa__resource__t.html">xta_acquired_xa_resource_t</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8h_source.html#l00035">xta_acquired_xa_resource.h:35</a></div></div>
 <div class="ttc" id="structxta__iface__s_html"><div class="ttname"><a href="structxta__iface__s.html">xta_iface_s</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__iface_8h_source.html#l00034">xta_iface.h:34</a></div></div>
 <div class="ttc" id="xta__xa__resource_8h_html"><div class="ttname"><a href="xta__xa__resource_8h.html">xta_xa_resource.h</a></div></div>
-<div class="ttc" id="xta__acquired__xa__resource_8h_html_a4f06b70bb9657422ff483f10d803b38a"><div class="ttname"><a href="xta__acquired__xa__resource_8h.html#a4f06b70bb9657422ff483f10d803b38a">xta_acquired_xa_resource_init</a></div><div class="ttdeci">int xta_acquired_xa_resource_init(xta_acquired_xa_resource_t *this, const struct xta_iface_s *iface, const char *name, const char *open_info)</div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8c_source.html#l00048">xta_acquired_xa_resource.c:48</a></div></div>
 <div class="ttc" id="structxta__acquired__xa__resource__t_html_ab5947b18fdec7eaf56a5339491c86089"><div class="ttname"><a href="structxta__acquired__xa__resource__t.html#ab5947b18fdec7eaf56a5339491c86089">xta_acquired_xa_resource_t::iface</a></div><div class="ttdeci">const struct xta_iface_s * iface</div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8h_source.html#l00042">xta_acquired_xa_resource.h:42</a></div></div>
-<div class="ttc" id="xta__acquired__xa__resource_8h_html_ab9cf58af9ba67b9f48880dd4876503c2"><div class="ttname"><a href="xta__acquired__xa__resource_8h.html#ab9cf58af9ba67b9f48880dd4876503c2">xta_acquired_xa_resource_clean</a></div><div class="ttdeci">void xta_acquired_xa_resource_clean(xta_acquired_xa_resource_t *this)</div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8c_source.html#l00137">xta_acquired_xa_resource.c:137</a></div></div>
 <div class="ttc" id="structxta__acquired__xa__resource__t_html_aa7e4e9383a0d3a5168f59aad99a8f5f2"><div class="ttname"><a href="structxta__acquired__xa__resource__t.html#aa7e4e9383a0d3a5168f59aad99a8f5f2">xta_acquired_xa_resource_t::xa_resource</a></div><div class="ttdeci">xta_xa_resource_t xa_resource</div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8h_source.html#l00037">xta_acquired_xa_resource.h:37</a></div></div>
 <div class="ttc" id="xa_8h_html"><div class="ttname"><a href="xa_8h.html">xa.h</a></div></div>
 <div class="ttc" id="structxta__xa__resource__s_html"><div class="ttname"><a href="structxta__xa__resource__s.html">xta_xa_resource_s</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00059">xta_xa_resource.h:59</a></div></div>
+<div class="ttc" id="xta__acquired__xa__resource_8h_html_a8ee94f1d3c227e1d140d621b439ed67e"><div class="ttname"><a href="xta__acquired__xa__resource_8h.html#a8ee94f1d3c227e1d140d621b439ed67e">xta_acquired_xa_resource_clean</a></div><div class="ttdeci">void xta_acquired_xa_resource_clean(xta_acquired_xa_resource_t *xa_resource)</div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8c_source.html#l00140">xta_acquired_xa_resource.c:140</a></div></div>
 <div class="ttc" id="xta__iface_8h_html"><div class="ttname"><a href="xta__iface_8h.html">xta_iface.h</a></div></div>
 <div class="ttc" id="structxta__iface__s_html_a304f4da8848106b2dee27c6b87548130"><div class="ttname"><a href="structxta__iface__s.html#a304f4da8848106b2dee27c6b87548130">xta_iface_s::name</a></div><div class="ttdeci">char name[RMNAMESZ]</div><div class="ttdef"><b>Definition:</b> <a href="xta__iface_8h_source.html#l00038">xta_iface.h:38</a></div></div>
+<div class="ttc" id="xta__acquired__xa__resource_8h_html_a50566a18b12aa3746d7b3036a4d4165c"><div class="ttname"><a href="xta__acquired__xa__resource_8h.html#a50566a18b12aa3746d7b3036a4d4165c">xta_acquired_xa_resource_init</a></div><div class="ttdeci">int xta_acquired_xa_resource_init(xta_acquired_xa_resource_t *xa_resource, const struct xta_iface_s *iface, const char *name, const char *open_info)</div><div class="ttdef"><b>Definition:</b> <a href="xta__acquired__xa__resource_8c_source.html#l00048">xta_acquired_xa_resource.c:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
     <HR>

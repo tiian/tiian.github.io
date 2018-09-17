@@ -53,9 +53,9 @@ $(document).ready(function(){initNavTree('xta__transaction__manager_8c_source.ht
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * LIXA is distributed in the hope that it will be useful,</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * GNU Lesser General Public License for more details.</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * You should have received a copy of the GNU Lesser General Public License</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * along with LIXA.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;config.h&quot;</span></div>
@@ -124,144 +124,158 @@ $(document).ready(function(){initNavTree('xta__transaction__manager_8c_source.ht
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="xta__transaction__manager_8h.html#ae4c2e44bd5f9eb348c85ce20691f2bb2">   85</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="xta__transaction__manager_8c.html#ae4c2e44bd5f9eb348c85ce20691f2bb2">xta_transaction_manager_delete</a>(<a class="code" href="structxta__transaction__manager__s.html">xta_transaction_manager_t</a> *<span class="keyword">this</span>)</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="xta__transaction__manager_8h.html#a404463e4bf965beb6fa3462c125aad67">   85</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="xta__transaction__manager_8c.html#a404463e4bf965beb6fa3462c125aad67">xta_transaction_manager_delete</a>(<a class="code" href="structxta__transaction__manager__s.html">xta_transaction_manager_t</a> *tm)</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">enum</span> Exception { NONE } excp;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_delete\n&quot;</span>));</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    TRY {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">/* destroy transaction objects if any */</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> (NULL != this-&gt;transactions) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            g_hash_table_destroy(this-&gt;transactions);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            this-&gt;transactions = NULL;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        } <span class="comment">/* if (NULL != this-&gt;transactions) */</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">/* clear the synchronization mutex */</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        g_mutex_clear(&amp;this-&gt;mutex);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">/* destroy the object itself */</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        g_free(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        THROW(NONE);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    } CATCH {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">switch</span> (excp) {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">case</span> NONE:</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        } <span class="comment">/* switch (excp) */</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    } <span class="comment">/* TRY-CATCH */</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_delete/excp=%d/&quot;</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="stringliteral">&quot;ret_cod=%d/errno=%d\n&quot;</span>, excp, ret_cod, errno));</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<a class="code" href="xta__transaction__manager_8h.html#aa0a8f20bfb8b7415eb5a1ad7547456d2">xta_transaction_manager_config_t</a> *</div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="xta__transaction__manager_8h.html#a8c0cab64535b49fc2f0845312f894870">  122</a></span>&#160;<a class="code" href="xta__transaction__manager_8c.html#a8c0cab64535b49fc2f0845312f894870">xta_transaction_manager_get_config</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> &amp;global_ccc;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">enum</span> Exception { CLIENT_UNCONFIG_ERROR</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                     , NONE } excp;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">int</span> ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_delete\n&quot;</span>));</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    TRY {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">/* configure the global config for LIXA client (if necessary) */</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a> != (ret_cod = client_unconfig(&amp;global_ccc, TRUE)))</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            THROW(CLIENT_UNCONFIG_ERROR);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">/* destroy transaction objects if any */</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span> (NULL != tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a>) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            g_hash_table_destroy(tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a> = NULL;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        } <span class="comment">/* if (NULL != tm-&gt;transactions) */</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">/* clear the synchronization mutex */</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        g_mutex_clear(&amp;tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#acca9c45d2359e8cc8aa0595cd4618006">mutex</a>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="comment">/* destroy the object itself */</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        g_free(tm);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        THROW(NONE);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    } CATCH {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">switch</span> (excp) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">case</span> CLIENT_UNCONFIG_ERROR:</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">case</span> NONE:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        } <span class="comment">/* switch (excp) */</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    } <span class="comment">/* TRY-CATCH */</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_delete/excp=%d/&quot;</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="stringliteral">&quot;ret_cod=%d/errno=%d\n&quot;</span>, excp, ret_cod, errno));</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<a class="code" href="structxta__transaction__s.html">xta_transaction_t</a> *</div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="xta__transaction__manager_8h.html#aa6cdfe1f444ccbfb70f441d1b97667aa">  129</a></span>&#160;<a class="code" href="xta__transaction__manager_8c.html#aa6cdfe1f444ccbfb70f441d1b97667aa">xta_transaction_manager_create_transaction</a>(<a class="code" href="structxta__transaction__manager__s.html">xta_transaction_manager_t</a> *<span class="keyword">this</span>)</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">enum</span> Exception { NULL_OBJECT1</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                     , G_HASH_TABLE_NEW_ERROR</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                     , NULL_OBJECT2</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                     , INTERNAL_ERROR</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                     , NONE } excp;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">int</span> ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="structxta__transaction__s.html">xta_transaction_t</a> *tx = NULL;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction\n&quot;</span>));</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    TRY {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        GThread *<span class="keyword">self</span> = g_thread_self();</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="comment">/* check object reference */</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">if</span> (NULL == <span class="keyword">this</span>)</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            THROW(NULL_OBJECT1);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction: &quot;</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    <span class="stringliteral">&quot;locking mutex...\n&quot;</span>));</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        g_mutex_lock(&amp;this-&gt;mutex);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="comment">/* check if the hash table as been already created */</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">if</span> (NULL == this-&gt;transactions) {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">if</span> (NULL == (this-&gt;transactions = g_hash_table_new_full(</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                             NULL, NULL, NULL,</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                             (GDestroyNotify)<a class="code" href="xta__transaction_8c.html#ac644572ee879cde9e20610329d1fcaea">xta_transaction_delete</a>)))</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                THROW(G_HASH_TABLE_NEW_ERROR);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        } <span class="comment">/* if (NULL == this-&gt;transactions) */</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="comment">/* look for transaction in hash table */</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">if</span> (NULL == (tx = g_hash_table_lookup(this-&gt;transactions, <span class="keyword">self</span>))) {</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction: there is &quot;</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        <span class="stringliteral">&quot;not a started transactions for this thread, &quot;</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        <span class="stringliteral">&quot;starting a new one...\n&quot;</span>));</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="comment">/* allocate a new transaction object */</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">if</span> (NULL == (tx = <a class="code" href="xta__transaction_8c.html#a7c0f2c9804cbd2fef326accc741fb228">xta_transaction_new</a>()))</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                THROW(NULL_OBJECT2);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="comment">/* insert the transaction object in the hash map */</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordflow">if</span> (!g_hash_table_insert(this-&gt;transactions, <span class="keyword">self</span>, tx)) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                THROW(INTERNAL_ERROR);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            }</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        } <span class="comment">/* if (NULL == (tx = g_hash_table_lookup */</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        </div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        THROW(NONE);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    } CATCH {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">switch</span> (excp) {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">case</span> NULL_OBJECT1:</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a0f4235abd1c43b608c2529a4194cdd5a">LIXA_RC_NULL_OBJECT</a>;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordflow">case</span> G_HASH_TABLE_NEW_ERROR:</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a5b1a2d4b7543e2ed94410f36b90ecc9f">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a>;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">case</span> NULL_OBJECT2:</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a0f4235abd1c43b608c2529a4194cdd5a">LIXA_RC_NULL_OBJECT</a>;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="keywordflow">case</span> INTERNAL_ERROR:</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <span class="keywordflow">case</span> NONE:</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="xta__transaction__manager_8h.html#aa0a8f20bfb8b7415eb5a1ad7547456d2">xta_transaction_manager_config_t</a> *</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="xta__transaction__manager_8h.html#a8c0cab64535b49fc2f0845312f894870">  128</a></span>&#160;<a class="code" href="xta__transaction__manager_8c.html#a8c0cab64535b49fc2f0845312f894870">xta_transaction_manager_get_config</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">return</span> &amp;global_ccc;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<a class="code" href="structxta__transaction__s.html">xta_transaction_t</a> *</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="xta__transaction__manager_8h.html#a7c87a606300fcd92d9369579b8d40e8a">  135</a></span>&#160;<a class="code" href="xta__transaction__manager_8c.html#a7c87a606300fcd92d9369579b8d40e8a">xta_transaction_manager_create_transaction</a>(<a class="code" href="structxta__transaction__manager__s.html">xta_transaction_manager_t</a> *tm)</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">enum</span> Exception { NULL_OBJECT1</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                     , G_HASH_TABLE_NEW_ERROR</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                     , NULL_OBJECT2</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                     , INTERNAL_ERROR</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                     , NONE } excp;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordtype">int</span> ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="structxta__transaction__s.html">xta_transaction_t</a> *tx = NULL;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction\n&quot;</span>));</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    TRY {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        GThread *<span class="keyword">self</span> = g_thread_self();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="comment">/* check object reference */</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">if</span> (NULL == tm)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            THROW(NULL_OBJECT1);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction: &quot;</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                    <span class="stringliteral">&quot;locking mutex...\n&quot;</span>));</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        g_mutex_lock(&amp;tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#acca9c45d2359e8cc8aa0595cd4618006">mutex</a>);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="comment">/* check if the hash table as been already created */</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">if</span> (NULL == tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a>) {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">if</span> (NULL == (tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a> = g_hash_table_new_full(</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                             NULL, NULL, NULL,</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                             (GDestroyNotify)<a class="code" href="xta__transaction_8c.html#ae3caf278e4c9e7ad766820fa736ce6eb">xta_transaction_delete</a>)))</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                THROW(G_HASH_TABLE_NEW_ERROR);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        } <span class="comment">/* if (NULL == tm-&gt;transactions) */</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="comment">/* look for transaction in hash table */</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">if</span> (NULL == (tx = g_hash_table_lookup(tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a>, <span class="keyword">self</span>))) {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction: there is &quot;</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                        <span class="stringliteral">&quot;not a started transactions for this thread, &quot;</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                        <span class="stringliteral">&quot;starting a new one...\n&quot;</span>));</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            <span class="comment">/* allocate a new transaction object */</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordflow">if</span> (NULL == (tx = <a class="code" href="xta__transaction_8c.html#a7c0f2c9804cbd2fef326accc741fb228">xta_transaction_new</a>()))</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                THROW(NULL_OBJECT2);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <span class="comment">/* insert the transaction object in the hash map */</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#if GLIB_MAJOR_VERSION == 2</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor"></span><span class="preprocessor"># if GLIB_MINOR_VERSION &gt;= 40</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">if</span> (!g_hash_table_insert(tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a>, <span class="keyword">self</span>, tx)) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                THROW(INTERNAL_ERROR);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor"># else</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor"></span>            g_hash_table_insert(tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">transactions</a>, <span class="keyword">self</span>, tx);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor"># endif</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor"></span>        } <span class="comment">/* if (NULL == (tx = g_hash_table_lookup */</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        THROW(NONE);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    } CATCH {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordflow">switch</span> (excp) {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <span class="keywordflow">case</span> NULL_OBJECT1:</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a0f4235abd1c43b608c2529a4194cdd5a">LIXA_RC_NULL_OBJECT</a>;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        } <span class="comment">/* switch (excp) */</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="comment">/* recoverying memory in the event of error */</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keywordflow">if</span> (NULL_OBJECT2 &lt; excp &amp;&amp; NONE &gt; excp)</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <a class="code" href="xta__transaction_8c.html#ac644572ee879cde9e20610329d1fcaea">xta_transaction_delete</a>(tx);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="comment">/* clear mutex */</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">if</span> (NULL_OBJECT1 &lt; excp) {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            g_mutex_unlock(&amp;this-&gt;mutex);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction: &quot;</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                        <span class="stringliteral">&quot;mutex unlocked\n&quot;</span>));</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    } <span class="comment">/* TRY-CATCH */</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction/excp=%d/&quot;</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                <span class="stringliteral">&quot;ret_cod=%d/errno=%d\n&quot;</span>, excp, ret_cod, errno));</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">return</span> tx;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">case</span> G_HASH_TABLE_NEW_ERROR:</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a5b1a2d4b7543e2ed94410f36b90ecc9f">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a>;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keywordflow">case</span> NULL_OBJECT2:</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a0f4235abd1c43b608c2529a4194cdd5a">LIXA_RC_NULL_OBJECT</a>;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">case</span> INTERNAL_ERROR:</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">case</span> NONE:</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a>;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                ret_cod = <a class="code" href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        } <span class="comment">/* switch (excp) */</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="comment">/* recoverying memory in the event of error */</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">if</span> (NULL_OBJECT2 &lt; excp &amp;&amp; NONE &gt; excp)</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <a class="code" href="xta__transaction_8c.html#ae3caf278e4c9e7ad766820fa736ce6eb">xta_transaction_delete</a>(tx);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="comment">/* clear mutex */</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">if</span> (NULL_OBJECT1 &lt; excp) {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            g_mutex_unlock(&amp;tm-&gt;<a class="code" href="structxta__transaction__manager__s.html#acca9c45d2359e8cc8aa0595cd4618006">mutex</a>);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction: &quot;</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                        <span class="stringliteral">&quot;mutex unlocked\n&quot;</span>));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    } <span class="comment">/* TRY-CATCH */</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    LIXA_TRACE((<span class="stringliteral">&quot;xta_transaction_manager_create_transaction/excp=%d/&quot;</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                <span class="stringliteral">&quot;ret_cod=%d/errno=%d\n&quot;</span>, excp, ret_cod, errno));</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">return</span> tx;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
 <div class="ttc" id="structxta__transaction__manager__s_html"><div class="ttname"><a href="structxta__transaction__manager__s.html">xta_transaction_manager_s</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8h_source.html#l00043">xta_transaction_manager.h:43</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_a0f4235abd1c43b608c2529a4194cdd5a"><div class="ttname"><a href="lixa__errors_8h.html#a0f4235abd1c43b608c2529a4194cdd5a">LIXA_RC_NULL_OBJECT</a></div><div class="ttdeci">#define LIXA_RC_NULL_OBJECT</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00139">lixa_errors.h:139</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_ac54adb2da790232bed2b1513ab7c8201"><div class="ttname"><a href="lixa__errors_8h.html#ac54adb2da790232bed2b1513ab7c8201">LIXA_RC_INTERNAL_ERROR</a></div><div class="ttdeci">#define LIXA_RC_INTERNAL_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00122">lixa_errors.h:122</a></div></div>
-<div class="ttc" id="xta__transaction__manager_8c_html_ae4c2e44bd5f9eb348c85ce20691f2bb2"><div class="ttname"><a href="xta__transaction__manager_8c.html#ae4c2e44bd5f9eb348c85ce20691f2bb2">xta_transaction_manager_delete</a></div><div class="ttdeci">void xta_transaction_manager_delete(xta_transaction_manager_t *this)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00085">xta_transaction_manager.c:85</a></div></div>
-<div class="ttc" id="xta__transaction__manager_8c_html_a8c0cab64535b49fc2f0845312f894870"><div class="ttname"><a href="xta__transaction__manager_8c.html#a8c0cab64535b49fc2f0845312f894870">xta_transaction_manager_get_config</a></div><div class="ttdeci">xta_transaction_manager_config_t * xta_transaction_manager_get_config(void)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00122">xta_transaction_manager.c:122</a></div></div>
+<div class="ttc" id="xta__transaction__manager_8c_html_a8c0cab64535b49fc2f0845312f894870"><div class="ttname"><a href="xta__transaction__manager_8c.html#a8c0cab64535b49fc2f0845312f894870">xta_transaction_manager_get_config</a></div><div class="ttdeci">xta_transaction_manager_config_t * xta_transaction_manager_get_config(void)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00128">xta_transaction_manager.c:128</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_a767d4ddf00001db74b47dac2aa7f7a9b"><div class="ttname"><a href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a></div><div class="ttdeci">#define LIXA_RC_OK</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00115">lixa_errors.h:115</a></div></div>
-<div class="ttc" id="xta__transaction__manager_8c_html_aa6cdfe1f444ccbfb70f441d1b97667aa"><div class="ttname"><a href="xta__transaction__manager_8c.html#aa6cdfe1f444ccbfb70f441d1b97667aa">xta_transaction_manager_create_transaction</a></div><div class="ttdeci">xta_transaction_t * xta_transaction_manager_create_transaction(xta_transaction_manager_t *this)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00129">xta_transaction_manager.c:129</a></div></div>
 <div class="ttc" id="structxta__transaction__s_html"><div class="ttname"><a href="structxta__transaction__s.html">xta_transaction_s</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction_8h_source.html#l00058">xta_transaction.h:58</a></div></div>
 <div class="ttc" id="xta__transaction__manager_8h_html_aa0a8f20bfb8b7415eb5a1ad7547456d2"><div class="ttname"><a href="xta__transaction__manager_8h.html#aa0a8f20bfb8b7415eb5a1ad7547456d2">xta_transaction_manager_config_t</a></div><div class="ttdeci">void xta_transaction_manager_config_t</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8h_source.html#l00036">xta_transaction_manager.h:36</a></div></div>
 <div class="ttc" id="xta__transaction__manager_8c_html_a35fbe1696b919cd70a5d18396b643f14"><div class="ttname"><a href="xta__transaction__manager_8c.html#a35fbe1696b919cd70a5d18396b643f14">xta_transaction_manager_new</a></div><div class="ttdeci">xta_transaction_manager_t * xta_transaction_manager_new(void)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00044">xta_transaction_manager.c:44</a></div></div>
+<div class="ttc" id="structxta__transaction__manager__s_html_acca9c45d2359e8cc8aa0595cd4618006"><div class="ttname"><a href="structxta__transaction__manager__s.html#acca9c45d2359e8cc8aa0595cd4618006">xta_transaction_manager_s::mutex</a></div><div class="ttdeci">GMutex mutex</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8h_source.html#l00048">xta_transaction_manager.h:48</a></div></div>
+<div class="ttc" id="xta__transaction__manager_8c_html_a7c87a606300fcd92d9369579b8d40e8a"><div class="ttname"><a href="xta__transaction__manager_8c.html#a7c87a606300fcd92d9369579b8d40e8a">xta_transaction_manager_create_transaction</a></div><div class="ttdeci">xta_transaction_t * xta_transaction_manager_create_transaction(xta_transaction_manager_t *tm)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00135">xta_transaction_manager.c:135</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_aa1896cf6969b7e26976d9cc3dffeaff6"><div class="ttname"><a href="lixa__errors_8h.html#aa1896cf6969b7e26976d9cc3dffeaff6">LIXA_RC_G_TRY_MALLOC_ERROR</a></div><div class="ttdeci">#define LIXA_RC_G_TRY_MALLOC_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00550">lixa_errors.h:550</a></div></div>
+<div class="ttc" id="structxta__transaction__manager__s_html_a4bfd53cb87d823d8dde50b6a28b08bd5"><div class="ttname"><a href="structxta__transaction__manager__s.html#a4bfd53cb87d823d8dde50b6a28b08bd5">xta_transaction_manager_s::transactions</a></div><div class="ttdeci">GHashTable * transactions</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8h_source.html#l00053">xta_transaction_manager.h:53</a></div></div>
+<div class="ttc" id="xta__transaction__manager_8c_html_a404463e4bf965beb6fa3462c125aad67"><div class="ttname"><a href="xta__transaction__manager_8c.html#a404463e4bf965beb6fa3462c125aad67">xta_transaction_manager_delete</a></div><div class="ttdeci">void xta_transaction_manager_delete(xta_transaction_manager_t *tm)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8c_source.html#l00085">xta_transaction_manager.c:85</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html_a5b1a2d4b7543e2ed94410f36b90ecc9f"><div class="ttname"><a href="lixa__errors_8h.html#a5b1a2d4b7543e2ed94410f36b90ecc9f">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a></div><div class="ttdeci">#define LIXA_RC_G_HASH_TABLE_NEW_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00513">lixa_errors.h:513</a></div></div>
-<div class="ttc" id="xta__transaction_8c_html_ac644572ee879cde9e20610329d1fcaea"><div class="ttname"><a href="xta__transaction_8c.html#ac644572ee879cde9e20610329d1fcaea">xta_transaction_delete</a></div><div class="ttdeci">void xta_transaction_delete(xta_transaction_t *this)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction_8c_source.html#l00177">xta_transaction.c:177</a></div></div>
 <div class="ttc" id="xta__transaction__manager_8h_html"><div class="ttname"><a href="xta__transaction__manager_8h.html">xta_transaction_manager.h</a></div></div>
+<div class="ttc" id="xta__transaction_8c_html_ae3caf278e4c9e7ad766820fa736ce6eb"><div class="ttname"><a href="xta__transaction_8c.html#ae3caf278e4c9e7ad766820fa736ce6eb">xta_transaction_delete</a></div><div class="ttdeci">void xta_transaction_delete(xta_transaction_t *transact)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction_8c_source.html#l00180">xta_transaction.c:180</a></div></div>
 <div class="ttc" id="xta__transaction_8c_html_a7c0f2c9804cbd2fef326accc741fb228"><div class="ttname"><a href="xta__transaction_8c.html#a7c0f2c9804cbd2fef326accc741fb228">xta_transaction_new</a></div><div class="ttdeci">xta_transaction_t * xta_transaction_new(void)</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction_8c_source.html#l00054">xta_transaction.c:54</a></div></div>
 <div class="ttc" id="lixa__errors_8h_html"><div class="ttname"><a href="lixa__errors_8h.html">lixa_errors.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

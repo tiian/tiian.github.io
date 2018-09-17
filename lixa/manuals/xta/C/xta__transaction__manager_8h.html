@@ -78,10 +78,10 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa6cdfe1f444ccbfb70f441d1b97667aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="xta__transaction_8h.html#a25c9bd62309a30c5daaad30cef048d49">xta_transaction_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xta__transaction__manager_8h.html#aa6cdfe1f444ccbfb70f441d1b97667aa">xta_transaction_manager_create_transaction</a> (<a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *this)</td></tr>
-<tr class="separator:aa6cdfe1f444ccbfb70f441d1b97667aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4c2e44bd5f9eb348c85ce20691f2bb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xta__transaction__manager_8h.html#ae4c2e44bd5f9eb348c85ce20691f2bb2">xta_transaction_manager_delete</a> (<a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *this)</td></tr>
-<tr class="separator:ae4c2e44bd5f9eb348c85ce20691f2bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c87a606300fcd92d9369579b8d40e8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="xta__transaction_8h.html#a25c9bd62309a30c5daaad30cef048d49">xta_transaction_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xta__transaction__manager_8h.html#a7c87a606300fcd92d9369579b8d40e8a">xta_transaction_manager_create_transaction</a> (<a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *tm)</td></tr>
+<tr class="separator:a7c87a606300fcd92d9369579b8d40e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a404463e4bf965beb6fa3462c125aad67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xta__transaction__manager_8h.html#a404463e4bf965beb6fa3462c125aad67">xta_transaction_manager_delete</a> (<a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *tm)</td></tr>
+<tr class="separator:a404463e4bf965beb6fa3462c125aad67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c0cab64535b49fc2f0845312f894870"><td class="memItemLeft" align="right" valign="top"><a class="el" href="xta__transaction__manager_8h.html#aa0a8f20bfb8b7415eb5a1ad7547456d2">xta_transaction_manager_config_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xta__transaction__manager_8h.html#a8c0cab64535b49fc2f0845312f894870">xta_transaction_manager_get_config</a> (void)</td></tr>
 <tr class="separator:a8c0cab64535b49fc2f0845312f894870"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35fbe1696b919cd70a5d18396b643f14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xta__transaction__manager_8h.html#a35fbe1696b919cd70a5d18396b643f14">xta_transaction_manager_new</a> (void)</td></tr>
@@ -117,7 +117,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aa6cdfe1f444ccbfb70f441d1b97667aa"></a>
+<a class="anchor" id="a7c87a606300fcd92d9369579b8d40e8a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -125,7 +125,7 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="xta__transaction_8h.html#a25c9bd62309a30c5daaad30cef048d49">xta_transaction_t</a>* xta_transaction_manager_create_transaction </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *&#160;</td>
-          <td class="paramname"><em>this</em></td><td>)</td>
+          <td class="paramname"><em>tm</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -133,19 +133,19 @@ Functions</h2></td></tr>
 <p>Create a new XA Transaction object, associate it with the current process/thread and returns it to the caller. In the event that the caller thread has already created an XA Transaction, the previously created XA Transaction object is returned </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">this</td><td>: transaction manager object </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">tm</td><td>: transaction manager object </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the pointer to an XTA Transaction object </dd></dl>
 
-<p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00129">129</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
+<p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00135">135</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
 
-<p>References <a class="el" href="lixa__errors_8h_source.html#l00513">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00139">LIXA_RC_NULL_OBJECT</a>, <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>, <a class="el" href="xta__transaction_8c_source.html#l00177">xta_transaction_delete()</a>, and <a class="el" href="xta__transaction_8c_source.html#l00054">xta_transaction_new()</a>.</p>
+<p>References <a class="el" href="lixa__errors_8h_source.html#l00513">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00139">LIXA_RC_NULL_OBJECT</a>, <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00048">xta_transaction_manager_s::mutex</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00053">xta_transaction_manager_s::transactions</a>, <a class="el" href="xta__transaction_8c_source.html#l00180">xta_transaction_delete()</a>, and <a class="el" href="xta__transaction_8c_source.html#l00054">xta_transaction_new()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae4c2e44bd5f9eb348c85ce20691f2bb2"></a>
+<a class="anchor" id="a404463e4bf965beb6fa3462c125aad67"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -153,7 +153,7 @@ Functions</h2></td></tr>
           <td class="memname">void xta_transaction_manager_delete </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="xta__transaction__manager_8h.html#a5dfd138a0ee1a50b9a64d934b63c0726">xta_transaction_manager_t</a> *&#160;</td>
-          <td class="paramname"><em>this</em></td><td>)</td>
+          <td class="paramname"><em>tm</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -161,14 +161,14 @@ Functions</h2></td></tr>
 <p>Delete a Transaction Manager object </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">this</td><td>: transaction manager to delete </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tm</td><td>: transaction manager to delete </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00085">85</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
 
-<p>References <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, and <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>.</p>
+<p>References <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00048">xta_transaction_manager_s::mutex</a>, and <a class="el" href="xta__transaction__manager_8h_source.html#l00053">xta_transaction_manager_s::transactions</a>.</p>
 
 </div>
 </div>
@@ -188,7 +188,7 @@ Functions</h2></td></tr>
 <p>Get the legacy LIXA object that contains the static global configurations for all the statically defined Resource Managers. This method must be intended as STATIC because it does not access the object state. </p>
 <dl class="section return"><dt>Returns</dt><dd>the pointer to the Transaction Manager configuration object </dd></dl>
 
-<p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00122">122</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
+<p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00128">128</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
 
 </div>
 </div>

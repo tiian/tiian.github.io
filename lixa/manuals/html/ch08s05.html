@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0-rc)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s04.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /><link rel="next" href="ch09.html" title="Chapter 9. Recovery" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s04.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /><link rel="next" href="ch09.html" title="Chapter 9. Recovery" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>
-    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s04.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp59378912"></a>The
+    Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s04.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp59275968"></a>The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>
     Pattern</h2></div></div></div><div class="table"><table frame="box"><thead><tr><td>The pattern in brief:</td></tr></thead><tbody><tr>
 	  <td>Architecture:</td>
@@ -18,7 +18,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>yes, subordinate AP creates a new branch and then executes asynchronously</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59387152"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59284208"></a>Description</h3></div></div></div><p>
 	This is a Distributed Transaction Processing pattern introduced by
 	XTA: two or more Application Programs use any set of Resource
 	Manager(s) and perform concurrent operations inside distinct branches
@@ -28,13 +28,13 @@
       </p><p>
 	The following picture shows an example that can be implemented, for
 	example, using MySQL (or MariaDB) and PostgreSQL.
-	<a href="#ftn.idp59388656" class="footnote" id="idp59388656"><sup class="footnote">[50]</sup></a>
+	<a href="#ftn.idp59285712" class="footnote" id="idp59285712"><sup class="footnote">[50]</sup></a>
 	</p><div class="figure"><a id="xta_pattern08b"></a><p class="title"><strong>Figure 8.10. Example of <span class="quote">“<span class="quote">Multiple Applications, 
 	  Consecutive Calls/Pseudo Synchronous</span>”</span> with two Application
 	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="Example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
 	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
 	standard TX Transaction	Demarcation interface.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59392736"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern10"></a><p class="title"><strong>Figure 8.11. Simplified sequence diagram for the
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59289792"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern10"></a><p class="title"><strong>Figure 8.11. Simplified sequence diagram for the
 	<span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Asynchronous</span>”</span>
 	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_10.svg" alt="Simplified sequence diagram for the “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
@@ -108,7 +108,7 @@
 	    LIXA and XTA side, on the number of Resource Managers used by an
 	    Application Program
 	  </p></li></ul></div><p>
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59409744"></a>Example using C language</h3></div></div></div><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59306800"></a>Example using C language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbpa01.c</code> and
 	<code class="filename">example_xta_macbpa02.c</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -363,14 +363,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59433104"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59330160"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbpa01.c</code> 
 	  and <code class="filename">example_xta_macbpa02.c</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
 	  are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59479152"></a>Example using C++ language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59376208"></a>Example using C++ language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbpa11.cpp</code>
 	and <code class="filename">example_xta_macbpa12.cpp</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -622,14 +622,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59502800"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59399856"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbpa11.cpp</code> 
 	  and <code class="filename">example_xta_macbpa12.cpp</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/cpp</code>
 	  and are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/cpp/" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59388656" class="footnote"><p><a href="#idp59388656" class="para"><sup class="para">[50] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59285712" class="footnote"><p><a href="#idp59285712" class="para"><sup class="para">[50] </sup></a>
 	    You may notice that this pattern uses the same architecture shown
 	    in <a class="xref" href="ch08s04.html#xta_pattern08" title="Figure 8.8. Example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers">Figure 8.8, “Example of <span class="quote">“<span class="quote">Multiple Applications, 
 	  Consecutive Calls/Pseudo Synchronous</span>”</span> with two Application
