@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with two MySQL servers</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.0)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s14.html" title="An example with WebSphere MQ" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with two MySQL servers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s12.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with two MySQL servers</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.1)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s12.html" title="An example with MySQL, PostgreSQL &amp; Oracle" /><link rel="next" href="ch05s14.html" title="An example with WebSphere MQ" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with two MySQL servers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s12.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s14.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example11_mys_mys"></a>An example with two MySQL servers</h2></div></div></div><div class="figure"><a id="develop11"></a><p class="title"><strong>Figure 5.8. Deploy model of an example showing a distributed transaction with
 	two MySQL servers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_11.png" alt="Deploy model of an example showing a distributed transaction with two MySQL servers" /></div></div></div><br class="figure-break" /><p>
       This example shows as
@@ -114,7 +114,7 @@ mysql&gt; DESCRIBE authors;
 +------------+---------+------+-----+---------+-------+
 3 rows in set (0.01 sec)
 	</pre></td></tr></tbody></table></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58147296"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp62719952"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -150,7 +150,7 @@ tiian@ubuntu:~/tmp$ ldd example11_mys_mys
         libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb7159000)
         libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb7155000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58170576"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp62743232"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the necessary environment variables:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
@@ -162,7 +162,7 @@ MYS_STA_MYS_STA
 	It is suggested to set the necessary environment variable
 	(<code class="varname">LIXA_PROFILE</code>) in your 
 	profile if you are going to execute the programs many times.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58180704"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp62753360"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">MYS_STA_MYS_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -186,8 +186,8 @@ MYS_STA_MYS_STA
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp58185216" class="footnote" id="idp58185216"><sup class="footnote">[37]</sup></a>. 
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58181264"></a>Program execution</h3></div></div></div><p>
+	<a href="#ftn.idp62757872" class="footnote" id="idp62757872"><sup class="footnote">[36]</sup></a>. 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp62753920"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">lixa</span>”</span> local MySQL database,
 	the second one connected to <span class="quote">“<span class="quote">lixa</span>”</span> remote MySQL database
@@ -352,7 +352,7 @@ Query OK, 1 row affected (0.04 sec)
 mysql&gt; SELECT * FROM authors;
 Empty set (0.00 sec)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58185216" class="footnote"><p><a href="#idp58185216" class="para"><sup class="para">[37] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp62757872" class="footnote"><p><a href="#idp62757872" class="para"><sup class="para">[36] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> for MySQL is
 	    described in 
 	    <a class="xref" href="ch05s10.html#Development_setup_MySQL_xa_open_info" title="Some checks before program execution">the section called “Some checks before program execution”</a>.
