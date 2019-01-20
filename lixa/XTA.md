@@ -41,7 +41,7 @@ message oriented, protocol based on standard TCP/IP connection.
 
 Application developed with different programming languages can participate in
 the same global XA transacation.
-Currently available languages are: C, C++ and Python.
+Currently available languages are: C, C++, Java and Python.
 
 ### XA Resource Managers
 

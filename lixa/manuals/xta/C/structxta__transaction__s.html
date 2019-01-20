@@ -10,6 +10,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -55,6 +56,8 @@ Collaboration diagram for xta_transaction_s:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:a6f161b44dc7214e2ae4acbe57508482f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxta__transaction__s.html#a6f161b44dc7214e2ae4acbe57508482f">already_opened</a></td></tr>
+<tr class="separator:a6f161b44dc7214e2ae4acbe57508482f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcc5330a4483d5b7e2f23a02ced14440"><td class="memItemLeft" align="right" valign="top"><a class="el" href="xta__transaction_8h.html#ae641cadd94729c66f2db04b475599358">xta_transaction_client_status_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxta__transaction__s.html#afcc5330a4483d5b7e2f23a02ced14440">client_status</a></td></tr>
 <tr class="separator:afcc5330a4483d5b7e2f23a02ced14440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74787cbeb10f8825cf938173340c0a9d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxta__transaction__s.html#a74787cbeb10f8825cf938173340c0a9d">commit_suspended</a></td></tr>
@@ -69,6 +72,23 @@ Data Fields</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00058">58</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a6f161b44dc7214e2ae4acbe57508482f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int xta_transaction_s::already_opened</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean value used to store if the open method has been already called or not </p>
+
+<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00063">63</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
+
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01310">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00563">xta_transaction_close_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l00182">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l00490">xta_transaction_open_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l01210">xta_transaction_resume()</a>, and <a class="el" href="xta__transaction_8c_source.html#l00682">xta_transaction_start()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="afcc5330a4483d5b7e2f23a02ced14440"></a>
 <div class="memitem">
 <div class="memproto">
@@ -80,9 +100,9 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>LIXA client status </p>
 
-<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00062">62</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
+<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00067">67</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01218">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00536">xta_transaction_close()</a>, <a class="el" href="xta__transaction_8c_source.html#l00675">xta_transaction_commit()</a>, <a class="el" href="xta__transaction_8c_source.html#l00180">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l00260">xta_transaction_enlist_resource()</a>, <a class="el" href="xta__transaction_8c_source.html#l00471">xta_transaction_open()</a>, <a class="el" href="xta__transaction_8c_source.html#l00371">xta_transaction_redigest()</a>, <a class="el" href="xta__transaction_8c_source.html#l01126">xta_transaction_resume()</a>, <a class="el" href="xta__transaction_8c_source.html#l00928">xta_transaction_rollback()</a>, <a class="el" href="xta__transaction_8c_source.html#l00605">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01045">xta_transaction_suspend()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01310">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00563">xta_transaction_close_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l00759">xta_transaction_commit()</a>, <a class="el" href="xta__transaction_8c_source.html#l00182">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l00270">xta_transaction_enlist_resource()</a>, <a class="el" href="xta__transaction_8c_source.html#l00490">xta_transaction_open_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l00381">xta_transaction_redigest()</a>, <a class="el" href="xta__transaction_8c_source.html#l01210">xta_transaction_resume()</a>, <a class="el" href="xta__transaction_8c_source.html#l01012">xta_transaction_rollback()</a>, <a class="el" href="xta__transaction_8c_source.html#l00682">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01129">xta_transaction_suspend()</a>.</p>
 
 </div>
 </div>
@@ -97,9 +117,9 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The transaction has already called <a class="el" href="xta__transaction_8h.html#a5a51aeaa9cd745c1988818bad55bf9be">xta_transaction_commit</a> with non_block flag and must call <a class="el" href="xta__transaction_8h.html#a5a51aeaa9cd745c1988818bad55bf9be">xta_transaction_commit</a> again to complete it </p>
 
-<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00079">79</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
+<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00084">84</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l00675">xta_transaction_commit()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l00759">xta_transaction_commit()</a>.</p>
 
 </div>
 </div>
@@ -114,9 +134,9 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>LIXA client configuration (it's a collection). The name of the property contains the prefix "local" to strongly distinguish it from the "global" instance that's used by legacy LIXA due to TX specification limitation </p>
 
-<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00069">69</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
+<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00074">74</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01218">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00536">xta_transaction_close()</a>, <a class="el" href="xta__transaction_8c_source.html#l00675">xta_transaction_commit()</a>, <a class="el" href="xta__transaction_8c_source.html#l00180">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l00260">xta_transaction_enlist_resource()</a>, <a class="el" href="xta__transaction_8c_source.html#l00226">xta_transaction_get_config()</a>, <a class="el" href="xta__transaction_8c_source.html#l00471">xta_transaction_open()</a>, <a class="el" href="xta__transaction_8c_source.html#l00371">xta_transaction_redigest()</a>, <a class="el" href="xta__transaction_8c_source.html#l01126">xta_transaction_resume()</a>, <a class="el" href="xta__transaction_8c_source.html#l00928">xta_transaction_rollback()</a>, <a class="el" href="xta__transaction_8c_source.html#l00605">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01045">xta_transaction_suspend()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01310">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00563">xta_transaction_close_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l00759">xta_transaction_commit()</a>, <a class="el" href="xta__transaction_8c_source.html#l00182">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l00270">xta_transaction_enlist_resource()</a>, <a class="el" href="xta__transaction_8c_source.html#l00236">xta_transaction_get_config()</a>, <a class="el" href="xta__transaction_8c_source.html#l00490">xta_transaction_open_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l00381">xta_transaction_redigest()</a>, <a class="el" href="xta__transaction_8c_source.html#l01210">xta_transaction_resume()</a>, <a class="el" href="xta__transaction_8c_source.html#l01012">xta_transaction_rollback()</a>, <a class="el" href="xta__transaction_8c_source.html#l00682">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01129">xta_transaction_suspend()</a>.</p>
 
 </div>
 </div>
@@ -131,9 +151,9 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>Transaction ID </p>
 
-<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00073">73</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
+<p>Definition at line <a class="el" href="xta__transaction_8h_source.html#l00078">78</a> of file <a class="el" href="xta__transaction_8h_source.html">xta_transaction.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01218">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00675">xta_transaction_commit()</a>, <a class="el" href="xta__transaction_8c_source.html#l00180">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l01344">xta_transaction_get_xid()</a>, <a class="el" href="xta__transaction_8c_source.html#l00471">xta_transaction_open()</a>, <a class="el" href="xta__transaction_8c_source.html#l01126">xta_transaction_resume()</a>, <a class="el" href="xta__transaction_8c_source.html#l00928">xta_transaction_rollback()</a>, <a class="el" href="xta__transaction_8c_source.html#l00605">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01045">xta_transaction_suspend()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01310">xta_transaction_branch()</a>, <a class="el" href="xta__transaction_8c_source.html#l00759">xta_transaction_commit()</a>, <a class="el" href="xta__transaction_8c_source.html#l00182">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l01443">xta_transaction_get_xid()</a>, <a class="el" href="xta__transaction_8c_source.html#l00490">xta_transaction_open_internal()</a>, <a class="el" href="xta__transaction_8c_source.html#l01210">xta_transaction_resume()</a>, <a class="el" href="xta__transaction_8c_source.html#l01012">xta_transaction_rollback()</a>, <a class="el" href="xta__transaction_8c_source.html#l00682">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01129">xta_transaction_suspend()</a>.</p>
 
 </div>
 </div>
@@ -144,7 +164,7 @@ Data Fields</h2></td></tr>
 </div><!-- doc-content -->
     <HR>
     <H5>
-      <CENTER>Copyright &copy; 2009-2018, Christian Ferrari
+      <CENTER>Copyright &copy; 2009-2019, Christian Ferrari
       <A HREF="mailto:tiian@users.sourceforge.net">tiian@users.sourceforge.net</A>
       <A HREF="http://www.tiian.org/">http://www.tiian.org/</A>
       </CENTER>

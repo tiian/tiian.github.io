@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "LIXA/XTA", "index.html", [
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -25,8 +26,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structxta__iface__s.html#a78c60b35c791cf96a20e88ba195823ae",
-"xta__transaction__manager_8c.html#a8c0cab64535b49fc2f0845312f894870"
+"structxa__switch__t.html#a82188539627049a95214ce92b4684c74",
+"xta__transaction_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

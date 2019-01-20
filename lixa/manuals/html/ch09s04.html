@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Workload balanced environments</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.5.3-dev)" /><link rel="up" href="ch09.html" title="Chapter 9. In Depth" /><link rel="prev" href="ch09s03.html" title="Non root installation" /><link rel="next" href="ch09s05.html" title="High Availability configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Workload balanced environments</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09s03.html">Prev</a> </td><th width="60%" align="center">Chapter 9. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch09s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Workload_balanced_environments"></a>Workload balanced environments</h2></div></div></div><p>
-      The LIXA client (<code class="systemitem">lixac</code>)
-      uses only one state server at a time, but different profiles can
-      use different state servers and you can statically balance the
-      workload.
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Considerations related to XTA API</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.2)" /><link rel="up" href="ch09.html" title="Chapter 9. Recovery" /><link rel="prev" href="ch09s03.html" title="Manual (cold) recovery" /><link rel="next" href="ch10.html" title="Chapter 10. In Depth" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Considerations related to XTA API</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09s03.html">Prev</a> </td><th width="60%" align="center">Chapter 9. Recovery</th><td width="20%" align="right"> <a accesskey="n" href="ch10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp60842384"></a>Considerations related to XTA API</h2></div></div></div><p>
+      Utility <span class="command"><strong>lixar</strong></span> has been designed to operate in an
+      environment of statically defined Resource Managers: this was typical
+      for TX Demarcation Specification. XTA API provides a lot of flexibility
+      in comparison with TX: Resource Managers can be defined at run time;
+      furthermore, XTA for Java, allows the usage of every Resource Manager
+      that implement the <code class="function">javax.transaction.xa.XAResource</code>
+      interface.
     </p><p>
-      We can not name it <span class="quote">“<span class="quote">workload balancing</span>”</span>, but this is
-      an effective way to manage large environments.
-      To configure many LIXA state servers you must put many
-      <span class="quote">“<span class="quote">sttsrv</span>”</span> tags in <code class="filename">etc/lixac_conf.xml</code>
-      as in the example below:
-      </p><pre class="screen">
-  &lt;sttsrvs&gt;
-    &lt;sttsrv name="local_1" domain="AF_INET" address="127.0.0.1" port="2345" /&gt;
-    &lt;sttsrv name="local_2" domain="AF_INET" address="127.0.0.1" port="3456" /&gt;
-  &lt;/sttsrvs&gt;
-      </pre><p>
-      then you must specify different <span class="quote">“<span class="quote">sttsrv</span>”</span> tags in the
-      profiles as in the example below:
-      </p><pre class="screen">
-    &lt;profile name="ORA_DYN_DB2_DYN"&gt;
-      &lt;sttsrvs&gt;
-        &lt;sttsrv&gt;local_1&lt;/sttsrv&gt;
-      &lt;/sttsrvs&gt;
-      &lt;rsrmgrs&gt;
-        &lt;rsrmgr&gt;OracleXE_dynreg&lt;/rsrmgr&gt;
-        &lt;rsrmgr&gt;IBMDB2_dynreg&lt;/rsrmgr&gt;
-      &lt;/rsrmgrs&gt;
-    &lt;/profile&gt;
-    &lt;profile name="ORA_DYN_DB2_STA"&gt;
-      &lt;sttsrvs&gt;
-        &lt;sttsrv&gt;local_2&lt;/sttsrv&gt;
-      &lt;/sttsrvs&gt;
-      &lt;rsrmgrs&gt;
-        &lt;rsrmgr&gt;OracleXE_dynreg&lt;/rsrmgr&gt;
-        &lt;rsrmgr&gt;IBMDB2_stareg&lt;/rsrmgr&gt;
-      &lt;/rsrmgrs&gt;
-    &lt;/profile&gt;
-      </pre><p>
-    </p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch09s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Non root installation </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> High Availability configuration</td></tr></table></div></body></html>
+      Under some conditions, when a standard XA Resource Manager and its
+      switch load file exists, <span class="command"><strong>lixar</strong></span> can be used even to
+      recover transactions managed by the XTA API, but there's actually no an
+      alternative tool dedicated to XTA and XTA for Java.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60847808"></a>Well known issues and resolution tips</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp60848240"></a>PostgreSQL and XTA for Java</h4></div></div></div><p>
+	  PostgreSQL does not provide standard <code class="function">xa_</code>
+	  functions as well as MySQL/MariaDB. The LIXA project has implemented
+	  the necessary functions building a proxy component that uses the
+	  native PostgreSQL <span class="quote">“<span class="quote">XA like</span>”</span> SQL statements.
+	  LIXA implementation serializes XIDs using a different algorithm than
+	  PostgreSQL JDBC driver; <span class="command"><strong>lixar</strong></span> does not recognize
+	  XIDs generated by PostgreSQL JDBC driver and recovery pending
+	  transaction must be resolved manually. Here's an example:
+	  </p><pre class="screen">
+tiian@ubuntu1404-64:~$ psql testdb
+psql (9.3.24)
+Type "help" for help.
+
+testdb=&gt; select * from pg_prepared_xacts;
+ transaction |                             gid                              |          prepared           | owner | database 
+-------------+--------------------------------------------------------------+-----------------------------+-------+----------
+       55122 | 1279875137_vF8w2TaEQDagSZWMOeqwqA==_Zf5GiZlb6PFbYYXrfE9CJw== | 2019-01-19 17:20:40.8768+01 | tiian | testdb
+(1 row)
+
+testdb=&gt; ROLLBACK PREPARED '1279875137_vF8w2TaEQDagSZWMOeqwqA==_Zf5GiZlb6PFbYYXrfE9CJw==';
+ROLLBACK PREPARED
+
+testdb=&gt; select * from pg_prepared_xacts; transaction | gid | prepared | owner | database 
+-------------+-----+----------+-------+----------
+(0 rows)
+	  </pre><p>
+	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch10.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Manual (cold) recovery </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 10. In Depth</td></tr></table></div></body></html>

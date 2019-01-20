@@ -1,5 +1,6 @@
 var structxta__transaction__s =
 [
+    [ "already_opened", "structxta__transaction__s.html#a6f161b44dc7214e2ae4acbe57508482f", null ],
     [ "client_status", "structxta__transaction__s.html#afcc5330a4483d5b7e2f23a02ced14440", null ],
     [ "commit_suspended", "structxta__transaction__s.html#a74787cbeb10f8825cf938173340c0a9d", null ],
     [ "local_ccc", "structxta__transaction__s.html#a94620c365638d98f93ee7c55c1de9284", null ],

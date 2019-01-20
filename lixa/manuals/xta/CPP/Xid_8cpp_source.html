@@ -93,10 +93,16 @@ $(document).ready(function(){initNavTree('Xid_8cpp_source.html','');});
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classxta_1_1Xid.html#a4b6fa61fe03a0499649ef046a6307d22">   51</a></span>&#160;    <span class="keywordtype">string</span> <a class="code" href="classxta_1_1Xid.html#a4b6fa61fe03a0499649ef046a6307d22">Xid::toString</a>()</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">return</span> string(xta_xid_to_string(<a class="code" href="classxta_1_1Xid.html#ad66ab7723a707f87d36e33905ba08ba9">xid</a>));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="ttc" id="classxta_1_1Xid_html_a4b6fa61fe03a0499649ef046a6307d22"><div class="ttname"><a href="classxta_1_1Xid.html#a4b6fa61fe03a0499649ef046a6307d22">xta::Xid::toString</a></div><div class="ttdeci">string toString()</div><div class="ttdef"><b>Definition:</b> <a href="Xid_8cpp_source.html#l00051">Xid.cpp:51</a></div></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// retrieve an ASCII string, heap allocated</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">char</span> *tmp = xta_xid_to_string(<a class="code" href="classxta_1_1Xid.html#ad66ab7723a707f87d36e33905ba08ba9">xid</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// create a C++ string</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">string</span> result(tmp);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// memory allocated by xta_xid_to_string must be released</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        free(tmp);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="ttc" id="classxta_1_1Xid_html_a4b6fa61fe03a0499649ef046a6307d22"><div class="ttname"><a href="classxta_1_1Xid.html#a4b6fa61fe03a0499649ef046a6307d22">xta::Xid::toString</a></div><div class="ttdeci">std::string toString()</div><div class="ttdef"><b>Definition:</b> <a href="Xid_8cpp_source.html#l00051">Xid.cpp:51</a></div></div>
 <div class="ttc" id="Xid_8hpp_html"><div class="ttname"><a href="Xid_8hpp.html">Xid.hpp</a></div></div>
 <div class="ttc" id="classxta_1_1Xid_html_a26bd7d0dea7ae7f77dea80740ebe6c16"><div class="ttname"><a href="classxta_1_1Xid.html#a26bd7d0dea7ae7f77dea80740ebe6c16">xta::Xid::~Xid</a></div><div class="ttdeci">~Xid()</div><div class="ttdef"><b>Definition:</b> <a href="Xid_8cpp_source.html#l00046">Xid.cpp:46</a></div></div>
 <div class="ttc" id="Exception_8hpp_html"><div class="ttname"><a href="Exception_8hpp.html">Exception.hpp</a></div></div>
@@ -106,7 +112,7 @@ $(document).ready(function(){initNavTree('Xid_8cpp_source.html','');});
 </div><!-- doc-content -->
     <HR>
     <H5>
-      <CENTER>Copyright &copy; 2009-2018, Christian Ferrari
+      <CENTER>Copyright &copy; 2009-2019, Christian Ferrari
       <A HREF="mailto:tiian@users.sourceforge.net">tiian@users.sourceforge.net</A>
       <A HREF="http://www.tiian.org/">http://www.tiian.org/</A>
       </CENTER>

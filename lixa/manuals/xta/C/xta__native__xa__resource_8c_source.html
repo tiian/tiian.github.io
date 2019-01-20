@@ -10,6 +10,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -41,7 +42,7 @@ $(document).ready(function(){initNavTree('xta__native__xa__resource_8c_source.ht
 </div><!--header-->
 <div class="contents">
 <a href="xta__native__xa__resource_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2009-2018, Christian Ferrari &lt;tiian@users.sourceforge.net&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2009-2019, Christian Ferrari &lt;tiian@users.sourceforge.net&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is part of LIXA.</span></div>
@@ -260,15 +261,15 @@ $(document).ready(function(){initNavTree('xta__native__xa__resource_8c_source.ht
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                         xmlCharStrdup(switch_file)))</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                THROW(XML_STRDUP_ERROR2);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            <span class="comment">/* copy open_info */</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            strncpy(xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_open_info, open_info,</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                    <a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>);</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_open_info[<a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>-1] =</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            strncpy(xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_open_info,</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                    open_info, <a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_open_info[</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>-1] = <span class="charliteral">&#39;\0&#39;</span>;</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="comment">/* copy close_info */</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            strncpy(xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_close_info, close_info,</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                    <a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_close_info[<a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>-1] =</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            strncpy(xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_close_info,</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                    close_info, <a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a81dd78c4eb2230baa775b36df121981a">rsrmgr_config</a>.xa_close_info[</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <a class="code" href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a>-1] = <span class="charliteral">&#39;\0&#39;</span>;</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="comment">/* load the switch file for the resource manager */</span></div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="lixa__errors_8h.html#a767d4ddf00001db74b47dac2aa7f7a9b">LIXA_RC_OK</a> != (ret_cod = client_config_load_switch_file(</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                                   &amp;xa_resource-&gt;<a class="code" href="structxta__native__xa__resource__t.html#a81e15945c11ad484bc98cc314b06b403">xa_resource</a>.<a class="code" href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">act_rsrmgr_config</a>,</div>
@@ -399,7 +400,7 @@ $(document).ready(function(){initNavTree('xta__native__xa__resource_8c_source.ht
 <div class="ttc" id="structxta__native__xa__resource__t_html"><div class="ttname"><a href="structxta__native__xa__resource__t.html">xta_native_xa_resource_t</a></div><div class="ttdef"><b>Definition:</b> <a href="xta__native__xa__resource_8h_source.html#l00033">xta_native_xa_resource.h:33</a></div></div>
 <div class="ttc" id="xta__transaction__manager_8h_html_aa0a8f20bfb8b7415eb5a1ad7547456d2"><div class="ttname"><a href="xta__transaction__manager_8h.html#aa0a8f20bfb8b7415eb5a1ad7547456d2">xta_transaction_manager_config_t</a></div><div class="ttdeci">void xta_transaction_manager_config_t</div><div class="ttdef"><b>Definition:</b> <a href="xta__transaction__manager_8h_source.html#l00036">xta_transaction_manager.h:36</a></div></div>
 <div class="ttc" id="xta__native__xa__resource_8c_html_a162fa30db4fbd073b570d8cd28c9f4aa"><div class="ttname"><a href="xta__native__xa__resource_8c.html#a162fa30db4fbd073b570d8cd28c9f4aa">xta_native_xa_resource_new_by_rmid</a></div><div class="ttdeci">xta_native_xa_resource_t * xta_native_xa_resource_new_by_rmid(int rmid, const xta_transaction_manager_config_t *config)</div><div class="ttdef"><b>Definition:</b> <a href="xta__native__xa__resource_8c_source.html#l00095">xta_native_xa_resource.c:95</a></div></div>
-<div class="ttc" id="lixa__errors_8h_html_aa1896cf6969b7e26976d9cc3dffeaff6"><div class="ttname"><a href="lixa__errors_8h.html#aa1896cf6969b7e26976d9cc3dffeaff6">LIXA_RC_G_TRY_MALLOC_ERROR</a></div><div class="ttdeci">#define LIXA_RC_G_TRY_MALLOC_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00550">lixa_errors.h:550</a></div></div>
+<div class="ttc" id="lixa__errors_8h_html_aa1896cf6969b7e26976d9cc3dffeaff6"><div class="ttname"><a href="lixa__errors_8h.html#aa1896cf6969b7e26976d9cc3dffeaff6">LIXA_RC_G_TRY_MALLOC_ERROR</a></div><div class="ttdeci">#define LIXA_RC_G_TRY_MALLOC_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="lixa__errors_8h_source.html#l00558">lixa_errors.h:558</a></div></div>
 <div class="ttc" id="xta__native__xa__resource_8c_html_ab5a4957f1474393aff09d71e769bad03"><div class="ttname"><a href="xta__native__xa__resource_8c.html#ab5a4957f1474393aff09d71e769bad03">xta_native_xa_resource_new</a></div><div class="ttdeci">xta_native_xa_resource_t * xta_native_xa_resource_new(const char *name, const char *switch_file, const char *open_info, const char *close_info)</div><div class="ttdef"><b>Definition:</b> <a href="xta__native__xa__resource_8c_source.html#l00044">xta_native_xa_resource.c:44</a></div></div>
 <div class="ttc" id="xa_8h_html_a2cb07b9ca4d7c324dcb66249f866ffeb"><div class="ttname"><a href="xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb">MAXINFOSIZE</a></div><div class="ttdeci">#define MAXINFOSIZE</div><div class="ttdef"><b>Definition:</b> <a href="xa_8h_source.html#l00067">xa.h:67</a></div></div>
 <div class="ttc" id="structxta__xa__resource__s_html_a737ebaf36bbba396aad7e44cf8231588"><div class="ttname"><a href="structxta__xa__resource__s.html#a737ebaf36bbba396aad7e44cf8231588">xta_xa_resource_s::act_rsrmgr_config</a></div><div class="ttdeci">struct act_rsrmgr_config_s act_rsrmgr_config</div><div class="ttdef"><b>Definition:</b> <a href="xta__xa__resource_8h_source.html#l00069">xta_xa_resource.h:69</a></div></div>
@@ -416,7 +417,7 @@ $(document).ready(function(){initNavTree('xta__native__xa__resource_8c_source.ht
 </div><!-- doc-content -->
     <HR>
     <H5>
-      <CENTER>Copyright &copy; 2009-2018, Christian Ferrari
+      <CENTER>Copyright &copy; 2009-2019, Christian Ferrari
       <A HREF="mailto:tiian@users.sourceforge.net">tiian@users.sourceforge.net</A>
       <A HREF="http://www.tiian.org/">http://www.tiian.org/</A>
       </CENTER>
