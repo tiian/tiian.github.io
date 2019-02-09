@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.2)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s04.html" title="The first example" /><link rel="next" href="ch06s06.html" title="An example with Oracle Pro*COBOL" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s04.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.4)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s04.html" title="The first example" /><link rel="next" href="ch06s06.html" title="An example with Oracle Pro*COBOL" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s04.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s06.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_EXAMPLE5_PQL"></a>An example with PostgreSQL</h2></div></div></div><div class="figure"><a id="develop5_cobol"></a><p class="title"><strong>Figure 6.2. Deploy model of an example with PostgreSQL DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_5.png" alt="Deploy model of an example with PostgreSQL DBMS" /></div></div></div><br class="figure-break" /><p>
       This example was developed using PostgreSQL 9.3.15 for Linux (Ubuntu).
       If you were using a different version you would need to adapt some
@@ -12,7 +12,7 @@
 	  Start the LIXA state server
 	</p></li></ul></div><p>
       as explained in <a class="xref" href="ch05s07.html">the section called “”</a>.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59137856"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56925296"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/cobol/EXAMPLE5_PQL.c .
@@ -76,7 +76,7 @@ tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE5_PQL
 	  libcrypt.so.1 =&gt; /lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007f19f9e52000)
 	  libffi.so.6 =&gt; /usr/lib/x86_64-linux-gnu/libffi.so.6 (0x00007f19f9c4a000)
 </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59147296"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56934480"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ echo $LIXA_PROFILE
@@ -88,7 +88,7 @@ PQL_STA
       </p><p>
 	See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional details on
 	the profile.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59151216"></a>Program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56938240"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database and the second
 	one pointing to the directory where the compiled program

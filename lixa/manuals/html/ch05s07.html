@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title></title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.2)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s06.html" title="An example with Oracle and IBM DB2" /><link rel="next" href="ch05s08.html" title="An example with PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s06.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title></title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.4)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s06.html" title="An example with Oracle and IBM DB2" /><link rel="next" href="ch05s08.html" title="An example with PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s06.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s08.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"></div><p>
       Please follow the instructions explained in
       <a class="xref" href="apas03.html" title="PostgreSQL Configuration">the section called “PostgreSQL Configuration”</a>                            
       to set-up a running environment for MySQL or MariaDB server.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58371264"></a>Start the LIXA state server</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp54376304"></a>Start the LIXA state server</h3></div></div></div><p>
 	Start the state server as shown below:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:~$ sudo su - lixa
@@ -14,7 +14,7 @@ logout
 tiian@ubuntu1204-64:~$ ps -ef|grep lixad|grep -v grep
 lixa     12866     1  0 21:35 ?        00:00:00 /opt/lixa/sbin/lixad --daemon
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58374064"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp54378864"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -75,7 +75,7 @@ tiian@ubuntu1204-64:/tmp$ ldd example5_pql
 	libsqlite3.so.0 =&gt; /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 (0x00007f73fc2d0000)
 	libcrypt.so.1 =&gt; /lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007f73fc097000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58374624"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp54379376"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:~/tmp$ echo $LIXA_PROFILE
@@ -84,7 +84,7 @@ tiian@ubuntu1204-64:~/tmp$ export LIXA_PROFILE=PQL_STA
 tiian@ubuntu1204-64:~/tmp$ echo $LIXA_PROFILE
 PQL_STA
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58386720"></a>Some checks before program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp54390832"></a>Some checks before program execution</h3></div></div></div><p>
 	We set <code class="varname">LIXA_PROFILE</code> to value
 	<span class="quote">“<span class="quote">PQL_STA</span>”</span>, looking at
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -104,8 +104,8 @@ PQL_STA
     &lt;rsrmgr name="PostgreSQL_stareg" switch_file="/opt/lixa/lib/switch_postgresql_stareg.so" xa_open_info="dbname=testdb" xa_close_info="" /&gt;
 	</pre><p>
 	we can discover how the PostgreSQL database is configured for XA
-	<a href="#ftn.idp58390624" class="footnote" id="idp58390624"><sup class="footnote">[24]</sup></a>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58387280"></a>Program execution</h3></div></div></div><p>
+	<a href="#ftn.idp54394400" class="footnote" id="idp54394400"><sup class="footnote">[24]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp54391344"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database and the second
 	one pointing to the directory where the compiled program
@@ -165,7 +165,7 @@ testdb=&gt; select * from AUTHORS;
 	you can verify in file
 	<code class="filename">/opt/lixa/etc/lixac_conf.xml</code>
 	that <span class="quote">“<span class="quote">PQL_STA</span>”</span> is associated to static registration
-	<a href="#ftn.idp58410016" class="footnote" id="idp58410016"><sup class="footnote">[25]</sup></a>
+	<a href="#ftn.idp54411904" class="footnote" id="idp54411904"><sup class="footnote">[25]</sup></a>
 	.
 	Execute the program:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -185,15 +185,15 @@ tiian@ubuntu1204-64:~/tmp$ unset LIXA_TRACE_MASK
 tiian@ubuntu1204-64:~/tmp$ ./example5_pql delete
 Deleting a row from the table...
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58390624" class="footnote"><p><a href="#idp58390624" class="para"><sup class="para">[24] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp54394400" class="footnote"><p><a href="#idp54394400" class="para"><sup class="para">[24] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp61123056"><span class="citation">XAspec</span></a>].
-	</p></div><div id="ftn.idp58410016" class="footnote"><p><a href="#idp58410016" class="para"><sup class="para">[25] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp58891872"><span class="citation">XAspec</span></a>].
+	</p></div><div id="ftn.idp54411904" class="footnote"><p><a href="#idp54411904" class="para"><sup class="para">[25] </sup></a>
 	    The current implementation does not support dynamic registration
 	    for PostgreSQL.
 	</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s08.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">An example with Oracle and IBM DB2 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> An example with PostgreSQL &amp; Oracle</td></tr></table></div></body></html>

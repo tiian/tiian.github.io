@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Appendix A. Resource Managers Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.2)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.7.2)" /><link rel="prev" href="bi01.html" title="Bibliography" /><link rel="next" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Appendix A. Resource Managers Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="bi01.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="apas02.html">Next</a></td></tr></table><hr /></div><div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a id="Appendix_RM_Config"></a>Appendix A. Resource Managers Configuration</h1></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Appendix A. Resource Managers Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.4)" /><link rel="up" href="index.html" title="LIXA Reference Guide (version 1.7.4)" /><link rel="prev" href="bi01.html" title="Bibliography" /><link rel="next" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Appendix A. Resource Managers Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="bi01.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="apas02.html">Next</a></td></tr></table><hr /></div><div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a id="Appendix_RM_Config"></a>Appendix A. Resource Managers Configuration</h1></div></div></div><p>
     This book contains many examples related to LIXA usage, most of them
     require a proper configuration for the Resource Managers that must
     participate in the distributed transactions proposed by the examples.
@@ -98,7 +98,7 @@ mariadb-libs-5.5.52-1.el7.x86_64
 	The LIXA software must be configured to support the MySQL/MariaDB
 	server resource manager as explained in 
 	<a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_MySQL_environment_"></a>Set-up MySQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61148336"></a>Start-up the MySQL server</h4></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_MySQL_environment_"></a>Set-up MySQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp58917152"></a>Start-up the MySQL server</h4></div></div></div><p>
 	  If your server didn't start-up automatically at boot time, you
 	  could start it with the following commands:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -110,7 +110,7 @@ tiian@ubuntu1204-64:/tmp$ ps -ef|grep mysql|grep -v grep
 mysql     1607     1  0 22:43 ?        00:00:00 /usr/sbin/mysqld
 	    </pre></td></tr></tbody></table></div><p>
 	  Create a new user authorization and a new database
-	  <a href="#ftn.idp61151792" class="footnote" id="idp61151792"><sup class="footnote">[57]</sup></a>:
+	  <a href="#ftn.idp58920608" class="footnote" id="idp58920608"><sup class="footnote">[57]</sup></a>:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:/tmp$ mysql -u root -p
 Enter password: 
@@ -214,7 +214,7 @@ Empty set (0.00 sec)
 	  documentation to fix the issue before the next step because
 	  you would not be able to execute the sample program without a
 	  basic running installation.
-	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61151792" class="footnote"><p><a href="#idp61151792" class="para"><sup class="para">[57] </sup></a>
+	</p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58920608" class="footnote"><p><a href="#idp58920608" class="para"><sup class="para">[57] </sup></a>
 	    You need the password of MySQL root user to execute
 	    these commands.
 	  </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="bi01.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="apas02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Bibliography </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Oracle DMBS Configuration</td></tr></table></div></body></html>
