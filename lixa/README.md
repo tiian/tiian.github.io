@@ -17,4 +17,6 @@ XTA API Reference is available for the following programming languages:
 
 Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hosting site is [SourceForge](https://sourceforge.net/projects/lixa/).
 
+Docker images are available in [dockerhub](https://hub.docker.com/u/lixa): here you can find ready to use and base images to develop XTA applications that run in Docker containers.
+
 Legacy [home page](https://sourceforge.net/p/lixa/wiki/) still contains interesting contents that will be gradually migrated to this new site.
