@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Examples with Oracle Database Server</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.4)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s03.html" title="The first example" /><link rel="next" href="ch05s05.html" title="An example with IBM DB2 DBMS" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Examples with Oracle Database Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s03.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Examples with Oracle Database Server</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.7)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s03.html" title="The first example" /><link rel="next" href="ch05s05.html" title="An example with IBM DB2 DBMS" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Examples with Oracle Database Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s03.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example2_ora"></a>Examples with Oracle Database Server</h2></div></div></div><p>
       This section contains many examples related to different configurations:
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
@@ -14,7 +14,7 @@
 	  Interface (OCI) or using embedded SQL that must precompiled using
 	  the Oracle Pro*C precompiler. OCI, Pro*C and XA are not compatible.
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp51338416"></a>An example with Oracle using <span class="quote">“<span class="quote">local</span>”</span>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp54977360"></a>An example with Oracle using <span class="quote">“<span class="quote">local</span>”</span>
       configuration</h3></div></div></div><p>
       Using a real Resource Manager, like a DBMS, requires some extra effort
       because you have to set-up the environment needed by the Resource
@@ -23,7 +23,7 @@
       </p><p>
 	The LIXA state server (daemon) must be started as explained in
 	<a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52359872"></a>Build the client program</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59310000"></a>Build the client program</h4></div></div></div><p>
 	  Prepare the client (Application Program) using the below commands
 	  (<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	  using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -74,7 +74,7 @@ tiian@ubuntu:~/tmp$ ldd example2_ora
         libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb7319000)
         libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb7315000)
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp50883936"></a>Set-up LIXA environment</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55708800"></a>Set-up LIXA environment</h4></div></div></div><p>
 	  There are three unresolved references that can be fixed setting up
 	  the environment properly:
 	  </p><pre class="screen">
@@ -141,7 +141,7 @@ ORA_DYN
 	    installed in the Oracle's <code class="filename">bin</code> directory or
 	    alternatively you have to edit your own as explained above.
 	  </p></div><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp51079696"></a>Some checks before program execution</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55649216"></a>Some checks before program execution</h4></div></div></div><p>
 	  We set <code class="varname">LIXA_PROFILE</code> to value
 	  <span class="quote">“<span class="quote">ORA_DYN</span>”</span>, looking at
 	  <code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -164,12 +164,12 @@ ORA_DYN
 	  database using <code class="systemitem">hr</code>
 	  user and writing the trace file to directory 
 	  <code class="filename">/tmp</code> (see <code class="constant">LogDir</code>)
-	  <a href="#ftn.idp50979888" class="footnote" id="idp50979888"><sup class="footnote">[20]</sup></a>. Verify no trace file exists:
+	  <a href="#ftn.idp54921424" class="footnote" id="idp54921424"><sup class="footnote">[20]</sup></a>. Verify no trace file exists:
 	    </p><pre class="screen">
 tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
 ls: cannot access /tmp/xa*: No such file or directory
 	    </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52733104"></a>Program execution (dynamic registration)</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55215840"></a>Program execution (dynamic registration)</h4></div></div></div><p>
 	  Execute the client program as shown below:
 	  </p><pre class="screen">
 tiian@ubuntu:~/tmp$ ./example2_ora
@@ -310,7 +310,7 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	  </p><pre class="screen">
 tiian@ubuntu:~/tmp$ rm /tmp/xa_NULL04102011.trc
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp50875424"></a>Program execution (static registration)</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56309424"></a>Program execution (static registration)</h4></div></div></div><p>
 	  Switch from dynamic registration to static registration (local
 	  connection):
 	  </p><pre class="screen">
@@ -454,10 +454,10 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	  </pre><p>
 	  You have successfully executed an Application Program that uses
 	  Oracle Database Server as a Resource Manager.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp51945936"></a>An example with remote configuration (Instant Client) and OCI</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp56136304"></a>An example with remote configuration (Instant Client) and OCI</h3></div></div></div><p>
 	The LIXA state server (daemon) must be started as explained in
 	<a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp51322608"></a>Build the client program</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp54702128"></a>Build the client program</h4></div></div></div><p>
 	  Prepare the client (Application Program) using the below commands
 	  (<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	  using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -502,14 +502,14 @@ libz.so.1 =&gt; /lib/x86_64-linux-gnu/libz.so.1 (0x00007f32e5f98000)
 liblzma.so.5 =&gt; /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007f32e5d76000)
 libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007f32e5b71000)
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp51323120"></a>Set-up LIXA environment</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp54702640"></a>Set-up LIXA environment</h4></div></div></div><p>
 	  Set-up the necessary environment variable:
 	  </p><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ export LIXA_PROFILE=ORA_DYN
 tiian@ubuntu1404-64:/tmp$ echo $LIXA_PROFILE
 ORA_DYN
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52643776"></a>Some checks before program execution</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55013488"></a>Some checks before program execution</h4></div></div></div><p>
 	  We set <code class="varname">LIXA_PROFILE</code> to value
 	  <span class="quote">“<span class="quote">ORA_DYN</span>”</span>, looking at
 	  <code class="filename">/opt/lixa/etc/lixac_conf.xml</code>:
@@ -532,8 +532,8 @@ ORA_DYN
 	  database using <code class="systemitem">hr</code>
 	  user and writing the trace file to directory 
 	  <code class="filename">/tmp</code> (see <code class="constant">LogDir</code>)
-	  <a href="#ftn.idp51957936" class="footnote" id="idp51957936"><sup class="footnote">[21]</sup></a>. 
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52644288"></a>Program execution (dynamic registration)</h4></div></div></div><p>
+	  <a href="#ftn.idp55238400" class="footnote" id="idp55238400"><sup class="footnote">[21]</sup></a>. 
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55014000"></a>Program execution (dynamic registration)</h4></div></div></div><p>
 	  Execute the client program and check how the content table changes:
 	  </p><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ ./example2_ora
@@ -655,7 +655,7 @@ OCIServerDetach: Succeeded
 234322.16513.1350203008.0:
 xaoclose: rtn 0
 	  </pre><p>
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp50959184"></a>An example with Remote configuration (Instant Client) and Pro*C</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp55789680"></a>An example with Remote configuration (Instant Client) and Pro*C</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	This example has been tested using Red Hat Enterprise Linux 7.3
 	and Oracle Instant Client 12.1
       </p></div><p>
@@ -669,7 +669,7 @@ xaoclose: rtn 0
 	    the Oracle Instant Client software must be installed and 
 	    configured in the system that will connect to the database
 	  </p></li></ul></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52741136"></a>Set-up the Oracle environment (server side)</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp54796624"></a>Set-up the Oracle environment (server side)</h4></div></div></div><p>
 	  The first part of the Oracle Database Server is pretty the same
 	  described in 
 	  <a class="xref" href="apas02.html#App_RM_Config_Oracle_Local" title="Local configuration (Server) and OCI">the section called “Local configuration (Server) and OCI”</a>.
@@ -680,13 +680,13 @@ xaoclose: rtn 0
 [oracle@centos7-oracle12 ~]$ ls -la $ORACLE_HOME/rdbms/admin/xaview.sql
 -rw-r--r--. 1 oracle oinstall 1941 Apr 21  2011 /u01/app/oracle/product/12.1.0/dbhome_1/rdbms/admin/xaview.sql
 	  </pre><p>	    
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp51651392"></a>Configure Oracle Listener</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp54663136"></a>Configure Oracle Listener</h4></div></div></div><p>
 	  Configure at least one Oracle listener as explained in
 	  <a class="xref" href="apas02.html#App_RM_configure_Oracle_listener" title="Configure Oracle Listener">the section called “Configure Oracle Listener”</a>.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp51652416"></a>Install and configure Oracle Instant Client</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp54664272"></a>Install and configure Oracle Instant Client</h4></div></div></div><p>
 	  Install and configure Oracle Instant Client as explained in
 	  <a class="xref" href="apas02.html#App_RM_install_Oracle_Instant_Client" title="Install and configure Oracle Instant Client">the section called “Install and configure Oracle Instant Client”</a>.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp51653632"></a>Configure Oracle Pro*C precompiler</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55265424"></a>Configure Oracle Pro*C precompiler</h4></div></div></div><p>
 	  If you don't like to use a lot of options on the command line,
 	  you will have to configure the content of 
 	  <code class="filename">pcscfg.cfg</code>.
@@ -702,7 +702,7 @@ define=__x86_64__
 	</p></div><p>
 	The LIXA state server (daemon) must be started as explained in
 	<a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52368352"></a>Build the client program</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56291248"></a>Build the client program</h4></div></div></div><p>
 	  Prepare the client (Application Program) using the below commands
 	  (<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	  using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -754,7 +754,7 @@ proc is /opt/oracle/instantclient_12_1/sdk/proc
     liblzma.so.5 =&gt; /lib64/liblzma.so.5 (0x00007f11569f6000)
     libuuid.so.1 =&gt; /lib64/libuuid.so.1 (0x00007f11567f1000)
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52368864"></a>Set-up LIXA environment</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp56291760"></a>Set-up LIXA environment</h4></div></div></div><p>
 	  Set-up the necessary environment variable:
 	  </p><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ export LIXA_PROFILE=ORA_STA
@@ -764,7 +764,7 @@ ORA_STA
 	  In the previous example we used the dynamic XA registration, this
 	  time we are using the static one, but both can be used for 
 	  OCI and Pro*C.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp52374752"></a>Program execution (static registration)</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp55846016"></a>Program execution (static registration)</h4></div></div></div><p>
 	  Execute the client program and check how the content table changes:
 	  </p><pre class="screen">
 [tiian@rhel73 tmp]$ ./example14_ora 
@@ -881,13 +881,13 @@ OCIServerDetach: Succeeded
 003044.3009.2262976064.0:
 xaoclose: rtn 0
 	  </pre><p>
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp50979888" class="footnote"><p><a href="#idp50979888" class="para"><sup class="para">[20] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp54921424" class="footnote"><p><a href="#idp54921424" class="para"><sup class="para">[20] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"
 	    manual; please refer to the documentation published by
 	    Oracle Corporation for further details.
-	    </p></div><div id="ftn.idp51957936" class="footnote"><p><a href="#idp51957936" class="para"><sup class="para">[21] </sup></a>
+	    </p></div><div id="ftn.idp55238400" class="footnote"><p><a href="#idp55238400" class="para"><sup class="para">[21] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"
