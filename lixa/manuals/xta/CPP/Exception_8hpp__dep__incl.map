@@ -1,10 +1,11 @@
 <map id="Exception.hpp" name="Exception.hpp">
-<area shape="rect" id="node2" href="$MysqlXaResource_8cpp.html" title="MysqlXaResource.cpp" alt="" coords="4,80,157,107"/>
-<area shape="rect" id="node3" href="$NativeXaResource_8cpp.html" title="NativeXaResource.cpp" alt="" coords="183,80,340,107"/>
-<area shape="rect" id="node4" href="$PostgresqlXaResource_8cpp.html" title="PostgresqlXaResource.cpp" alt="" coords="364,80,545,107"/>
-<area shape="rect" id="node5" href="$Transaction_8cpp.html" title="Transaction.cpp" alt="" coords="569,80,684,107"/>
-<area shape="rect" id="node6" href="$TransactionManager_8cpp.html" title="TransactionManager.cpp" alt="" coords="708,80,872,107"/>
-<area shape="rect" id="node7" href="$Xid_8cpp.html" title="Xid.cpp" alt="" coords="897,80,964,107"/>
-<area shape="rect" id="node8" href="$Xta_8hpp.html" title="Xta.hpp" alt="" coords="988,80,1055,107"/>
-<area shape="rect" id="node9" href="$Xta_8cpp.html" title="Xta.cpp" alt="" coords="988,155,1055,181"/>
+<area shape="rect" id="node2" href="$Config_8cpp.html" title="Config.cpp" alt="" coords="5,80,91,107"/>
+<area shape="rect" id="node3" href="$MysqlXaResource_8cpp.html" title="MysqlXaResource.cpp" alt="" coords="115,80,268,107"/>
+<area shape="rect" id="node4" href="$NativeXaResource_8cpp.html" title="NativeXaResource.cpp" alt="" coords="293,80,451,107"/>
+<area shape="rect" id="node5" href="$PostgresqlXaResource_8cpp.html" title="PostgresqlXaResource.cpp" alt="" coords="475,80,656,107"/>
+<area shape="rect" id="node6" href="$Transaction_8cpp.html" title="Transaction.cpp" alt="" coords="680,80,795,107"/>
+<area shape="rect" id="node7" href="$TransactionManager_8cpp.html" title="TransactionManager.cpp" alt="" coords="819,80,983,107"/>
+<area shape="rect" id="node8" href="$Xid_8cpp.html" title="Xid.cpp" alt="" coords="1008,80,1075,107"/>
+<area shape="rect" id="node9" href="$Xta_8hpp.html" title="Xta.hpp" alt="" coords="1099,80,1165,107"/>
+<area shape="rect" id="node10" href="$Xta_8cpp.html" title="Xta.cpp" alt="" coords="1099,155,1165,181"/>
 </map>

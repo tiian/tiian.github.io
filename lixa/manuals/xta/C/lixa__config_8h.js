@@ -22,6 +22,7 @@ var lixa__config_8h =
     [ "LIXA_NULL_STRING", "lixa__config_8h.html#a6f528172b048772e4c8b09ff8fa03e7e", null ],
     [ "LIXA_XML_CONFIG_ADDRESS_PROPERTY", "lixa__config_8h.html#ace0949df284fedfd7d94f0488bcb2eee", null ],
     [ "LIXA_XML_CONFIG_CLIENT", "lixa__config_8h.html#a407e4afe4382aa28f36e757681d34312", null ],
+    [ "LIXA_XML_CONFIG_CLIENT_CONNECTION_TIMEOUT", "lixa__config_8h.html#a9391a0d2cc14ed28ebe4c8bd09c36413", null ],
     [ "LIXA_XML_CONFIG_DOMAIN_AF_INET_VALUE", "lixa__config_8h.html#a9413634730e747228e61891fcd15b177", null ],
     [ "LIXA_XML_CONFIG_DOMAIN_PROPERTY", "lixa__config_8h.html#a73f3177b5f02a39311a40bed7847165e", null ],
     [ "LIXA_XML_CONFIG_LISTENER", "lixa__config_8h.html#aab66570a97db7d803a6d218a42c833c4", null ],

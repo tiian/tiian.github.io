@@ -65,6 +65,8 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a3ca46d767ef09cfbb14c63369eff7705"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xa_8h.html#a3ca46d767ef09cfbb14c63369eff7705">LIXA_XAER_HAZARD</a>&#160;&#160;&#160;-20</td></tr>
+<tr class="separator:a3ca46d767ef09cfbb14c63369eff7705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4226dbe159e28db819d9721c30d240da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xa_8h.html#a4226dbe159e28db819d9721c30d240da">MAXBQUALSIZE</a>&#160;&#160;&#160;64 /* maximum size in bytes of bqual */</td></tr>
 <tr class="separator:a4226dbe159e28db819d9721c30d240da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add0b0ac57b075698a94a0ebf849539d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xa_8h.html#add0b0ac57b075698a94a0ebf849539d7">MAXGTRIDSIZE</a>&#160;&#160;&#160;64 /* maximum size in bytes of gtrid */</td></tr>
@@ -195,6 +197,21 @@ Functions</h2></td></tr>
 <tr class="separator:ab059627c5a1506bf47d4220fdc742f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a3ca46d767ef09cfbb14c63369eff7705"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIXA_XAER_HAZARD&#160;&#160;&#160;-20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is a special XAER return code used to manage the special situation of xa_prepare with errors and xa_rollback with errors. This is not an XA extension, but an internal LIXA implementation dependent value </p>
+
+<p>Definition at line <a class="el" href="xa_8h_source.html#l00367">367</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a4226dbe159e28db819d9721c30d240da"></a>
 <div class="memitem">
 <div class="memproto">
@@ -417,7 +434,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00201">201</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01210">xta_transaction_resume()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01290">xta_transaction_resume()</a>.</p>
 
 </div>
 </div>
@@ -434,7 +451,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00205">205</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01129">xta_transaction_suspend()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01209">xta_transaction_suspend()</a>.</p>
 
 </div>
 </div>
@@ -466,7 +483,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00141">141</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l00682">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01129">xta_transaction_suspend()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l00752">xta_transaction_start()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01209">xta_transaction_suspend()</a>.</p>
 
 </div>
 </div>
@@ -543,7 +560,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00177">177</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01210">xta_transaction_resume()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01290">xta_transaction_resume()</a>.</p>
 
 </div>
 </div>
@@ -575,7 +592,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00181">181</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l00759">xta_transaction_commit()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01012">xta_transaction_rollback()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l00838">xta_transaction_commit()</a>, and <a class="el" href="xta__transaction_8c_source.html#l01092">xta_transaction_rollback()</a>.</p>
 
 </div>
 </div>
@@ -592,7 +609,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00185">185</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01129">xta_transaction_suspend()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01209">xta_transaction_suspend()</a>.</p>
 
 </div>
 </div>
@@ -624,7 +641,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xa_8h_source.html#l00215">215</a> of file <a class="el" href="xa_8h_source.html">xa.h</a>.</p>
 
-<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01310">xta_transaction_branch()</a>.</p>
+<p>Referenced by <a class="el" href="xta__transaction_8c_source.html#l01390">xta_transaction_branch()</a>.</p>
 
 </div>
 </div>

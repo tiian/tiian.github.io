@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "xta::Config", "classxta_1_1Config.html", null ],
     [ "runtime_error", null, [
       [ "xta::Exception", "classxta_1_1Exception.html", null ]
     ] ],

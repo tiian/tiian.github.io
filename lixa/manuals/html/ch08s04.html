@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.7)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /><link rel="next" href="ch08s05.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.8)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s03.html" title="The “Multiple Applications, Consecutive Calls” Pattern" /><link rel="next" href="ch08s05.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Asynchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
     Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s03.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="xta_macbps"></a>The
     <span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
@@ -18,7 +18,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>yes, subordinate AP prepares the transaction, returns control to superior AP and finally completes commit</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61184512"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59956384"></a>Description</h3></div></div></div><p>
 	This is a Distributed Transaction Processing pattern introduced by
 	XTA: two or more Application Programs use any set of Resource
 	Manager(s) and perform concurrent operations inside distinct branches
@@ -33,7 +33,7 @@
 	  Programs and two Resource Managers</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_08.svg" alt="Example of “Multiple Applications, Consecutive Calls/Pseudo Synchronous” with two Application Programs and two Resource Managers" /></div></div></div><p><br class="figure-break" />
 	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
 	standard TX Transaction	Demarcation interface.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61188736"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59960608"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern09"></a><p class="title"><strong>Figure 8.9. Simplified sequence diagram for the
 	<span class="quote">“<span class="quote">Multiple Applications, Concurrent Branches/Pseudo Synchronous</span>”</span>
 	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_09.svg" alt="Simplified sequence diagram for the “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
@@ -54,7 +54,7 @@
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
 	  The first AP retrieves the XID associated to the global transaction
 	  and starts some sort of <span class="quote">“<span class="quote">remote procedure call</span>”</span>
-	  <a href="#ftn.idp61195248" class="footnote" id="idp61195248"><sup class="footnote">[50]</sup></a>
+	  <a href="#ftn.idp59967120" class="footnote" id="idp59967120"><sup class="footnote">[50]</sup></a>
 	  to invoke the second AP; it must pass the XID and all the application
 	  context necessary to operate (this is not relevant to XTA)
 	</p></li><li class="listitem" style="list-style-type: disc"><p>
@@ -110,13 +110,13 @@
 	    LIXA and XTA side, on the number of Resource Managers used by an
 	    Application Program
 	  </p></li></ul></div><p>
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61208944"></a>Known limitations</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59980816"></a>Known limitations</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	Not all the Resource Managers have implemented the XA specifications
 	in the same way. This section tracks some limitations that have been
 	reported by the LIXA project.
-      </p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61209904"></a>Oracle JDBC thin optimizations</h4></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59981776"></a>Oracle JDBC thin optimizations</h4></div></div></div><p>
 	  As described in Oracle's official documentation
-	  <a href="#ftn.idp61210608" class="footnote" id="idp61210608"><sup class="footnote">[51]</sup></a>
+	  <a href="#ftn.idp59982480" class="footnote" id="idp59982480"><sup class="footnote">[51]</sup></a>
 	  at paragraph 30-15 <span class="quote">“<span class="quote">Oracle XA Optimizations</span>”</span>, Oracle
 	  JDBC implements additional logic, in comparison with the XA
 	  specifications, when two ore more branches of the same global
@@ -135,7 +135,7 @@
 	</p></div><p>
 	  On the other hand, no such limitation has been found in the Oracle
 	  OCI interface for C and C++.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61215856"></a>An example using the C language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59987728"></a>An example using the C language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbps01.c</code> and
 	<code class="filename">example_xta_macbps02.c</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -392,14 +392,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61239536"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp60011408"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbps01.c</code> 
 	  and <code class="filename">example_xta_macbps02.c</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code> and
 	  are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61285024"></a>An example using the C++ language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60056896"></a>An example using the C++ language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbps11.cpp</code>
 	and <code class="filename">example_xta_macbps12.cpp</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -656,14 +656,14 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61308672"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp60080544"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbps11.cpp</code> 
 	  and <code class="filename">example_xta_macbps12.cpp</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/cpp</code> and
 	  are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/cpp" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61354192"></a>An example using the Java language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60126064"></a>An example using the Java language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">ExampleXtaMACBPS31.java</code>
 	and <code class="filename">ExampleXtaMACBPS32.java</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -921,7 +921,7 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61377808"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp60149680"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs
 	  <code class="filename">ExampleXtaMACBPS31.java</code> 
 	  and <code class="filename">ExampleXtaMACBPS32.java</code> are
@@ -929,7 +929,7 @@ testdb=&gt;
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/java</code>
 	  and are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/java" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61423920"></a>An example using the Python language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60195792"></a>An example using the Python language</h3></div></div></div><p>
 	The supplied examples (<code class="filename">example_xta_macbps21.py</code>
 	and <code class="filename">example_xta_macbps22.py</code>) use
 	PostgreSQL in the role of <span class="quote">“<span class="quote">Resource Manager 2</span>”</span> and MySQL
@@ -1177,18 +1177,18 @@ testdb=&gt; select * from authors;
 
 testdb=&gt;
 	  </pre></td></tr></tbody></table></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61443136"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp60215008"></a>Source Code</h4></div></div></div><p>
 	  Source code for programs <code class="filename">example_xta_macbps21.py</code> 
 	  and <code class="filename">example_xta_macbps22.py</code> are
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/python</code> and
 	  are available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/python" target="_top">GitHub</a>. Source code is fully
 	  commented for readability.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61195248" class="footnote"><p><a href="#idp61195248" class="para"><sup class="para">[50] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59967120" class="footnote"><p><a href="#idp59967120" class="para"><sup class="para">[50] </sup></a>
 	    This must not be confused with a specific RPC technology: any
 	    communication technique that supports a request-response protocol
 	    can be used.
-	  </p></div><div id="ftn.idp61210608" class="footnote"><p><a href="#idp61210608" class="para"><sup class="para">[51] </sup></a>
+	  </p></div><div id="ftn.idp59982480" class="footnote"><p><a href="#idp59982480" class="para"><sup class="para">[51] </sup></a>
 	    <a class="link" href="https://docs.oracle.com/database/121/JJDBC/E49300-05.pdf" target="_top">Oracle (R) Database, JDBC Developer's Guide, 12c Release 1 (12.1)</a>;
 	    there are analogous documents for different Oracle Database's
 	    versions

@@ -2,6 +2,7 @@ var xa_8h =
 [
     [ "xa_switch_t", "structxa__switch__t.html", "structxa__switch__t" ],
     [ "xid_t", "structxid__t.html", "structxid__t" ],
+    [ "LIXA_XAER_HAZARD", "xa_8h.html#a3ca46d767ef09cfbb14c63369eff7705", null ],
     [ "MAXBQUALSIZE", "xa_8h.html#a4226dbe159e28db819d9721c30d240da", null ],
     [ "MAXGTRIDSIZE", "xa_8h.html#add0b0ac57b075698a94a0ebf849539d7", null ],
     [ "MAXINFOSIZE", "xa_8h.html#a2cb07b9ca4d7c324dcb66249f866ffeb", null ],

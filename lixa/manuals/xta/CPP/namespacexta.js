@@ -1,6 +1,7 @@
 var namespacexta =
 [
     [ "AcquiredXaResource", "classxta_1_1AcquiredXaResource.html", null ],
+    [ "Config", "classxta_1_1Config.html", "classxta_1_1Config" ],
     [ "Exception", "classxta_1_1Exception.html", "classxta_1_1Exception" ],
     [ "MysqlXaResource", "classxta_1_1MysqlXaResource.html", "classxta_1_1MysqlXaResource" ],
     [ "NativeXaResource", "classxta_1_1NativeXaResource.html", "classxta_1_1NativeXaResource" ],

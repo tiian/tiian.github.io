@@ -7,6 +7,8 @@ var files =
     [ "xta.h", "xta_8h.html", "xta_8h" ],
     [ "xta_acquired_xa_resource.c", "xta__acquired__xa__resource_8c.html", "xta__acquired__xa__resource_8c" ],
     [ "xta_acquired_xa_resource.h", "xta__acquired__xa__resource_8h.html", "xta__acquired__xa__resource_8h" ],
+    [ "xta_config.c", "xta__config_8c.html", "xta__config_8c" ],
+    [ "xta_config.h", "xta__config_8h.html", "xta__config_8h" ],
     [ "xta_iface.h", "xta__iface_8h.html", "xta__iface_8h" ],
     [ "xta_init.c", "xta__init_8c.html", "xta__init_8c" ],
     [ "xta_init.h", "xta__init_8h.html", "xta__init_8h" ],

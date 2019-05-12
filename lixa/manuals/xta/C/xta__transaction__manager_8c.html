@@ -54,7 +54,7 @@ Include dependency graph for xta_transaction_manager.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="xta__transaction__manager_8c__incl.png" border="0" usemap="#xta__transaction__manager_8c" alt=""/></div>
 <map name="xta__transaction__manager_8c" id="xta__transaction__manager_8c">
-<area shape="rect" id="node3" href="lixa__errors_8h.html" title="lixa_errors.h" alt="" coords="97,80,191,107"/><area shape="rect" id="node6" href="xta__transaction__manager_8h.html" title="xta_transaction_manager.h" alt="" coords="460,80,639,107"/><area shape="rect" id="node7" href="xta__transaction_8h.html" title="xta_transaction.h" alt="" coords="399,155,521,181"/><area shape="rect" id="node12" href="xta__acquired__xa__resource_8h.html" title="xta_acquired_xa_resource.h" alt="" coords="546,155,731,181"/><area shape="rect" id="node8" href="xta__xa__resource_8h.html" title="xta_xa_resource.h" alt="" coords="403,229,532,256"/><area shape="rect" id="node10" href="xta__xid_8h.html" title="xta_xid.h" alt="" coords="489,304,563,331"/><area shape="rect" id="node11" href="xa_8h.html" title="xa.h" alt="" coords="541,379,587,405"/><area shape="rect" id="node13" href="xta__iface_8h.html" title="xta_iface.h" alt="" coords="639,229,725,256"/></map>
+<area shape="rect" id="node3" href="lixa__errors_8h.html" title="lixa_errors.h" alt="" coords="97,80,191,107"/><area shape="rect" id="node6" href="xta__transaction__manager_8h.html" title="xta_transaction_manager.h" alt="" coords="460,80,639,107"/><area shape="rect" id="node7" href="xta__transaction_8h.html" title="xta_transaction.h" alt="" coords="399,155,521,181"/><area shape="rect" id="node13" href="xta__acquired__xa__resource_8h.html" title="xta_acquired_xa_resource.h" alt="" coords="546,155,731,181"/><area shape="rect" id="node8" href="xta__config_8h.html" title="xta_config.h" alt="" coords="353,229,447,256"/><area shape="rect" id="node9" href="xta__xa__resource_8h.html" title="xta_xa_resource.h" alt="" coords="471,229,600,256"/><area shape="rect" id="node11" href="xta__xid_8h.html" title="xta_xid.h" alt="" coords="527,304,600,331"/><area shape="rect" id="node12" href="xa_8h.html" title="xa.h" alt="" coords="578,379,624,405"/><area shape="rect" id="node14" href="xta__iface_8h.html" title="xta_iface.h" alt="" coords="677,229,763,256"/></map>
 </div>
 </div>
 <p><a href="xta__transaction__manager_8c_source.html">Go to the source code of this file.</a></p>
@@ -115,7 +115,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00142">142</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
 
-<p>References <a class="el" href="lixa__errors_8h_source.html#l00521">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00139">LIXA_RC_NULL_OBJECT</a>, <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00048">xta_transaction_manager_s::mutex</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00053">xta_transaction_manager_s::transactions</a>, <a class="el" href="xta__transaction_8c_source.html#l00182">xta_transaction_delete()</a>, and <a class="el" href="xta__transaction_8c_source.html#l00054">xta_transaction_new()</a>.</p>
+<p>References <a class="el" href="lixa__errors_8h_source.html#l00526">LIXA_RC_G_HASH_TABLE_NEW_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00605">LIXA_RC_NON_DISPOSABLE_TX</a>, <a class="el" href="lixa__errors_8h_source.html#l00139">LIXA_RC_NULL_OBJECT</a>, <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00048">xta_transaction_manager_s::mutex</a>, <a class="el" href="xta__transaction__manager_8h_source.html#l00053">xta_transaction_manager_s::transactions</a>, <a class="el" href="xta__transaction_8c_source.html#l00184">xta_transaction_delete()</a>, <a class="el" href="xta__transaction_8c_source.html#l01556">xta_transaction_get_multiple_branches()</a>, <a class="el" href="xta__transaction_8c_source.html#l00054">xta_transaction_new()</a>, and <a class="el" href="xta__transaction_8c_source.html#l00244">xta_transaction_safe_delete()</a>.</p>
 
 </div>
 </div>
@@ -184,7 +184,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="xta__transaction__manager_8c_source.html#l00044">44</a> of file <a class="el" href="xta__transaction__manager_8c_source.html">xta_transaction_manager.c</a>.</p>
 
-<p>References <a class="el" href="lixa__errors_8h_source.html#l00558">LIXA_RC_G_TRY_MALLOC_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, and <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>.</p>
+<p>References <a class="el" href="lixa__errors_8h_source.html#l00563">LIXA_RC_G_TRY_MALLOC_ERROR</a>, <a class="el" href="lixa__errors_8h_source.html#l00122">LIXA_RC_INTERNAL_ERROR</a>, and <a class="el" href="lixa__errors_8h_source.html#l00115">LIXA_RC_OK</a>.</p>
 
 </div>
 </div>

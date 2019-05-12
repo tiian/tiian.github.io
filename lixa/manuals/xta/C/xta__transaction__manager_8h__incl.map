@@ -1,8 +1,9 @@
 <map id="xta_transaction_manager.h" name="xta_transaction_manager.h">
-<area shape="rect" id="node2" href="$xta__transaction_8h.html" title="xta_transaction.h" alt="" coords="5,80,128,107"/>
-<area shape="rect" id="node7" href="$xta__acquired__xa__resource_8h.html" title="xta_acquired_xa_resource.h" alt="" coords="153,80,337,107"/>
-<area shape="rect" id="node3" href="$xta__xa__resource_8h.html" title="xta_xa_resource.h" alt="" coords="10,155,139,181"/>
-<area shape="rect" id="node5" href="$xta__xid_8h.html" title="xta_xid.h" alt="" coords="96,229,169,256"/>
-<area shape="rect" id="node6" href="$xa_8h.html" title="xa.h" alt="" coords="147,304,193,331"/>
-<area shape="rect" id="node8" href="$xta__iface_8h.html" title="xta_iface.h" alt="" coords="246,155,332,181"/>
+<area shape="rect" id="node2" href="$xta__transaction_8h.html" title="xta_transaction.h" alt="" coords="51,80,173,107"/>
+<area shape="rect" id="node8" href="$xta__acquired__xa__resource_8h.html" title="xta_acquired_xa_resource.h" alt="" coords="198,80,383,107"/>
+<area shape="rect" id="node3" href="$xta__config_8h.html" title="xta_config.h" alt="" coords="5,155,99,181"/>
+<area shape="rect" id="node4" href="$xta__xa__resource_8h.html" title="xta_xa_resource.h" alt="" coords="123,155,252,181"/>
+<area shape="rect" id="node6" href="$xta__xid_8h.html" title="xta_xid.h" alt="" coords="179,229,252,256"/>
+<area shape="rect" id="node7" href="$xa_8h.html" title="xa.h" alt="" coords="230,304,276,331"/>
+<area shape="rect" id="node9" href="$xta__iface_8h.html" title="xta_iface.h" alt="" coords="329,155,415,181"/>
 </map>

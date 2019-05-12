@@ -285,6 +285,9 @@ $(document).ready(function(){initNavTree('globals_defs_l.html','');});
 <li>LIXA_RC_MMAP_ERROR
 : <a class="el" href="lixa__errors_8h.html#a79745572573e8190256a9241ea286fb5">lixa_errors.h</a>
 </li>
+<li>LIXA_RC_MSG_TIMEOUT_SOCKET_CLOSED
+: <a class="el" href="lixa__errors_8h.html#aca72d30ceb925c17345fa851e5ab2e41">lixa_errors.h</a>
+</li>
 <li>LIXA_RC_MSYNC_ERROR
 : <a class="el" href="lixa__errors_8h.html#a2f595fea9ff7294ac03a7f067ecafb2e">lixa_errors.h</a>
 </li>
@@ -317,6 +320,12 @@ $(document).ready(function(){initNavTree('globals_defs_l.html','');});
 </li>
 <li>LIXA_RC_NON_BRANCHABLE_TX
 : <a class="el" href="lixa__errors_8h.html#aec4393bb112adc1f32a3303ca72a7b03">lixa_errors.h</a>
+</li>
+<li>LIXA_RC_NON_DISPOSABLE_TX
+: <a class="el" href="lixa__errors_8h.html#a2670f7c1b3f56e21ed898a8406d4c755">lixa_errors.h</a>
+</li>
+<li>LIXA_RC_NON_REUSABLE_TX
+: <a class="el" href="lixa__errors_8h.html#a5c434f6a9a86b2dfbe0076fa8041ed68">lixa_errors.h</a>
 </li>
 <li>LIXA_RC_NOT_CHAINABLE_BRANCH
 : <a class="el" href="lixa__errors_8h.html#a9d3a4b150decf20ea3e4e92158685bd4">lixa_errors.h</a>
@@ -496,22 +505,26 @@ $(document).ready(function(){initNavTree('globals_defs_l.html','');});
 : <a class="el" href="lixa__errors_8h.html#a1c1b889d7c337de62141414193e9356a">lixa_errors.h</a>
 </li>
 <li>LIXA_TRACE_MODULE
-: <a class="el" href="lixa__iface_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">lixa_iface.h</a>
-, <a class="el" href="xta__xid_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_xid.c</a>
-, <a class="el" href="lixa__config_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">lixa_config.h</a>
-, <a class="el" href="xta__transaction__manager_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_transaction_manager.c</a>
+: <a class="el" href="xta__xid_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_xid.c</a>
 , <a class="el" href="xta__native__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_native_xa_resource.c</a>
-, <a class="el" href="xta__postgresql__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_postgresql_xa_resource.c</a>
-, <a class="el" href="xta__mysql__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_mysql_xa_resource.c</a>
+, <a class="el" href="xta__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_xa_resource.c</a>
+, <a class="el" href="xta__transaction__manager_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_transaction_manager.c</a>
+, <a class="el" href="lixa__iface_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">lixa_iface.h</a>
+, <a class="el" href="xta__config_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_config.c</a>
 , <a class="el" href="xta__transaction_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_transaction.c</a>
 , <a class="el" href="xta__acquired__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_acquired_xa_resource.c</a>
-, <a class="el" href="xta__postgresql__xa__resource_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_postgresql_xa_resource.h</a>
-, <a class="el" href="xta__init_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_init.c</a>
-, <a class="el" href="xta__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_xa_resource.c</a>
 , <a class="el" href="lixa__config_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">lixa_config.h</a>
+, <a class="el" href="xta__mysql__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_mysql_xa_resource.c</a>
+, <a class="el" href="xta__init_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_init.c</a>
+, <a class="el" href="xta__postgresql__xa__resource_8c.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_postgresql_xa_resource.c</a>
+, <a class="el" href="lixa__config_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">lixa_config.h</a>
+, <a class="el" href="xta__postgresql__xa__resource_8h.html#acc7dd43ba69e6e58d0399bb76af97ff9">xta_postgresql_xa_resource.h</a>
 </li>
 <li>LIXA_TRACE_MODULE_SAVE
 : <a class="el" href="lixa__config_8h.html#ad727303e0d6120eb71342b497fca3647">lixa_config.h</a>
+</li>
+<li>LIXA_XAER_HAZARD
+: <a class="el" href="xa_8h.html#a3ca46d767ef09cfbb14c63369eff7705">xa.h</a>
 </li>
 </ul>
 </div><!-- contents -->

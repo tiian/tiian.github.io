@@ -69,44 +69,51 @@ $(document).ready(function(){initNavTree('Transaction_8hpp_source.html','');});
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/* include XTA header file */</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;xta.h&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Xid_8hpp.html">Xid.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XaResource_8hpp.html">XaResource.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Config_8hpp.html">Config.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Xid_8hpp.html">Xid.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XaResource_8hpp.html">XaResource.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">using namespace </span>std;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span>xta {</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classxta_1_1Transaction.html">   42</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classxta_1_1Transaction.html">Transaction</a> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classxta_1_1Transaction.html">Transaction</a>(xta_transaction_t *tx);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        ~<a class="code" href="classxta_1_1Transaction.html">Transaction</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span> enlistResource(<a class="code" href="classxta_1_1XaResource.html">XaResource</a> *xaRes);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> start(<span class="keywordtype">bool</span> MultipleBranches=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">void</span> commit(<span class="keywordtype">bool</span> NonBlocking=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">void</span> rollback(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">void</span> suspend(<span class="keywordtype">long</span> Flags=<a class="code" href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">void</span> resume(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; XidString, <span class="keywordtype">long</span> Flags=<a class="code" href="xa_8h.html#a7e1c3c485e197ac63b1fde0d0fa21918">TMRESUME</a>);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordtype">void</span> recover(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">void</span> branch(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; XidString);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classxta_1_1Xid.html">Xid</a> getXid();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">  126</a></span>&#160;        xta_transaction_t *<a class="code" href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">tx</a>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    };</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span>xta {</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classxta_1_1Transaction.html">   43</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classxta_1_1Transaction.html">Transaction</a> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classxta_1_1Transaction.html">Transaction</a>(xta_transaction_t *tx);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        ~<a class="code" href="classxta_1_1Transaction.html">Transaction</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">void</span> enlistResource(<a class="code" href="classxta_1_1XaResource.html">XaResource</a> *xaRes);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> start(<span class="keywordtype">bool</span> MultipleBranches=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span> commit(<span class="keywordtype">bool</span> NonBlocking=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> rollback(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> suspend(<span class="keywordtype">long</span> Flags=<a class="code" href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">void</span> resume(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; XidString, <span class="keywordtype">long</span> Flags=<a class="code" href="xa_8h.html#a7e1c3c485e197ac63b1fde0d0fa21918">TMRESUME</a>);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordtype">void</span> recover(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordtype">void</span> branch(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; XidString);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="classxta_1_1Xid.html">Xid</a> getXid();</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TRANSACTION_HPP */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classxta_1_1Transaction_html_a9f27ee157b9a4b0d5aac109876ac0b43"><div class="ttname"><a href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">xta::Transaction::tx</a></div><div class="ttdeci">xta_transaction_t * tx</div><div class="ttdef"><b>Definition:</b> <a href="Transaction_8hpp_source.html#l00126">Transaction.hpp:126</a></div></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="classxta_1_1Config.html">Config</a> &amp;getConfig();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">  138</a></span>&#160;        xta_transaction_t *<a class="code" href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">tx</a>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classxta_1_1Transaction.html#a62204e95a0ccb6ca4b1b70f1246ed096">  144</a></span>&#160;        <a class="code" href="classxta_1_1Config.html">Config</a>             <a class="code" href="classxta_1_1Transaction.html#a62204e95a0ccb6ca4b1b70f1246ed096">config</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    };</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;};</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TRANSACTION_HPP */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classxta_1_1Transaction_html_a9f27ee157b9a4b0d5aac109876ac0b43"><div class="ttname"><a href="classxta_1_1Transaction.html#a9f27ee157b9a4b0d5aac109876ac0b43">xta::Transaction::tx</a></div><div class="ttdeci">xta_transaction_t * tx</div><div class="ttdef"><b>Definition:</b> <a href="Transaction_8hpp_source.html#l00138">Transaction.hpp:138</a></div></div>
 <div class="ttc" id="XaResource_8hpp_html"><div class="ttname"><a href="XaResource_8hpp.html">XaResource.hpp</a></div></div>
 <div class="ttc" id="classxta_1_1Xid_html"><div class="ttname"><a href="classxta_1_1Xid.html">xta::Xid</a></div><div class="ttdef"><b>Definition:</b> <a href="Xid_8hpp_source.html#l00025">Xid.hpp:25</a></div></div>
-<div class="ttc" id="classxta_1_1Transaction_html"><div class="ttname"><a href="classxta_1_1Transaction.html">xta::Transaction</a></div><div class="ttdef"><b>Definition:</b> <a href="Transaction_8hpp_source.html#l00042">Transaction.hpp:42</a></div></div>
+<div class="ttc" id="classxta_1_1Transaction_html_a62204e95a0ccb6ca4b1b70f1246ed096"><div class="ttname"><a href="classxta_1_1Transaction.html#a62204e95a0ccb6ca4b1b70f1246ed096">xta::Transaction::config</a></div><div class="ttdeci">Config config</div><div class="ttdef"><b>Definition:</b> <a href="Transaction_8hpp_source.html#l00144">Transaction.hpp:144</a></div></div>
+<div class="ttc" id="Config_8hpp_html"><div class="ttname"><a href="Config_8hpp.html">Config.hpp</a></div></div>
+<div class="ttc" id="classxta_1_1Transaction_html"><div class="ttname"><a href="classxta_1_1Transaction.html">xta::Transaction</a></div><div class="ttdef"><b>Definition:</b> <a href="Transaction_8hpp_source.html#l00043">Transaction.hpp:43</a></div></div>
 <div class="ttc" id="Xid_8hpp_html"><div class="ttname"><a href="Xid_8hpp.html">Xid.hpp</a></div></div>
 <div class="ttc" id="xa_8h_html_a3e47ab6075bcbc58f4b9a48a2a555e1f"><div class="ttname"><a href="xa_8h.html#a3e47ab6075bcbc58f4b9a48a2a555e1f">TMMIGRATE</a></div><div class="ttdeci">#define TMMIGRATE</div><div class="ttdef"><b>Definition:</b> <a href="xa_8h_source.html#l00205">xa.h:205</a></div></div>
+<div class="ttc" id="classxta_1_1Config_html"><div class="ttname"><a href="classxta_1_1Config.html">xta::Config</a></div><div class="ttdef"><b>Definition:</b> <a href="Config_8hpp_source.html#l00042">Config.hpp:42</a></div></div>
 <div class="ttc" id="xa_8h_html_a7e1c3c485e197ac63b1fde0d0fa21918"><div class="ttname"><a href="xa_8h.html#a7e1c3c485e197ac63b1fde0d0fa21918">TMRESUME</a></div><div class="ttdeci">#define TMRESUME</div><div class="ttdef"><b>Definition:</b> <a href="xa_8h_source.html#l00177">xa.h:177</a></div></div>
 <div class="ttc" id="classxta_1_1XaResource_html"><div class="ttname"><a href="classxta_1_1XaResource.html">xta::XaResource</a></div><div class="ttdef"><b>Definition:</b> <a href="XaResource_8hpp_source.html#l00025">XaResource.hpp:25</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

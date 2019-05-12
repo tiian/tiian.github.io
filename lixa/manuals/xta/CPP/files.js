@@ -3,6 +3,10 @@ var files =
     [ "AcquiredXaResource.hpp", "AcquiredXaResource_8hpp.html", [
       [ "AcquiredXaResource", "classxta_1_1AcquiredXaResource.html", null ]
     ] ],
+    [ "Config.cpp", "Config_8cpp.html", "Config_8cpp" ],
+    [ "Config.hpp", "Config_8hpp.html", [
+      [ "Config", "classxta_1_1Config.html", "classxta_1_1Config" ]
+    ] ],
     [ "Exception.hpp", "Exception_8hpp.html", [
       [ "Exception", "classxta_1_1Exception.html", "classxta_1_1Exception" ]
     ] ],
