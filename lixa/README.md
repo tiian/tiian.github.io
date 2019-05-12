@@ -1,7 +1,8 @@
 # LIXA - LIbre XA
 
 LIXA is a free and open source implementation of XA and TX specifications.
-LIXA XTA, [**XA Transaction API**](XTA.md), a new transactional API for
+
+LIXA ships XTA, [**XA Transaction API**](XTA.md), a new transactional API for
 applications.
 
 Here is the last version of the LIXA manual as an HTML document:
@@ -17,7 +18,7 @@ XTA API Reference is available for the following programming languages:
 
 Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hosting site is [SourceForge](https://sourceforge.net/projects/lixa/).
 
-Docker images are available in [dockerhub](https://hub.docker.com/u/lixa): here you can find ready to use and base images to develop XTA applications that run in Docker containers.
+Docker images are available in [Docker Hub](https://hub.docker.com/u/lixa): here you can find ready to use and base images to develop XTA applications that run in Docker containers.
 
 LIXA articles:
 
