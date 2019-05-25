@@ -23,5 +23,6 @@ Docker images are available in [Docker Hub](https://hub.docker.com/u/lixa): here
 LIXA articles:
 
 - [Microservices and Distributed Transactions](https://dzone.com/articles/microservices-and-distributed-transactions): introduces how LIXA and XTA supports microservices based architectures
+- [Microservices and Distributed Transactions: Beyond the 'Happy Path'](https://dzone.com/articles/microservices-and-distributed-transactions-beyond): explains how failure scenarios are managed by LIXA and XTA in microservices based architectures
 
 Legacy [home page](https://sourceforge.net/p/lixa/wiki/) still contains interesting contents that will be gradually migrated to this new site.
