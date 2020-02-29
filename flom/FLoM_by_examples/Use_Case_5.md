@@ -6,8 +6,8 @@ Much more interesting use cases can be implemented using the lock mode semantic 
 
 ## Open two terminals and try this experiment:
 
-1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom \-\-lock-mode=PR -- ls**"
-2. inside the second terminal write this command at prompt: "**flom \-\-lock-mode=PR -- sleep 10**"
+1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom \-\-lock-mode=PR \-\- ls**"
+2. inside the second terminal write this command at prompt: "**flom \-\-lock-mode=PR \-\- sleep 10**"
 3. now press "enter" key at the second terminal (where you have written "**flom \-\-lock-mode=PR \-\- sleep 10**")
 4. switch to first terminal and press "enter" key
 
@@ -48,7 +48,7 @@ command "**sleep 10**" locks the default resource, but it specifies **Protected 
 
 "**ls**" command is executed after terminal two terminated
 
-![](use_case_1_5b_6b_7_8_9.png)
+![](use_case_1_5b_6b_7_8_9_14.png)
 
 ### Explanation:
 
