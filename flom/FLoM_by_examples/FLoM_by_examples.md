@@ -1,7 +1,7 @@
 FLoM by examples
 ===
 
-Have you already installed FLoM? (See [installation] otherwise...)
+Have you already installed FLoM? (See [installation](../Installation.md) otherwise...)
 
 Now you are ready to try some use cases related to FLoM local usage:
 
