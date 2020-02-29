@@ -15,7 +15,7 @@ This use case extends [Use Case 1](Use_Case_1.md): you don't want some commands 
 3. the third terminal pauses for 5 seconds
 4. the fourth terminal pauses (5 seconds) and displays the output of command "**echo Hello Worlds**" after the third terminal *sleeping* terminates
 
-[](use_case_2_640x441.png)
+![](use_case_2_640x441.png)
 
 ### Terminal 1 output:
     tiian@mojan:/usr$ flom -r R1 -- sleep 10
