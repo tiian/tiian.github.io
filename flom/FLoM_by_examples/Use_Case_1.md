@@ -14,7 +14,7 @@ The first use case is very simple: you don't want some commands or some scripts 
 1. the second terminal pauses for 10 seconds
 2. the first terminal pauses and displays the output of command "**ls**" after the second terminal *sleeping* terminates
 
-[[img src=use_case_1_5b_6b_7_8_9.png]]
+!(https://github.com/tiian/flom/blob/master/doc/images/use_case_1_5b_6b_7_8_9_14.png)
 
 ### Terminal 1 output: ###
     tiian@mojan:/usr$ flom -- ls
