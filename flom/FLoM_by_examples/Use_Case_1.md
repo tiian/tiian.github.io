@@ -1,11 +1,9 @@
 # Use Case #1: user command/script synchronization #
 
-**Note**: this use case is available since flom version 0.1.0
-
 The first use case is very simple: you don't want some commands or some scripts submitted by a user can run at the same time. The typical usage is related to *crontab* and the chance some command runs late due to an undesired condition.
 
 ## Open two terminals and try this experiment: ##
-1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom -- ls**"
+1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom - - ls**"
 2. inside the second terminal write this command at prompt: "**flom -- sleep 10**"
 3. now press "enter" key at the second terminal (where you have written "*flom -- sleep 10*")
 4. switch to first terminal and press "enter" key
