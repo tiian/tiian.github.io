@@ -4,8 +4,8 @@ The first use case is very simple: you don't want some commands or some scripts 
 
 ## Open two terminals and try this experiment:
 1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom \-\- ls**"
-2. inside the second terminal write this command at prompt: "**flom -- sleep 10**"
-3. now press "enter" key at the second terminal (where you have written "*flom -- sleep 10*")
+2. inside the second terminal write this command at prompt: "**flom \-\- sleep 10**"
+3. now press "enter" key at the second terminal (where you have written "*flom \-\- sleep 10*")
 4. switch to first terminal and press "enter" key
 
 ## Expected result:
@@ -25,7 +25,7 @@ The first use case is very simple: you don't want some commands or some scripts 
 
 ## Explanation:
 command "**sleep 10**" and command "**ls**" synchronized: "**ls**" executed after "**sleep 10**" completion.
-*flom* command protects (synchronizes) the execution of the command (or script) specified after the *--* separator on the command line.
+*flom* command protects (synchronizes) the execution of the command (or script) specified after the *\-\-* separator on the command line.
 
 ## Summary
 The simplest usage form of command *flom* allows you to synchronize commands/scripts on a per user basis (synchronization does not happen between commands/scripts executed by different users).
