@@ -40,11 +40,9 @@ The commands executed inside terminals 1 and 2 synchronize on resource "*R1*"; t
 "*Hello World*" is displayed before directory content ("*ls*" command) because the two synchronize on different resources.
 
 ## Summary
-Independent commands can be grouped and synchronized using distinct resources.
-
+Independent commands can be grouped and synchronized using distinct resources.   
 Argument "*-r*" (long form is "*\-\-resource-name*") can be used to specify the resource you want to synchronize on; you may use "*Resource/Name*" property inside configuration files as an alternative way to specify a non default resource.
 
 ### See also
-FLoM available arguments are documented in man page: use **man flom**.
-
+FLoM available arguments are documented in man page: use **man flom**.   
 FLoM [configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
