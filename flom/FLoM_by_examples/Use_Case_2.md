@@ -44,5 +44,5 @@ Independent commands can be grouped and synchronized using distinct resources.
 Argument "*-r*" (long form is "*\-\-resource-name*") can be used to specify the resource you want to synchronize on; you may use "*Resource/Name*" property inside configuration files as an alternative way to specify a non default resource.
 
 ### See also
-Flom available arguments are documented in man page: use **man flom**.
-Flom [Configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
+FLoM available arguments are documented in man page: use **man flom**.
+FLoM [configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
