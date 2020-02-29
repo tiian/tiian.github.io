@@ -1,4 +1,10 @@
-# This page is the root of wiki documentation #
+# FLoM - Free Lock Manager
+
+FLoM is a free and open source distributed lock manager that can be used to synchronize shell commands, scripts and custom developed software.
+When used in a shell environment, FLoM manages process synchronization in the same way that "nice" manages process prioritization.
+Shell commands, scripts and custom programs can be synchronized inside a single system or in a network of IP connected systems. FLoM supports different types of abstract resources: simple, numeric, set, hierarchical and transactional sequence.
+libflom, the library shipped with FLoM, allows you to develop your own application using a simple C, C++, Java, Perl, PHP or Python client API.
+FLoM can use SSL/TLS security for network communication and X.509 certificates for peer to peer mutual authentication.
 
 An overview article was published by [DZone](https://dzone.com/articles/flom-the-free-lock-manager) and is available in a [printer friendly format here](https://github.com/tiian/flom/blob/master/doc/papers/FLoM_overview/FLoM%20overview.pdf).
 
