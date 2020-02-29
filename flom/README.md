@@ -1,8 +1,8 @@
 # This page is the root of wiki documentation #
 
-An overview article was published by [DZone](https://dzone.com/articles/flom-the-free-lock-manager) and is available in a [printer friendly format here](http://flom.sourceforge.net/FLoM%20overview.pdf).
+An overview article was published by [DZone](https://dzone.com/articles/flom-the-free-lock-manager) and is available in a [printer friendly format here](https://github.com/tiian/flom/blob/master/doc/papers/FLoM_overview/FLoM%20overview.pdf).
 
-A step by step tutorial is available in wiki format here: [FLoM by examples]
+A step by step tutorial is available in wiki format here: [FLoM by examples](FLoM_by_examples.md)
 
 Are you asking yourself because I started to develop this software? Are you tired to write cryptic shell scripts to manage locking and synchronization? [Read the tale]
 
