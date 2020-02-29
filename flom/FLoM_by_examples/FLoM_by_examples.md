@@ -5,7 +5,7 @@ Have you already installed FLoM? (See [installation] otherwise...)
 
 Now you are ready to try some use cases related to FLoM local usage:
 
-* user command/script synchronization: [Use Case 1]
+* user command/script synchronization: [Use Case 1](Use_Case_1.md)
 * user multiple command/script synchronization: [Use Case 2]
 * don't wait if the resource is busy: [Use Case 3]
 * use a timeout if the resource is busy: [Use Case 4]
