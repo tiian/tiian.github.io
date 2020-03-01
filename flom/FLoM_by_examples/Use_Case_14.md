@@ -72,16 +72,16 @@ Hierarchical resources don't support this option:
 * *-q, \-\-resource-quantity*
 
 ### Why should I use FLoM to manage file locks?
-As previously stated, other tools exists to manage file locks. So, why should I use FLOM instead of something else?
+As previously stated, other tools exist to manage file locks. So, why should I use FLOM instead of something else?
 
-#### Some tools creates persistent locks
+#### Some tools create persistent locks
 Persistent locks can be desiderable if you want a lock to survive an application or a system crash. Persistent locks can be a source of issues if your use case does not allow you to easily answer the question: *"Is this persistent lock really necessary or is it a lock I should delete?"*
 
 #### Some lock technologies are not safe if the filesystem is not local
-Notably, some NFS versions did not safely manage the file locks.
+Notably, some old NFS versions did not safely manage file locks.
 
 #### Some (distributed) filesystems do not have lock primitives
-Non persistent file locks need file locks primitives at the filesystem level: some does support locking APIs.
+Non persistent file locks need file locks primitives at the filesystem level: some do support locking APIs.
 
 #### I already use FLoM...
 FLoM allows you to manage distintc type of resources: you could choose FLoM just because you can use with files too.
