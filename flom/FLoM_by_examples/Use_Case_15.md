@@ -31,9 +31,9 @@ The *READER* script needs to read */foo/bar* directory content, while the *WRITE
 Open two terminals and try it:
 
 1. inside the first terminal (*READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar -l PR -- ping -c 5 localhost**
+    **flom -r /foo/bar -l PR \-\- ping -c 5 localhost**
 2. inside the second terminal (*WRITER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/blue/apple -l EX -- ping -c 5 localhost**
+    **flom -r /foo/blue/apple -l EX \-\- ping -c 5 localhost**
 3. now press "enter" key at the first terminal
 4. switch to second terminal and press "enter" key
 
@@ -48,9 +48,9 @@ The *READER* scripts needs to read */foo/bar* directory content, while the *WRIT
 Open two terminals and try it:
 
 1. inside the first terminal (*READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar -l PR -- ping -c 5 localhost**
+    **flom -r /foo/bar -l PR \-\- ping -c 5 localhost**
 2. inside the second terminal (*WRITER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar/apple -l EX -- ping -c 5 localhost**
+    **flom -r /foo/bar/apple -l EX \-\- ping -c 5 localhost**
 3. now press "enter" key at the first terminal
 4. switch to second terminal and press "enter" key
 
@@ -69,9 +69,9 @@ The *READER* scripts needs to read */foo/bar* directory content, while the *WRIT
 Open two terminals and try it:
 
 1. inside the first terminal (*READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar -l PR -- ping -c 5 localhost**
+    **flom -r /foo/bar -l PR \-\- ping -c 5 localhost**
 2. inside the second terminal (*WRITER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar/fruit/apple -l EX -- ping -c 5 localhost**
+    **flom -r /foo/bar/fruit/apple -l EX \-\- ping -c 5 localhost**
 3. now press "enter" key at the first terminal
 4. switch to second terminal and press "enter" key
 
@@ -90,11 +90,11 @@ A *READER* script needs to read */foo/bar* directory content, another *READER* s
 Open three terminals and try it:
 
 1. inside the first terminal (first *READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar -l PR -- ping -c 5 localhost**
+    **flom -r /foo/bar -l PR \-\- ping -c 5 localhost**
 2. inside the second terminal (second *READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/fruit -l PR -- ping -c 5 localhost**
+    **flom -r /foo/fruit -l PR \-\- ping -c 5 localhost**
 3. inside the third terminal (*BACKUP* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo -l PR -- ping -c 5 localhost**
+    **flom -r /foo -l PR \-\- ping -c 5 localhost**
 4. now press "enter" key at the first terminal
 5. switch to second terminal and press "enter" key
 6. switch to third terminal and press "enter" key
@@ -110,11 +110,11 @@ Coming back to the first example, we add the *BACKUP* script: the *READER* scrip
 Open three terminals and try it:
 
 1. inside the first terminal (*READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar -l PR -- ping -c 5 localhost**
+    **flom -r /foo/bar -l PR \-\- ping -c 5 localhost**
 2. inside the second terminal (*WRITER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/blue/apple -l EX -- ping -c 7 localhost**
+    **flom -r /foo/blue/apple -l EX \-\- ping -c 7 localhost**
 3. inside the third terminal (*BACKUP* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo -l PR -- ping -c 5 localhost**
+    **flom -r /foo -l PR \-\- ping -c 5 localhost**
 4. now press "enter" key at the first terminal
 5. switch to second terminal and press "enter" key
 6. switch to third terminal and press "enter" key
@@ -130,11 +130,11 @@ Modifying the previous example, we change the script order execution: the *READE
 Open three terminals and try it:
 
 1. inside the first terminal (*READER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/bar -l PR -- ping -c 5 localhost**
+    **flom -r /foo/bar -l PR \-\- ping -c 5 localhost**
 2. inside the second terminal (*BACKUP* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo -l PR -- ping -c 7 localhost**
+    **flom -r /foo -l PR \-\- ping -c 7 localhost**
 3. inside the third terminal (*WRITER* script) write this command at prompt, but do **not** press "enter": 
-    **flom -r /foo/blue/apple -l EX -- ping -c 5 localhost**
+    **flom -r /foo/blue/apple -l EX \-\- ping -c 5 localhost**
 4. now press "enter" key at the first terminal
 5. switch to second terminal and press "enter" key
 6. switch to third terminal and press "enter" key
