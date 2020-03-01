@@ -16,7 +16,7 @@ FLoM can be used also in a distributed environment: the same synchronization fea
 You may deep into some [distributed features](../Distributed_Features.md) of FLoM or you can jump directly to use cases:
 
 * network mode, unicast only: [Use Case 7](Use_Case_7.md) and [IPv6 Use Case 7](IPv6_Use_Case_7.md)
-* network mode with autodiscovery, unicast and multicast: [Use Case 8] and [IPv6 Use Case 8]
+* network mode with autodiscovery, unicast and multicast: [Use Case 8](Use_Case_8.md) and [IPv6 Use Case 8]
 * dynamic network mode, unicast and multicast: [Use Case 9] and [IPv6 Use Case 9]
 
 FLoM provides *numeric resources* useful to limit the number of concurrent processes at a desired value:
