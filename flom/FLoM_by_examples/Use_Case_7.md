@@ -69,9 +69,9 @@ Switch to the second terminal (second system) and try the same command using the
     tiian@presanella:/usr$
 
 ## Experiment synchronization:
-1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom -a mojan -d 0 -- ls**"
-2. inside the second terminal write this command at prompt: "**flom -a mojan -d 0 -- sleep 10**"
-3. now press "enter" key at the second terminal (where you have written "*flom -a mojan -d 0 -- sleep 10*")
+1. inside the first terminal write this command at prompt, but do **not** press "enter": "**flom -a mojan -d 0 \-\- ls**"
+2. inside the second terminal write this command at prompt: "**flom -a mojan -d 0 \-\- sleep 10**"
+3. now press "enter" key at the second terminal (where you have written "*flom -a mojan -d 0 \-\- sleep 10*")
 4. switch to first terminal and press "enter" key
 
 ## Expected result:
@@ -136,10 +136,10 @@ This is a common behavior and can lead to unexpected result:
 2. trying to reach a *daemon* using its network name from the same system hosting the *daemon* may not work if the *daemon* was not started using network name.
 
 ## Extra considerations related to -d option:
-*-d* (*\-\-daemon-lifespan*) is the parameter used to specify how long a *flom daemon* must run.
--d -1 is used in the above example with the meaning "start a daemon and don't stop it"
--d 0 is used in the above example with the meaning "don't start a daemon"
-First usage is typically *server oriented*, while the second usage is typically *client oriented*.
+*-d* (*\-\-daemon-lifespan*) is the parameter used to specify how long a *flom daemon* must run.   
+-d -1 is used in the above example with the meaning "start a daemon and don't stop it"   
+-d 0 is used in the above example with the meaning "don't start a daemon"   
+First usage is typically *server oriented*, while the second usage is typically *client oriented*.   
 If you are not happy to specify "-d 0" for every *client* command, you can set *Lifespan* option in a [configuration](../Configuration.md) file.
 
 To terminate a running *flom daemon*, simply use *kill* or *pkill* command:
