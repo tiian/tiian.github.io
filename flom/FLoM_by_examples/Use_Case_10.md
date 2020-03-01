@@ -115,5 +115,5 @@ Different *flom* invocation can specify different quantities, but the specified 
 This use case explains you how to implement a basic workload manager that allows the execution of a maximum of 2 tasks and put the exceeding submitted job in a wait queue.
 
 ### See also
-Flom available arguments are documented in man page: use **man flom**.   
-Flom [configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
+FLoM available arguments are documented in man page: use **man flom**.   
+FLoM [configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
