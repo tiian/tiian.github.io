@@ -15,7 +15,7 @@ Now you are ready to try some use cases related to FLoM local usage:
 FLoM can be used also in a distributed environment: the same synchronization features are available inside a single system and through a network (LAN, MAN, WAN and Internet).  
 You may deep into some [distributed features](../Distributed_Features.md) of FLoM or you can jump directly to use cases:
 
-* network mode, unicast only: [Use Case 7](Use_Case_7.md) and [IPv6 Use Case 7]
+* network mode, unicast only: [Use Case 7](Use_Case_7.md) and [IPv6 Use Case 7](IPv6_Use_Case_7.md)
 * network mode with autodiscovery, unicast and multicast: [Use Case 8] and [IPv6 Use Case 8]
 * dynamic network mode, unicast and multicast: [Use Case 9] and [IPv6 Use Case 9]
 

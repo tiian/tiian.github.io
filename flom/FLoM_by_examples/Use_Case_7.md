@@ -8,11 +8,14 @@ I have two systems named "mojan" and "presanella", this is a network check examp
 
 ### Terminal 1 (*mojan*) output
     tiian@mojan:/usr$ flom --version
-    FLOM: Free LOck Manager
-    Copyright (c) 2013-2014, Christian Ferrari; all rights reserved.
+    FLoM: Free Lock Manager
+    Copyright (c) 2013-2020, Christian Ferrari; all rights reserved.
     License: GPL (GNU Public License) version 2
-    Package name: flom; package version: 0.3.0-dev; release date: 2014-01-27
-    Access http://sourceforge.net/projects/flom/ for project community activities
+    Package name: flom; package version: 1.5.0-dev; release date: 2020-02-25
+    TLS supported protocol(s): TLSv1
+    Access https://github.com/tiian/flom for project community activities
+    Documentation is available at http://www.tiian.org/flom/
+
     tiian@mojan:/usr$ ping -c 3 presanella
     PING presanella (192.168.1.3) 56(84) bytes of data.
     64 bytes from presanella (192.168.1.3): icmp_seq=1 ttl=64 time=7.30 ms
@@ -26,11 +29,14 @@ I have two systems named "mojan" and "presanella", this is a network check examp
 
 ### Terminal 2 (*presanella*) output
     tiian@presanella:/usr$ flom --version
-    FLOM: Free LOck Manager
-    Copyright (c) 2013-2014, Christian Ferrari; all rights reserved.
+    FLoM: Free Lock Manager
+    Copyright (c) 2013-2020, Christian Ferrari; all rights reserved.
     License: GPL (GNU Public License) version 2
-    Package name: flom; package version: 0.3.0-dev; release date: 2014-01-27
-    Access http://sourceforge.net/projects/flom/ for project community activities
+    Package name: flom; package version: 1.5.0-dev; release date: 2020-02-25
+    TLS supported protocol(s): TLSv1
+    Access https://github.com/tiian/flom for project community activities
+    Documentation is available at http://www.tiian.org/flom/
+
     tiian@presanella:/usr$ ping -c 3 mojan
     PING mojan (192.168.1.4) 56(84) bytes of data.
     64 bytes from mojan (192.168.1.4): icmp_req=1 ttl=64 time=73.4 ms
