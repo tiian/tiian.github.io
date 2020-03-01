@@ -31,7 +31,7 @@ FLoM provides *resource sets* useful to exclusively access to a set of named res
 
 FLoM provides *hierarchical resources* useful to model filesystem objects (files and directorories) and/or scenarios where you have to deal with an object hierarchy:
 
-* hierarchical resources, simple file usage: [Use Case 14]
+* hierarchical resources, simple file usage: [Use Case 14](Use_Case_14.md)
 * hierarchical resources, hierarchical locks: [Use Case 15]
 
 FLoM provides "future events" useful to model synchronization with task that can start in the future:
