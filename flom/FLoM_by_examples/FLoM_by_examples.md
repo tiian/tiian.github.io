@@ -21,7 +21,7 @@ You may deep into some [distributed features](../Distributed_Features.md) of FLo
 
 FLoM provides *numeric resources* useful to limit the number of concurrent processes at a desired value:
 
-* numeric resource, basic usage: [Use Case 10]
+* numeric resource, basic usage: [Use Case 10](Use_Case_10.md)
 * numeric resource, one writer and exactly N readers: [Use Case 11]
 
 FLoM provides *resource sets* useful to exclusively access to a set of named resources:
