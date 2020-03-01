@@ -10,9 +10,9 @@ Now you are ready to try some use cases related to FLoM local usage:
 * don't wait if the resource is busy: [Use Case 3](Use_Case_3.md)
 * use a timeout if the resource is busy: [Use Case 4](Use_Case_4.md)
 * non exclusive locking: [Use Case 5](Use_Case_5.md)
-* multi-user command/script synchronization: [Use Case 6]
+* multi-user command/script synchronization: [Use Case 6](Use_Case_6.md)
 
-FLoM can be used also in a distributed environment: the same synchronization features are available inside a single system and through a network (LAN, MAN, WAN and Internet).
+FLoM can be used also in a distributed environment: the same synchronization features are available inside a single system and through a network (LAN, MAN, WAN and Internet).  
 You may deep into some [distributed features] of FLoM or you can jump directly to use cases:
 
 * network mode, unicast only: [Use Case 7] and [IPv6 Use Case 7]
