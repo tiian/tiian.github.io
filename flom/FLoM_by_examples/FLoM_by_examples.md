@@ -41,7 +41,7 @@ FLoM provides "future events" useful to model synchronization with task that can
 
 FLoM provides *sequence resources* useful to synchronize and to get a unique sequence number with the same atomic operation:
 
-* sequence resource: [Use Case 18]
+* sequence resource: [Use Case 18](Use_Case_18.md)
 
 FLoM provides *timestamp resources* useful to synchronize and to get a distinct timestamp with the same atomic operation:
 

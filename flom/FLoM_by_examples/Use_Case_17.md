@@ -67,5 +67,5 @@ This use case allows you to implement the *producer/consumer* pattern even if th
 The *long term resource* behavior can be obtained using "*-i milliseconds*", "*\-\-resource-idle-lifespan=milliseconds*" command option or "*Resource/IdleLifespan*" property inside configuration files.
 
 ### See also
-FLoM available arguments are documented in man page: use **man flom**.
+FLoM available arguments are documented in man page: use **man flom**.   
 FLoM [configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
