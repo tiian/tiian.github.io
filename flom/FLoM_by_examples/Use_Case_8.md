@@ -1,4 +1,4 @@
-# Use Case #8: distributed command/script synchronization, auto-discovery feature
+# Use Case 8: distributed command/script synchronization, auto-discovery feature
 
 This use case shows extends [Use Case 7](Use_Case_7.md) and shows as auto-discovery feature works.
 

@@ -1,4 +1,4 @@
-# Use Case #1: user command/script synchronization
+# Use Case 1: user command/script synchronization
 
 The first use case is very simple: you don't want some commands or some scripts submitted by a user can run at the same time. The typical usage is related to *crontab* and the chance some command runs late due to an undesired condition.
 

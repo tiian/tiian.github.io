@@ -1,4 +1,4 @@
-# Use Case #6: multi-user command/script synchronization
+# Use Case 6: multi-user command/script synchronization
 
 Sometimes you need to share/protect a resource among many users: the commands/scripts you have to synchronize/enqueue are not executed by the same user.
 

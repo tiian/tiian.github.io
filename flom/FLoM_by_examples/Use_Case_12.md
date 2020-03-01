@@ -108,7 +108,9 @@ In the above example the first command (in first terminal) starts a background *
     This is file ONE (there's only one row in this file)
     tiian@mojan:/tmp$
 
-This issue can not be solved using some *flom* option (like '-d, --daemon-lifespan') because the internal *flom* garbage collector automatically destroys unused resources indipendently by daemon restart. If you experimented this issue, a better solution could probably be the usage of a *flom* simple resource, a state file and some shell scripting to manage the state file. *Flom* is designed to manage resource concurrency, not to manage long term state persistence.
+This issue can not be solved using *flom* option '-d, \-\-daemon-lifespan' because the internal *flom* garbage collector automatically destroys unused resources indipendently by daemon restart.    
+Option '-i, \-\-resource-idle-lifespan' allow to keep a resource for a longer time, but pay attention *FLoM* is designed to manage resource concurrency, not to manage long term state persistence.   
+If you want to manage long term state, a state file and some shell scripting is a better solution.
 
 ## Some resource set details
 

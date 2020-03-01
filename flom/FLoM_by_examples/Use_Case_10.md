@@ -1,4 +1,4 @@
-# Use Case #10: executes a maximum of N parallel processes
+# Use Case 10: executes a maximum of N parallel processes
 
 Sometimes you face a problem like this: "I have to run a maximum of 3 jobs at the same time, no more".   
 A typical usage is workload balancing: you want to limit the maximum number of some type of processes, but you don't want only one because you can run a few of them.

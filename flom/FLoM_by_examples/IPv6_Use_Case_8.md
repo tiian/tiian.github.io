@@ -1,4 +1,4 @@
-# IPv6 Use Case #8: distributed command/script synchronization, auto-discovery feature
+# IPv6 Use Case 8: distributed command/script synchronization, auto-discovery feature
 
 This use case shows extends [Use Case 8](Use_Case_8.md) and shows as auto-discovery feature works with IPv6.
 

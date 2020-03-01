@@ -1,4 +1,4 @@
-# Use Case #9: distributed command/script synchronization, dynamic network mode (cloud friendly)
+# Use Case 9: distributed command/script synchronization, dynamic network mode (cloud friendly)
 
 This use case shows extends [Use Case 8](Use_Case_8.md) and shows as auto-discovery feature works.
 

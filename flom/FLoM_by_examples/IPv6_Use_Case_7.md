@@ -1,4 +1,4 @@
-# IPv6 Use Case #7: distributed command/script synchronization
+# IPv6 Use Case 7: distributed command/script synchronization
 
 This use case shows a basic example of synchronization happening between commands running on different systems: this is basically the same use case shown in [Use Case 7](Use_Case_7.md), but with IPv6 instead of IPv4 network connectivity.
 

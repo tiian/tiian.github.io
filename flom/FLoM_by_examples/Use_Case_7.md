@@ -1,4 +1,4 @@
-# Use Case #7: distributed command/script synchronization
+# Use Case 7: distributed command/script synchronization
 
 This use case shows a basic example of synchronization happening between commands running on different systems.
 

@@ -1,4 +1,4 @@
-# Use Case #4: use a timeout if the resource is busy
+# Use Case 4: use a timeout if the resource is busy
 
 Sometimes you need to run a command exclusively as shown in [Use Case 1](Use_Case_1.md), but you don't want to **wait** (enqueue) **indefinitely** if the lock is currently keep by a different command.
 

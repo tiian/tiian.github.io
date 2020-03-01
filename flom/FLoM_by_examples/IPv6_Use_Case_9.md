@@ -1,4 +1,4 @@
-# IPv6 Use Case #9: distributed command/script synchronization, dynamic network mode (cloud friendly)
+# IPv6 Use Case 9: distributed command/script synchronization, dynamic network mode (cloud friendly)
 
 This use case shows extends [Use Case 9](Use_Case_9.md) and shows as dynamic network mode feature works.
 

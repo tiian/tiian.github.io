@@ -27,7 +27,7 @@ FLoM provides *numeric resources* useful to limit the number of concurrent proce
 FLoM provides *resource sets* useful to exclusively access to a set of named resources:
 
 * resource sets, basic usage: [Use Case 12](Use_Case_12.md)
-* resource sets, passing arguments: [Use Case 13]
+* resource sets, passing arguments: [Use Case 13](Use_Case_13.md)
 
 FLoM provides *hierarchical resources* useful to model filesystem objects (files and directorories) and/or scenarios where you have to deal with an object hierarchy:
 

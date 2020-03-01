@@ -1,4 +1,4 @@
-# Use Case #5: non exclusive locking
+# Use Case 5: non exclusive locking
 
 Sometimes you need to manage shared locks instead of exclusive locks.   
 A typical scenario is the ["multiple readers / single-writer lock"](http://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock): many processes can access a resource at the same time (because they does **not** modify the resource state) and only one process can access a resource **to update** it.   

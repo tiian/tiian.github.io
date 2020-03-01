@@ -1,4 +1,4 @@
-# Use Case #2: user multiple command/script synchronization
+# Use Case 2: user multiple command/script synchronization
 
 This use case extends [Use Case 1](Use_Case_1.md): you don't want some commands or some scripts submitted by a user can run at the same time, but you want parallel execution for some different commands/scripts. The typical usage is related to *crontab* and the chance some command runs late due to an undesired condition.
 

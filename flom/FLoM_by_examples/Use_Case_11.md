@@ -1,4 +1,4 @@
-# Use Case #11: one writer, at max N readers
+# Use Case 11: one writer, at max N readers
 
 This use case extends [Use Case 5](Use_Case_5.md) in this way: "I can run only one writer and a limited number of readers".   
 The "one writer many readers" pattern can be implemented using lock modes *Protected Write* and *Concurrent Read* as explained here http://en.wikipedia.org/wiki/Distributed_lock_manager#Lock_modes   
