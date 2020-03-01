@@ -10,7 +10,7 @@
 It might seem that *dynamic network* is a sort of *catch all* solution: you could discover how easy and powerful it is just reading the related [Use Case 9](FLoM_by_examples/Use_Case_9.md).
 Unfortunately it's an ***unsafe operation mode***: you should use it only if an error in synchronization does **not** corrupt your data and does not allows your computation to produce inconsistent results.
 
-** Repeat: dynamic network mode can corrupt your data and/or break your algorithms. **
+**Repeat: dynamic network mode can corrupt your data and/or break your algorithms.**
 
 But if you are using the *flom distributed lock manager* to synchronize processes that can coexist without any side effect (a typical scenario is workload balancing issues), *dynamic network mode* can give you unbeatable flexibility and ease of use.
 
@@ -28,7 +28,7 @@ This first table resume the command line option and configuration file keywords 
 Config type|Unicast (TCP/IP) address|Multicast (UDP/IP) address|Lifespan
 -|-|-|-|-
 **command line option (short form)**|-a|-A|-d
-**command line option (long form)**|--unicast-address|--multicast-address|--daemon-lifespan
+**command line option (long form)**|\-\-unicast-address|\-\-multicast-address|\-\-daemon-lifespan
 **config file keyword**|UnicastAddress|MulticastAddress|Lifespan
 
 This second table explains the behavior obtained changing configuration options:
@@ -56,7 +56,7 @@ The following table resumes the configuration options necessary to customize the
 Config type|Unicast (TCP/IP) port|Multicast (UDP/IP) port
 -|-|-|-
 **command line option (short form)**|-p|-P
-**command line option (long form)**|--unicast-port|--multicast-port
+**command line option (long form)**|\-\-unicast-port|\-\-multicast-port
 **config file keyword**|UnicastPort|MulticastPort
 
 #### Note related to ports
