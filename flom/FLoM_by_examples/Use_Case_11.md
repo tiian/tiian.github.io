@@ -36,7 +36,7 @@ that can be decomposed in this way:
 * lock numeric "foo\[2\]" resource, pick-up one of the available slots, and execute the command **ping -c 10 localhost** protected by the obtained lock
 
 #### Your attention please!
-*FLOM* does not limit the number of nidified levels and *FLOM* does **not** implement a **deadlock detection algorithm** and you must carefully think about lock concatenation order to avoid [resource starvation](http://en.wikipedia.org/wiki/Resource_starvation)
+*FLOM* does not limit the number of nidified levels and *FLOM* does **not** implement a **deadlock detection algorithm**:  you **must** carefully think about lock concatenation order to avoid [resource starvation](http://en.wikipedia.org/wiki/Resource_starvation)
 
 ## Summary
 This use case explains you how to implement a non trivial synchronization among N+1 tasks.
