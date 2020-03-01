@@ -75,7 +75,7 @@ The second row means that *flom daemon* subscribed to multicast group (UDP/IP) 2
 -d -1 is used in the above example with the meaning "start a daemon and don't stop it": **using it with dynamic mode, if the network partitions, will lead to a new local undesired daemon**, see also [distributed features](../Distributed_Features.md) page    
 -d 0 is used in the above example with the meaning "don't start a daemon"   
 First usage is typically *server oriented*, while the second usage is typically *client oriented*.   
-If you are not happy to specify "-d 0" for every *client* command, you can set *Lifespan* option in a [Configuration](../Configuration.md) file.
+If you are not happy to specify "-d 0" for every *client* command, you can set *Lifespan* option in a [configuration](../Configuration.md) file.
 
 ## Summary
 This example of command *flom* allows you to synchronize commands/scripts running on different systems and you don't have to start *flom daemon* on a specific system: it may be started on any system that can answer to UDP/IP multicast queries.   
