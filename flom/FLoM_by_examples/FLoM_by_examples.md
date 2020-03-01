@@ -37,7 +37,7 @@ FLoM provides *hierarchical resources* useful to model filesystem objects (files
 FLoM provides "future events" useful to model synchronization with task that can start in the future:
 
 * future events, simple usage: [Use Case 16](Use_Case_16.md)
-* future events, long life resources: [Use Case 17]
+* future events, long life resources: [Use Case 17](Use_Case_17.md)
 
 FLoM provides *sequence resources* useful to synchronize and to get a unique sequence number with the same atomic operation:
 

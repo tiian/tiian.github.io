@@ -60,9 +60,13 @@ The result depends from timing, there are basically three cases:
 3. the second command is fired some time after the first command terminated
 
 In case 1 and 2 the first command creates the resource and the second command uses it after first command released the lock; 
+
 ![](use_case_16b.png)
+
 ![](use_case_16c.png)
+
 in case 3 the resource created by the first command disappears (automatically cleaned by **flom** *daemon*) and the second command waits indefinitely. Take a look to [Use Case 17](Use_Case_17.md) for an advanced use case.
+
 ![](use_case_16d_17a.png)
 
 ## Summary
