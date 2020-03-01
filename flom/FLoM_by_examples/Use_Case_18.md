@@ -4,7 +4,7 @@ FLoM supports two different types of sequences:
 * basic sequences
 * transactional sequences
 
-**Basic sequences** are useful to generate unique increasing numbers: every locker obtains a different value from the lock manager.   
+**Basiyyyyyyyyyyy** are useful to generate unique increasing numbers: every locker obtains a different value from the lock manager.   
 **Transactional sequences** are useful to generate unique increasing numbers even if some locker fails to process its value.
 
 Moreover, FLoM sequence resources are multiple: more than 1 locker can obtain the lock at the same time.
@@ -62,7 +62,7 @@ tiian@ubuntu1004:~$ flom -i 10000 -r _s_a[1] -- /tmp/sh
 4
 ~~~
 
-every execution of the script */tmp/sh* receives a different value.
+every execution of the script */tmp/sh* receives a different value.   
 With 2 different terminals you can experiment the lock behavior: only one process at a time obtains the lock and the corresponding sequence number:
 
 ### Terminal 1 output:
@@ -91,7 +91,7 @@ Sequences implemented by FLoM are ephemeral resources because FLoM does not mana
 1. *flom* background process terminates by itself after some inactivity: you must explicitly activate a *flom* daemon if you want a never ending process (use command line option "-d, \-\-daemon-lifespan")
 2. FLoM resources are subjected to garbage collection after some inactivity: you must explicitly ask an *idle lifespan* if you want to preserve the state associated to a resource for some time (use command line option "-i, \-\-resource-idle-lifespan").
 
-FLoM sequence resources **are not** intended to replace the sequence objects provided by some database management systems.
+FLoM sequence resources **are not** intended to replace the sequence objects provided by database management systems.
 
 FLoM sequence resources **are intended** to synchronize some processes and to pass them a unique synchronization identificator that's easy to manage and understand.
 

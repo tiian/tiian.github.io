@@ -458,9 +458,9 @@ time.07/05/16.11:44:00.241025
 tiian@ubuntu1004:~$
 ~~~
 
-Taking a look to the above data, the minimum difference in the millisecond value is about 2 ms: the value is in accordance with the synchronization time measured before.   
-With a longer execution, not shown here for brevity, I have measured 429 distinct timestamps (and locks) per second using my virtual environment.
-Using [libflom] (FLoM API), from your own custom program, could improve the performance.
+Taking a look to the above data, the minimum difference in the millisecond value is about 2 ms: the value is in accordance with the synchronization time measured before.    
+With a longer execution, not shown here for brevity, I have measured 429 distinct timestamps (and locks) per second using my virtual environment.    
+Using [libflom](../libflom/libflom.md) (FLoM API), from your own custom program, could improve the performance.
 
 ## Use cases
 **How can timestamp resources be used?**
