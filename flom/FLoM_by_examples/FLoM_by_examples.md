@@ -45,5 +45,5 @@ FLoM provides *sequence resources* useful to synchronize and to get a unique seq
 
 FLoM provides *timestamp resources* useful to synchronize and to get a distinct timestamp with the same atomic operation:
 
-* timestamp resource: [Use Case 19]
+* timestamp resource: [Use Case 19](Use_Case_19.md)
 
