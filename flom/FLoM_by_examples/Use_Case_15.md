@@ -57,7 +57,7 @@ Open two terminals and try it:
 ![](use_case_15b.png)
 
 ##### Expected result:
-First ping command runs, second ping commands waits first command termination and then starts. The behavior does not change if you switch command execution order.   
+First ping command runs, second ping command waits first command termination and then starts. The behavior does not change if you switch command execution order.   
 If *READER* starts to read */foo/bar*, *WRITER* shall *not* start because it could change */foo/bar* content.   
 If *WRITER* starts to create */foo/bar/appple*, *READER* shall *not* start because */foo/bar* content could change in the meantime.
 
@@ -78,7 +78,7 @@ Open two terminals and try it:
 ![](use_case_15c.png)
 
 ##### Expected result:
-First ping command runs, second ping commands waits first command termination and then starts. The behavior does not change if you switch command execution order.
+First ping command runs, second ping command waits first command termination and then starts. The behavior does not change if you switch command execution order.
 
 ![](use_case_15c2.png)
 
@@ -145,8 +145,8 @@ Open three terminals and try it:
 The *READER* starts to run, the *BACKUP* starts because it can collect a consisten backup, while the *WRITER* task must wait *BACKUP* end before starting: it can not update */foo/blue/apple* because until the backup finished.
 
 ## Summary
-This use case shows a complex synchronization scenario with different tasks that access a different level of a resource tree.   
-**It must be noted** that FLOM resources do **not** need to map to real files: FLOM resources are abstracts and can be used to model a synchronization scenario that has not a file counterpart.
+This use case shows a complex synchronization scenario with different tasks that access a different levels of a resource tree.   
+**It must be noted** that FLoM resources do **not** need to map to real files: FLoM resources are virtual and can be used to model a synchronization scenario that has not a file counterpart.
 You might model:
 
 * *invoices*, *receipts*, *customers*, *goods*, ...
@@ -154,5 +154,5 @@ You might model:
 * and so on...
 
 ### See also
-FLoM available arguments are documented in man page: use **man flom**.
+FLoM available arguments are documented in man page: use **man flom**.   
 FLoM [configuration](../Configuration.md) explains how you can specify flom behavior without using command line arguments.
