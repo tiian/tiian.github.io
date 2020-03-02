@@ -10,7 +10,7 @@ An overview article was published by [DZone](https://dzone.com/articles/flom-the
 
 A step by step tutorial is available in wiki format here: [FLoM by examples](FLoM_by_examples/FLoM_by_examples.md)
 
-Are you asking yourself because I started to develop this software? Are you tired to write cryptic shell scripts to manage locking and synchronization? [Read the tale]
+Are you asking yourself because I started to develop this software? Are you tired to write cryptic shell scripts to manage locking and synchronization? [Read the tale](Read_the_Tale.md)
 
 As you can imagine this is not the first time some one is trying to give you a tool like this. This page collects some [Similar tools] I discovered googling around.
 
@@ -20,7 +20,7 @@ FLoM runs around the [Resource] concept: take a look to it.
 
 FLoM is distributed as C source code you may download, compile and install using standard git and GNU build chain (automake, autoconf, gcc): [installation](Installation.md).
 
-FLoM wants to be **just work software** and configuration should be reduced to the minimum: this page gives you some hint to explore [Configuration] matter.
+FLoM wants to be **just work software** and configuration should be reduced to the minimum: this page gives you some hint to explore [Configuration](Configuration.md) matter.
 
 [FLoM deep diving] contains specific detailed topics you could interested in after you tried some examples (use cases).
 
