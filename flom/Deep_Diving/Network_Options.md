@@ -88,6 +88,7 @@ Sometimes firewalling is not needed at all and you can disable it completely; he
 
 * [CentOS7 / CentOS8 / OpenLogic 7 / Red Hat 7](http://www.server-world.info/en/note?os=CentOS_7&p=initial_conf&f=2)
 * CentOS 6.6, if **systemctl** command is not available you can use these ones:
+
     service ipchains stop
     service iptables stop
     chkconfig ipchains off
