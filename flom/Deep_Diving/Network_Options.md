@@ -84,10 +84,9 @@ Shorter timeouts can be used in presence of low latency networks while longer ti
 ## UDP/IP Multicast and firewall related issues
 Some Linux distributions set a default firewall configuration that stops IP 4 multicast traffic and does not allow FLoM network dynamic modes.    
 You have to properly configure internal Linux firewall to allow multicast if you want to use it.   
-Sometimes firewalling is not needed at all and you can disable it completely; here are some hints:
-
-* [CentOS7 / CentOS8 / OpenLogic 7 / Red Hat 7](http://www.server-world.info/en/note?os=CentOS_7&p=initial_conf&f=2)
-* CentOS 6.6, if **systemctl** command is not available you can use these ones:
+Sometimes firewalling is not needed at all and you can disable it completely; here are some hints:   
+[CentOS7 / CentOS8 / OpenLogic 7 / Red Hat 7](http://www.server-world.info/en/note?os=CentOS_7&p=initial_conf&f=2)
+CentOS 6.6, if **systemctl** command is not available you can use these ones:   
 
     service ipchains stop
     service iptables stop
