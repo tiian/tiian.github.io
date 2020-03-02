@@ -22,10 +22,10 @@ FLoM is distributed as C source code you may download, compile and install using
 
 FLoM wants to be **just work software** and configuration should be reduced to the minimum: this page gives you some hint to explore [Configuration](Configuration.md) matter.
 
-[FLoM deep diving] contains specific detailed topics you could interested in after you tried some examples (use cases).
+FLoM [deep diving](Deep_Diving/Deep_Diving.md) contains specific detailed topics you could interested in after you tried some examples (use cases).
 
 ## FLoM API (Application Programming Interface)
-Starging with version 0.9.0 FLoM provides an API based on [libflom] that's compiled and installed using libtool; using **libflom** you can use a FLoM *daemon* to synchronize your own applications and your own shell scripts/commands using the **same** tool.
+Starging with version 0.9.0 FLoM provides an API based on [libflom](libflom/libflom.md) that's compiled and installed using libtool; using **libflom** you can use a FLoM *daemon* to synchronize your own applications and your own shell scripts/commands using the **same** tool.
 
 The FLoM API allows you to write your own program using these programming languages:
 
