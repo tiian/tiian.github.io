@@ -15,6 +15,8 @@ Take a look to Google results: query string [shell script lock](https://www.goog
 
 Google told me he knows about 15800000 "solutions" of this problem... bingo!
 
+But are them really **solutions**?! Unfortunately not: most of the time, they are great hacks that solve a specific problem, not a *class of problems".
+
 This is the question:
 ---
 
