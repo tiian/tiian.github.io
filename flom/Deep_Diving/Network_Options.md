@@ -8,7 +8,7 @@ FLoM aggressively uses TCP keepalive to detect disappeared clients: without this
 FLoM allows you to specify all the three parameters supplied by keepalive functionality: *time*, *intvl*, *probes*.   
 Default values can be easily retrieved running it with verbose mode activated:
 
-    tiian@mojan:~$ flom --verbose -- true
+    tiian@mojan:~$ flom --verbose
     [...]
     [Network]/TcpKeepaliveTime=60
     [Network]/TcpKeepaliveIntvl=10
@@ -26,7 +26,7 @@ The meaning of the above options is not explained here because I will not be abl
 ## UDP/IP auto-discovery network related options
 Inside a [Configuration](../Configuration.md) file you can specify three options that normally have these default values:
 
-    tiian@mojan:~$ flom --verbose -- true
+    tiian@mojan:~$ flom --verbose
     [...]
     [Network]/DiscoveryAttempts=2
     [Network]/DiscoveryTimeout=500
@@ -35,7 +35,7 @@ Inside a [Configuration](../Configuration.md) file you can specify three options
 
 ### DiscoveryAttemps
 **Command line option**: "-D", "\-\-discovery-attempts"   
-**Meaning**: maximum number of UDP/IP multicast request a FLOM command (client) performs to discover a FLoM daemon (server).   
+**Meaning**: maximum number of UDP/IP multicast request a FLoM command (client) performs to discover a FLoM daemon (server).   
 This example shows what happens if a daemon is not available specifying 7 discovery attempts:
 
     tiian@mojan:~$ export FLOM_TRACE_MASK=0x8
@@ -75,7 +75,7 @@ This example shows what happens if a daemon is not available specifying 7 discov
 ### DiscoveryTimeout
 **Command line option**: "-I", "\-\-discovery-timeout"   
 **Meaning**: how long a FLoM command (client) waits for an answer UDP datagram after it sent a request UDP multicast datagram.   
-Shorter timeouts can be used in presence of low latency networks while longer timeouts should be used when FLOM is used with high latency networks. Timeout is expressed in milliseconds.
+Shorter timeouts can be used in presence of low latency networks while longer timeouts should be used when FLoM is used with high latency networks. Timeout is expressed in milliseconds.
 
 ### DiscoveryTTL
 **Command line option**: "\-\-discovery-ttl"   
@@ -86,11 +86,11 @@ Some Linux distributions set a default firewall configuration that stops IP 4 mu
 You have to properly configure internal Linux firewall to allow multicast if you want to use it.   
 Sometimes firewalling is not needed at all and you can disable it completely; here are some hints:
 
-* CentOS7 / CentOS8 / OpenLogic 7 / Red Hat 7: http://www.server-world.info/en/note?os=CentOS_7&p=initial_conf&f=2
+* [CentOS7 / CentOS8 / OpenLogic 7 / Red Hat 7](http://www.server-world.info/en/note?os=CentOS_7&p=initial_conf&f=2)
 * CentOS 6.6, if **systemctl** command is not available you can use these ones:
     service ipchains stop
     service iptables stop
     chkconfig ipchains off
     chkconfig iptables off
 
-*** Your attention please: *** I'm ***NOT*** telling you that you have to disable your firewalling policy, I'm only telling you have to fix them if you want to use UDP/IP multicast.
+**Your attention please:** I'm **NOT** telling you that you have to disable your firewalling policy, I'm only telling you have to fix them if you want to use UDP/IP multicast.
