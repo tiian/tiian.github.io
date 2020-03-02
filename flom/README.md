@@ -12,11 +12,11 @@ A step by step tutorial is available in wiki format here: [FLoM by examples](FLo
 
 Are you asking yourself because I started to develop this software? Are you tired to write cryptic shell scripts to manage locking and synchronization? [Read the tale](Read_the_Tale.md)
 
-As you can imagine this is not the first time some one is trying to give you a tool like this. This page collects some [Similar tools] I discovered googling around.
+As you can imagine this is not the first time some one is trying to give you a tool like this. This page collects some [Similar tools](Similar_Tools.md) I discovered googling around.
 
 ## If you was not annoyed by the previous stuff, you might be interested in some more detailed documentation...
 
-FLoM runs around the [Resource] concept: take a look to it.
+FLoM runs around the [Resource](Resource.md) concept: take a look to it.
 
 FLoM is distributed as C source code you may download, compile and install using standard git and GNU build chain (automake, autoconf, gcc): [installation](Installation.md).
 
