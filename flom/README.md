@@ -14,6 +14,9 @@ Are you asking yourself because I started to develop this software? Are you tire
 
 As you can imagine this is not the first time some one is trying to give you a tool like this. This page collects some [Similar Tools](Similar_Tools.md) I discovered googling around.
 
+## Download
+You can download FLoM from [GitHub](https://github.com/tiian/flom) and from [SourceForge](https://sourceforge.net/projects/flom/)
+
 ## If you was not annoyed by the previous stuff, you might be interested in some more detailed documentation...
 
 FLoM runs around the [Resource](Resource.md) concept: take a look to it.
@@ -45,5 +48,3 @@ Take a look to the project [roadmap] and vote the preferred features.
 ## Your feedback is very valuable...
 Don't esitate to write your suggestions using the [project forum](http://sourceforge.net/p/flom/discussion/): without your feedback this software can't become terribly useful.
 
-## GitHub
-FLoM is available on GitHub too: https://github.com/tiian/flom
