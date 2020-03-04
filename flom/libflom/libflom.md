@@ -17,7 +17,7 @@ Some documented usage examples are available inside:
 Choose the language of interest:
 
 * [libflom for C developers](libflom_for_C_developers.md)
-* [libflom for C++ developers](libflom_CXX.md)
+* [libflom for C++ developers](libflom_for_CXX_developers.md)
 * [libflom for Java developers](libflom_Java.md)
 * [libflom for Perl developers](libflom_Perl.md)
 * [libflom for PHP developers](libflom_PHP.md)
