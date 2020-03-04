@@ -6,6 +6,6 @@ Specific [network options](Network_Options.md) can be useful to change default b
 
 SSL/TLS Security is supported by a specific debugging tool to help in fixing your system configuration:
 
-* [Channel Encryption Debug]
+* [Channel Encryption Debug](Channel_Encryption_Debug.md)
 * [Mutual Authentication Debug]
 
