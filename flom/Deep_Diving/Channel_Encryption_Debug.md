@@ -387,7 +387,7 @@ Remove *trace mask*, then restart the debug client on node2:
 When everything is fine, no messages on the terminal are printed and the exit code of the *flom* command is 0.
 
 ### Configuration hint
-A more convenient way to setup all the TLS parameters is to use a FLoM [Configuration](../Configuration.md) file: these are the keys you have to customize:
+A more convenient way to setup all the TLS parameters is to use a FLoM [configuration](../Configuration.md) file: these are the keys you have to customize:
 
 ~~~
 [TLS]
