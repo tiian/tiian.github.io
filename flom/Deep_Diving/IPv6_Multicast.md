@@ -84,7 +84,7 @@ and the requester (client) related output:
 Some IPv6 multicast well known issues (related to FLoM).
 
 ## ff01::1 is node local...
-...and will not be sent to other systems! Pay attention, use ff02::1 instead of ff01::1! The table supplied by (wikipedia)[https://en.wikipedia.org/wiki/Multicast_address#IPv6] is useful and easy to understand.
+...and will not be sent to other systems! Pay attention, use ff02::1 instead of ff01::1! The table supplied by [wikipedia](https://en.wikipedia.org/wiki/Multicast_address#IPv6) is useful and easy to understand.
 
 ## Check ip6tables if datagrams disappear without "any reason"
 
