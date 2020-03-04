@@ -209,7 +209,7 @@ drwxrwxrwt. 10 root  root  4096 29 mar 22.40 ..
 ~~~
 
 ### Debugging TLS (channel encryption security level) with FLoM
-Setting a *trace mask* to trace the messaged produced by *flom_tls*, *flom_tcp* and *flom_debug* modules can help to troubleshoot a possible issue.
+Setting a *trace mask* to trace the messages produced by *flom_tls*, *flom_tcp* and *flom_debug* modules can help to troubleshoot a possible issue.
 
 ![](security_ce_01.png)
 
@@ -387,7 +387,7 @@ Remove *trace mask*, then restart the debug client on node2:
 When everything is fine, no messages on the terminal are printed and the exit code of the *flom* command is 0.
 
 ### Configuration hint
-A more convenient way to setup all the TLS parameters is to use a FLoM [Configuration] file: these are the keys you have to customize:
+A more convenient way to setup all the TLS parameters is to use a FLoM [Configuration](../Configuration.md) file: these are the keys you have to customize:
 
 ~~~
 [TLS]
@@ -409,13 +409,12 @@ A more convenient way to setup all the TLS parameters is to use a FLoM [Configur
 
 ### System message logging
 
-Both client and server writes logging messages on the system log.
+Both client and server write logging messages on the system log.
 
 On the server side (*node1*):
 
 ~~~
 tiian@ubuntu1004:~$ sudo tail /var/log/syslog 
-[sudo] password for tiian: 
 Apr  1 22:22:46 ubuntu1004 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
 Apr  1 22:22:46 ubuntu1004 flom: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
 Apr  1 22:32:50 ubuntu1004 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
@@ -426,7 +425,6 @@ On the client side (*node2*), these are the corresponding messages:
 
 ~~~
 [tiian@centos71-64 ~]$ sudo tail /var/log/messages
-[sudo] password for tiian: 
 Apr  1 22:32:49 centos71-64 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
 Apr  1 22:32:49 centos71-64 flom: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
 ~~~
