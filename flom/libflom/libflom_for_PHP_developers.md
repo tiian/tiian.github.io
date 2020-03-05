@@ -23,8 +23,8 @@ Basic example does not explain as you can specify the name of the logical resour
 [advanced.php](https://github.com/tiian/flom/blob/master/doc/examples/php/advanced.php.in) example shows how some properties can be set before entering in the synchronization phase.    
 The complete list of the available setter/getter methods can be retrieved from:
 
-* [function](http://flom.sourceforge.net/globals_func.html) API page
-* [flom.php](https://sourceforge.net/p/flom/code/ci/master/tree/src/php/flom.php) header file
+* [function](http://flom.sourceforge.net/html/C/) API page
+* [flom.php](https://github.com/tiian/flom/blob/master/src/php/flom.php) header file
 
 **Note:** PHP libflom wrapper exposes the same functions provided by the C basic library.
 
