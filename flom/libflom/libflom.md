@@ -21,5 +21,4 @@ Choose the language of interest:
 * [libflom for Java developers](libflom_for_Java_developers.md)
 * [libflom for Perl developers](libflom_for_Perl_developers.md)
 * [libflom for PHP developers](libflom_for_PHP_developers.md)
-* [libflom for Python developers](libflom_Python.md)
-
+* [libflom for Python developers](libflom_for_Python_developers.md)
