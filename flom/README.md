@@ -42,9 +42,6 @@ The FLoM API allows you to write your own program using these programming langua
 ## FLoM Security
 SSL/TLS [Security] allows to protect network communications and enable peer to peer mutual authentication based on X.509 certificates.
 
-## FLoM IoT Gateway Component
-Take a look to the project [roadmap] and vote the preferred features.
-
 ## Your feedback is very valuable
 Don't esitate to write your suggestions using the [project forum](http://sourceforge.net/p/flom/discussion/): without your feedback this software can't become terribly useful.
 
