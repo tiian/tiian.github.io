@@ -4,7 +4,7 @@ Be sure you have GLIB2 installed on your system (Ubuntu verification command):
 
     dpkg --list | grep libglib2.0-dev
 
-Download the tarball from https://sourceforge.net/projects/flom/files/ and expand it:
+Download the tarball from [SourceForge](https://sourceforge.net/projects/flom/files/) and expand it:
 
     tar xvzf flom-X.Y.Z.tar.gz
 

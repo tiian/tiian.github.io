@@ -49,7 +49,7 @@ null|IP address/name|= 0|dynamic network mode: if a *flom daemon* does not reply
 null|IP address/name|> 0|dynamic network mode: if a *flom daemon* does not reply to UDP/IP multicast query at the specified *IP address/name* a new one will be started locally trying to bind all the available interfaces (INADDR_ANY); if started, the daemon would spontaneously end after the inactivity time exceeds the *Lifespan* specified value. If activated, the daemon would answer to UDP/IP multicast query: *autodiscovery feature*
 
 ### Additional details
-When operating in *local mode*, configuration option "-s", "\-\-socket-name", "SocketName" can be used to change the default behavior; default behavior uses a per user socket name and, as a consequence, a per user *flom daemon*. See [Use Case 6] for additional information.
+When operating in *local mode*, configuration option "-s", "\-\-socket-name", "SocketName" can be used to change the default behavior; default behavior uses a per user socket name and, as a consequence, a per user *flom daemon*. See [Use Case 6](FLoM_by_examples/Use_Case_6.md) for additional information.
 
 The following table resumes the configuration options necessary to customize the ports used for TCP/IP unicast and UDP/IP multicast communications:
 

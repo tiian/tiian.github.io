@@ -4,7 +4,7 @@ FLoM supports two different types of sequences:
 * basic sequences
 * transactional sequences
 
-**Basiyyyyyyyyyyy** are useful to generate unique increasing numbers: every locker obtains a different value from the lock manager.   
+**Basic sequences** are useful to generate unique increasing numbers: every locker obtains a different value from the lock manager.   
 **Transactional sequences** are useful to generate unique increasing numbers even if some locker fails to process its value.
 
 Moreover, FLoM sequence resources are multiple: more than 1 locker can obtain the lock at the same time.

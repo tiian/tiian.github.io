@@ -18,16 +18,16 @@ Google told me he knows about 15800000 "solutions" of this problem... bingo!
 But are them really **solutions**?! Unfortunately not: most of the time, they are great hacks that solve a specific problem, not a *class of problems".
 
 This is the question:
----
 
 If
  
     nice command
+
 allows me to run *command* with a specific priority, why can't I use
 
     flom command
-to run *command* with a specific synchronization?
 
+to run *command* with a specific synchronization?    
 That's all!
----
+
 You are reading about a crazy project that's trying to address the above issue while keeping everything **very easy** to use!

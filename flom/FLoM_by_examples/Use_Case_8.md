@@ -3,7 +3,7 @@
 This use case shows extends [Use Case 7](Use_Case_7.md) and shows as auto-discovery feature works.
 
 ## Before you can start:
-Download and install **flom** on two different systems: they must be able to contact each other using IP network; it is suggested to play with [Use Case 7] before trying this one.
+Download and install **flom** on two different systems: they must be able to contact each other using IP network; it is suggested to play with [Use Case 7](Use_Case_7.md) before trying this one.
 
 ### UDP/IP multicast and firewalls
 Please pay attention some Linux distros configure a default firewall that silently drop multicast datagrams: disable your firewall or configure it to **not** drop multicast datagrams.    
@@ -106,7 +106,7 @@ more details can be retrieved activating tracing:
 -d -1 is used in the above example with the meaning "start a daemon and don't stop it"    
 -d 0 is used in the above example with the meaning "don't start a daemon"   
 First usage is typically *server oriented*, while the second usage is typically *client oriented*.    
-If you are not happy to specify "-d 0" for every *client* command, you can set *Lifespan* option in a [Configuration](../Configuration.md) file.
+If you are not happy to specify "-d 0" for every *client* command, you can set *Lifespan* option in a [configuration](../Configuration.md) file.
 
 To terminate a running *flom daemon*, simply use *kill* or *pkill* command:
 
