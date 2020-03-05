@@ -1,5 +1,5 @@
 # Network options
-Inside *Network* section of [Configuration](../Configuration.md) files you can activate some non standard options related to TCP/IP keepalive and UDP/IP auto-discovery feature.
+Inside *Network* section of [configuration](../Configuration.md) files you can activate some non standard options related to TCP/IP keepalive and UDP/IP auto-discovery feature.
 
 ## TCP/IP keepalive
 Linux kernel allows you to set TCP/IP keepalive parameters on a per socket basis, other *UNIX-like* systems does not.   
@@ -15,7 +15,7 @@ Default values can be easily retrieved running it with verbose mode activated:
     [Network]/TcpKeepaliveProbes=6
     tiian@mojan:~$
 
-These options can be changed using a [Configuration](../Configuration.md) file or using these command line options:
+These options can be changed using a [configuration](../Configuration.md) file or using these command line options:
 
     --tcp-keepalive-time         Local override for SO_KEEPALIVE feature
     --tcp-keepalive-intvl        Local override for SO_KEEPALIVE feature
@@ -24,7 +24,7 @@ These options can be changed using a [Configuration](../Configuration.md) file o
 The meaning of the above options is not explained here because I will not be able to make something better than this [document](http://tldp.org/HOWTO/html_single/TCP-Keepalive-HOWTO)
 
 ## UDP/IP auto-discovery network related options
-Inside a [Configuration](../Configuration.md) file you can specify three options that normally have these default values:
+Inside a [configuration](../Configuration.md) file you can specify three options that normally have these default values:
 
     tiian@mojan:~$ flom --verbose
     [...]

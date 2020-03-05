@@ -17,7 +17,7 @@ As you can imagine this is not the first time some one is trying to give you a t
 ## Download
 You can download FLoM from [GitHub](https://github.com/tiian/flom) and from [SourceForge](https://sourceforge.net/projects/flom/)
 
-## If you was not annoyed by the previous stuff, you might be interested in some more detailed documentation...
+#### If you was not annoyed by the previous stuff, you might be interested in some more detailed documentation...
 
 FLoM runs around the [Resource](Resource.md) concept: take a look to it.
 
@@ -45,6 +45,8 @@ SSL/TLS [Security] allows to protect network communications and enable peer to p
 ## FLoM IoT Gateway Component
 Take a look to the project [roadmap] and vote the preferred features.
 
-## Your feedback is very valuable...
+## Your feedback is very valuable
 Don't esitate to write your suggestions using the [project forum](http://sourceforge.net/p/flom/discussion/): without your feedback this software can't become terribly useful.
 
+## And last but not least...
+In the event of bug, [GitHub Issues](https://github.com/tiian/flom/issues) is your friend!
