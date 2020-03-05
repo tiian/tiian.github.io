@@ -1,0 +1,37 @@
+# The libflom programming kompass for PHP developers
+
+FLoM API is very easy to understand and use; these are the basic concepts:
+
+* *flom.php* is the header file you must include
+* *flom_handle_t* is the data type you must use to communicate with FLoM (you must treat this type of object as an opaque object: for every useful property there's a getter/setter method and you don't have to mind what's the meaning of the object content)
+
+## Basic programming example
+
+[basic.php](https://github.com/tiian/flom/blob/master/doc/examples/php/basic.php.in) example can be considered the *hello world FLoM equivalent* for *PHP programming*:
+
+1. allocate a *flom_handle_t* object
+2. initialize the object using method (function) *flom_handle_init*
+3. synchronize your program using method (function) *flom_handle_lock*
+4. do everything your program must perform inside the synchronization window
+5. desynchronize your program using method (function) *flom_handle_unlock*
+6. clean-up the object using method (function) *flom_handle_clean*
+
+**Note:** you must clean-up every initialized *flom_handle_t* object; if you don't clean-up every object you will generate memory leaks.
+
+## Advanced programming example
+Basic example does not explain as you can specify the name of the logical resource, the quantity of a numerical resource and the other parameters you typically use with **flom** command line.     
+[advanced.php](https://github.com/tiian/flom/blob/master/doc/examples/php/advanced.php.in) example shows how some properties can be set before entering in the synchronization phase.    
+The complete list of the available setter/getter methods can be retrieved from:
+
+* [function](http://flom.sourceforge.net/globals_func.html) API page
+* [flom.php](https://sourceforge.net/p/flom/code/ci/master/tree/src/php/flom.php) header file
+
+**Note:** PHP libflom wrapper exposes the same functions provided by the C basic library.
+
+## Transactional example
+Some resources, for example unique sequences, can be declared as *transactional*.    
+A transactional resource has an associated state and it needs an explicit *unlock* to commit the state.     
+If a transactional resource is not committed due to a program crash, the state will be rolled back.   
+Function **flom_handle_unlock_rollback** has been introduced to force a state rollback during the **unlock** phase, even if a program does not crash.    
+An example is available in this source code: [transactional.php](https://github.com/tiian/flom/blob/master/doc/examples/php/transactional.php.in).
+
