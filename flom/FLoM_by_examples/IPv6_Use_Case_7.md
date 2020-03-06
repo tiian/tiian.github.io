@@ -13,7 +13,6 @@ I have two systems named "mojan" and "presanella", this is a network check examp
     Copyright (c) 2013-2015, Christian Ferrari; all rights reserved.
     License: GPL (GNU Public License) version 2
     Package name: flom; package version: 1.1.1; release date: 2015-11-26
-    Access http://sourceforge.net/projects/flom/ for project community activities
     tiian@ubuntu1404-64:/tmp$
 
     tiian@ubuntu1404-64:/tmp$ ping6 -c 3 centos71-64.brenta.org -I eth0
@@ -34,7 +33,6 @@ I have two systems named "mojan" and "presanella", this is a network check examp
     Copyright (c) 2013-2015, Christian Ferrari; all rights reserved.
     License: GPL (GNU Public License) version 2
     Package name: flom; package version: 1.1.1; release date: 2015-11-26
-    Access http://sourceforge.net/projects/flom/ for project community activities
     [tiian@centos71-64 tmp]$
 
     [tiian@centos71-64 tmp]$ ping -c 3 ubuntu1404-64.brenta.org -I eth0
@@ -154,7 +152,7 @@ and everything goes fine. You can also notify that specifying the option "-d", o
 
 **Note:** instead of "-d *interface*" option you can use the "*address%interface*" notation, but you must be aware that it can **not** be used with IPv6 network aliases because 
 
-###getaddrinfo() does not accept %interface after a network alias:
+### getaddrinfo() does not accept %interface after a network alias:
 
     [tiian@centos71-64 usr]$ flom -a ubuntu1404-64.brenta.org%eth0 -d 0 -- ls
     2015-11-26 22:07:49.233859 [13163/0x1312000] flom_client_connect

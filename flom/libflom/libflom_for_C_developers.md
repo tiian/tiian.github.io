@@ -44,7 +44,7 @@ Basic examples do not explain as you can specify the name of the logical resourc
 [advanced_static.c](https://github.com/tiian/flom/blob/master/doc/examples/advanced_static.c) and [advanced_dynamic.c](https://github.com/tiian/flom/blob/master/doc/examples/advanced_dynamic.c) examples show how some properties can be set before entering in the synchronization phase.    
 The complete list of the available setter/getter methods can be retrieved from:
 
-* [function](http://flom.sourceforge.net/html/C/) API page
+* [functions](http://www.tiian.org/flom/API/C/globals_func.html) C API page
 * [flom_handle.h](https://github.com/tiian/flom/blob/master/src/flom_handle.h) header file
 
 # Transactional example

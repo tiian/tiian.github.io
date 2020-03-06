@@ -4,9 +4,9 @@
 FLoM API documentation is available:
  
 * online
-    * [C API documentation](http://flom.sourceforge.net/html/C/)
-    * [C++ API documentation](http://flom.sourceforge.net/html/C++/)
-    * [Java API documentation](http://flom.sourceforge.net/html/java/)
+    * [C API documentation](http://www.tiian.org/flom/API/C/globals_func.html)
+    * [C++ API documentation](http://www.tiian.org/flom/API/C++/annotated.html)
+    * [Java API documentation](http://www.tiian.org/flom/API/java/)
 * on your system (see [installation](../Installation.md)): /usr/local/share/doc/flom/html/
 
 Some documented usage examples are available inside:

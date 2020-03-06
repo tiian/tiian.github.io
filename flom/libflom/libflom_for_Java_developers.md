@@ -4,7 +4,7 @@ FLoM API is very easy to understand and use; these are the basic concepts:
 
 * *flom.jar* is the archive you must include to build your application
 * *FlomHandle* is the class you must use to communicate with FLoM (you must treat this type of objects as opaque objects: for every useful property there's a getter/setter method and you don't have to mind what's the meaning of the object content)
-* [http://flom.sourceforge.net/html/java/](http://flom.sourceforge.net/html/java/) is the home for Javadoc style documentation
+* [http://www.tiian.org/flom/API/java/](http://www.tiian.org/flom/API/java/) is the home for Javadoc style documentation
 
 FLoM Java API is tested with these Java versions: 6, 7, 8; the JVM implementation used for development and test is [OpenJDK](http://openjdk.java.net/)
 
@@ -24,7 +24,7 @@ The Basic example do not explain as you can specify the name of the logical reso
 [Advanced.java](https://github.com/tiian/flom/blob/master/doc/examples/java/Advanced.java.in) example shows how some properties can be set before entering in the synchronization phase.    
 The complete list of the available setter/getter methods can be retrieved from:
 
-* [FlomHandle class](http://flom.sourceforge.net/html/java/org/tiian/flom/FlomHandle.html) API page
+* [FLoM classes](http://www.tiian.org/flom/API/java/) Java API page
 * [FlomHandle.java](https://github.com/tiian/flom/blob/master/src/java/org/tiian/flom/FlomHandle.java) source file
 
 # Transactional example

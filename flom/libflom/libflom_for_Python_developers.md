@@ -23,7 +23,7 @@ Basic example does not explain as you can specify the name of the logical resour
 [advanced.py](https://github.com/tiian/flom/blob/master/doc/examples/python/advanced.py) example shows how some properties can be set before entering in the synchronization phase.    
 The complete list of the available setter/getter methods can be retrieved from:
 
-* [function](http://flom.sourceforge.net/html/C/) API page
+* [functions](http://www.tiian.org/flom/API/C/globals_func.html) C API page
 
 **Note:** Python libflom wrapper exposes the same functions provided by the C basic library.
 
