@@ -1,5 +1,7 @@
 # FLoM deep diving
 
+[Integrating](Integrating.md) FLoM with a scheduler like Jenkins require the usage of option "\-\-ignore-signal".
+
 Specific [network options](Network_Options.md) can be useful to change default behavior and use FLoM in non trivial situations.
 
 [IPv6 multicast](IPv6_Multicast.md) feature is supported by a specific debugging tool to fix your system configuration.
