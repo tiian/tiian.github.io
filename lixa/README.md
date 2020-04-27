@@ -12,7 +12,7 @@ Here is the last version of the LIXA manual as an HTML document:
 
 XTA API Reference is available for the following programming languages:
 
-- [C](/manuals/xta/C/index.html)
+- [C](/lixa/manuals/xta/C/index.html)
 - [C++](/manuals/xta/CPP/index.html), it's useful even for Python
 - [Java](/manuals/xta/Java/index.html)
 
