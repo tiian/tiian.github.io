@@ -21,7 +21,7 @@ Configure & make (Python 2):
 Configure & make (Python 3):
 
     cd flom-X.Y.Z    
-    PYTHON_VERSION ./configure
+    PYTHON_VERSION=3 ./configure
     make
 
 Install:
