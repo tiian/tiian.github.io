@@ -55,4 +55,4 @@ can support two phase commit indipendently from XA standard.
 ## XTA documentation
 
 XTA documentation is available inside the
-[LIXA manual](/manuals/html/index.html)
+[LIXA manual](/lixa/manuals/html/index.html)
