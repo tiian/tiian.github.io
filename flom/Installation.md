@@ -12,10 +12,16 @@ or pick-up flom source code (last commit) using git:
 
     git clone git://git.code.sf.net/p/flom/code flom
 
-Configure & make:
+Configure & make (Python 2):
 
     cd flom-X.Y.Z    
     ./configure
+    make
+
+Configure & make (Python 3):
+
+    cd flom-X.Y.Z    
+    PYTHON_VERSION ./configure
     make
 
 Install:
