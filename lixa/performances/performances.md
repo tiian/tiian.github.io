@@ -33,8 +33,24 @@ As shown in the above image, the components used to perform the performance test
 - LIXA daemon: the process of **lixad**
 - State: state files on disk used by **lixad** to persist the state in the event of crash/restart
 
-### Important Notes on Benchmark Architecture
+### Important Notes on Benchmark Architecture:
 
 - dummy Resource Managers introduce quite zero delay: real life use cases use Resource Managers that require some time to perform XA functions. This must be considered a *worst case* condition to measure the overhead introduced by LIXA
 - **lixat** and **lixad** are deployed in distinct Virtual Machines inside the same Azure region: this is necessary to introduce the network latency and the correlated jitter that's a *noise* from measurement perspective
 - state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write only* application and push a lot of work on the disk (this aspect will be furtherly described below)
+
+### How the Benchmark Works
+
+**lixat** is a multithreaded Application Program that uses the TX (Transaction Demarcation) interface to execute XA distributed transaction. Every thread performs the same number of transactions, one after the previous one. The logic can be described as below:
+
+    loop
+        wait some time (t1)
+        tx_open()
+        wait some time (t1)
+        tx_begin()
+        wait some time (t2)
+        tx_commit()
+        wait some time (t1)
+        tx_close()
+
+
