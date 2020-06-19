@@ -53,4 +53,20 @@ As shown in the above image, the components used to perform the performance test
         wait some time (t1)
         tx_close()
 
+- *t1* is used to simulate the "thinking time" of a real Application Program
+- *t2* is used to simulate the "thinking time" of the Resource Managers, like for example an SQL statement or a message PUT
 
+In every cycle of the loop, the connection is opened (tx_open) and closed (tx_close): this can be considered a typical behavior for an online service; **lixat** can even simulate a batch process with a single pair of tx_open/tx_close and many tx_begin/tx_commit, but the figures presented below are related to an online service behavior.
+
+**Note:** due to the *0-latency* of the dummy Resource Managers, tx_open(), tx_begin(), tx_commit() and tx_close() measure **only the overhead introduced by LIXA**.
+
+Around tx_open(), tx_begin(), tx_commit() and tx_close() a microsecond timer is used to measure how long they takes.
+
+Three parameters are available to change the workload injected in the system:
+- the number of concurrent threads: the higher the number, the higher the workload
+- t1: the lower t1, the higher the workload, because transactions are executed faster
+- t2: as described for t1
+
+### Special Note Related to XTA:
+
+even if the benchmark uses the TX interface, both TX and XTA use the same common layer of library *liblixac* and there should not be relevant differences related to the type of distributed transactions depicted in the above image.
