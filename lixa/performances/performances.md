@@ -69,4 +69,12 @@ Three parameters are available to change the workload injected in the system:
 
 ### Special Note Related to XTA:
 
-even if the benchmark uses the TX interface, both TX and XTA use the same common layer of library *liblixac* and there should not be relevant differences related to the type of distributed transactions depicted in the above image.
+even if the benchmark uses the TX interface, both TX and XTA use the same common layer (library *liblixac*) and there should not be relevant differences, with regards to the type of distributed transactions depicted in the above image, between TX and XTA.
+
+## LIXA State Server Engines
+
+Starting with version 1.9.0, the LIXA State Server supplies two distinct *State Engines*:
+- **TRADITIONAL**: this is the battle tested, original *State Engine*
+- **JOURNAL**: a more complex *State Engine* that provides better performances in most situations
+
+The figures reported below compare the behavior of the two *State Engines* when different workloads and different configurations are applied.
