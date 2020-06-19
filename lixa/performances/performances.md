@@ -17,3 +17,9 @@ Both the virtual machines are configured as below:
 - Disk Host caching: Read/write
 
 All the above are default parameters for D2s v3 on 2020Q2
+
+## Benchmark Architecture
+
+The following image shows the architecture used to perform all tests described in this section:
+
+![Image of Benchmark Architecture](Performances.png)
