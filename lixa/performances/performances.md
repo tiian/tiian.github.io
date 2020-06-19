@@ -29,7 +29,12 @@ As shown in the above image, the components used to perform the performance test
 - **liblixac**: the library used to manage the transaction and to communicate with the state server (**lixad**)
 - **lixa dummy RM1**, **lixa dummy RM2**: a couple of dummy Resource Managers, they behave as a real XA Resource Manager, but reply to the caller immediately
 - Server VM: a D2s v3 Azure Virtual machine to host the **lixad** daemon
-- **lixad**: the LIXA state server daemon
+- **lixad**: the LIXA state server 
+- LIXA daemon: the process of **lixad**
 - State: state files on disk used by **lixad** to persist the state in the event of crash/restart
 
+### Important Notes on Benchmark Architecture
 
+- dummy Resource Managers introduce quite zero delay: real life use cases use Resource Managers that require some time to perform XA functions. This must be considered a *worst case* condition to measure the overhead introduced by LIXA
+- **lixat** and **lixad** are deployed in distinct Virtual Machines inside the same Azure region: this is necessary to introduce the network latency and the correlated jitter that's a *noise* from measurement perspective
+- state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write only* application and push a lot of work on the disk (this aspect will be furtherly described below)
