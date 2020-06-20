@@ -37,7 +37,7 @@ As shown in the above image, the components used to perform the performance test
 
 - dummy Resource Managers introduce quite zero delay: real life use cases use Resource Managers that require some time to perform XA functions. This must be considered a *worst case* condition to measure the overhead introduced by LIXA
 - **lixat** and **lixad** are deployed in distinct Virtual Machines inside the same Azure region: this is necessary to introduce the network latency and the correlated jitter that's a *noise* from measurement perspective
-- state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write only* application and push a lot of work on the disk (this aspect will be furtherly described below)
+- state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write only* application and push a lot of work on the disk (this aspect will be further described below)
 
 ### How the Benchmark Works
 
@@ -55,6 +55,8 @@ As shown in the above image, the components used to perform the performance test
 
 - *t1* is used to simulate the "thinking time" of a real Application Program
 - *t2* is used to simulate the "thinking time" of the Resource Managers, like for example an SQL statement or a message PUT
+
+Both *t1* and *t2* are randomly distributed in a range to simulate a more realistic scenario.
 
 In every cycle of the loop, the connection is opened (tx_open) and closed (tx_close): this can be considered a typical behavior for an online service; **lixat** can even simulate a batch process with a single pair of tx_open/tx_close and many tx_begin/tx_commit, but the figures presented below are related to an online service behavior.
 
@@ -103,9 +105,13 @@ The figures reported below are classified even from the RPO perspective.
 
 The first couple of charts are related to the behavior in presence of a low workload with default parameters and RPO=0.
 
+*t1* is in range 500-1500 microseconds
+*t2* is in range 50-150 milliseconds: this can be associated to the behavior of *slow* Resource Managers
+
 ![Comparison of API Response Time](chart001.png)
 
-
+All the points in the chart are related to the 95th percentile value; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *journal* state engine appear to scale much better when the number of concurrent threads increases.
 
 ![Total Latency and Transactions per Second](chart002.png)
 
+In this chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transaction per seconds that have been executed: from this chart, the *journal* state engine appears to provide an overall better performance. 
