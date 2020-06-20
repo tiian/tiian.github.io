@@ -60,7 +60,7 @@ Both *t1* and *t2* are randomly distributed in a range to simulate a more realis
 
 In every cycle of the loop, the connection is opened (tx_open) and closed (tx_close): this can be considered a typical behavior for an online service; **lixat** can even simulate a batch process with a single pair of tx_open/tx_close and many tx_begin/tx_commit, but the figures presented below are related to an online service behavior.
 
-**Note:** due to the *0-latency* of the dummy Resource Managers, tx_open(), tx_begin(), tx_commit() and tx_close() measure **only the overhead introduced by LIXA**.
+**Note:** due to the *0-latency* of the dummy Resource Managers, tx_open(), tx_begin(), tx_commit() and tx_close() measure **only the overhead introduced by LIXA**. They don't measure the overhead introduced by Resource Managers.
 
 Around tx_open(), tx_begin(), tx_commit() and tx_close() a microsecond timer is used to measure how long they takes.
 
@@ -79,13 +79,13 @@ For every test the following procedure was used:
 
 The number of cycles, for every thread, was fixed to 1000; as a consequence, every collected statistic comes from a number of samples between 10K and 100K. Nevertheless, the collected data are affected by non negligible noise as advised in the below note.
 
-**Note:** the tests have been performed in a public cloud environment and they are affected by non negligible noise. The previous statement should warn the reader to avoid considering *absolute* values the figures reported: all the data must be intended to provide general advices that must be confirmed in a real production environment.
+**Note: the tests have been performed in a public cloud environment and they are affected by non negligible noise.** The previous statement should warn the reader to avoid considering *absolute* values the figures reported: all the data must be intended to provide general advices that must be confirmed in a real production environment.
 
 ### Special Note Related to XTA:
 
 even if the benchmark uses the TX interface, both TX and XTA use the same common layer (library *liblixac*) and there should not be relevant differences, with regards to the type of distributed transactions depicted in the above image, between TX and XTA.
 
-## LIXA State Server Engines
+### LIXA State Server Engines
 
 Starting with version 1.9.0, the LIXA State Server supplies two distinct *State Engines*:
 - **TRADITIONAL**: this is the battle tested, original *State Engine*
@@ -99,19 +99,24 @@ LIXA State Server provides parameters that can alter the RPO of the saved state 
 
 The figures reported below are classified even from the RPO perspective.
 
-**Note:** default LIXA configuration assumes the user desire RPO=0, but this is not necessarily true, depending on the environment and the use case. Please refer to the [Tuning](https://www.tiian.org/lixa/manuals/html/ch11.html) chapter in the LIXA Reference Guide for more details on this.
+**Note:** default LIXA configuration assumes that the user desire RPO=0, but this is not necessarily true, depending on the environment and the use case. Please refer to the [Tuning](https://www.tiian.org/lixa/manuals/html/ch11.html) chapter in the LIXA Reference Guide for more details on this.
 
-### Low Workload, RPO=0, Default Parameters
+### Data
 
-The first couple of charts are related to the behavior in presence of a low workload with default parameters and RPO=0.
+All the data are available for consultation in [OpenDocument](LIXA_perf.ods) format.
 
-*t1* is in range 500-1500 microseconds
-*t2* is in range 50-150 milliseconds: this can be associated to the behavior of *slow* Resource Managers
+## Figures, Charts & Explanations
+
+### Low Workload (slow RMs), RPO=0, Default Parameters
+
+The first couple of charts are related to the behavior in presence of a low workload with default parameters and RPO=0:
+- *t1* is in range 500-1500 microseconds
+- *t2* is in range 50-150 milliseconds: this can be associated to the behavior of (very) *slow* Resource Managers
 
 ![Comparison of API Response Time](chart001.png)
 
-All the points in the chart are related to the 95th percentile value; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *journal* state engine appear to scale much better when the number of concurrent threads increases.
+All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *journal* state engine appears to scale much better when the number of concurrent threads increases.
 
 ![Total Latency and Transactions per Second](chart002.png)
 
-In this chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transaction per seconds that have been executed: from this chart, the *journal* state engine appears to provide an overall better performance. 
+In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transaction per seconds that have been executed: from this chart, the *journal* state engine appears to provide an overall better performance. 
