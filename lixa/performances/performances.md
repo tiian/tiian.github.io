@@ -90,3 +90,11 @@ Starting with version 1.9.0, the LIXA State Server supplies two distinct *State 
 - **JOURNAL**: a more complex *State Engine* that provides better performances in most situations
 
 The figures reported below compare the behavior of the two *State Engines* when different workloads and different configurations are applied.
+
+### RPO: Recovery Point Objective
+
+LIXA State Server provides parameters that can alter the RPO of the saved state in the event of crash. As a general rule, the lower the RPO, the higher the pressure on the disk subsystem and the lower the workload that a single LIXA State Server can handle.
+
+The figures reported below are classified even from the RPO perspective.
+
+**Note:** default LIXA configuration assumes the user desire RPO=0, but this is not necessarily true, depending on the environment and the use case. Please refer to the [Tuning](https://www.tiian.org/lixa/manuals/html/ch11.html) chapter in the LIXA Reference Guide for more details on this.
