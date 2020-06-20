@@ -98,3 +98,14 @@ LIXA State Server provides parameters that can alter the RPO of the saved state 
 The figures reported below are classified even from the RPO perspective.
 
 **Note:** default LIXA configuration assumes the user desire RPO=0, but this is not necessarily true, depending on the environment and the use case. Please refer to the [Tuning](https://www.tiian.org/lixa/manuals/html/ch11.html) chapter in the LIXA Reference Guide for more details on this.
+
+### Low Workload, RPO=0, Default Parameters
+
+The first couple of charts are related to the behavior in presence of a low workload with default parameters and RPO=0.
+
+![Comparison of API Response Time](chart001.png)
+
+
+
+![Total Latency and Transactions per Second](chart002.png)
+
