@@ -67,6 +67,18 @@ Three parameters are available to change the workload injected in the system:
 - t1: the lower t1, the higher the workload, because transactions are executed faster
 - t2: as described for t1
 
+### How tests have been performed
+
+For every test the following procedure was used:
+- **lixad**: clean-up of */opt/lixa/var/* directory to remove the previous state files
+- **lixad**: export of environment variable LIXA_STATE_ENGINE to choose the proper state engine
+- **lixad**: start of the state server with */opt/lixa/sbin/lixad*
+- **lixat**: start of the benchmark with a command like `for l in 10 20 30 40 50 60 70 80 90 100 ; do /opt/lixa/bin/lixat -b -s -o -l $l -C 1000 ; done`
+
+The number of cycles, for every thread, was fixed to 1000; as a consequence, every collected statistic comes from a number of samples between 10K and 100K. Nevertheless, the collected data are affected by non negligible noise as advised in the below note.
+
+**Note:** the tests have been performed in a public cloud environment and they are affected by non negligible noise. The previous statement should warn the reader to avoid considering *absolute* values the figures reported: all the data must be intended to provide general advices that must be confirmed in a real production environment.
+
 ### Special Note Related to XTA:
 
 even if the benchmark uses the TX interface, both TX and XTA use the same common layer (library *liblixac*) and there should not be relevant differences, with regards to the type of distributed transactions depicted in the above image, between TX and XTA.
