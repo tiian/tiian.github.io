@@ -111,12 +111,28 @@ All the data are available for consultation in [OpenDocument](LIXA_perf.ods) for
 
 The first couple of charts are related to the behavior in presence of a low workload with default parameters and RPO=0:
 - *t1* is in range 500-1500 microseconds
-- *t2* is in range 50-150 milliseconds: this can be associated to the behavior of (very) *slow* Resource Managers
+- *t2* is in range 50-150 milliseconds, this can be associated to the behavior of (very) *slow* Resource Managers: both RMs takes 25-75ms, on average, to perform they operation (inserting data, deleting a message, and so on...)
 
-![Comparison of API Response Time](chart001.png)
+![Comparison of API Response Time](chart_001a.png)
 
 All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *journal* state engine appears to scale much better when the number of concurrent threads increases.
 
-![Total Latency and Transactions per Second](chart002.png)
+![Total Latency and Transactions per Second](chart_001b.png)
 
 In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transaction per seconds that have been executed: from this chart, the *journal* state engine appears to provide an overall better performance. 
+![Total Latency - Best to Worst Case](chart_001c.png)
+
+With the exception of the outliers, the above chart represents the characteristic latency introduced by LIXA:
+- 25th% percentile can be considered the best performance, the lowest latency
+- 50th% percentile is the maximum latency of the best 50% transactions
+- 75th% percentile is the maximum latency of the best 75% transactions
+- 95th% percentile can be considered an approximation of the worst performance, the highest latency.
+
+![Total Latency - Average Values and Std Dev](chart_001d.png)
+
+The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency: *journal* state engine provides in this scenario an overall better performance than *traditional* state engine. It must be noted that standard deviation is very high: this is the consequence of few outliers with very high values.
+
+
+
+
+
