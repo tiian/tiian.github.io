@@ -119,7 +119,8 @@ All the points in the above chart are related to the 95th percentile values; ser
 
 ![Total Latency and Transactions per Second](chart_001b.png)
 
-In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transaction per seconds that have been executed: from this chart, the *journal* state engine appears to provide an overall better performance. 
+In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transaction per seconds that have been executed; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *journal* state engine appears to provide an overall better performance. 
+
 ![Total Latency - Best to Worst Case](chart_001c.png)
 
 With the exception of the outliers, the above chart represents the characteristic latency introduced by LIXA:
@@ -127,12 +128,20 @@ With the exception of the outliers, the above chart represents the characteristi
 - 50th% percentile is the maximum latency of the best 50% transactions
 - 75th% percentile is the maximum latency of the best 75% transactions
 - 95th% percentile can be considered an approximation of the worst performance, the highest latency.
+Series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
 
 ![Total Latency - Average Values and Std Dev](chart_001d.png)
 
-The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency: *journal* state engine provides in this scenario an overall better performance than *traditional* state engine. It must be noted that standard deviation is very high: this is the consequence of few outliers with very high values.
+The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. *Journal* state engine provides in this scenario an overall better performance than *traditional* state engine. It must be noted that standard deviation is very high: this is the consequence of few outliers with very high values.
 
+#### Linux Key Metrics
 
+Peak key metrics of the D2s v3 Azure Virtual machine for *traditional* state engine:
+- CPU: 27%
+- Disk operations/sec: 845/s
+peak key metrics for *journal* state engine:
+- CPU: 62%
+- Disk operations/sec: 760/s
 
 
 
