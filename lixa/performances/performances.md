@@ -254,9 +254,9 @@ In presence of a high workload, the system reaches saturation and neither *journ
 
 In presence of an extreme workload, the *journal* state engine shows its quite good behavior, even if running in saturation for most of the time.
 
-### Not all the time RPO=0 is necessary
+### Not all the times RPO=0 is necessary
 
-LIXA state server does **not** persist the **data** managed by Application Programs, but only the **state** of the distributed transactions performed to change the data: in the end, Resource Managers guarantee data consistency and, if the state of the Transaction Manager (LIXA) is loss, data consistency can be manually fixed in every single Resource Manager. This is not ah *happy path task*, but it can be done.
+LIXA state server does **not** persist the **data** managed by Application Programs, but only the **state** of the distributed transactions performed to change the data: in the end, Resource Managers guarantee data consistency and, if the state of the Transaction Manager (LIXA) vanishes, data consistency can be manually fixed in every single Resource Manager. This is not ah *happy path task*, but it can be done.
 
 *Journal* state engine, in comparison with *traditional* state engine, provides a further feature: if the underlying Linux Operating System does not crash, RPO is constantly kept to 0 with a continuous checksum of the state table files. In few words, if the event of crash for the Linux Operating System and/or the underlying hypervisor/hardware is negligible, RPO=0 is guaranteed by the *journal* state engine even **without** persisting data to disk as soon as possible.
 
