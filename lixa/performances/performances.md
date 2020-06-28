@@ -19,7 +19,7 @@ Both the virtual machines are configured as below:
 - Disk Encryption: SSE with PMK
 - Disk Host caching: Read/write
 
-All the above are default parameters for D2s v3 on 2020Q2
+All the above are default parameters for D2s v3 on 2020Q2.
 
 ## Benchmark Architecture
 
@@ -32,6 +32,12 @@ As shown in the above image, the components used to perform the performance test
 - **lixad**: the LIXA state server 
 - LIXA daemon: the process of **lixad**
 - State: state files on disk used by **lixad** to persist the state in the event of crash/restart
+
+Here is the measured network latency between *Client VM* and *Server VM":
+    --- 10.139.243.132 ping statistics ---
+    1000 packets transmitted, 1000 received, 0% packet loss, time 1014831ms
+    rtt min/avg/max/mdev = 0.603/0.923/8.327/0.451 ms
+**average round trip time** is about 923 microseconds, with a maximum of 8 milliseconds.
 
 ### Important Notes on Benchmark Architecture:
 
@@ -246,3 +252,14 @@ In presence of a medium (moderate) workload, before the system reaches saturatio
 
 In presence of a high workload, the system reaches saturation and neither *journal* nor *traditional* state engine can provide linear scalability, but the behavior of the *journal* state engine is much better because it provides quite linear introduced latency and quite stable maximum number of transactions per second.
 
+In presence of an extreme workload, the *journal* state engine shows its quite good behavior, even if running in saturation for most of the time.
+
+### Not all the time RPO=0 is necessary
+
+LIXA state server does **not** persist the **data** managed by Application Programs, but only the **state** of the distributed transactions performed to change the data: in the end, Resource Managers guarantee data consistency and, if the state of the Transaction Manager (LIXA) is loss, data consistency can be manually fixed in every single Resource Manager. This is not ah *happy path task*, but it can be done.
+
+*Journal* state engine, in comparison with *traditional* state engine, provides a further feature: if the underlying Linux Operating System does not crash, RPO is constantly kept to 0 with a continuous checksum of the state table files. In few words, if the event of crash for the Linux Operating System and/or the underlying hypervisor/hardware is negligible, RPO=0 is guaranteed by the *journal* state engine even **without** persisting data to disk as soon as possible.
+
+**Note:** the above behavior does **not** apply to the *traditional* state engine.
+
+In the next sections, the performances of the LIXA state server with RPO>0 will be shown.
