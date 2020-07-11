@@ -274,7 +274,7 @@ Supposing your workload is about 200 transactions per second, you can forecast a
 - for *traditional* state engine any *lixad* state server crash might require transaction manually recovery
 - for *journal* state engine only a crash at the operating system level might require transaction manually recovery
 
-### Medium Workload (slow RMs), RPO about 5ms, Default Parameters
+### Medium Workload (slow RMs), RPO about 5ms
 
 The first series of charts is related to the behavior in presence of a medium workload with parameter *max_elapsed_sync_time=5* and RPO about 5,s:
 - *t1* is in range 500-1500 microseconds
@@ -406,4 +406,150 @@ Peak key metrics of the D2s v3 Azure Virtual machine for *traditional* state eng
 peak key metrics for *journal* state engine:
 - CPU: 83%
 - Disk operations/sec: 751/s
+
+### Charts for RPO about 10ms
+
+Setting parameters *min_elapsed_sync_time=1* *max_elapsed_sync_time=10* in *lixad_conf.xml* allows the LIXA state manager to postpone disk synchronization from 1 to 10 milliseconds: this does **not** guarantee a precise RPO=10ms, but is equivalent to say "after minimum 1ms and maximum 10ms, the state of the transaction will synchronized to the persistent storage". In other words, 10ms is a good approximation of the time window of the *missed states* in the event of **crash**.
+In comparison with the scenario "RPO about 5ms", the additional parameter prevents disk synchronization before 1ms from the previous one.
+
+Supposing your workload is about 200 transactions per second, you can forecast about 2 transaction to be manually recovered in the event of a crash.
+
+**Note:** as stated above
+- for *traditional* state engine any *lixad* state server crash might require transaction manually recovery
+- for *journal* state engine only a crash at the operating system level might require transaction manually recovery
+
+### Medium Workload (slow RMs), RPO about 10ms
+
+The first series of charts is related to the behavior in presence of a medium workload with parameter *max_elapsed_sync_time=5* and RPO about 5,s:
+- *t1* is in range 500-1500 microseconds
+- *t2* is in range 50-150 milliseconds, this can be associated to the behavior of *slow* Resource Managers: both RMs takes 25-75ms, on average, to perform they operation (inserting data, deleting a message, and so on...)
+
+![Comparison of API Response Time](chart_007a.png)
+
+All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *traditional* state engine appears to scale better at any level of concurrent threads.
+
+![Total Latency and Transactions per Second](chart_007b.png)
+
+In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transactions per second that have been executed; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. 
+From this chart, the *journal* state engine appears to provide an overall better performance because it introduces a lower latency and provides a slightly higher number of transactions per second.
+
+![Total Latency - Best to Worst Case](chart_007c.png)
+
+With the exception of the outliers, the above chart represents the characteristic latency introduced by LIXA:
+- 25th% percentile can be considered an approximation of the best performance, the lowest latency
+- 50th% percentile is the maximum latency of the best 50% transactions
+- 75th% percentile is the maximum latency of the best 75% transactions
+- 95th% percentile can be considered an approximation of the worst performance, the highest latency.
+Series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
+
+![Total Latency - Average Values and Std Dev](chart_007d.png)
+
+The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. *Journal* state engine provides in this scenario a slightly better performance than *traditional* state engine. It must be noted that standard deviation is very high: this is symptom of high noise in the measurements.
+
+#### Linux Key Metrics
+
+Peak key metrics of the D2s v3 Azure Virtual machine for *traditional* state engine:
+- CPU: 39%
+- Disk operations/sec: 563/s
+
+peak key metrics for *journal* state engine:
+- CPU: 59%
+- Disk operations/sec: 363/s
+
+*Journal* state engine uses much more (user) CPU, but less disk operations.
+
+### High Workload (normal RMs), RPO about 10ms
+
+The second series of charts is related to the behavior in presence of a high workload and RPO about 5ms:
+- *t1* is in range 500-1500 microseconds
+- *t2* is in range 5-15 milliseconds, this can be associated to the behavior of *good performance* Resource Managers: both RMs takes 2.5-7.5ms, on average, to perform they operations (inserting data, deleting a message, and so on...).
+Log parameters of LIXA state engine have been multiplied by 10 to accomplish the larger workload:
+- lixad/min_elapsed_sync_time: 1
+- lixad/max_elapsed_sync_time: 10
+- lixad/log_size: 5242880
+- lixad/max_buffer_log_size: 1310720
+
+Log parameters are irrelevant for *traditional* state server because it does not use log files.
+
+![Comparison of API Response Time](chart_008a.png)
+
+All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *traditional* state engine appears to scale much better when the number of concurrent threads increases.
+After 50 concurrent client threads, both the configurations start to slow down, but *traditional* state engine performs much better in terms of accepting new clients (tx_open).
+
+![Total Latency and Transactions per Second](chart_008b.png)
+
+In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transactions per second that have been executed; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
+The figures show that *journal* state engine saturate before than *traditional* state engine: at about 40 client threads the total latency introduced by the *journal* state engine increases more steeply and the transaction per seconds reaches a limit.
+
+![Total Latency - Best to Worst Case](chart_008c.png)
+
+With the exception of the outliers, the above chart represents the characteristic latency introduced by LIXA:
+- 25th% percentile can be considered an approximation of the best performance, the lowest latency
+- 50th% percentile is the maximum latency of the best 50% transactions
+- 75th% percentile is the maximum latency of the best 75% transactions
+- 95th% percentile can be considered an approximation of the worst performance, the highest latency.
+Series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
+
+![Total Latency - Average Values and Std Dev](chart_008d.png)
+
+The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. The *traditional* state engine provides in this scenario a better performance than *journal* state engine.
+
+#### Linux Key Metrics
+
+Peak key metrics of the D2s v3 Azure Virtual machine for *traditional* state engine:
+- CPU: 68%
+- Disk operations/sec: 850/s
+
+peak key metrics for *journal* state engine:
+- CPU: 89%
+- Disk operations/sec: 452/s
+
+### Extreme Workload (normal RMs), RPO about 10s
+
+The third series of charts is related to the behavior in presence of an extreme workload and RPO about 10ms:
+- *t1* is in range 500-1500 microseconds
+- *t2* is in range 500-1500 microseconds, this can be associated to the behavior of *fast* Resource Managers: both RMs takes 250-750 microseconds, on average, to perform they operation (inserting data, deleting a message, and so on...).
+Log parameters of LIXA state engine have been multiplied by 100 to accomplish the larger workload:
+- lixad/min_elapsed_sync_time: 1
+- lixad/max_elapsed_sync_time: 10
+- lixad/log_size: 52428800
+- lixad/max_buffer_log_size: 13107200
+
+The above parameters related to log are irrelevant for *traditional* state server because it does not use log files.
+
+**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a Resource Manager implemented using a *colocated in memory* approach can reach this sort of latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
+
+![Comparison of API Response Time](chart_009a.png)
+
+All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *traditional* state engine appears to scale much better when the number of concurrent threads increases.
+After 40 concurrent client threads, both the configurations start to slow down, but *traditional* state engine performs much better in terms of accepting new clients (tx_open).
+
+![Total Latency and Transactions per Second](chart_009b.png)
+
+In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transactions per second that have been executed; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
+The figures show that the *traditional* state engine sustain and higher workload and introduces a lower latency, with the exception of the lower numbers of client threads.
+
+![Total Latency - Best to Worst Case](chart_009c.png)
+
+With the exception of the outliers, the above chart represents the characteristic latency introduced by LIXA:
+- 25th% percentile can be considered an approximation the best performance, the lowest latency
+- 50th% percentile is the maximum latency of the best 50% transactions
+- 75th% percentile is the maximum latency of the best 75% transactions
+- 95th% percentile can be considered an approximation of the worst performance, the highest latency.
+Series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
+The figures show that only in the best case, 25th percentile, the *journal* state engine provides a better performance than the *traditional* state engine.
+
+![Total Latency - Average Values and Std Dev](chart_009d.png)
+
+The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. The *traditional* state engine introduces a lower latency with the exception of the lower numbers of client threads.
+
+#### Linux Key Metrics
+
+Peak key metrics of the D2s v3 Azure Virtual machine for *traditional* state engine:
+- CPU: 68%
+- Disk operations/sec: 783/s
+
+peak key metrics for *journal* state engine:
+- CPU: 92%
+- Disk operations/sec: 459/s
 
