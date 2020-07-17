@@ -1,5 +1,13 @@
 # LIXA Performances
 
+### Abstract
+
+When it comes to Distributed Transactions, **performance matters**. Around the web dozens of articles *explain* that distributed transactions are *slow* and modern programming should *avoid* them. This is not the right place to have such a discussion, but the right place to answer the question *how much latency is introduced by using distributed transactions supported by LIXA*?
+
+You can look at the figures reported in this article to discover that using LIXA you can execute hundreds of transactions per second introducing few milliseconds of latency in your transactions.
+
+### Introduction
+
 LIXA provides a test tool that can be used to measure performances: lixat.
 All the measures reported in this section have been collected using a couple of
 VMs in Azure public cloud West Europe region.
@@ -41,7 +49,8 @@ Here is the measured network latency between *Client VM* and *Server VM":
 
 ### Important Notes on Benchmark Architecture:
 
-- dummy Resource Managers introduce quite zero delay: real life use cases use Resource Managers that require some time to perform XA functions. This must be considered a *worst case* condition to measure the overhead introduced by LIXA
+- dummy Resource Managers introduce quite zero delay: real life use cases use Resource Managers that require some time to perform XA functions. This must be considered a **worst case** condition to measure the overhead introduced by LIXA
+- dummy Resource Managers introduce quite zero delay, real life Resource Managers can perform worse when using XA two phase commit protocol in comparison with non XA single phase commit. This must be considered a *best case** condition with regards of the overhead introduced by real Resource Managers.
 - **lixat** and **lixad** are deployed in distinct Virtual Machines inside the same Azure region: this is necessary to introduce the network latency and the correlated jitter that's a *noise* from measurement perspective
 - state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write mostly* application and makes a lot of stress on the disk (this aspect will be further described below)
 
@@ -111,7 +120,63 @@ The figures reported below are classified even from the RPO perspective.
 
 All the data are available for consultation in [OpenDocument](LIXA_perf.ods) format.
 
+## LIXA Performances Key Points
+
+In this section key figures are reported: all the charts represent the trade-off between the number of **Transactions per Second (tps)** on the Y axis and the **95th percentile** of the **Total Latency** introduced by LIXA in the overall transaction elapsed time. Figures are reported following two analysis paths:
+- the quantity of injected workload classified as "Medium", "High" and "Extreme" (exact definition is available in the following sections)
+- the RPO configured for the LIXA State Server (much more details are available in the following sections)
+
+### Characteristic Curves for RPO=0ms
+
+![RPO=0ms, Different Workloads](chart_010a.png)
+
+The chart shows that the *Journal* state engine provides a better performances for every type of workload. The curve *High Wrk / Journ Eng* shows that the system can execute:
+- 800 tps introducing 14 ms of latency
+- 1000 tps introducing 21 ms of latency
+- 1200 tps introducing 29 ms of latency
+
+If low latency is a must, the system is still able to execute 480 tps introducing 9 ms of latency.
+
+### Characteristic Curves for RPO about 5ms
+
+![RPO about 5ms, Different Workloads](chart_010b.png)
+
+Accepting an RPO about 5ms, the *Journal* state engine provides even better performances reaching 1000 tps introducing about 5 ms of latency.
+
+### Characteristic Curves for RPO about 10ms
+
+![RPO about 10ms, Different Workloads](chart_010c.png)
+
+If your use case is compatible with an RPO about 10ms, the *Traditional* state engine can provide a quite astonishing performance reaching 1900 tps introducing about 41 ms of latency with a single LIXA State Server.
+Even for this RPO, if low latency is a must, the *Journal* state engine can execute:
+- 500 tps introducing 5 ms of latency
+- 1000 tps introducing 7 ms of latency
+
+### Characteristic Curves for Medium Workload
+
+![Medium Workload, Different RPOs](chart_010d.png)
+
+The chart shows that the *Journal* state engine provides a better performances for every RPO in presence of a *medium workload*.
+
+### Characteristic Curves for High Workload
+
+![High Workload, Different RPOs](chart_010e.png)
+
+The chart shows that the *Journal* state engine provides the best performance in most cases, but for the higher RPO (about 10ms) the *Traditional* state engine can reach an higher number of transactions per second.
+
+### Characteristic Curves for Extreme Workload
+
+![Extreme Workload, Different RPOs](chart_010f.png)
+
+The chart shows that the *Journal* state engine privileges lower latencies and *Traditional* state engine privileges higher tnumbers of tps.
+
+### LIXA Performances Summary
+
+Even in the most severe condition (state server RPO=0ms), **LIXA can reach 800 transactions per second introducing a maximum latency of about 14 ms** considering 95% of the total managed transactions. If your environment requires more transactions per second you can horizontally scale the number of LIXA State Servers accordingly with your needs.
+
 ## Figures, Charts & Explanations
+
+In this section detailed figures are reported.
 
 ### Medium Workload (slow RMs), RPO=0, Default Parameters
 
