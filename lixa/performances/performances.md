@@ -27,8 +27,6 @@ Both the virtual machines are configured as below:
 - Disk Encryption: SSE with PMK
 - Disk Host caching: Read/write
 
-All the above are default parameters for D2s v3 on 2020Q2.
-
 ## Benchmark Architecture
 
 As shown in the above image, the components used to perform the performance tests are:
@@ -41,18 +39,20 @@ As shown in the above image, the components used to perform the performance test
 - LIXA daemon: the process of **lixad**
 - State: state files on disk used by **lixad** to persist the state in the event of crash/restart
 
-Here is the measured network latency between *Client VM* and *Server VM":
+Here is the measured network latency between *Client VM* and *Server VM*:
+
     --- 10.139.243.132 ping statistics ---
     1000 packets transmitted, 1000 received, 0% packet loss, time 1014831ms
     rtt min/avg/max/mdev = 0.603/0.923/8.327/0.451 ms
+
 **average round trip time** is about 923 microseconds, with a maximum of 8 milliseconds.
 
 ### Important Notes on Benchmark Architecture:
 
-- dummy Resource Managers introduce quite zero delay: real life use cases use Resource Managers that require some time to perform XA functions. This must be considered a **worst case** condition to measure the overhead introduced by LIXA
-- dummy Resource Managers introduce quite zero delay, real life Resource Managers can perform worse when using XA two phase commit protocol in comparison with non XA single phase commit. This must be considered a *best case** condition with regards of the overhead introduced by real Resource Managers.
+- dummy Resource Managers introduce quite zero delay: real life Resource Managers require some time to perform XA functions. This must be considered a **worst case** condition to measure the overhead introduced by LIXA
+- dummy Resource Managers introduce quite zero delay, real life Resource Managers can perform worse when using the XA two phase commit protocol in comparison with non XA single phase commit. This must be considered a **best case** condition with regards of the overhead introduced by real Resource Managers
 - **lixat** and **lixad** are deployed in distinct Virtual Machines inside the same Azure region: this is necessary to introduce the network latency and the correlated jitter that's a *noise* from measurement perspective
-- state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write mostly* application and makes a lot of stress on the disk (this aspect will be further described below)
+- state files are saved inside a standard *Premium SSD* disk: **lixad** is a *write mostly* application and generates a lot of stress on the disk (this aspect will be further described below)
 
 ### How the Benchmark Works
 
@@ -71,18 +71,16 @@ Here is the measured network latency between *Client VM* and *Server VM":
 - *t1* is used to simulate the "thinking time" of a real Application Program
 - *t2* is used to simulate the "thinking time" of a couple of real Resource Managers, like for example SQL statements or message PUT/GET
 
-Both *t1* and *t2* are randomly distributed in a range to simulate a more realistic scenario.
+Both *t1* and *t2* are randomly distributed to simulate a more realistic scenario.
 
 In every cycle of the loop, the connection is opened (tx_open) and closed (tx_close): this can be considered a typical behavior for an online service; **lixat** can even simulate a batch process with a single pair of tx_open/tx_close and many tx_begin/tx_commit, but the figures presented below are related to an online service behavior.
 
 **Note:** due to the *0-latency* of the dummy Resource Managers, tx_open(), tx_begin(), tx_commit() and tx_close() measure **only the overhead introduced by LIXA**. They do **not** measure the overhead introduced by Resource Managers in performing XA functions.
 
-Around tx_open(), tx_begin(), tx_commit() and tx_close() a microsecond timer is used to measure how long they takes.
-
 Three parameters are available to change the workload injected in the system:
 - the number of concurrent threads: the higher the number, the higher the workload
 - t1: the lower t1, the higher the workload, because transactions are executed faster
-- t2: as described for t1
+- t2: the lower t2, the higher the workload, because transactions are executed faster
 
 ### How tests have been performed
 
@@ -130,12 +128,10 @@ In this section key figures are reported: all the charts represent the trade-off
 
 ![RPO=0ms, Different Workloads](chart_010a.png)
 
-The chart shows that the *Journal* state engine provides a better performances for every type of workload. The curve *High Wrk / Journ Eng* shows that the system can execute:
-- 800 tps introducing 14 ms of latency
-- 1000 tps introducing 21 ms of latency
-- 1200 tps introducing 29 ms of latency
-
-If low latency is a must, the system is still able to execute 480 tps introducing 9 ms of latency.
+The chart shows that the *Journal* state engine provides a better performances for every type of workload. The curve *Extr Wrk / Journ Eng* shows that the system can execute up to:
+- 800 tps introducing 9 ms of latency
+- 1000 tps introducing 15 ms of latency
+- 1200 tps introducing 24 ms of latency
 
 ### Characteristic Curves for RPO about 5ms
 
@@ -172,11 +168,11 @@ The chart shows that the *Journal* state engine privileges lower latencies and *
 
 ### LIXA Performances Summary
 
-Even in the most severe condition (state server RPO=0ms), **LIXA can reach 800 transactions per second introducing a maximum latency of about 14 ms** considering 95% of the total managed transactions. If your environment requires more transactions per second you can horizontally scale the number of LIXA State Servers accordingly with your needs.
+Even in the most severe condition (state server RPO=0ms), **LIXA can reach 800 transactions per second introducing a maximum latency of about 9 ms** considering 95% of the total managed transactions. If your environment requires more transactions per second you can horizontally scale the number of LIXA State Servers accordingly with your needs.
 
 ## Figures, Charts & Explanations
 
-In this section detailed figures are reported.
+In this section detailed figures are reported: all the charts put the *number of (client) threads* on the X axis to show the basic results collected during the tests.
 
 ### Medium Workload (slow RMs), RPO=0, Default Parameters
 
@@ -223,6 +219,7 @@ peak key metrics for *journal* state engine:
 The second series of charts is related to the behavior in presence of a high workload and RPO=0:
 - *t1* is in range 500-1500 microseconds
 - *t2* is in range 5-15 milliseconds, this can be associated to the behavior of *good performance* Resource Managers: both RMs takes 2.5-7.5ms, on average, to perform they operations (inserting data, deleting a message, and so on...).
+
 Log parameters of LIXA state engine have been multiplied by 10 to accomplish the larger workload:
 - lixad/log_size: 5242880
 - lixad/max_buffer_log_size: 1310720
@@ -267,13 +264,14 @@ peak key metrics for *journal* state engine:
 The third series of charts is related to the behavior in presence of an extreme workload and RPO=0:
 - *t1* is in range 500-1500 microseconds
 - *t2* is in range 500-1500 microseconds, this can be associated to the behavior of *fast* Resource Managers: both RMs takes 250-750 microseconds, on average, to perform they operation (inserting data, deleting a message, and so on...).
+
 Log parameters of LIXA state engine have been multiplied by 100 to accomplish the larger workload:
 - lixad/log_size: 52428800
 - lixad/max_buffer_log_size: 13107200
 
 The above parameters are irrelevant for *traditional* state server because it does not use log files.
 
-**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a Resource Manager implemented using a *colocated in memory* approach can reach this sort of latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
+**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a *colocated* Resource Manager implemented using an *in memory* approach can reach these low latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
 
 ![Comparison of API Response Time](chart_003a.png)
 
@@ -331,7 +329,7 @@ In the next sections, the performances of the LIXA state server with RPO>0 will 
 
 ### Charts for RPO about 5ms
 
-Setting parameter *max_elapsed_sync_time=5* in *lixad_conf.xml* allows the LIXA state manager to postpone disk synchronization up to 5 milliseconds: this does **not** guarantee a precise RPO=5ms, but is equivalent to say "after maximum 5ms, the state of the transaction will synchronized to the persistent storage". In other words, 5ms is a good approximation of the time window of the *missed states* in the event of **crash**.
+Setting parameter *max_elapsed_sync_time=5* in *lixad_conf.xml* allows the LIXA state manager to postpone disk synchronization up to 5 milliseconds: this does **not** guarantee a precise RPO=5ms, but is equivalent to say "after maximum 5ms, the synchronization of the state to the persistent storage is started". In other words, 5ms is a good approximation of the time window of the *missed states* in the event of **crash**.
 
 Supposing your workload is about 200 transactions per second, you can forecast about 1 transaction to be manually recovered in the event of a crash.
 
@@ -384,6 +382,7 @@ peak key metrics for *journal* state engine:
 The second series of charts is related to the behavior in presence of a high workload and RPO about 5ms:
 - *t1* is in range 500-1500 microseconds
 - *t2* is in range 5-15 milliseconds, this can be associated to the behavior of *good performance* Resource Managers: both RMs takes 2.5-7.5ms, on average, to perform they operations (inserting data, deleting a message, and so on...).
+
 Log parameters of LIXA state engine have been multiplied by 10 to accomplish the larger workload:
 - lixad/max_elapsed_sync_time: 5
 - lixad/log_size: 5242880
@@ -429,6 +428,7 @@ peak key metrics for *journal* state engine:
 The third series of charts is related to the behavior in presence of an extreme workload and RPO about 5ms:
 - *t1* is in range 500-1500 microseconds
 - *t2* is in range 500-1500 microseconds, this can be associated to the behavior of *fast* Resource Managers: both RMs takes 250-750 microseconds, on average, to perform they operation (inserting data, deleting a message, and so on...).
+
 Log parameters of LIXA state engine have been multiplied by 100 to accomplish the larger workload:
 - lixad/max_elapsed_sync_time: 5
 - lixad/log_size: 52428800
@@ -436,7 +436,7 @@ Log parameters of LIXA state engine have been multiplied by 100 to accomplish th
 
 The above parameters related to log are irrelevant for *traditional* state server because it does not use log files.
 
-**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a Resource Manager implemented using a *colocated in memory* approach can reach this sort of latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
+**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a *colocated* Resource Manager implemented using an *in memory* approach can reach these low latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
 
 ![Comparison of API Response Time](chart_006a.png)
 
@@ -474,7 +474,7 @@ peak key metrics for *journal* state engine:
 
 ### Charts for RPO about 10ms
 
-Setting parameters *min_elapsed_sync_time=1* *max_elapsed_sync_time=10* in *lixad_conf.xml* allows the LIXA state manager to postpone disk synchronization from 1 to 10 milliseconds: this does **not** guarantee a precise RPO=10ms, but is equivalent to say "after minimum 1ms and maximum 10ms, the state of the transaction will synchronized to the persistent storage". In other words, 10ms is a good approximation of the time window of the *missed states* in the event of **crash**.
+Setting parameters *min_elapsed_sync_time=1* *max_elapsed_sync_time=10* in *lixad_conf.xml* allows the LIXA state manager to postpone disk synchronization from 1 to 10 milliseconds: this does **not** guarantee a precise RPO=10ms, but is equivalent to say "after minimum 1ms and maximum 10ms, the state of the transaction starts to be synchronized on the persistent storage". In other words, 10ms is a good approximation of the time window of the *missed states* in the event of **crash**.
 In comparison with the scenario "RPO about 5ms", the additional parameter prevents disk synchronization before 1ms from the previous one.
 
 Supposing your workload is about 200 transactions per second, you can forecast about 2 transaction to be manually recovered in the event of a crash.
@@ -491,7 +491,7 @@ The first series of charts is related to the behavior in presence of a medium wo
 
 ![Comparison of API Response Time](chart_007a.png)
 
-All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *traditional* state engine appears to scale better at any level of concurrent threads.
+All the points in the above chart are related to the 95th percentile values; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. From this chart, the *journal* state engine appears to scale better at any level of concurrent threads.
 
 ![Total Latency and Transactions per Second](chart_007b.png)
 
@@ -528,6 +528,7 @@ peak key metrics for *journal* state engine:
 The second series of charts is related to the behavior in presence of a high workload and RPO about 5ms:
 - *t1* is in range 500-1500 microseconds
 - *t2* is in range 5-15 milliseconds, this can be associated to the behavior of *good performance* Resource Managers: both RMs takes 2.5-7.5ms, on average, to perform they operations (inserting data, deleting a message, and so on...).
+
 Log parameters of LIXA state engine have been multiplied by 10 to accomplish the larger workload:
 - lixad/min_elapsed_sync_time: 1
 - lixad/max_elapsed_sync_time: 10
@@ -544,7 +545,7 @@ After 50 concurrent client threads, both the configurations start to slow down, 
 ![Total Latency and Transactions per Second](chart_008b.png)
 
 In the above chart are represented the 95th percentile values of the total latency introduced by LIXA in the transactions as the sum of open+begin+commit+close and the number of transactions per second that have been executed; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine.
-The figures show that *journal* state engine saturate before than *traditional* state engine: at about 40 client threads the total latency introduced by the *journal* state engine increases more steeply and the transaction per seconds reaches a limit.
+The figures show that *journal* state engine saturate before than *traditional* state engine: at about 40 client threads the total latency introduced by the *journal* state engine increases more steeply and the transaction per seconds reaches a lower limit.
 
 ![Total Latency - Best to Worst Case](chart_008c.png)
 
@@ -557,7 +558,7 @@ Series prefixed with "T" are related to the *traditional* state engine, series p
 
 ![Total Latency - Average Values and Std Dev](chart_008d.png)
 
-The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. The *traditional* state engine provides in this scenario a better performance than *journal* state engine.
+The last chart of the serie shows the average value of the total latency introduced by LIXA and the standard deviation of the total latency; series prefixed with "T" are related to the *traditional* state engine, series prefixed with "J" are related to the *journal* state engine. The *traditional* state engine provides in this scenario a better performance than the *journal* state engine.
 
 #### Linux Key Metrics
 
@@ -574,6 +575,7 @@ peak key metrics for *journal* state engine:
 The third series of charts is related to the behavior in presence of an extreme workload and RPO about 10ms:
 - *t1* is in range 500-1500 microseconds
 - *t2* is in range 500-1500 microseconds, this can be associated to the behavior of *fast* Resource Managers: both RMs takes 250-750 microseconds, on average, to perform they operation (inserting data, deleting a message, and so on...).
+
 Log parameters of LIXA state engine have been multiplied by 100 to accomplish the larger workload:
 - lixad/min_elapsed_sync_time: 1
 - lixad/max_elapsed_sync_time: 10
@@ -582,7 +584,7 @@ Log parameters of LIXA state engine have been multiplied by 100 to accomplish th
 
 The above parameters related to log are irrelevant for *traditional* state server because it does not use log files.
 
-**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a Resource Manager implemented using a *colocated in memory* approach can reach this sort of latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
+**Note:** this workload must be considered **extreme** because the time used by each RM is below the network latency and below the storage latency. Only a *colocated* Resource Manager implemented using an *in memory* approach can reach this sort of latencies. Anyway, the figures are interesting to discover the behavior of LIXA under such extreme conditions.
 
 ![Comparison of API Response Time](chart_009a.png)
 
@@ -618,3 +620,8 @@ peak key metrics for *journal* state engine:
 - CPU: 92%
 - Disk operations/sec: 459/s
 
+### Final Note on "Figures, Charts & Explanations"
+
+Raw data shows that under some circumstances, the *traditional* state engine provides better figures. The reader must pay attention that such better figures are mainly related to saturation conditions that are of no practical use.
+
+In other words: the *traditional* state engine can sustain higher rates of *transactions per second* in comparison with the *journal* state engine, but the behaviour is related to an oversaturation condition that is of no interest because the latency introduced is too high.
