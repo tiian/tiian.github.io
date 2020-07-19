@@ -20,7 +20,7 @@ Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hostin
 
 Docker images are available in [Docker Hub](https://hub.docker.com/u/lixa): here you can find ready to use and base images to develop XTA applications that run in Docker containers.
 
-Are you scared about [performances](performances/performances.md) of Distributed Transactions? LIXA might surprise you!
+Are you scared about [performances](performances/performances.md) of Distributed Transactions? LIXA might surprise you! If you are interested in the topic, don't miss this section with the results that have been obtained with a [colocated/sidecar architecture](performances/performances_2.md)
 
 LIXA articles:
 
