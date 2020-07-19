@@ -170,8 +170,6 @@ The chart shows that the *Journal* state engine privileges lower latencies and *
 
 Even in the most severe condition (state server RPO=0ms), **LIXA can reach 800 transactions per second introducing a maximum latency of about 9 ms** considering 95% of the total managed transactions. If your environment requires more transactions per second you can horizontally scale the number of LIXA State Servers accordingly with your needs.
 
-The above results are largely impacted by the latency introduced by the TCP/IP network of the (Azure) public cloud infrastructure; even [better results](performances_2.md) can be obtained with a *colocated* architecture frequently used in microservices deployments and named *sidecar architecture*.
-
 ## Figures, Charts & Explanations
 
 In this section detailed figures are reported: all the charts put the *number of (client) threads* on the X axis to show the basic results collected during the tests.
