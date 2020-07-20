@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.7.8)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57847520"></a>Configuring LIXA components</h2></div></div></div><p>
-      The picture below emphasizes the LIXA components that must be configured
-      in a simple scenario:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.0)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57904544"></a>Configuring LIXA components</h2></div></div></div><p>
+      The picture below shows the LIXA components that must be configured:
     </p><div class="figure"><a id="config6"></a><p class="title"><strong>Figure 3.6. The LIXA components and the necessary configuration files</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Configuration_6.png" alt="The LIXA components and the necessary configuration files" /></div></div></div><br class="figure-break" /><p>
       The client component (<code class="systemitem">lixac</code>) 
       is configured using the
       <code class="filename">etc/lixac_conf.xml</code> file; the server component
       (<span class="command"><strong>lixad</strong></span>) is configured using the
       <code class="filename">etc/lixad_conf.xml</code> file
-      <a href="#ftn.idp57852096" class="footnote" id="idp57852096"><sup class="footnote">[17]</sup></a>.
+      <a href="#ftn.idp57908992" class="footnote" id="idp57908992"><sup class="footnote">[17]</sup></a>.
     </p><p>
       If a node hosts both the client and the server components, both the
       files must be configured. If a node hosts only one component, only
       one configuration file is necessary
-      <a href="#ftn.idp57854288" class="footnote" id="idp57854288"><sup class="footnote">[18]</sup></a>.
+      <a href="#ftn.idp57911184" class="footnote" id="idp57911184"><sup class="footnote">[18]</sup></a>.
     </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div><p>
 	The default configuration file is 
 	<code class="filename">etc/lixad_conf.xml</code>
@@ -31,7 +30,7 @@
 	      client connections
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      the <span class="emphasis"><em>managers</em></span> section specifies how many
-	      parallel threads must be activated to serve the LIXA clients
+	      server threads must be activated to serve the LIXA clients
 	  </p></li></ul></div><p>
       </p><p>
 	Below there is a sample configuration file:
@@ -39,7 +38,9 @@
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
   &lt;server 
     pid_file="/opt/lixa/var/run.pid"
-    min_elapsed_sync_time="0" max_elapsed_sync_time="0"&gt;
+    min_elapsed_sync_time="0" max_elapsed_sync_time="0"
+    log_size="524288" max_buffer_log_size="131072"
+    log_o_direct="1" log_o_dsync="0" log_o_rsync="0" log_o_sync="0"&gt;
   &lt;listeners&gt;
     &lt;listener domain="AF_INET" address="127.0.0.1" port="3456"/&gt;
     &lt;listener domain="AF_INET" address="0.0.0.0" port="2345"/&gt;
@@ -60,25 +61,53 @@
 	      the file at start-up and destroys it at shutdown
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      <em class="parameter"><code>min_elapsed_sync_time</code></em>: minimum time
-	      expressed in millisecond interleaving a state file 
-	      synchronization request and the start of the synchronization
-	      operation; every manager (thread) uses its own clock 
+	      expressed in millisecond between a request for file
+	      synchronization and the start of the synchronization
+	      operation; use 0 to obtain the lowest RPO (Recovery Point
+	      Objective), use higher values to obtain higher performances of
+	      the server
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      <em class="parameter"><code>max_elapsed_sync_time</code></em>: maximum time
-	      expressed in millisecond interleaving a state file 
-	      synchronization request and the start of the synchronization
-	      operation; every manager (thread) uses its own clock.
+	      expressed in millisecond between a request for file
+	      synchronization and the start of the synchronization
+	      operation; use 0 to obtain the lowest RPO (Recovery Point
+	      Objective), use higher values to obtain higher performances of
+	      the server
 	      <em class="parameter"><code>max_elapsed_sync_time</code></em> can not be less 
 	      than <em class="parameter"><code>min_elapsed_sync_time</code></em>;
-	      see <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> for more information about these
-	      parameters.
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
-	      <em class="parameter"><code>listener</code></em>: the server can activate one 
-	      or more
-	      listeners; most of the times one listener is sufficient, but if
-	      you want to use only a subset of the IP addresses defined at
-	      the operating system level, you have to configure a dedicated
-	      listener for every desired address
+	      <em class="parameter"><code>log_size</code></em>: maximum desired size for
+	      state log files used by the <span class="emphasis"><em>journal</em></span> based
+	      state engine, it does not apply to traditional state engine; it
+	      must be considered a soft limit: if necessary, the state engine
+	      can expand it. The lower the storage performance, the higher
+	      the space necessary for the log files
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>max_buffer_log_size</code></em>: maximum desired size
+	      in RAM for log buffering, it does not apply to traditional state
+	      engine; it's a hard limit. A large buffer can alleviate the
+	      issue deriving by a slow storage
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>log_o_direct</code></em>: boolean value (1 or 0) to
+	      activate/deactivate the O_DIRECT flag for log files, the flag
+	      is described in open(2) man page, it does not apply to
+	      the traditional state engine
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>log_o_dsync</code></em>: boolean value (1 or 0) to
+	      activate/deactivate the O_DSYNC flag for log files, the flag
+	      is described in open(2) man page, it does not apply to
+	      the traditional state engine
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>log_o_rsync</code></em>: boolean value (1 or 0) to
+	      activate/deactivate the O_RSYNC flag for log files, the flag
+	      is described in open(2) man page, it does not apply to
+	      the traditional state engine and it's currently of no relevance
+	      for Linux
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      <em class="parameter"><code>log_o_sync</code></em>: boolean value (1 or 0) to
+	      activate/deactivate the O_SYNC flag for log files, the flag
+	      is described in open(2) man page, it does not apply to
+	      the traditional state engine
 	  </p></li><li class="listitem" style="list-style-type: disc"><p>
 	      <em class="parameter"><code>domain</code></em>: the type of socket must be used to
 	      listen for clients. The only allowed type is 
@@ -105,40 +134,57 @@
 	      create the status files (a couple) for a manager; 
 	      this generally is
 	      a persistent and reliable storage device like a RAID partition.
-	      The string specified by the tag <em class="parameter"><code>status_file</code></em>
+	      The string specified by the tag
+	      <em class="parameter"><code>status_file</code></em>
 	      is used as a prefix: every manager (thread) creates two files
 	      with the same prefix and different suffixes.
 	  </p></li></ul></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Delayed_synchronization_effects"></a>Delayed synchronization effects</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Delayed_synchronization_effects"></a>Synchronization parameters</h4></div></div></div><p>
 	  Parameters
-	  <em class="parameter"><code>min_elapsed_sync_time</code></em> and
-	  <em class="parameter"><code>max_elapsed_sync_time</code></em>
-	  have a great relevance with the performance of the LIXA system
-	  as explained in <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> but they have a relevance
-	  with system robustness as well:
+	  <em class="parameter"><code>min_elapsed_sync_time</code></em>,
+	  <em class="parameter"><code>max_elapsed_sync_time</code></em>,
+	  <em class="parameter"><code>log_size</code></em>,
+	  <em class="parameter"><code>max_buffer_log_size</code></em>,
+	  <em class="parameter"><code>log_o_direct</code></em>,
+	  <em class="parameter"><code>log_o_dsync</code></em>,
+	  <em class="parameter"><code>log_o_rsync</code></em>, and
+	  <em class="parameter"><code>log_o_sync</code></em>
+	  plays a fundamental role in reliability and performance of the LIXA
+	  state server.
+	  The provided default values are valid for general
+	  purpose scenarios, for advanced use cases, refer to the dedicated
+	  <a class="xref" href="ch11.html" title="Chapter 11. Tuning">Chapter 11, <em>Tuning</em></a> section.
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="Journal_based_state_engine"></a>Configuring the state engine</h4></div></div></div><p>
+	  Before version 1.9.0, the state engine was based on memory mapped
+	  files flushed through <code class="function">msync(2)</code>. Even if the
+	  solution proved to be robust, it requires a very fast, in term of
+	  IOPS, storage subsystem to perform well.
 	</p><p>
-	  <span class="emphasis"><em>
-	    the higher the delay between the time a client ask a disk
-	    synchronization and the time the state server performs it
-	    (<em class="parameter"><code>min_elapsed_sync_time</code></em>), the higher
-	    the chance the disk status files will not contain the correct
-	    state for some transactions if the state server crashes.
-	  </em></span>
+	  Version 1.9.0 introduces a new alternative state engine based on a
+	  much more sophisticated technology that uses log files and
+	  asynchronous IO. The new state engine has been designed to provide
+	  sub-millisecond transaction time even in presence of common
+	  storage subsystems.
+	  </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	    The new journal based state engine passes all the test cases, but
+	    it's a fresh new piece of software and it can contain unknown bugs.
+	    Activate it in a production environment only
+	    <span class="emphasis"><em>after appropriate testing has been performed</em></span>.
+	  </p></div><p>
 	</p><p>
-	  The risk is not related to data corruption: data integrity is
-	  guaranteed by the Resource Managers your Application Programs use.
-	  The risk is some <span class="quote">“<span class="quote">prepared/recovery pending</span>”</span>
-	  transactions will not automatically recovered
-	  (see <a class="xref" href="ch09s02.html" title="Automatic recovery concepts">the section called “Automatic recovery concepts”</a>) by LIXA
-	  infrastructure; those transactions will need
-	  manual recovery (see <a class="xref" href="ch09s03.html" title="Manual (cold) recovery">the section called “Manual (cold) recovery”</a>).
-	</p><p>
-	  <span class="emphasis"><em>
-	    During the interval between state server crash and
-	    manual recovery your Resource Managers will keep some locks on
-	    data: this could be the real damage for your application.
-	  </em></span>
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57885472"></a>Configuring the client</h3></div></div></div><p>
+	  To switch from <span class="emphasis"><em>traditional</em></span> to
+	  <span class="emphasis"><em>journal</em></span> state engine use the
+	  <code class="varname">LIXA_STATE_SERVER</code> environment variable before
+	  starting <span class="command"><strong>lixad</strong></span> state server. 
+	  To use the journal state engine:
+	  </p><pre class="screen">
+$ export LIXA_STATE_ENGINE=JOURNAL
+	  </pre><p>
+	  to use the traditional state engine (default):
+	  </p><pre class="screen">
+$ export LIXA_STATE_ENGINE=TRADITIONAL
+	  </pre><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57949936"></a>Configuring the client</h3></div></div></div><p>
 	The default configuration file is 
 	<code class="filename">etc/lixac_conf.xml</code>
 	and is located at the root installation path (i.e.
@@ -414,12 +460,12 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	    as explained in
 	    <a class="xref" href="ch03s03.html" title="Environment variables">the section called “Environment variables”</a> until you are not sure 
 	    about the changes you are performing.
-	  </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57852096" class="footnote"><p><a href="#idp57852096" class="para"><sup class="para">[17] </sup></a>
+	  </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57908992" class="footnote"><p><a href="#idp57908992" class="para"><sup class="para">[17] </sup></a>
 	  Both the files reside in <code class="filename">/opt/lixa/etc/</code>
 	  directory and must be managed by
 	  <code class="systemitem">lixa</code> user, the
 	  LIXA administrative user
-      </p></div><div id="ftn.idp57854288" class="footnote"><p><a href="#idp57854288" class="para"><sup class="para">[18] </sup></a>
+      </p></div><div id="ftn.idp57911184" class="footnote"><p><a href="#idp57911184" class="para"><sup class="para">[18] </sup></a>
 	  The standard installation procedure installs both the files with
 	  default content; it's your responsability to customize the content
 	  of the files.

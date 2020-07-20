@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Figures about Performances</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.0-rc)" /><link rel="up" href="ch11.html" title="Chapter 11. Tuning" /><link rel="prev" href="ch11s03.html" title="Choosing the state engine type" /><link rel="next" href="ch12.html" title="Chapter 12. Troubleshooting" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Figures about Performances</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11s03.html">Prev</a> </td><th width="60%" align="center">Chapter 11. Tuning</th><td width="20%" align="right"> <a accesskey="n" href="ch12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Figures_about_Performances"></a>Figures about Performances</h2></div></div></div><p>
+      This section briefly shows how the behaviour of the LIXA state server
+      changes in accordance with different configuration options.
+      The figures and the charts here reported are a summary of what explained
+      in <a class="link" href="https://www.tiian.org/lixa/performances/performances.html" target="_top">LIXA Performances</a> and
+      <a class="link" href="https://www.tiian.org/lixa/performances/performances_2.html" target="_top">LIXA Performances II (reloaded)</a> pages from  
+      <a class="link" href="https://www.tiian.org/lixa/" target="_top">LIXA web site</a>.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59025984"></a>Results obtained with <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  All the tests saturated the CPU of the host executing 
+	  <span class="command"><strong>lixad</strong></span> state server for the higher values of
+	  connected clients.
+	</p></div><p>
+	The first picture shows the elapsed time associated to
+	<code class="function">tx_open()</code> increases quite linearly with the 
+	number of connected clients. A <span class="command"><strong>lixad</strong></span> state server 
+	configured with 3 managers
+	(threads), <em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=100</code></em> exploits the best
+	scalability (purple line); a <span class="command"><strong>lixad</strong></span> state server 
+	configured with 3 managers,
+	<em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=50</code></em> shows a scalability
+	very near to the best (light green line).
+	<span class="emphasis"><em>The second one is a more robust configuration and should
+	  be preferred</em></span>.
+      </p><div class="figure"><a id="tuning_01"></a><p class="title"><strong>Figure 11.1. Elapsed time of tx_open() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for every 
+	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_01.png" alt="Elapsed time of tx_open() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><p>
+	A completely different behavior is shown by
+	<code class="function">tx_begin(), tx_commit(), tx_close()</code> functions:
+	the best scalability is obtained with 1 manager (thread), 
+	<em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=100</code></em>
+	(yellow line); a quite optimal
+	performance can be obtained with 1 manager (thread), 
+	<em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=50</code></em> (orange line). 
+	The second 
+	configuration should be preferred because it's more robust than the
+	first one. Using more threads does not give any benefit for these
+	three functions.
+      </p><div class="figure"><a id="tuning_02"></a><p class="title"><strong>Figure 11.2. Elapsed time of tx_begin() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for every 
+	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_02.png" alt="Elapsed time of tx_begin() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="figure"><a id="tuning_03"></a><p class="title"><strong>Figure 11.3. Elapsed time of tx_commit() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for every 
+	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_03.png" alt="Elapsed time of tx_commit() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="figure"><a id="tuning_04"></a><p class="title"><strong>Figure 11.4. Elapsed time of tx_close() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for every 
+	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_04.png" alt="Elapsed time of tx_close() when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><p>
+	In the last chart 
+	you may note the aggregated values for all the transactions
+	(100 transactions, the elapsed time is now expressed in seconds):
+	the purple line (best configuration for <code class="function">tx_open()</code>)
+	is the best overall configuration. This time too, there are many
+	performance equivalent configurations:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      3 managers (thread), 
+	      <em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
+	      <em class="parameter"><code>max_elapsed_sync_time=100</code></em>
+	      (purple line)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      3 managers (thread), 
+	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>	      
+	      (light green line)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      2 managers (thread), 
+	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>	      
+	      (red line)
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      1 managers (thread), 
+	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>	      
+	      (orange line)
+	  </p></li></ul></div><p>
+	The second configuration of the above list (light green) could be 
+	considered the
+	best from an overall performance point of view and from a safety
+	point of view: the minimum elapsed synchronization time is 
+	10 milliseconds.
+      </p><div class="figure"><a id="tuning_05"></a><p class="title"><strong>Figure 11.5. Overall elapsed time when the Application Program 
+	  uses a couple of tx_open()/tx_close() for every 
+	  couple of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_05.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for every couple of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59050000"></a>Results obtained without <em class="parameter"><code>--open-close</code></em> parameter</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  All the tests saturated the CPU of the host executing 
+	  <span class="command"><strong>lixad</strong></span> state server for the higher values of
+	  connected clients.
+	</p></div><p>
+	Avoiding a lot of <code class="function">tx_open()/tx_close()</code> the
+	behavior of the system is quite different. It's interesting to note
+	the system has two distinct modes:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+	      in the range [10,50] clients the scalability is quite linear 
+	      if you adopt a super safe configuration with 
+	      <em class="parameter"><code>min_elapsed_sync_time=0</code></em> and
+	      <em class="parameter"><code>max_elapsed_sync_time=0</code></em>
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      in the range [10,50] clients the scalability is
+	      <span class="quote">“<span class="quote">superlinear</span>”</span>
+	      <a href="#ftn.idp59055248" class="footnote" id="idp59055248"><sup class="footnote">[56]</sup></a>
+	      if you adopt an asynchronous
+	      conifiguration with 
+	      <em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	      <em class="parameter"><code>max_elapsed_sync_time=50</code></em>
+	      or higher values
+	  </p></li><li class="listitem" style="list-style-type: disc"><p>
+	      in the range [60,100] clients the system tends to saturate
+	      and the <span class="quote">“<span class="quote">superlinear</span>”</span> characteristic is vanishing;
+	      neverthless, asynchronous configurations exploit lower
+	      response time than synchronous ones
+	  </p></li></ul></div><p>
+      </p><div class="figure"><a id="tuning_06"></a><p class="title"><strong>Figure 11.6. Elapsed time of tx_open() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for a 
+	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_06.png" alt="Elapsed time of tx_open() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="figure"><a id="tuning_07"></a><p class="title"><strong>Figure 11.7. Elapsed time of tx_begin() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for a 
+	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_07.png" alt="Elapsed time of tx_begin() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="figure"><a id="tuning_08"></a><p class="title"><strong>Figure 11.8. Elapsed time of tx_commit() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for a 
+	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_08.png" alt="Elapsed time of tx_commit() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="figure"><a id="tuning_09"></a><p class="title"><strong>Figure 11.9. Elapsed time of tx_close() when the Application Program 
+	  uses a couple of tx_open()/tx_close() for a 
+	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_09.png" alt="Elapsed time of tx_close() when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><p>
+	The last chart shows the average elapsed time spent for 
+	<code class="function">tx_*</code> functions by 100 transactions.
+	The best performace is obtained with the less safe configuration:
+	<em class="parameter"><code>min_elapsed_sync_time=20</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=100</code></em>
+	(purple, cyan and yellow lines).
+	The intermediate performance is obtained with the intermediate
+	configuration:
+	<em class="parameter"><code>min_elapsed_sync_time=10</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=50</code></em>
+	(dark yellow, red and orange lines).
+	The worst performance is obtained with the safest configuration:
+	<em class="parameter"><code>min_elapsed_sync_time=0</code></em> and
+	<em class="parameter"><code>max_elapsed_sync_time=0</code></em>
+	(green, light green and blue lines).
+      </p><div class="figure"><a id="tuning_10"></a><p class="title"><strong>Figure 11.10. Overall elapsed time when the Application Program 
+	  uses a couple of tx_open()/tx_close() for a 
+	  batch of tx_begin()/tx_commit()</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Tuning_10.png" alt="Overall elapsed time when the Application Program uses a couple of tx_open()/tx_close() for a batch of tx_begin()/tx_commit()" /></div></div></div><br class="figure-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59070000"></a>Conclusions</h4></div></div></div><p>
+	  The LIXA project gives you some parameters you can change to tune
+	  your installation and get the best performance.
+	  There is not a magic recipe you can adopt, but there are some
+	  rules of thumb:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		if possible, avoid the usage of 
+		<code class="function">tx_open()/tx_close()</code> for every 
+		transaction: if your business logic could batch more than
+		one transaction inside the same session, your overall
+		response time would be lower
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		delayed disk synchronization will help you in obtaining
+		better performance with the same hardware, but introducing
+		too high delays will not give you extra performance
+	    </p></li><li class="listitem" style="list-style-type: disc"><p>
+		delay disk synchronization introduce the risk to perform
+		manual recovery as explained in
+		<a class="xref" href="ch03s02.html#Delayed_synchronization_effects" title="Synchronization parameters">the section called “Synchronization parameters”</a>.
+	    </p></li></ul></div><p>
+	  Write your own test program, with real Resource Managers,
+	  and measure it: with a test environment you would be able to
+	  fine tune your own installation.
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59055248" class="footnote"><p><a href="#idp59055248" class="para"><sup class="para">[56] </sup></a>
+		  <code class="function">tx_begin(), tx_commit(), tx_close()</code>
+		  response times change very few when the number of clients
+		  rises
+		</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch11s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch11.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch12.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Choosing the state engine type </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 12. Troubleshooting</td></tr></table></div></body></html>
