@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Choosing the state engine type</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.0)" /><link rel="up" href="ch11.html" title="Chapter 11. Tuning" /><link rel="prev" href="ch11s02.html" title="Scattering IO through different disks" /><link rel="next" href="ch12.html" title="Chapter 12. Troubleshooting" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Choosing the state engine type</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11s02.html">Prev</a> </td><th width="60%" align="center">Chapter 11. Tuning</th><td width="20%" align="right"> <a accesskey="n" href="ch12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp61128768"></a>Choosing the state engine type</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Choosing the state engine type</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.1)" /><link rel="up" href="ch11.html" title="Chapter 11. Tuning" /><link rel="prev" href="ch11s02.html" title="Scattering IO through different disks" /><link rel="next" href="ch12.html" title="Chapter 12. Troubleshooting" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Choosing the state engine type</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11s02.html">Prev</a> </td><th width="60%" align="center">Chapter 11. Tuning</th><td width="20%" align="right"> <a accesskey="n" href="ch12.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp61143008"></a>Choosing the state engine type</h2></div></div></div><p>
       <span class="emphasis"><em>Journal based</em></span> state engine has been designed to
       provide a better alternative to the <span class="emphasis"><em>traditional</em></span>
       state engine. 
@@ -45,11 +45,11 @@
     </p><p>
       The good news is that the LIXA state engines, both journal and
       traditional, provide parameters to tune the behavior.
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61135056"></a>Tuning the journal state engine</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Tuning_the_journal_state_engine"></a>Tuning the journal state engine</h3></div></div></div><p>
 	The journal state engine provides two levels of resilience with two
 	different Recovery Point Objectives depending on the type of crash
 	encountered by the LIXA state server.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61135936"></a>Soft crash RPO</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61150576"></a>Soft crash RPO</h4></div></div></div><p>
 	  A <span class="emphasis"><em>soft crash</em></span> is a crash that happens to the
 	  LIXA state server process (<span class="command"><strong>lixad</strong></span>), but it does not
 	  break the operating system. Common examples are:
@@ -63,7 +63,7 @@
 	  data miss. As a consequence, when restart from the last active
 	  state table succeeds, the RPO is zero and there's no transaction
 	  state missing.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61140832"></a>Hard crash RPO</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61155360"></a>Hard crash RPO</h4></div></div></div><p>
 	  A <span class="emphasis"><em>hard crash</em></span> is a crash related to the
 	  operating system or a damage to state table files. Common examples
 	  are:
@@ -80,7 +80,7 @@
 	</p><p>
 	  Due to different strategies of log flushing, the corresponding RPO
 	  can be greater than zero.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61144848"></a>Impact of parameter <em class="parameter"><code>min_elapsed_sync_time</code></em></h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61159376"></a>Impact of parameter <em class="parameter"><code>min_elapsed_sync_time</code></em></h4></div></div></div><p>
 	  The parameter fixes the minimum delay between the need of a
 	  transaction state flushing and the start of the I/O operation:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
@@ -94,7 +94,7 @@
 	      <span class="emphasis"><em>hard crash</em></span>, this parameter must be set to
 	      zero
 	    </p></li></ul></div><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61149376"></a>Impact of parameter <em class="parameter"><code>max_elapsed_sync_time</code></em></h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61163904"></a>Impact of parameter <em class="parameter"><code>max_elapsed_sync_time</code></em></h4></div></div></div><p>
 	  The parameter fixes the maximum delay between the need of a
 	  transaction state flushing and the start of the I/O operation:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
@@ -112,44 +112,61 @@
 	  <em class="parameter"><code>min_elapsed_sync_time</code></em>: if both are set to
 	  value zero, state log file is flushed as soon as a transaction needs
 	  to persist a new state.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61154432"></a>Impact of parameter <em class="parameter"><code>log_size</code></em></h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61168960"></a>Impact of parameter <em class="parameter"><code>log_size</code></em></h4></div></div></div><p>
 	  The parameter specifies the desired amount of disk space that must
 	  be used of every state log file. A state log file can be switched
 	  only when the previous state table synchronization has been
-	  completed. In presence of slow disks, a larger value can be helpful
-	  to obtain better performances.
-	</p><p>
+	  completed. In presence of disks with high latency and high 
+	  throughput, a larger value can be helpful to obtain better
+	  performances.
+	</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	    Too large logs can produce adverse performances during state server
+	    restart in a couple of situations:
+	    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
+		option <em class="parameter"><code>log_o_direct="1"</code></em> (O_DIRECT) is
+		used
+	      </p></li><li class="listitem" style="list-style-type: disc"><p>
+		the state server restart follows a system reboot
+	      </p></li></ul></div><p>
+	    In both cases, Linux operating system has not cached the log file
+	    page and all the reading must be done by the storage devices. As a
+	    rule of thumb, don't allocate a large log if there's no a valid
+	    performance benefit, during normal activity, in doing it.
+	  </p></div><p>
 	  The parameter has no direct impact on RPO.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61155968"></a>Impact of parameter <em class="parameter"><code>max_buffer_log_size</code></em></h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61173440"></a>Impact of parameter <em class="parameter"><code>max_buffer_log_size</code></em></h4></div></div></div><p>
 	  The parameter specifies the quantity of RAM used as buffer for
 	  log writing: under some circumstances, higher values can improve
 	  performances.
 	</p><p>
 	  The parameter has no direct impact on RPO.
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61157424"></a>Impact of parameters <em class="parameter"><code>log_o_*</code></em></h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61174832"></a>Impact of parameters <em class="parameter"><code>log_o_*</code></em></h4></div></div></div><p>
 	  The parameters specify the corresponding flags that must be used for
-	  state log files; as a general rule, 
+	  writing the state log files; as a general rule, 
 	  <em class="parameter"><code>log_o_direct="1"</code></em> (O_DIRECT) is faster than
 	  <em class="parameter"><code>log_o_dsync="1"</code></em> (O_DSYNC) and
 	  <em class="parameter"><code>log_o_dsync="1"</code></em> (O_DSYNC) is faster than
 	  <em class="parameter"><code>log_o_sync="1"</code></em> (O_SYNC).
 	</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
-	  As a general rule, only <em class="parameter"><code>log_o_sync=1</code></em> in
+	  To be precise, only <em class="parameter"><code>log_o_sync=1</code></em> in
 	  association with 
 	  <em class="parameter"><code>min_elapsed_sync_time="0"</code></em> and
 	  <em class="parameter"><code>max_elapsed_sync_time="0"</code></em> guarantees RPO=0
-	  in the event of <span class="emphasis"><em>hard crash</em></span>.
-	</p></div><p>
+	  in the event of <span class="emphasis"><em>hard crash</em></span> for every hardware
+	  configuration, but such configuration limitates the performance of
+	  the LIXA state server and introduce additional latency.
+	</p><p>
 	  In real life scenarios, depending on the characteristics of the
-	  storage subsystem, less restrictive options can be used.
-	  The best configuration requires further investigation about the
-	  specific hardware configuration.
-	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	  storage subsystem, less restrictive options can be reasonably used.
+	  The best configuration requires investigation on the specific
+	  hardware configuration. The configuration provided by default can be
+	  considered a starting point to adjust according to the user's needs.
+	</p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	  Parameters <em class="parameter"><code>log_o_*</code></em> can be uses together, for
 	  example you can specify both <em class="parameter"><code>log_o_direct="1"</code></em> 
 	  and <em class="parameter"><code>log_o_dsync="1"</code></em> to combine the effects of
 	  O_DIRECT and O_DSYNC flags for log I/O.
-	</p></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61165024"></a>Tuning the traditional state engine</h3></div></div></div><p>
+	</p></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Tuning_the_traditional_state_engine"></a>Tuning the traditional state engine</h3></div></div></div><p>
 	The traditional state engine provides a single level of resilience
 	and no difference among types of crash encountered by the LIXA state
 	server.
@@ -158,7 +175,7 @@
       <em class="parameter"><code>min_elapsed_sync_time</code></em> and 
       <em class="parameter"><code>max_elapsed_sync_time</code></em> while the others are
       ignored.
-    </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61167072"></a>Impact of parameter <em class="parameter"><code>min_elapsed_sync_time</code></em></h4></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61185040"></a>Impact of parameter <em class="parameter"><code>min_elapsed_sync_time</code></em></h4></div></div></div><p>
 	  The parameter fixes the minimum delay between the need of a
 	  transaction state flushing and the start of the memory map sync
 	  operation:
@@ -171,7 +188,7 @@
 	      to have a guaranteed RPO=0 this parameter must be set to
 	      zero
 	    </p></li></ul></div><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61170544"></a>Impact of parameter <em class="parameter"><code>max_elapsed_sync_time</code></em></h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61188432"></a>Impact of parameter <em class="parameter"><code>max_elapsed_sync_time</code></em></h4></div></div></div><p>
 	  The parameter fixes the maximum delay between the need of a
 	  transaction state flushing and the start of the memory map sync:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
@@ -187,7 +204,7 @@
 	  <em class="parameter"><code>min_elapsed_sync_time</code></em>: if both are set to
 	  value zero, memory map is synchronized as soon as a transaction needs
 	  to persist a new state.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61174688"></a>Balancing performance and resilience</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61192480"></a>Balancing performance and resilience</h3></div></div></div><p>
 	The higher the value of RPO, the higher the chance
 	you will have to perform manual recovery in the case of a server
 	crash (manual recovery is explained in 
@@ -218,7 +235,7 @@
 	the RPO, the lowest the total latency introduced by LIXA in managing
 	distributed transactions. Furtherly, this second type of architecture
 	exhibits a lower latency than the first type.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61180960"></a>Conclusions</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61198752"></a>Conclusions</h3></div></div></div><p>
 	LIXA configuration parameters allow fine tuning of the state engine; in
 	a real life environment, apply the following guidelines:
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
