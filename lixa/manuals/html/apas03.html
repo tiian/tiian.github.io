@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PostgreSQL Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.1)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PostgreSQL Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apas02.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> </td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_PostgreSQL"></a>PostgreSQL Configuration</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PostgreSQL Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apas02.html" title="Oracle DMBS Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PostgreSQL Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apas02.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> </td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_PostgreSQL"></a>PostgreSQL Configuration</h2></div></div></div><p>
       The following diagram represents a simplified vision of the components
       necessary to run an example program (<code class="filename">example5_mys</code>
       in the picture) that uses PostgreSQL as an XA Resource Manager.
     </p><div class="figure"><a id="develop5"></a><p class="title"><strong>Figure A.3. Deploy model of an example with PostgreSQL DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_App_RM_5.png" alt="Deploy model of an example with PostgreSQL DBMS" /></div></div></div><br class="figure-break" /><p>
       This section has been developed using PostgreSQL 9.1.24 (and upper)
       for Linux. Here is a brief list of the tested versions for Ubuntu
-      12.04, 14.04, 16.04, 18.04 and CentOS/RHEL 7.3 and the installed
-      packages:
+      12.04, 14.04, 16.04, 18.04 and CentOS/RHEL 7.3, CentOS 8 and the
+      installed packages:
       </p><pre class="screen">
 tiian@ubuntu1204-64:/tmp$ dpkg -l | grep -i -e pq -e postgresql
 ii  libpq-dev                        9.1.24-0ubuntu0.12.04               header files for libpq5 (PostgreSQL library)
@@ -57,6 +57,13 @@ postgresql-devel-9.2.18-1.el7.x86_64
 postgresql-9.2.18-1.el7.x86_64
 postgresql-server-9.2.18-1.el7.x86_64
 postgresql-libs-9.2.18-1.el7.x86_64
+
+[tiian@centos8 tmp]$ rpm -qa | grep -i -e pq -e postgresql
+postgresql-server-10.14-1.module_el8.2.0+487+53cc39ce.x86_64
+libpq-12.4-1.el8_2.x86_64
+postgresql-jdbc-42.2.3-3.el8_2.noarch
+libpq-devel-12.4-1.el8_2.x86_64
+postgresql-10.14-1.module_el8.2.0+487+53cc39ce.x86_64
       </pre><p>
       If you were using a different version you would need to adapt some
       commands to your environment.
@@ -78,9 +85,9 @@ postgresql-libs-9.2.18-1.el7.x86_64
       The LIXA software must be configured to support the PostgreSQL
       server resource manager as explained in 
       <a class="xref" href="ch02s04.html#Linking_third_party_resource_managers" title="Linking third party resource managers">the section called “Linking third party resource managers”</a>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61346976"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="App_RM_setup_PostgreSQL_environment"></a>Set-up PostgreSQL environment</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61317824"></a>Start-up the PostgreSQL server</h4></div></div></div><p>
 	  If your server didn't start-up automatically at boot time, you
-	  could start it with the following commands:
+	  could start it with the following commands for Ubuntu:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1204-64:~$ sudo service postgresql status
 Running clusters: 
@@ -96,9 +103,52 @@ postgres  1832  1829  0 23:00 ?        00:00:00 postgres: wal writer process
 postgres  1833  1829  0 23:00 ?        00:00:00 postgres: autovacuum launcher process
 postgres  1834  1829  0 23:00 ?        00:00:00 postgres: stats collector process
 	    </pre></td></tr></tbody></table></div><p>
+	  or with the following ones for CentOS:
+	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+[tiian@centos8 tmp]$ sudo /usr/bin/postgresql-setup --initdb
+ * Initializing database in '/var/lib/pgsql/data'
+ * Initialized, logs are in /var/lib/pgsql/initdb_postgresql.log
+[tiian@centos8 tmp]$ sudo systemctl start postgresql.service
+[tiian@centos8 tmp]$ sudo systemctl enable postgresql.service
+Created symlink /etc/systemd/system/multi-user.target.wants/postgresql.service → /usr/lib/systemd/system/postgresql.service.
+[tiian@centos8 tmp]$ ps -ef|grep postgres|grep -v grep
+postgres    2254       1  0 15:23 ?        00:00:00 /usr/bin/postmaster -D /var/lib/pgsql/data
+postgres    2256    2254  0 15:23 ?        00:00:00 postgres: logger process   
+postgres    2258    2254  0 15:23 ?        00:00:00 postgres: checkpointer process   
+postgres    2259    2254  0 15:23 ?        00:00:00 postgres: writer process   
+postgres    2260    2254  0 15:23 ?        00:00:00 postgres: wal writer process   
+postgres    2261    2254  0 15:23 ?        00:00:00 postgres: autovacuum launcher process   
+postgres    2262    2254  0 15:23 ?        00:00:00 postgres: stats collector process   
+postgres    2263    2254  0 15:23 ?        00:00:00 postgres: bgworker: logical replication launcher   
+[tiian@centos8 tmp]$ sudo systemctl status postgresql.service
+● postgresql.service - PostgreSQL database server
+   Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; vendor preset: disabled)
+   Active: active (running) since Sun 2020-10-11 15:23:45 CEST; 3min 7s ago
+ Main PID: 2254 (postmaster)
+    Tasks: 8 (limit: 11477)
+   Memory: 16.3M
+   CGroup: /system.slice/postgresql.service
+           ├─2254 /usr/bin/postmaster -D /var/lib/pgsql/data
+           ├─2256 postgres: logger process   
+           ├─2258 postgres: checkpointer process   
+           ├─2259 postgres: writer process   
+           ├─2260 postgres: wal writer process   
+           ├─2261 postgres: autovacuum launcher process   
+           ├─2262 postgres: stats collector process   
+           └─2263 postgres: bgworker: logical replication launcher   
+
+Oct 11 15:23:44 centos8 systemd[1]: Starting PostgreSQL database server...
+Oct 11 15:23:44 centos8 postmaster[2254]: 2020-10-11 15:23:44.877 CEST [2254] LOG:  listening on IPv6 address "::1", port 5432
+Oct 11 15:23:44 centos8 postmaster[2254]: 2020-10-11 15:23:44.877 CEST [2254] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+Oct 11 15:23:44 centos8 postmaster[2254]: 2020-10-11 15:23:44.893 CEST [2254] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+Oct 11 15:23:44 centos8 postmaster[2254]: 2020-10-11 15:23:44.935 CEST [2254] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+Oct 11 15:23:44 centos8 postmaster[2254]: 2020-10-11 15:23:44.957 CEST [2254] LOG:  redirecting log output to logging collector process
+Oct 11 15:23:44 centos8 postmaster[2254]: 2020-10-11 15:23:44.957 CEST [2254] HINT:  Future log output will appear in directory "log".
+Oct 11 15:23:45 centos8 systemd[1]: Started PostgreSQL database server.
+	    </pre></td></tr></tbody></table></div><p>
 	  Switch to user <code class="systemitem">postgres</code>,
 	  associate your user to a matching database user
-	  <a href="#ftn.idp61351776" class="footnote" id="idp61351776"><sup class="footnote">[61]</sup></a>
+	  <a href="#ftn.idp61327472" class="footnote" id="idp61327472"><sup class="footnote">[61]</sup></a>
 	  ; my personal account is 
 	  <code class="systemitem">tiian</code>
 	  and I created the same user inside PostgreSQL database:
@@ -113,9 +163,10 @@ logout
 	    </pre></td></tr></tbody></table></div><p>
 	  Even if most of the examples use local connection, for JDBC it's
 	  necessary even a host connection; verify that config file
-	  <code class="filename">pg_hba.conf</code> contains a row like the following
-	  one:
+	  <code class="filename">pg_hba.conf</code> contains a couple of rows like the
+	  following ones:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+host    all             all             127.0.0.1/32            md5
 host    all             all             ::1/128                 md5
 	    </pre></td></tr></tbody></table></div><p>
 	  and assign your user a password inside PostgreSQL database:
@@ -131,24 +182,19 @@ postgres=# \q
 	    </pre></td></tr></tbody></table></div><p>
 	  Create a new database and a table necessary to store some data:
 	  </p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu1204-64:~$ createdb testdb
-tiian@ubuntu1204-64:~$ psql testdb
-psql (9.1.24)
+[tiian@centos8 tmp]$ createdb testdb
+[tiian@centos8 tmp]$ psql testdb
+psql (10.14)
 Type "help" for help.
 
-testdb=&gt;
-testdb=&gt; CREATE TABLE "authors" (
-testdb(&gt; "id" integer NOT NULL,
-testdb(&gt; "last_name" text,
-testdb(&gt; "first_name" text,
-testdb(&gt; Constraint "authors_pkey" Primary Key ("id"));
-NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "authors_pkey" for table "authors"
+testdb=&gt; CREATE TABLE "authors" ("id" integer NOT NULL,"last_name" text,"first_name" text,Constraint "authors_pkey" Primary Key ("id"));
 CREATE TABLE
-
 testdb=&gt; select * from authors;
- id | last_name | first_name
+ id | last_name | first_name 
 ----+-----------+------------
 (0 rows)
+
+testdb=&gt; \q
 	    </pre></td></tr></tbody></table></div><p>
 	  OK, the <span class="quote">“<span class="quote">authors</span>”</span> table was created. 
 	  If something went wrong, you should refer to PostgreSQL
@@ -177,9 +223,11 @@ max_prepared_transactions = 10          # zero disables the feature
 #max_stack_depth = 2MB                  # min 100kB
 	  </pre><p>
 	  and restart the PostgreSQL server with something like
-	  </p><pre class="screen">service postgresql restart</pre><p> (Ubuntu, CentOS and RHEL) using
+	  </p><pre class="screen">service postgresql restart</pre><p> (Ubuntu) or
+	  </p><pre class="screen">systemctl restart postgresql.service</pre><p> (CentOS)
+	  using
 	  <code class="systemitem">root</code> user.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61351776" class="footnote"><p><a href="#idp61351776" class="para"><sup class="para">[61] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61327472" class="footnote"><p><a href="#idp61327472" class="para"><sup class="para">[61] </sup></a>
 	    If you wanted to use a database user different than your own
 	    UNIX user, as it ever happens when the database is hosted on
 	    a different system, you should configure

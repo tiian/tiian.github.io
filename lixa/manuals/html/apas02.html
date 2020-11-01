@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Oracle DMBS Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.1)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="next" href="apas03.html" title="PostgreSQL Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Oracle DMBS Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> <a accesskey="n" href="apas03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_Oracle"></a>Oracle DMBS Configuration</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Oracle DMBS Configuration</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="prev" href="apa.html" title="Appendix A. Resource Managers Configuration" /><link rel="next" href="apas03.html" title="PostgreSQL Configuration" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Oracle DMBS Configuration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><th width="60%" align="center">Appendix A. Resource Managers Configuration</th><td width="20%" align="right"> <a accesskey="n" href="apas03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="App_RM_Config_Oracle"></a>Oracle DMBS Configuration</h2></div></div></div><p>
       The following picture shows the overall architecture from the logical
       point of view.
       </p><div class="figure"><a id="develop2"></a><p class="title"><strong>Figure A.2. Deploy model of an example with Oracle Database Server</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_App_RM_2.png" alt="Deploy model of an example with Oracle Database Server" /></div></div></div><p><br class="figure-break" />
@@ -33,7 +33,7 @@
 	The following example is based on Oracle XE 10.2 and 11.2, but
 	there shouldn't be too much differences with other Oracle
 	versions.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61270976"></a>Start-up the Oracle server</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61241536"></a>Start-up the Oracle server</h4></div></div></div><p>
 	  If the database server was not running, you can start it
 	  with these commands
 	  </p><pre class="screen">
@@ -50,14 +50,14 @@ tiian@ubuntu:~/tmp$ sudo service oracle-xe start
 Starting Oracle Net Listener.
 Starting Oracle Database 11g Express Edition Instance.
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61272944"></a>Create the XA related views</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61243504"></a>Create the XA related views</h4></div></div></div><p>
 	  First of all you must be able to connect as <span class="quote">“<span class="quote">SYSDBA</span>”</span>
 	  from a terminal session; the commands below show what happens when
 	  I connect to the Oracle server using the user 
 	  <code class="systemitem">sys</code> with password
 	  <span class="quote">“<span class="quote">oracle</span>”</span>
-	  <a href="#ftn.idp61275792" class="footnote" id="idp61275792"><sup class="footnote">[57]</sup></a>
-	  <a href="#ftn.idp61278864" class="footnote" id="idp61278864"><sup class="footnote">[58]</sup></a>:
+	  <a href="#ftn.idp61246352" class="footnote" id="idp61246352"><sup class="footnote">[57]</sup></a>
+	  <a href="#ftn.idp61249424" class="footnote" id="idp61249424"><sup class="footnote">[58]</sup></a>:
 	  </p><pre class="screen">
 tiian@ubuntu:~$ sudo su - oracle
 oracle@ubuntu:~$ echo $ORACLE_HOME
@@ -168,7 +168,7 @@ View created.
 
 SQL&gt; SQL&gt; SQL&gt; Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
 	  </pre><p>
-	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61273504"></a>Authorize the XA related views</h4></div></div></div><p>
+	</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61244064"></a>Authorize the XA related views</h4></div></div></div><p>
 	  The example programs supplied by the LIXA project are designed
 	  to use the 
 	  <code class="systemitem">hr</code> user; you 
@@ -209,7 +209,7 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 	  the above commands failed,
 	  you should read Oracle documentation and pick-up the necessary
 	  information to create it.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61292688"></a>Unlock <span class="quote">“<span class="quote"><code class="systemitem">hr</code></span>”</span> Oracle user</h4></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61263248"></a>Unlock <span class="quote">“<span class="quote"><code class="systemitem">hr</code></span>”</span> Oracle user</h4></div></div></div><p>
 	  The example programs supplied by the LIXA project are designed
 	  to use the 
 	  <code class="systemitem">hr</code> user; it might be 
@@ -262,7 +262,7 @@ xaoopen: return -3
 	  <code class="filename">countries</code> and to create a new table with
 	  name <code class="filename">authors</code>:
 	  </p><pre class="screen">
-tiian@ubuntu:~$ sqlplus "hr/hr"<a href="#ftn.idp61300608" class="footnote" id="idp61300608"><sup class="footnote">[59]</sup></a>
+tiian@ubuntu:~$ sqlplus "hr/hr"<a href="#ftn.idp61271168" class="footnote" id="idp61271168"><sup class="footnote">[59]</sup></a>
 
 SQL*Plus: Release 10.2.0.1.0 - Production on Thu Apr 14 22:04:55 2011
 
@@ -344,7 +344,7 @@ Commit complete.
 	    the Oracle Instant Client software must be installed and 
 	    configured in the system that will connect to the database
 	  </p></li></ul></div><p>
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61311312"></a>Set-up the Oracle environment (server side)</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp61281872"></a>Set-up the Oracle environment (server side)</h4></div></div></div><p>
 	  The first part of the Oracle Database Server is pretty the same
 	  described in 
 	  <a class="xref" href="apas02.html#App_RM_Config_Oracle_Local" title="Local configuration (Server) and OCI">the section called “Local configuration (Server) and OCI”</a>.
@@ -527,7 +527,7 @@ export PATH=/opt/oracle/instantclient_12_1:/opt/oracle/instantclient_12_1/sdk:$P
 export ORACLE_HOME=/opt/oracle/instantclient_12_1
 	  </pre><p>
 	  and to put it inside Oracle Instant Client base directory
-	  <a href="#ftn.idp61327312" class="footnote" id="idp61327312"><sup class="footnote">[60]</sup></a>:
+	  <a href="#ftn.idp61297872" class="footnote" id="idp61297872"><sup class="footnote">[60]</sup></a>:
 	    </p><pre class="screen">
 tiian@ubuntu1404-64:~/lixa$ ls -la /opt/oracle/instantclient_12_1/oracle_env.sh
 -rwxr-xr-- 1 root root 216 mar 10 21:57 /opt/oracle/instantclient_12_1/oracle_env.sh
@@ -589,7 +589,7 @@ Disconnected from Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bi
 	  See the instructions reported in 
 	  <a class="xref" href="apas02.html#App_RM_Config_Oracle_data_table" title="Check the data table before execution">the section called “Check the data table before execution”</a> to configure the
 	  tables necessary for examples execution.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61275792" class="footnote"><p><a href="#idp61275792" class="para"><sup class="para">[57] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp61246352" class="footnote"><p><a href="#idp61246352" class="para"><sup class="para">[57] </sup></a>
 	    I put this line (Oracle 10.2 32 bit)
 	    <code class="computeroutput">. /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh</code>
 	    or this line (Oracle 11.2 64 bit)
@@ -599,7 +599,7 @@ Disconnected from Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bi
 	    the default administration environment; it complains about
 	    two shell errors, but for the sake of our example it's
 	    safe.
-	  </p></div><div id="ftn.idp61278864" class="footnote"><p><a href="#idp61278864" class="para"><sup class="para">[58] </sup></a>
+	  </p></div><div id="ftn.idp61249424" class="footnote"><p><a href="#idp61249424" class="para"><sup class="para">[58] </sup></a>
 	    If you got some errors like these:
 	    </p><pre class="screen">
 /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/nls_lang.sh: 114: [[: not found
@@ -610,10 +610,10 @@ Disconnected from Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bi
 	    <code class="computeroutput">#!/bin/bash</code> in the first row as explained 
 	    here:
 	    <a class="link" href="http://forums.oracle.com/forums/thread.jspa?messageID=1542334" target="_top">http://forums.oracle.com/forums/thread.jspa?messageID=1542334</a>
-	  </p></div><div id="ftn.idp61300608" class="footnote"><p><a href="#idp61300608" class="para"><sup class="para">[59] </sup></a>
+	  </p></div><div id="ftn.idp61271168" class="footnote"><p><a href="#idp61271168" class="para"><sup class="para">[59] </sup></a>
 use </p><pre class="screen">sqlplus hr/hr@lixa_ora_db</pre><p> in the event that you are 
 using a remote connection as explained above
-</p></div><div id="ftn.idp61327312" class="footnote"><p><a href="#idp61327312" class="para"><sup class="para">[60] </sup></a>
+</p></div><div id="ftn.idp61297872" class="footnote"><p><a href="#idp61297872" class="para"><sup class="para">[60] </sup></a>
 	    LIXA test suite, based on <span class="command"><strong>autotest</strong></span> looks for
 	    it: if it's not available, Oracle's tests are skipped.
 	    </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="apa.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="apa.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="apas03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Appendix A. Resource Managers Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> PostgreSQL Configuration</td></tr></table></div></body></html>

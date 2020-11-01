@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle Pro*COBOL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.1)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s05.html" title="An example with PostgreSQL" /><link rel="next" href="ch06s07.html" title="An example with PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle Pro*COBOL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s05.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle Pro*COBOL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s05.html" title="An example with PostgreSQL" /><link rel="next" href="ch06s07.html" title="An example with PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle Pro*COBOL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s05.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s07.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_EXAMPLE2_ORA"></a>An example with Oracle Pro*COBOL</h2></div></div></div><div class="figure"><a id="develop6_cobol"></a><p class="title"><strong>Figure 6.3. Deploy model of an example with Oracle DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_5.png" alt="Deploy model of an example with Oracle DBMS" /></div></div></div><br class="figure-break" /><p>
       This example was developed using the following configuration:
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
@@ -27,7 +27,7 @@
 	  Start the LIXA state server as explained in
 	  <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59263024"></a>Set environment variables</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59222112"></a>Set environment variables</h3></div></div></div><p>
 	Create a shell script file, for example 
 	<code class="filename">oracle_env.sh</code>
 	with some useful environment variables as below:
@@ -57,7 +57,7 @@ tiian@ubuntu1404-64:/tmp$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lixa/lib
 tiian@ubuntu1404-64:/tmp$ echo $LD_LIBRARY_PATH
 /opt/oracle/instantclient_12_1::/opt/lixa/lib
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59266576"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59225664"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/cobol/EXAMPLE2_ORA.pco .
@@ -108,7 +108,7 @@ tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE2_ORA
     liblzma.so.5 =&gt; /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007f43437eb000)
     libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007f43435e5000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59274448"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59233536"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ echo $LIXA_PROFILE
@@ -120,7 +120,7 @@ ORAIC_DYN
       </p><p>
 	See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional details on
 	the profile.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59278368"></a>Program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59237456"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to Oracle database and the second
 	one pointing to the directory where the compiled program

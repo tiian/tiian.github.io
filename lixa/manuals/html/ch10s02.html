@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tracing</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.1)" /><link rel="up" href="ch10.html" title="Chapter 10. In Depth" /><link rel="prev" href="ch10.html" title="Chapter 10. In Depth" /><link rel="next" href="ch10s03.html" title="Non root installation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tracing</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><th width="60%" align="center">Chapter 10. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch10s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tracing"></a>Tracing</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tracing</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch10.html" title="Chapter 10. In Depth" /><link rel="prev" href="ch10.html" title="Chapter 10. In Depth" /><link rel="next" href="ch10s03.html" title="Non root installation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tracing</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><th width="60%" align="center">Chapter 10. In Depth</th><td width="20%" align="right"> <a accesskey="n" href="ch10s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Tracing"></a>Tracing</h2></div></div></div><p>
       The LIXA project can produce a lot of traces when the software is 
       running; the tracing functions are included in the code by default but
       you can disable them when you configure the software before the build 
@@ -46,15 +46,10 @@
 	    anomalous conditions
 	  </p></li></ul></div><p>
 	When activated, stack tracing produces JSON formatted records as in
-	the example below (messages produced by LIXA state server):
+	the example below (messages produced by a LIXA application):
 	</p><pre class="screen">
-2020-08-28 18:41:01.699712 [6311/47460663904640] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:01.699712", "process_id": 6311, "thread_id": 47460663904640, "function_name": "status_record_check_integrity", "source_file_name": "server_status.c", "source_file_line": "815", "exception": 0, "return_code": -9, "return_code_text": "ERROR: object is corrupted", "errno": 9, "errno_text": "Bad file descriptor" }
-2020-08-28 18:41:02.722824 [6311/47460701607680] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:02.722824", "process_id": 6311, "thread_id": 47460701607680, "function_name": "srvr_rcvr_tbl_get_block", "source_file_name": "srvr_rcvr_tbl.c", "source_file_line": "358", "exception": 2, "return_code": 1, "return_code_text": "WARNING: object not found", "errno": 0, "errno_text": "Success" }
-2020-08-28 18:41:04.165927 [6311/47460701607680] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:04.165927", "process_id": 6311, "thread_id": 47460701607680, "function_name": "lixa_msg_retrieve", "source_file_name": "lixa_xml_msg.c", "source_file_line": "266", "exception": 5, "return_code": 4, "return_code_text": "WARNING: peer has closed TCP/IP connection", "errno": 0, "errno_text": "Success" }
-2020-08-28 18:41:04.166036 [6311/47460701607680] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:04.166036", "process_id": 6311, "thread_id": 47460701607680, "function_name": "server_manager_pollin_data", "source_file_name": "server_manager.c", "source_file_line": "787", "exception": 1, "return_code": 4, "return_code_text": "WARNING: peer has closed TCP/IP connection", "errno": 0, "errno_text": "Success" }
-2020-08-28 18:41:04.167795 [6311/47460699506432] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:04.167795", "process_id": 6311, "thread_id": 47460699506432, "function_name": "server_manager_pollin_ctrl", "source_file_name": "server_manager.c", "source_file_line": "682", "exception": 7, "return_code": 9, "return_code_text": "WARNING: shutdown must be performed", "errno": 0, "errno_text": "Success" }
-2020-08-28 18:41:04.167868 [6311/47460697405184] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:04.167868", "process_id": 6311, "thread_id": 47460697405184, "function_name": "server_manager_pollin_ctrl", "source_file_name": "server_manager.c", "source_file_line": "682", "exception": 7, "return_code": 9, "return_code_text": "WARNING: shutdown must be performed", "errno": 0, "errno_text": "Success" }
-2020-08-28 18:41:04.167918 [6311/47460701607680] { "type": "StackTrace", "date": "2020-08-28", "time": "18:41:04.167918", "process_id": 6311, "thread_id": 47460701607680, "function_name": "server_manager_pollin_ctrl", "source_file_name": "server_manager.c", "source_file_line": "682", "exception": 7, "return_code": 9, "return_code_text": "WARNING: shutdown must be performed", "errno": 0, "errno_text": "Success" }
+2020-10-18 19:06:06.871362 [32034/47612092549696] { "type": "StackTrace", "date": "2020-10-18", "time": "19:06:06.871362", "process_id": 32034, "thread_id": 47612092549696, "function_name": "client_status_coll_get_cs", "source_file_name": "client_status.c", "source_file_line": "328", "exception": 1, "return_code": 1, "return_code_text": "WARNING: object not found", "errno": 0, "errno_text": "Success", "trace_module": 0x20000 }
+2020-10-18 19:06:06.874283 [32034/47612092549696] { "type": "StackTrace", "date": "2020-10-18", "time": "19:06:06.874283", "process_id": 32034, "thread_id": 47612092549696, "function_name": "lixa_xa_open", "source_file_name": "lixa_xa.c", "source_file_line": "1446", "exception": 10, "return_code": -99, "return_code_text": "ERROR: an XA function returned an unexpected return code", "errno": 0, "errno_text": "Success", "trace_module": 0x2000 }
 	</pre><p>
 	The JSON payload can be extracted by the whole message quite easily
 	and it can be ingested by a log analytic platform like for instance
@@ -64,6 +59,11 @@
 	software try to manage as many as possible error conditions without
 	hurting the user. Nevertheless, stack tracing can be useful in
 	catching run time issues that are difficult to reproduce.
+      </p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+	Stack trace displays the bit that must be put in trace mask to get all
+	the messages produced by the module that generated the exception.
+	In the example above, look at "trace_module" field inside the JSON
+	records.
       </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Tracing_modules"></a>Tracing modules</h3></div></div></div><p>
 	The trace messages produced by LIXA code are divided by 
 	<span class="emphasis"><em>modules</em></span>: you can activate the trace messages for
@@ -72,7 +72,7 @@
 	will print all the trace messages of that module.
       </p><p>
 	The table below shows how the LIXA software is partitioned in modules:
-	</p><div class="table"><a id="idp60977968"></a><p class="title"><strong>Table 10.1. Tracing module flags</strong></p><div class="table-contents"><table summary="Tracing module flags" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th align="center">Module Trace Label</th><th align="center">Hex Flag</th><th align="center">Component</th><th align="center">Function</th></tr></thead><tbody><tr><td align="left">LIXA_TRACE_MOD_SERVER</td><td align="left">0x00000001</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">main program</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_CONFIG</td><td align="left">0x00000002</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">configuration: config file parsing and environment 
+	</p><div class="table"><a id="idp60935760"></a><p class="title"><strong>Table 10.1. Tracing module flags</strong></p><div class="table-contents"><table summary="Tracing module flags" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th align="center">Module Trace Label</th><th align="center">Hex Flag</th><th align="center">Component</th><th align="center">Function</th></tr></thead><tbody><tr><td align="left">LIXA_TRACE_MOD_SERVER</td><td align="left">0x00000001</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">main program</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_CONFIG</td><td align="left">0x00000002</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">configuration: config file parsing and environment 
 		  variable detection</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_LISTENER</td><td align="left">0x00000004</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">network listener and signal handler</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_MANAGER</td><td align="left">0x00000008</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">session client manager, thread manager, 
 		  network I/O manager</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_STATUS</td><td align="left">0x00000010</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">persistent state</td></tr><tr><td align="left">LIXA_TRACE_MOD_XTA</td><td align="left">0x00000020</td><td align="left"><code class="systemitem">lixac</code>
 		  (client library)</td><td align="left">XA Transaction API (XTA) functions</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_XA</td><td align="left">0x00000040</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">XA logic called by client</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_REPLY</td><td align="left">0x00000080</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">replies to client messages</td></tr><tr><td align="left">LIXA_TRACE_MOD_SERVER_RECOVERY</td><td align="left">0x00000100</td><td align="left"><span class="command"><strong>lixad</strong></span> (state server)</td><td align="left">logic necessary to answer the client recovery 
@@ -108,7 +108,11 @@
 	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>0x00000003 will produce all the messages of
 	    <code class="constant">LIXA_TRACE_MOD_SERVER</code> and
 	    <code class="constant">LIXA_TRACE_MOD_SERVER_CONFIG</code></p></li><li class="listitem" style="list-style-type: disc"><p>0xffffffff will produce all the messages</p></li><li class="listitem" style="list-style-type: disc"><p>0x00000000 will disable all the messages</p></li></ul></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61033568"></a>Improve troubleshooting with trace</h3></div></div></div><p>
+      </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	The suggested way to guess the modules require tracing is looking at
+	the stack trace record produced activating stack tracing as 
+	described in <a class="xref" href="ch10s02.html#Stack_tracing" title="Stack Tracing">the section called “Stack Tracing”</a>.
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60992304"></a>Improve troubleshooting with trace</h3></div></div></div><p>
 	The trace can be activated setting the environment variable
 	<code class="varname">LIXA_TRACE_MASK</code> before starting the execution of
 	the traced program. Try the following example...
@@ -169,7 +173,7 @@ tx_open(): -7
 	to listen port <code class="systemitem">2345</code> 
 	at address 
 	<code class="systemitem">127.0.0.1</code>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61034960"></a>Activating trace for <span class="command"><strong>lixad</strong></span> in 
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp60993696"></a>Activating trace for <span class="command"><strong>lixad</strong></span> in 
 	<span class="emphasis"><em>daemon</em></span> mode</h3></div></div></div><p>
 	When running the state server (<span class="command"><strong>lixad</strong></span>) in
 	<span class="emphasis"><em>daemon</em></span>
@@ -249,7 +253,7 @@ lixa@ubuntu:~$ pkill lixad
 	    server termination you are sure every trace message is inside the
 	    trace file.
 	</p></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61047360"></a>Redirecting the trace messages</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61006128"></a>Redirecting the trace messages</h3></div></div></div><p>
 	In the previous section you discovered how you can send the trace
 	messages of <span class="command"><strong>lixad</strong></span>. The
 	<code class="systemitem">lixac</code> library sends the
@@ -272,5 +276,15 @@ tiian@ubuntu:~$ ls -la /tmp/lixat.trace
 2011-12-04 17:43:36.083890 [5544/3074013872] client_connect: connecting socket 4 to server '127.0.0.1' port 2345
 2011-12-04 17:43:36.084862 [5544/3074013872] client_connect/excp=2/ret_cod=-138/errno=111
 2011-12-04 17:43:36.084906 [5544/3074013872] lixa_tx_open/TX_*=-7/excp=5/ret_cod=-138/errno=111
+	</pre><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp61019200"></a>Catching the last trace messages</h3></div></div></div><p>
+	Under some conditions, the last trace messages produced by the daemon
+	<span class="command"><strong>lixad</strong></span> are not captured in the event of a crash.
+	This can increase the difficulty of problem determination.
+	To avoid the buffering of trace messages for <span class="command"><strong>lixad</strong></span>,
+	use <code class="option">--enable-debug</code> on
+	<span class="command"><strong>./configure</strong></span> command line:
+	</p><pre class="screen">
+./configure --enable-debug
 	</pre><p>
       </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch10.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch10s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 10. In Depth </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Non root installation</td></tr></table></div></body></html>

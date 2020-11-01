@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.1)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s07.html" title="" /><link rel="next" href="ch05s09.html" title="An example with PostgreSQL &amp; IBM DB2" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s07.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s07.html" title="" /><link rel="next" href="ch05s09.html" title="An example with PostgreSQL &amp; IBM DB2" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s07.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example6_pql_ora"></a>An example with PostgreSQL &amp; Oracle</h2></div></div></div><div class="figure"><a id="develop6"></a><p class="title"><strong>Figure 5.4. Deploy model of an example showing a distributed transaction with PostgreSQL and Oracle</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_6.png" alt="Deploy model of an example showing a distributed transaction with PostgreSQL and Oracle" /></div></div></div><br class="figure-break" /><p>
       This example shows as
       you can implement DTP (Distributed Transaction Processing) with two
@@ -48,148 +48,145 @@
 	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58511488"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58474832"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
 	a single line):
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~$ mkdir tmp
-tiian@ubuntu:~$ cd tmp
-tiian@ubuntu:~/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/example6_pql_ora.c .
-tiian@ubuntu:~/tmp$ gcc example6_pql_ora.c $(/opt/lixa/bin/lixa-config -c -f -p -d) \
-&gt; -I/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/rdbms/public \
-&gt; -L/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib -l clntsh -l nnz10 \
-&gt; -I/usr/include/postgresql -lpq -o example6_pql_ora
-	  </pre></td></tr></tbody></table></div><p>
-	or if you are using Oracle 11.2 you will use something like this:
-	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ gcc example6_pql_ora.c $(/opt/lixa/bin/lixa-config -c -f -p -d) \
-&gt; -I/u01/app/oracle/product/11.2.0/xe/rdbms/public \
-&gt; -L/u01/app/oracle/product/11.2.0/xe/lib -l clntsh -l nnz11 \
-&gt; -I/usr/include/postgresql -lpq -o example6_pql_ora
+[tiian@centos8 ~]$ mkdir tmp
+[tiian@centos8 ~]$ cd tmp
+[tiian@centos8 tmp]$ cp /opt/lixa/share/doc/lixa-1.9.3-dev/examples/example6_pql_ora.c .
+[tiian@centos8 tmp]$ gcc example6_pql_ora.c $(/opt/lixa/bin/lixa-config -c -f -p -d) -I/opt/oracle/instantclient_19_8/sdk/include/ -L/opt/oracle/instantclient_19_8/ -l clntsh -l nnz19 -I/usr/include/postgresql -lpq -o example6_pql_ora
 	  </pre></td></tr></tbody></table></div><p>
 	Verify the executable produced by <span class="command"><strong>gcc</strong></span>:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ ldd example6_pql_ora
-        linux-gate.so.1 =&gt;  (0xb7731000)
-        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb7716000)
-        liblixapq.so.0 =&gt; /opt/lixa/lib/liblixapq.so.0 (0xb770f000)
-        libclntsh.so.10.1 =&gt; not found
-        libnnz10.so =&gt; not found
-        libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0xb76e1000)
-        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb7592000)
-        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb758e000)
-        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb7589000)
-        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb7584000)
-        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb757b000)
-        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb74ca000)
-        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb73aa000)
-        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb7395000)
-        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb736f000)
-        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb7357000)
-        libssl.so.0.9.8 =&gt; /usr/lib/i686/cmov/libssl.so.0.9.8 (0xb7311000)
-        libcrypto.so.0.9.8 =&gt; /usr/lib/i686/cmov/libcrypto.so.0.9.8 (0xb71cf000)
-        libkrb5.so.3 =&gt; /usr/lib/libkrb5.so.3 (0xb7142000)
-        libcom_err.so.2 =&gt; /lib/libcom_err.so.2 (0xb713e000)
-        libgssapi_krb5.so.2 =&gt; /usr/lib/libgssapi_krb5.so.2 (0xb7115000)
-        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb70e3000)
-        libldap_r-2.4.so.2 =&gt; /usr/lib/libldap_r-2.4.so.2 (0xb70a3000)
-        /lib/ld-linux.so.2 (0xb7732000)
-        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb707c000)
-        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb7066000)
-        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb7062000)
-        libk5crypto.so.3 =&gt; /usr/lib/libk5crypto.so.3 (0xb703f000)
-        libkrb5support.so.0 =&gt; /usr/lib/libkrb5support.so.0 (0xb7037000)
-        libkeyutils.so.1 =&gt; /lib/libkeyutils.so.1 (0xb7034000)
-        libresolv.so.2 =&gt; /lib/tls/i686/cmov/libresolv.so.2 (0xb7020000)
-        liblber-2.4.so.2 =&gt; /usr/lib/liblber-2.4.so.2 (0xb7013000)
-        libsasl2.so.2 =&gt; /usr/lib/libsasl2.so.2 (0xb6ffc000)
-        libgnutls.so.13 =&gt; /usr/lib/libgnutls.so.13 (0xb6f86000)
-        libtasn1.so.3 =&gt; /usr/lib/libtasn1.so.3 (0xb6f76000)
-        libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb6f28000)
-        libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb6f24000)
+[tiian@centos8 tmp]$ ldd example6_pql_ora
+linux-vdso.so.1 (0x00007fff0cd16000)
+liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0x00007f69325c0000)
+liblixapq.so.0 =&gt; /opt/lixa/lib/liblixapq.so.0 (0x00007f69323b8000)
+libclntsh.so.19.1 =&gt; not found
+libnnz19.so =&gt; not found
+libpq.so.5 =&gt; /lib64/libpq.so.5 (0x00007f6932168000)
+libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f6931da6000)
+libgmodule-2.0.so.0 =&gt; /lib64/libgmodule-2.0.so.0 (0x00007f6931ba2000)
+libgthread-2.0.so.0 =&gt; /lib64/libgthread-2.0.so.0 (0x00007f69319a0000)
+libxml2.so.2 =&gt; /lib64/libxml2.so.2 (0x00007f6931638000)
+liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0x00007f6931416000)
+libglib-2.0.so.0 =&gt; /lib64/libglib-2.0.so.0 (0x00007f69310fd000)
+libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f6930edd000)
+libuuid.so.1 =&gt; /lib64/libuuid.so.1 (0x00007f6930cd5000)
+libm.so.6 =&gt; /lib64/libm.so.6 (0x00007f6930953000)
+libssl.so.1.1 =&gt; /lib64/libssl.so.1.1 (0x00007f69306bf000)
+libcrypto.so.1.1 =&gt; /lib64/libcrypto.so.1.1 (0x00007f69301dc000)
+libgssapi_krb5.so.2 =&gt; /lib64/libgssapi_krb5.so.2 (0x00007f692ff8c000)
+libldap_r-2.4.so.2 =&gt; /lib64/libldap_r-2.4.so.2 (0x00007f692fd36000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f69327e5000)
+libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f692fb32000)
+libgnutls.so.30 =&gt; /lib64/libgnutls.so.30 (0x00007f692f776000)
+libpcre.so.1 =&gt; /lib64/libpcre.so.1 (0x00007f692f505000)
+libz.so.1 =&gt; /lib64/libz.so.1 (0x00007f692f2ee000)
+liblzma.so.5 =&gt; /lib64/liblzma.so.5 (0x00007f692f0c7000)
+libkrb5.so.3 =&gt; /lib64/libkrb5.so.3 (0x00007f692edd7000)
+libk5crypto.so.3 =&gt; /lib64/libk5crypto.so.3 (0x00007f692ebbb000)
+libcom_err.so.2 =&gt; /lib64/libcom_err.so.2 (0x00007f692e9b7000)
+libkrb5support.so.0 =&gt; /lib64/libkrb5support.so.0 (0x00007f692e7a6000)
+libkeyutils.so.1 =&gt; /lib64/libkeyutils.so.1 (0x00007f692e5a2000)
+libresolv.so.2 =&gt; /lib64/libresolv.so.2 (0x00007f692e38b000)
+liblber-2.4.so.2 =&gt; /lib64/liblber-2.4.so.2 (0x00007f692e17b000)
+libsasl2.so.3 =&gt; /lib64/libsasl2.so.3 (0x00007f692df5d000)
+libp11-kit.so.0 =&gt; /lib64/libp11-kit.so.0 (0x00007f692dc2a000)
+libidn2.so.0 =&gt; /lib64/libidn2.so.0 (0x00007f692da0c000)
+libunistring.so.2 =&gt; /lib64/libunistring.so.2 (0x00007f692d68b000)
+libtasn1.so.6 =&gt; /lib64/libtasn1.so.6 (0x00007f692d478000)
+libnettle.so.6 =&gt; /lib64/libnettle.so.6 (0x00007f692d23f000)
+libhogweed.so.4 =&gt; /lib64/libhogweed.so.4 (0x00007f692d00f000)
+libgmp.so.10 =&gt; /lib64/libgmp.so.10 (0x00007f692cd77000)
+libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00007f692cb4c000)
+libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x00007f692c923000)
+libffi.so.6 =&gt; /lib64/libffi.so.6 (0x00007f692c71a000)
+libpcre2-8.so.0 =&gt; /lib64/libpcre2-8.so.0 (0x00007f692c496000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58512000"></a>Set-up LIXA environment</h3></div></div></div><p>
-	There are four unresolved references that can be fixed setting up
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58475344"></a>Set-up LIXA environment</h3></div></div></div><p>
+	There are some unresolved references that can be fixed setting up
 	the environment properly; you can fix the environment manually or
-	using this script supplied by Oracle:
-	<code class="filename">/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh</code>
+	using a script like:
+	<code class="filename">/opt/oracle/instantclient_19_8/oracle_env.sh</code>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
+[tiian@centos8 tmp]$ echo $LD_LIBRARY_PATH
 
-tiian@ubuntu:~/tmp$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
-tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
-/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib:
-	  </pre></td></tr></tbody></table></div><p>
-	Oracle 11.2 <code class="filename">oracle_env.sh</code> does not set
-	environment variable <code class="varname">LD_LIBRARY_PATH</code> and you
-	should set-up it manually:
-	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
-
-tiian@ubuntu:~/tmp$ export LD_LIBRARY_PATH=/u01/app/oracle/product/11.2.0/xe/lib
-tiian@ubuntu:~/tmp$ echo $LD_LIBRARY_PATH
-/u01/app/oracle/product/11.2.0/xe/lib
+[tiian@centos8 tmp]$ . /opt/oracle/instantclient_19_8/oracle_env.sh
+[tiian@centos8 tmp]$ echo $LD_LIBRARY_PATH
+/opt/oracle/instantclient_19_8:
 	  </pre></td></tr></tbody></table></div><p>
 	Check again the executable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ ldd example6_pql_ora                                                linux-gate.so.1 =&gt;  (0xb770b000)
-        liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0xb76f0000)
-        liblixapq.so.0 =&gt; /opt/lixa/lib/liblixapq.so.0 (0xb76e9000)
-        libclntsh.so.10.1 =&gt; /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib/libclntsh.so.10.1 (0xb6934000)
-        libnnz10.so =&gt; /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/lib/libnnz10.so (0xb672f000)
-        libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0xb6702000)
-        libc.so.6 =&gt; /lib/tls/i686/cmov/libc.so.6 (0xb65b3000)
-        libgmodule-2.0.so.0 =&gt; /usr/lib/libgmodule-2.0.so.0 (0xb65af000)
-        libdl.so.2 =&gt; /lib/tls/i686/cmov/libdl.so.2 (0xb65aa000)
-        libgthread-2.0.so.0 =&gt; /usr/lib/libgthread-2.0.so.0 (0xb65a5000)
-        librt.so.1 =&gt; /lib/tls/i686/cmov/librt.so.1 (0xb659c000)
-        libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0xb64eb000)
-        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb63cb000)
-        liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0xb63b6000)
-        libm.so.6 =&gt; /lib/tls/i686/cmov/libm.so.6 (0xb6390000)
-        libpthread.so.0 =&gt; /lib/tls/i686/cmov/libpthread.so.0 (0xb6378000)
-        libnsl.so.1 =&gt; /lib/tls/i686/cmov/libnsl.so.1 (0xb6360000)
-        libssl.so.0.9.8 =&gt; /usr/lib/i686/cmov/libssl.so.0.9.8 (0xb631a000)
-        libcrypto.so.0.9.8 =&gt; /usr/lib/i686/cmov/libcrypto.so.0.9.8 (0xb61d8000)
-        libkrb5.so.3 =&gt; /usr/lib/libkrb5.so.3 (0xb614a000)
-        libcom_err.so.2 =&gt; /lib/libcom_err.so.2 (0xb6147000)
-        libgssapi_krb5.so.2 =&gt; /usr/lib/libgssapi_krb5.so.2 (0xb611e000)
-        libcrypt.so.1 =&gt; /lib/tls/i686/cmov/libcrypt.so.1 (0xb60ec000)
-        libldap_r-2.4.so.2 =&gt; /usr/lib/libldap_r-2.4.so.2 (0xb60ac000)
-        /lib/ld-linux.so.2 (0xb770c000)
-        libpcre.so.3 =&gt; /usr/lib/libpcre.so.3 (0xb6084000)
-        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb606f000)
-        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0xb606b000)
-        libk5crypto.so.3 =&gt; /usr/lib/libk5crypto.so.3 (0xb6048000)
-        libkrb5support.so.0 =&gt; /usr/lib/libkrb5support.so.0 (0xb6040000)
-        libkeyutils.so.1 =&gt; /lib/libkeyutils.so.1 (0xb603c000)
-        libresolv.so.2 =&gt; /lib/tls/i686/cmov/libresolv.so.2 (0xb6029000)
-        liblber-2.4.so.2 =&gt; /usr/lib/liblber-2.4.so.2 (0xb601c000)
-        libsasl2.so.2 =&gt; /usr/lib/libsasl2.so.2 (0xb6005000)
-        libgnutls.so.13 =&gt; /usr/lib/libgnutls.so.13 (0xb5f8f000)
-        libtasn1.so.3 =&gt; /usr/lib/libtasn1.so.3 (0xb5f7e000)
-        libgcrypt.so.11 =&gt; /lib/libgcrypt.so.11 (0xb5f31000)
-        libgpg-error.so.0 =&gt; /lib/libgpg-error.so.0 (0xb5f2d000)
+[tiian@centos8 tmp]$ ldd example6_pql_ora
+linux-vdso.so.1 (0x00007fff67d87000)
+liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0x00007f1f3f5da000)
+liblixapq.so.0 =&gt; /opt/lixa/lib/liblixapq.so.0 (0x00007f1f3f3d2000)
+libclntsh.so.19.1 =&gt; /opt/oracle/instantclient_19_8/libclntsh.so.19.1 (0x00007f1f3b308000)
+libnnz19.so =&gt; /opt/oracle/instantclient_19_8/libnnz19.so (0x00007f1f3abbe000)
+libpq.so.5 =&gt; /lib64/libpq.so.5 (0x00007f1f3a96e000)
+libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f1f3a5ac000)
+libgmodule-2.0.so.0 =&gt; /lib64/libgmodule-2.0.so.0 (0x00007f1f3a3a8000)
+libgthread-2.0.so.0 =&gt; /lib64/libgthread-2.0.so.0 (0x00007f1f3a1a6000)
+libxml2.so.2 =&gt; /lib64/libxml2.so.2 (0x00007f1f39e3e000)
+liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0x00007f1f39c1c000)
+libglib-2.0.so.0 =&gt; /lib64/libglib-2.0.so.0 (0x00007f1f39903000)
+libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f1f396e3000)
+libuuid.so.1 =&gt; /lib64/libuuid.so.1 (0x00007f1f394db000)
+libm.so.6 =&gt; /lib64/libm.so.6 (0x00007f1f39159000)
+libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f1f38f55000)
+libnsl.so.1 =&gt; /lib64/libnsl.so.1 (0x00007f1f38d3c000)
+librt.so.1 =&gt; /lib64/librt.so.1 (0x00007f1f38b33000)
+libaio.so.1 =&gt; /lib64/libaio.so.1 (0x00007f1f38930000)
+libresolv.so.2 =&gt; /lib64/libresolv.so.2 (0x00007f1f38719000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f1f3f7ff000)
+libclntshcore.so.19.1 =&gt; /opt/oracle/instantclient_19_8/libclntshcore.so.19.1 (0x00007f1f38178000)
+libssl.so.1.1 =&gt; /lib64/libssl.so.1.1 (0x00007f1f37ee4000)
+libcrypto.so.1.1 =&gt; /lib64/libcrypto.so.1.1 (0x00007f1f37a01000)
+libgssapi_krb5.so.2 =&gt; /lib64/libgssapi_krb5.so.2 (0x00007f1f377b1000)
+libldap_r-2.4.so.2 =&gt; /lib64/libldap_r-2.4.so.2 (0x00007f1f3755b000)
+libgnutls.so.30 =&gt; /lib64/libgnutls.so.30 (0x00007f1f3719f000)
+libpcre.so.1 =&gt; /lib64/libpcre.so.1 (0x00007f1f36f2e000)
+libz.so.1 =&gt; /lib64/libz.so.1 (0x00007f1f36d17000)
+liblzma.so.5 =&gt; /lib64/liblzma.so.5 (0x00007f1f36af0000)
+libkrb5.so.3 =&gt; /lib64/libkrb5.so.3 (0x00007f1f36800000)
+libk5crypto.so.3 =&gt; /lib64/libk5crypto.so.3 (0x00007f1f365e4000)
+libcom_err.so.2 =&gt; /lib64/libcom_err.so.2 (0x00007f1f363e0000)
+libkrb5support.so.0 =&gt; /lib64/libkrb5support.so.0 (0x00007f1f361cf000)
+libkeyutils.so.1 =&gt; /lib64/libkeyutils.so.1 (0x00007f1f35fcb000)
+liblber-2.4.so.2 =&gt; /lib64/liblber-2.4.so.2 (0x00007f1f35dbb000)
+libsasl2.so.3 =&gt; /lib64/libsasl2.so.3 (0x00007f1f35b9d000)
+libp11-kit.so.0 =&gt; /lib64/libp11-kit.so.0 (0x00007f1f3586a000)
+libidn2.so.0 =&gt; /lib64/libidn2.so.0 (0x00007f1f3564c000)
+libunistring.so.2 =&gt; /lib64/libunistring.so.2 (0x00007f1f352cb000)
+libtasn1.so.6 =&gt; /lib64/libtasn1.so.6 (0x00007f1f350b8000)
+libnettle.so.6 =&gt; /lib64/libnettle.so.6 (0x00007f1f34e7f000)
+libhogweed.so.4 =&gt; /lib64/libhogweed.so.4 (0x00007f1f34c4f000)
+libgmp.so.10 =&gt; /lib64/libgmp.so.10 (0x00007f1f349b7000)
+libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00007f1f3478c000)
+libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x00007f1f34563000)
+libffi.so.6 =&gt; /lib64/libffi.so.6 (0x00007f1f3435a000)
+libpcre2-8.so.0 =&gt; /lib64/libpcre2-8.so.0 (0x00007f1f340d6000)
 	  </pre></td></tr></tbody></table></div><p>
 	Set-up the necessary environment variables:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
+[tiian@centos8 tmp]$ echo $LIXA_PROFILE
 
-tiian@ubuntu:~/tmp$ export LIXA_PROFILE=PQL_STA_ORA_DYN
-tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
-PQL_STA_ORA_DYN
+[tiian@centos8 tmp]$ export LIXA_PROFILE=PQL_STA_ORA_DYN
+[tiian@centos8 tmp]$ echo $LIXA_PROFILE
 	  </pre></td></tr></tbody></table></div><p>
 	The below environment variables were set by the previous sourced
 	script; take a look to them:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ echo $ORACLE_HOME
-/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
-tiian@ubuntu:~/tmp$ echo $PATH
-/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-tiian@ubuntu:~/tmp$ echo $ORACLE_SID
-XE
+[tiian@centos8 tmp]$ echo $ORACLE_HOME
+/opt/oracle/instantclient_19_8
+[tiian@centos8 tmp]$ echo $PATH
+/opt/oracle/instantclient_19_8:/opt/oracle/instantclient_19_8/sdk:/opt/oracle/instantclient_19_8:/opt/oracle/instantclient_19_8/sdk:/opt/oracle/instantclient_19_8:/opt/oracle/instantclient_19_8/sdk:/home/tiian/.local/bin:/home/tiian/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+[tiian@centos8 tmp]$ echo $ORACLE_SID
+
 	  </pre></td></tr></tbody></table></div><p>
 	It is suggested to set the necessary environment variables in your 
 	profile if you are going to execute the programs many times.
@@ -223,57 +220,52 @@ XE
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp58544192" class="footnote" id="idp58544192"><sup class="footnote">[26]</sup></a>
-	<a href="#ftn.idp58546656" class="footnote" id="idp58546656"><sup class="footnote">[27]</sup></a>. 
+	<a href="#ftn.idp58503200" class="footnote" id="idp58503200"><sup class="footnote">[26]</sup></a>
+	<a href="#ftn.idp58505664" class="footnote" id="idp58505664"><sup class="footnote">[27]</sup></a>. 
       </p><p>
 	Verify no (Oracle) trace file exists:
 	</p><pre class="screen">
-tiian@ubuntu:~/tmp$ ls -la /tmp/xa*
-ls: cannot access /tmp/xa*: No such file or directory
+[tiian@centos8 tmp]$ ls -la /tmp/xa*
+ls: cannot access '/tmp/xa*': No such file or directory
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58548640"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58507648"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database,
 	the second one connected to Oracle database and the
 	third one pointing to the directory where the compiled program 
 	example6_pql_ora lives.
 	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~$ psql testdb
-Welcome to psql 8.3.15, the PostgreSQL interactive terminal.
+[tiian@centos8 ~]$ psql testdb
+psql (10.14)
+Type "help" for help.
 
-Type:  \copyright for distribution terms
-       \h for help with SQL commands
-       \? for help with psql commands
-       \g or terminate with semicolon to execute query
-       \q to quit
-
-testdb=&gt;
+testdb=&gt; 
 	  </pre></td></tr></tbody></table></div><p>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Oracle terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~$ . /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin/oracle_env.sh
-tiian@ubuntu:~$ sqlplus "hr/hr"                                                 
-SQL*Plus: Release 10.2.0.1.0 - Production on Tue May 3 21:52:06 2011
+[tiian@centos8 ~]$ . /opt/oracle/instantclient_19_8/oracle_env.sh 
+[tiian@centos8 ~]$ sqlplus hr/hr@lixa_ora_db
 
-Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+SQL*Plus: Release 19.0.0.0.0 - Production on Sun Oct 11 16:01:27 2020
+Version 19.8.0.0.0
 
+Copyright (c) 1982, 2020, Oracle.  All rights reserved.
+
+Last Successful login time: Sun Oct 11 2020 16:01:01 +02:00
 
 Connected to:
-Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
 
-SQL&gt;
+SQL&gt; 
 	  </pre></td></tr></tbody></table></div><p>
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ ls -la
-total 28
-drwxr-xr-x  2 tiian tiian  4096 2011-09-20 21:53 .
-drwxr-xr-x 40 tiian tiian  4096 2011-09-19 20:54 ..
--rwxr-xr-x  1 tiian tiian 11219 2011-09-18 21:24 example6_pql_ora
--rw-r--r--  1 tiian tiian  7176 2011-09-18 21:24 example6_pql_ora.c
+[tiian@centos8 tmp]$ ls -la example6_pql_ora*
+-rwxrwxr-x. 1 tiian tiian 17936 Oct 11 15:45 example6_pql_ora
+-rw-r--r--. 1 tiian tiian  7372 Oct 11 15:45 example6_pql_ora.c
 	  </pre></td></tr></tbody></table></div><p>
 	Check the content of the PostgreSQL table (<span class="quote">“<span class="quote">AUTHORS</span>”</span>):
 	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-testdb=&gt; select * from AUTHORS;
- id | last_name | first_name
+testdb=&gt; select * from authors;
+ id | last_name | first_name 
 ----+-----------+------------
 (0 rows)
 	  </pre></td></tr></tbody></table></div><p>
@@ -286,14 +278,14 @@ no rows selected
 	Insert a row in all the tables and check the contents of the tables
 	after the transaction execution:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Third terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ ./example6_pql_ora insert
+[tiian@centos8 tmp]$ ./example6_pql_ora insert
 Inserting a row in the tables...
 Oracle INSERT statement executed!
 	  </pre></td></tr></tbody></table></div><p>
 	Now you can verify the content of the tables after the transaction:
 	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-testdb=&gt; select * from AUTHORS;
- id | last_name | first_name
+testdb=&gt; select * from authors;
+ id | last_name | first_name 
 ----+-----------+------------
   1 | Foo       | Bar
 (1 row)
@@ -307,7 +299,7 @@ RS Repubblica San Marino                             1
 	  </pre></td></tr></tbody></table></div><p>
 	With the opposite command you can remove the rows from the tables:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ ./example6_pql_ora delete
+[tiian@centos8 tmp]$ ./example6_pql_ora delete
 Deleting a row from the tables...
 Oracle DELETE statement executed!
 	  </pre></td></tr></tbody></table></div><p>
@@ -325,28 +317,29 @@ no rows selected
 	  </pre></td></tr></tbody></table></div><p>
 	We can verify the dynamic registration behavior of Oracle:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ export LIXA_TRACE_MASK=0x00002000
-tiian@ubuntu:~/tmp$ echo $LIXA_TRACE_MASK
+[tiian@centos8 tmp]$ export LIXA_TRACE_MASK=0x00002000
+[tiian@centos8 tmp]$ echo $LIXA_TRACE_MASK
 0x00002000
-tiian@ubuntu:~/tmp$ ./example6_pql_ora insert 2&gt;&amp;1 | grep ax_reg
-2011-09-20 22:11:01.669440 [6844/3052865280] ax_reg: rmid=1, xid=0xbfe4cdcc, flags=0x0
-2011-09-20 22:11:01.669537 [6844/3052865280] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.ce4993340a46495e94f07dbbdd5d0366.6e8ecf5972a778ab648b5950c0f96dd6' will be returned
-2011-09-20 22:11:01.669591 [6844/3052865280] ax_reg: sending 153 bytes to the server for step 8
-2011-09-20 22:11:01.669639 [6844/3052865280] ax_reg/excp=7/ret_cod=0/errno=0
+[tiian@centos8 tmp]$ ./example6_pql_ora insert 2&gt;&amp;1 | grep ax_reg
+2020-10-11 16:06:14.167141 [3221/140307389743104] ax_reg: rmid=1, xid=0x7ffe3a8f2bb0, flags=0x0
+2020-10-11 16:06:14.167156 [3221/140307389743104] ax_reg: the application program has started a transaction (TX states S3); this XID '1279875137.0d64d77b079d40f8bb56b61d20d663e4.f3bd465b408e93b1a16e319eb8ca64c1' will be returned
+2020-10-11 16:06:14.167162 [3221/140307389743104] ax_reg: sending 153 bytes to the server for step 8
+2020-10-11 16:06:14.167175 [3221/140307389743104] ax_reg/excp=7/ret_cod=0/errno=0
 	  </pre></td></tr></tbody></table></div><p>
 	We can check the static registration behavior of Oracle with a 
 	different profile:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ export LIXA_PROFILE=PQL_STA_ORA_STA
-tiian@ubuntu:~/tmp$ echo $LIXA_PROFILE
-PQL_STA_ORA_STA
-tiian@ubuntu:~/tmp$ ./example6_pql_ora delete 2&gt;&amp;1 | grep xa_start
-2011-09-20 22:22:22.561677 [22658/3052615424] lixa_xa_start
-[...]
-2011-09-20 22:22:22.608794 [22658/3052615424] lixa_xa_start: xa_start_entry(xid, 0, 0x0) = 0
-2011-09-20 22:22:22.610649 [22658/3052615424] lixa_xa_start: xa_start_entry(xid, 1, 0x0) = 0
-2011-09-20 22:22:22.610694 [22658/3052615424] lixa_xa_start: sending 281 bytes to the server for step 24
-2011-09-20 22:22:22.610757 [22658/3052615424] lixa_xa_start/excp=10/ret_cod=0/errno=0
+[tiian@centos8 tmp]$ export LIXA_PROFILE=PQL_STA_ORA_STA
+[tiian@centos8 tmp]$ echo $LIXA_TRACE_MASK
+0x00002000
+[tiian@centos8 tmp]$ ./example6_pql_ora delete 2&gt;&amp;1 | grep xa_start
+2020-10-11 16:07:32.841598 [3228/140133343109120] lixa_xa_start: sessid='e1532fd'
+2020-10-11 16:07:32.841613 [3228/140133343109120] lixa_xa_start: sending 246 bytes to the server for step 8
+2020-10-11 16:07:32.841764 [3228/140133343109120] lixa_xa_start: receiving 95 bytes from the server |&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;msg level="4" verb="3" step="16"&gt;&lt;answer rc="0"/&gt;&lt;/msg&gt;|
+2020-10-11 16:07:32.842039 [3228/140133343109120] lixa_xa_start: xa_start_entry(xid, 0, 0x0) = 0
+2020-10-11 16:07:32.842588 [3228/140133343109120] lixa_xa_start: xa_start_entry(xid, 1, 0x0) = 0
+2020-10-11 16:07:32.842604 [3228/140133343109120] lixa_xa_start: sending 281 bytes to the server for step 24
+2020-10-11 16:07:32.842617 [3228/140133343109120] lixa_xa_start/excp=10/ret_cod=0/errno=0
 	  </pre></td></tr></tbody></table></div><p>
 	and check the content of the tables again:
 	</p><div class="table"><table frame="box"><thead><tr><td>[PostgreSQL terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
@@ -362,18 +355,18 @@ no rows selected
 	  </pre></td></tr></tbody></table></div><p>
 	The activity of the Oracle database can be analyzed in the trace file:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
-tiian@ubuntu:~/tmp$ ls -la /tmp/xa_NULL09202011.trc
--rw-r--r-- 1 tiian tiian 12042 2011-09-20 22:22 /tmp/xa_NULL09202011.trc
+[tiian@centos8 tmp]$ ls -la /tmp/xa_*
+-rw-rw-r--. 1 tiian tiian 9980 Oct 11 16:07 /tmp/xa_NULL10112020.trc
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58544192" class="footnote"><p><a href="#idp58544192" class="para"><sup class="para">[26] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58503200" class="footnote"><p><a href="#idp58503200" class="para"><sup class="para">[26] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp61222576"><span class="citation">XAspec</span></a>].
-	  </p></div><div id="ftn.idp58546656" class="footnote"><p><a href="#idp58546656" class="para"><sup class="para">[27] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp61184512"><span class="citation">XAspec</span></a>].
+	  </p></div><div id="ftn.idp58505664" class="footnote"><p><a href="#idp58505664" class="para"><sup class="para">[27] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"
