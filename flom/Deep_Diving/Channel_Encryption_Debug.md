@@ -216,8 +216,9 @@ Setting a *trace mask* to trace the messages produced by *flom_tls*, *flom_tcp* 
 This is the command to start a FLoM debug server using TLS inside node1:
 
 ~~~
-tiian@ubuntu1004:~$ export FLOM_TRACE_MASK=0x70000
-tiian@ubuntu1004:~$ echo $FLOM_TRACE_MASK0x70000
+tiian@ubuntu1004:~$ export FLOM_TRACE_MASK=0x270000
+tiian@ubuntu1004:~$ echo $FLOM_TRACE_MASK
+0x270000
 tiian@ubuntu1004:~$ flom --debug-feature=tls.server -a ubuntu1004.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
 ~~~
 
