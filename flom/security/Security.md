@@ -76,6 +76,6 @@ TLS can be difficult to debug due to many possible issues:
 FLoM provide an integrate debugging tool that can be used to test a TLS client/server and peer to peer connection.
 There are two debugging tutorials available:
 
-* [Channel Encryption Debug]
-* [Mutual Authentication Debug]
+* [Channel Encryption Debug](../Deep_Diving/Channel_Encryption_Debug.md)
+* [Mutual Authentication Debug](../Deep_Diving/Mutual_Authentication_Debug.md)
 
