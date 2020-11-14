@@ -2,11 +2,11 @@
 This debug session uses two different nodes; these are the names used during all the session:
 
 * node1, name: *ubuntu1004.brenta.org*, operating system: Ubuntu Linux 10.04 (64 bit)
-* node2, name: *centos71-64.brenta.org*, operating system: CentOS 7.1 (64 bit)
+* node2, name: *ubuntu2004.brenta.org*, operating system: Ubuntu Linux 20.04 (64 bit)
 
 ## Native FLoM debugging tool
 Sometimes debugging becomes difficult, especially when you have to deal with networks, firewalls, public and private addresses and so on.   
-For some complex features, FLoM provide a native debugging tool that should help system engineers to understand the root cause of an issue.
+For some complex features, FLoM provide a native debugging tool that can help the system engineer to understand the root cause of an issue.
 
 ## Setting up the certification authority and the required certificates
 
@@ -23,21 +23,21 @@ tiian@ubuntu1004:~/flom_ssl/CA1$ echo "01" > serial
 tiian@ubuntu1004:~/flom_ssl/CA1$ cp /dev/null index.txt
 tiian@ubuntu1004:~/flom_ssl/CA1$ ls -la
 total 28
-drwxr-xr-x 6 tiian tiian 4096 2016-03-29 22:09 .
-drwxr-xr-x 3 tiian tiian 4096 2016-03-29 22:09 ..
-drwxr-xr-x 2 tiian tiian 4096 2016-03-29 22:09 certs
-drwxr-xr-x 2 tiian tiian 4096 2016-03-29 22:09 crl
--rw-r--r-- 1 tiian tiian    0 2016-03-29 22:09 index.txt
-drwxr-xr-x 2 tiian tiian 4096 2016-03-29 22:09 newcerts
-drwxr-xr-x 2 tiian tiian 4096 2016-03-29 22:09 private
--rw-r--r-- 1 tiian tiian    3 2016-03-29 22:09 serial
+drwxr-xr-x 6 tiian tiian 4096 2020-11-14 12:04 .
+drwxr-xr-x 3 tiian tiian 4096 2020-11-14 12:04 ..
+drwxr-xr-x 2 tiian tiian 4096 2020-11-14 12:04 certs
+drwxr-xr-x 2 tiian tiian 4096 2020-11-14 12:04 crl
+-rw-r--r-- 1 tiian tiian    0 2020-11-14 12:04 index.txt
+drwxr-xr-x 2 tiian tiian 4096 2020-11-14 12:04 newcerts
+drwxr-xr-x 2 tiian tiian 4096 2020-11-14 12:04 private
+-rw-r--r-- 1 tiian tiian    3 2020-11-14 12:04 serial
 ~~~
 
 Pick-up a *openssl.cnf* example file; FLoM provide a pre-configured file in directory */usr/local/share/doc/flom/*:
 
 ~~~
 tiian@ubuntu1004:~/flom_ssl/CA1$ ls -la /usr/local/share/doc/flom/flom_openssl.conf 
--rw-r--r-- 1 root root 9431 2016-03-28 19:34 /usr/local/share/doc/flom/flom_openssl.conf
+-rw-r--r-- 1 root root 9433 2020-11-13 21:39 /usr/local/share/doc/flom/flom_openssl.conf
 ~~~
 
 copy it locally:
@@ -46,13 +46,14 @@ copy it locally:
 tiian@ubuntu1004:~/flom_ssl/CA1$ cp /usr/local/share/doc/flom/flom_openssl.conf .
 ~~~
 
-Generate the certificate for the CA:
+Generate the certificate for the CA, use a secret password and pass something
+like "CA for FLoM Channel Encryption" for the Common Name:
 
 ~~~
 tiian@ubuntu1004:~/flom_ssl/CA1$ openssl req -new -x509 -keyout private/cakey.pem -out cacert.pem -days 3650 -config flom_openssl.conf 
-Generating a 1024 bit RSA private key
-...++++++
-..............++++++
+Generating a 2048 bit RSA private key
+...............................................................................................+++
+................................................+++
 writing new private key to 'private/cakey.pem'
 Enter PEM pass phrase:
 Verifying - Enter PEM pass phrase:
@@ -67,8 +68,8 @@ If you enter '.', the field will be left blank.
 Country Name (2 letter code) [IT]:
 State or Province Name (full name) [Treviso]:
 Locality Name (eg, city) [Mogliano Veneto]:
-Organization Name (eg, company) [FLoM Software Corporation]:
-Organizational Unit Name (eg, section) [Development and Research]:
+Organization Name (eg, company) [www.tiian.org]:
+Organizational Unit Name (eg, section) [FLoM Project]:
 Common Name (eg, YOUR name) []:CA for FLoM Channel Encryption
 Email Address []:
 ~~~
@@ -77,14 +78,14 @@ File *cacert.pem* contains the **X.509 certificate** of the certification author
 
 ~~~
 tiian@ubuntu1004:~/flom_ssl/CA1$ ls -la cacert.pem private/cakey.pem 
--rw-r--r-- 1 tiian tiian 1411 2016-03-29 22:19 cacert.pem
--rw-r--r-- 1 tiian tiian  963 2016-03-29 22:19 private/cakey.pem
+-rw-r--r-- 1 tiian tiian 1667 2020-11-14 12:15 cacert.pem
+-rw-r--r-- 1 tiian tiian 1743 2020-11-14 12:15 private/cakey.pem
 ~~~
 
 ### Creating a first X.509 certificate ###
 To implement a *channel encryption* configuration just one certificate is enough.
 
-Now you have to execute 4 commands; the system asks for a password: the same password used for the certification authority (see above).
+Now you have to execute 4 commands; reply with the password used before when the system asks for it, pass something like "Generic FLoM node" for the Common Name:
 
 ~~~
 tiian@ubuntu1004:~/flom_ssl/CA1$ openssl req -nodes -new -x509 -keyout first_key.pem -out first_req.pem -days 3650 -config flom_openssl.conf
@@ -97,9 +98,9 @@ The output should be something like this:
 
 ~~~
 tiian@ubuntu1004:~/flom_ssl/CA1$ openssl req -nodes -new -x509 -keyout first_key.pem -out first_req.pem -days 3650 -config flom_openssl.conf
-Generating a 1024 bit RSA private key
-.........++++++
-...++++++
+Generating a 2048 bit RSA private key
+................................................+++
+.............................................................................................................+++
 writing new private key to 'first_key.pem'
 -----
 You are about to be asked to enter information that will be incorporated
@@ -112,8 +113,8 @@ If you enter '.', the field will be left blank.
 Country Name (2 letter code) [IT]:
 State or Province Name (full name) [Treviso]:
 Locality Name (eg, city) [Mogliano Veneto]:
-Organization Name (eg, company) [FLoM Software Corporation]:
-Organizational Unit Name (eg, section) [Development and Research]:
+Organization Name (eg, company) [www.tiian.org]:
+Organizational Unit Name (eg, section) [FLoM Project]:
 Common Name (eg, YOUR name) []:Generic FLoM node
 Email Address []:
 tiian@ubuntu1004:~/flom_ssl/CA1$ openssl x509 -x509toreq -in first_req.pem -signkey first_key.pem -out tmp.pem
@@ -127,14 +128,14 @@ Signature ok
 Certificate Details:
         Serial Number: 1 (0x1)
         Validity
-            Not Before: Mar 29 20:29:07 2016 GMT
-            Not After : Mar 29 20:29:07 2017 GMT
+            Not Before: Nov 14 11:23:35 2020 GMT
+            Not After : Nov 14 11:23:35 2021 GMT
         Subject:
             countryName               = IT
             stateOrProvinceName       = Treviso
             localityName              = Mogliano Veneto
-            organizationName          = FLoM Software Corporation
-            organizationalUnitName    = Development and Research
+            organizationName          = www.tiian.org
+            organizationalUnitName    = FLoM Project
             commonName                = Generic FLoM node
         X509v3 extensions:
             X509v3 Basic Constraints: 
@@ -142,11 +143,11 @@ Certificate Details:
             Netscape Comment: 
                 OpenSSL Generated Certificate
             X509v3 Subject Key Identifier: 
-                E9:77:80:9F:6F:A7:1D:55:E6:46:31:48:91:E8:64:DD:37:3B:58:5D
+                6C:DB:B3:80:DD:3A:CB:56:A0:F9:BF:36:30:04:D3:AB:22:11:1E:65
             X509v3 Authority Key Identifier: 
-                keyid:71:E4:77:AE:FD:4B:17:9C:4D:9E:7C:B6:1D:8D:37:08:F2:DD:09:AC
+                keyid:E1:6A:F2:1C:8F:A3:C9:B1:5E:6C:C5:A8:13:81:B9:31:FD:46:E1:97
 
-Certificate is to be certified until Mar 29 20:29:07 2017 GMT (365 days)
+Certificate is to be certified until Nov 14 11:23:35 2021 GMT (365 days)
 Sign the certificate? [y/n]:y
 
 
@@ -156,12 +157,12 @@ Data Base Updated
 tiian@ubuntu1004:~/flom_ssl/CA1$ rm tmp.pem
 ~~~
 
-If everything is fine, you must have two files: *first_cert.pem* contains the **X.509 certificate** for your FLoM node(s) and *first_key.pem* contains the **private key** associated to the certicate:
+Don't forget to remove the file "tmp.pem". If everything is fine, you must have two files: *first_cert.pem* contains the **X.509 certificate** for your FLoM node(s) and *first_key.pem* contains the **private key** associated to the certicate:
 
 ~~~
 tiian@ubuntu1004:~/flom_ssl/CA1$ ls -la first_cert.pem first_key.pem 
--rw-r--r-- 1 tiian tiian 3391 2016-03-29 22:29 first_cert.pem
--rw-r--r-- 1 tiian tiian  887 2016-03-29 22:26 first_key.pem
+-rw-r--r-- 1 tiian tiian 4655 2020-11-14 12:23 first_cert.pem
+-rw-r--r-- 1 tiian tiian 1675 2020-11-14 12:23 first_key.pem
 ~~~
 
 ### Certificate *"installation"* ###
@@ -178,34 +179,34 @@ Local copy:
 tiian@ubuntu1004:~/flom_ssl/CA1$ mkdir /tmp/flom_ssl
 tiian@ubuntu1004:~/flom_ssl/CA1$ cp cacert.pem first_cert.pem first_key.pem /tmp/flom_ssl/
 tiian@ubuntu1004:~/flom_ssl/CA1$ ls -la /tmp/flom_ssl/
-total 20
-drwxr-xr-x 2 tiian tiian 4096 2016-03-29 22:39 .
-drwxrwxrwt 5 root  root  4096 2016-03-29 22:39 ..
--rw-r--r-- 1 tiian tiian 1411 2016-03-29 22:39 cacert.pem
--rw-r--r-- 1 tiian tiian 3391 2016-03-29 22:39 first_cert.pem
--rw-r--r-- 1 tiian tiian  887 2016-03-29 22:39 first_key.pem
+total 24
+drwxr-xr-x 2 tiian tiian 4096 2020-11-14 12:27 .
+drwxrwxrwt 6 root  root  4096 2020-11-14 12:27 ..
+-rw-r--r-- 1 tiian tiian 1667 2020-11-14 12:27 cacert.pem
+-rw-r--r-- 1 tiian tiian 4655 2020-11-14 12:27 first_cert.pem
+-rw-r--r-- 1 tiian tiian 1675 2020-11-14 12:27 first_key.pem
 ~~~
 
 Remote copy:
 
 ~~~
-tiian@ubuntu1004:~/flom_ssl/CA1$ scp -r /tmp/flom_ssl/ tiian@centos71-64.brenta.org:/tmp
+tiian@ubuntu1004:~/flom_ssl/CA1$ scp -r /tmp/flom_ssl/ tiian@ubuntu2004.brenta.org:/tmp
 Enter passphrase for key '/home/tiian/.ssh/id_rsa': 
-first_cert.pem                                100% 3391     3.3KB/s   00:00    
-cacert.pem                                    100% 1411     1.4KB/s   00:00    
-first_key.pem                                 100%  887     0.9KB/s   00:00    
+first_cert.pem                                100% 4655     4.6KB/s   00:00    
+cacert.pem                                    100% 1667     1.6KB/s   00:00    
+first_key.pem                                 100% 1675     1.6KB/s   00:00    
 ~~~
 
 Check the content in node2:
 
 ~~~
-[tiian@centos71-64 CA1]$ ls -la /tmp/flom_ssl/
-total 16
-drwxr-xr-x.  2 tiian tiian   64 29 mar 22.40 .
-drwxrwxrwt. 10 root  root  4096 29 mar 22.40 ..
--rw-r--r--.  1 tiian tiian 1411 29 mar 22.40 cacert.pem
--rw-r--r--.  1 tiian tiian 3391 29 mar 22.40 first_cert.pem
--rw-r--r--.  1 tiian tiian  887 29 mar 22.40 first_key.pem
+tiian@ubuntu2004:~$ ls -la /tmp/flom_ssl/
+total 24
+drwxr-xr-x  2 tiian tiian 4096 Nov 14 12:29 .
+drwxrwxrwt 14 root  root  4096 Nov 14 12:29 ..
+-rw-r--r--  1 tiian tiian 1667 Nov 14 12:29 cacert.pem
+-rw-r--r--  1 tiian tiian 4655 Nov 14 12:29 first_cert.pem
+-rw-r--r--  1 tiian tiian 1675 Nov 14 12:29 first_key.pem
 ~~~
 
 ### Debugging TLS (channel encryption security level) with FLoM
@@ -213,175 +214,311 @@ Setting a *trace mask* to trace the messages produced by *flom_tls*, *flom_tcp* 
 
 ![](security_ce_01.png)
 
-This is the command to start a FLoM debug server using TLS inside node1:
+These are the commands to activate tracing and start a FLoM debug server using TLS inside node1:
 
 ~~~
-tiian@ubuntu1004:~$ export FLOM_TRACE_MASK=0x270000
+tiian@ubuntu1004:~$ export FLOM_TRACE_MASK=0x300000
 tiian@ubuntu1004:~$ echo $FLOM_TRACE_MASK
-0x270000
+0x300000
 tiian@ubuntu1004:~$ flom --debug-feature=tls.server -a ubuntu1004.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
 ~~~
 
-This is the command to start a FLoM debug client using TLS inside node2:
+These are the commands to activate tracing and to start a FLoM debug client using TLS inside node2:
 
 ~~~
-[tiian@centos71-64 ~]$ export FLOM_TRACE_MASK=0x70000[tiian@centos71-64 ~]$ echo $FLOM_TRACE_MASK0x70000
-[tiian@centos71-64 ~]$ flom --debug-feature=tls.client -a ubuntu1004.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
+tiian@ubuntu2004:~$ export FLOM_TRACE_MASK=0x300000
+tiian@ubuntu2004:~$ echo $FLOM_TRACE_MASK
+0x270000
+tiian@ubuntu2004:~$ flom --debug-feature=tls.client -a ubuntu1004.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
 ~~~
 
-This is the output that you should obtain on node1 (debug server):
+This is the output obtained on node1 (debug server):
 
 ~~~
-2016-04-01 22:22:30.172686 [1348/0xfec510] flom_debug_features
-2016-04-01 22:22:30.172813 [1348/0xfec510] flom_debug_features: name='tls.server'
-2016-04-01 22:22:30.172829 [1348/0xfec510] flom_debug_features_tls_server
-2016-04-01 22:22:30.172850 [1348/0xfec510] flom_tcp_init
-2016-04-01 22:22:30.172860 [1348/0xfec510] flom_tcp_init
-2016-04-01 22:22:30.172872 [1348/0xfec510] flom_tls_init: calling SSL_library_init()...
-2016-04-01 22:22:30.173009 [1348/0xfec510] flom_tls_init: calling SSL_load_error_strings()...
-2016-04-01 22:22:30.174172 [1348/0xfec510] flom_tls_init: calling OpenSSL_add_all_algorithms()...
-2016-04-01 22:22:30.174338 [1348/0xfec510] flom_tls_context
-2016-04-01 22:22:30.174349 [1348/0xfec510] flom_tls_context: setting TLS/SSL method to TLSv1_server_method()
-2016-04-01 22:22:30.174693 [1348/0xfec510] flom_tls_context: SSL_CTX_set_verify(0x1013830, 3, flom_tls_callback)
-2016-04-01 22:22:30.174717 [1348/0xfec510] flom_tls_context/excp=2/ret_cod=0/errno=2
-2016-04-01 22:22:30.174732 [1348/0xfec510] flom_tls_set_cert
-2016-04-01 22:22:30.174740 [1348/0xfec510] flom_tls_set_cert: SSL_CTX_use_certificate_file(obj->ctx, '/tmp/flom_ssl/first_cert.pem', SSL_FILETYPE_PEM)
-2016-04-01 22:22:30.175043 [1348/0xfec510] flom_tls_set_cert: SSL_CTX_use_PrivateKey_file(obj->ctx, '/tmp/flom_ssl/first_key.pem', SSL_FILETYPE_PEM)
-2016-04-01 22:22:30.175215 [1348/0xfec510] flom_tls_set_cert: SSL_CTX_check_private_key(obj->ctx)
-2016-04-01 22:22:30.175243 [1348/0xfec510] flom_tls_set_cert: SSL_CTX_load_verify_locations(obj->ctx, '/tmp/flom_ssl/cacert.pem', NULL)
-2016-04-01 22:22:30.175424 [1348/0xfec510] flom_tls_set_cert/excp=4/ret_cod=0/errno=2
-2016-04-01 22:22:30.175445 [1348/0xfec510] flom_tcp_listen
-2016-04-01 22:22:30.175454 [1348/0xfec510] flom_tcp_listen: binding address 'ubuntu1004.brenta.org' and port 28015
-2016-04-01 22:22:30.177735 [1348/0xfec510] flom_tcp_listen/getaddrinfo(): [ai_flags=1,ai_family=2,ai_socktype=1,ai_protocol=6,ai_addrlen=16,ai_canonname='{null}'] [ai_flags=1,ai_family=10,ai_socktype=1,ai_protocol=6,ai_addrlen=28,ai_canonname='{null}'] 
-2016-04-01 22:22:30.177781 [1348/0xfec510] flom_tcp_listen: ai_addr addrlen=16; IPv4 address, sin_port=28015, sin_addr='192.168.122.57'
-2016-04-01 22:22:30.177840 [1348/0xfec510] flom_tcp_listen: bound!
-2016-04-01 22:22:30.177868 [1348/0xfec510] flom_tcp_listen/excp=3/ret_cod=0/errno=22
-2016-04-01 22:22:46.170112 [1348/0xfec510] flom_debug_features_tls_server: incoming connection address data: addrlen=16; IPv4 address, sin_port=56573, sin_addr='192.168.122.12'
-2016-04-01 22:22:46.170179 [1348/0xfec510] flom_tls_accept
-2016-04-01 22:22:46.170190 [1348/0xfec510] flom_tls_prepare
-2016-04-01 22:22:46.170252 [1348/0xfec510] flom_tls_prepare/excp=3/ret_cod=0/errno=22
-2016-04-01 22:22:46.174396 [1348/0xfec510] flom_tls_callback: preverify_ok=1
-2016-04-01 22:22:46.174418 [1348/0xfec510] flom_tls_callback: ret_cod=1
-2016-04-01 22:22:46.174592 [1348/0xfec510] flom_tls_callback: preverify_ok=1
-2016-04-01 22:22:46.174601 [1348/0xfec510] flom_tls_callback: ret_cod=1
-2016-04-01 22:22:46.176158 [1348/0xfec510] flom_tls_accepted: connection accepted with AES256-SHA encryption
-2016-04-01 22:22:46.176175 [1348/0xfec510] flom_tls_cert_parse
-...
-2016-04-01 22:22:46.176257 [1348/0xfec510] flom_tls_cert_parse: issuer fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
-...
-2016-04-01 22:22:46.176489 [1348/0xfec510] flom_tls_cert_parse: subject fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
-2016-04-01 22:22:46.176536 [1348/0xfec510] flom_tls_cert_parse/excp=4/ret_cod=0/errno=0
-2016-04-01 22:22:46.176545 [1348/0xfec510] flom_tls_accept/excp=3/ret_cod=0/errno=0
-2016-04-01 22:22:46.176552 [1348/0xfec510] flom_tls_recv
-2016-04-01 22:22:46.178669 [1348/0xfec510] flom_tls_recv: received 32 of 100 bytes
-2016-04-01 22:22:46.178687 [1348/0xfec510] flom_tls_recv/excp=1/ret_cod=0/errno=0
-2016-04-01 22:22:46.178694 [1348/0xfec510] flom_debug_features_tls_server: received 32 bytes, '6046574205df4258aeb409bf377235e0'
-2016-04-01 22:22:46.178771 [1348/0xfec510] flom_debug_features_tls_server: sending 32 bytes, '91ed6d1ed76c5773c7503d285679b33b'
-2016-04-01 22:22:46.178780 [1348/0xfec510] flom_tls_send
-2016-04-01 22:22:46.178824 [1348/0xfec510] flom_tls_send/excp=2/ret_cod=0/errno=0
-2016-04-01 22:22:46.178836 [1348/0xfec510] flom_tcp_close
-2016-04-01 22:22:46.178878 [1348/0xfec510] flom_tcp_close/excp=1/ret_cod=0/errno=0
-2016-04-01 22:22:46.178890 [1348/0xfec510] flom_tcp_close
-2016-04-01 22:22:46.178940 [1348/0xfec510] flom_tcp_close/excp=1/ret_cod=0/errno=0
-2016-04-01 22:22:46.179087 [1348/0xfec510] flom_debug_features_tls_server/excp=13/ret_cod=0/errno=0
-2016-04-01 22:22:46.179101 [1348/0xfec510] flom_debug_features/excp=1/ret_cod=0/errno=0
-tiian@ubuntu1004:~$ echo $?
-0
+2020-11-14 21:26:35.082056 [1254/0x1ced540] flom_debug_features
+2020-11-14 21:26:35.082105 [1254/0x1ced540] flom_debug_features: name='tls.server'
+2020-11-14 21:26:35.082110 [1254/0x1ced540] flom_debug_features_tls_server
+2020-11-14 21:26:35.082122 [1254/0x1ced540] flom_tls_init: calling SSL_library_init()...
+2020-11-14 21:26:35.082170 [1254/0x1ced540] flom_tls_init: calling SSL_load_error_strings()...
+2020-11-14 21:26:35.082497 [1254/0x1ced540] flom_tls_init: calling OpenSSL_add_all_algorithms()...
+2020-11-14 21:26:35.082549 [1254/0x1ced540] flom_tls_context
+2020-11-14 21:26:35.082554 [1254/0x1ced540] flom_tls_context: setting TLS/SSL method to TLSv1_server_method()
+2020-11-14 21:26:35.082681 [1254/0x1ced540] flom_tls_context: SSL_CTX_set_verify(0x1d18b90, 3, flom_tls_callback)
+2020-11-14 21:26:35.082692 [1254/0x1ced540] flom_tls_context/excp=2/ret_cod=0/errno=2
+2020-11-14 21:26:35.082696 [1254/0x1ced540] flom_tls_set_cert
+2020-11-14 21:26:35.082699 [1254/0x1ced540] flom_tls_set_cert: SSL_CTX_use_certificate_file(obj->ctx, '/tmp/flom_ssl/first_cert.pem', SSL_FILETYPE_PEM)
+2020-11-14 21:26:35.082802 [1254/0x1ced540] flom_tls_set_cert: SSL_CTX_use_PrivateKey_file(obj->ctx, '/tmp/flom_ssl/first_key.pem', SSL_FILETYPE_PEM)
+2020-11-14 21:26:35.082839 [1254/0x1ced540] flom_tls_set_cert: SSL_CTX_check_private_key(obj->ctx)
+2020-11-14 21:26:35.082844 [1254/0x1ced540] flom_tls_set_cert: SSL_CTX_load_verify_locations(obj->ctx, '/tmp/flom_ssl/cacert.pem', NULL)
+2020-11-14 21:26:35.082887 [1254/0x1ced540] flom_tls_set_cert/excp=4/ret_cod=0/errno=2
+2020-11-14 21:27:04.563407 [1254/0x1ced540] flom_debug_features_tls_server: incoming connection address data: addrlen=16; IPv4 address, sin_port=53050, sin_addr='192.168.123.92'
+2020-11-14 21:27:04.563446 [1254/0x1ced540] flom_tls_accept
+2020-11-14 21:27:04.563450 [1254/0x1ced540] flom_tls_prepare
+2020-11-14 21:27:04.563485 [1254/0x1ced540] flom_tls_prepare/excp=3/ret_cod=0/errno=22
+2020-11-14 21:27:04.564085 [1254/0x1ced540] flom_tls_accept/SSL_accept: SSL error=1 (SSL_ERROR_SSL)
+2020-11-14 21:27:04.564094 [1254/0x1ced540] flom_tls_accept/SSL_accept: error:1408F10B:SSL routines:SSL3_GET_RECORD:wrong version number
+2020-11-14 21:27:04.564111 [1254/0x1ced540] flom_tls_accept/excp=1/ret_cod=-405/errno=0
+2020-11-14 21:27:04.564146 [1254/0x1ced540] flom_debug_features_tls_server/excp=6/ret_cod=-405/errno=0
+2020-11-14 21:27:04.564149 [1254/0x1ced540] flom_debug_features/excp=1/ret_cod=-405/errno=0
 ~~~
 
-This is the output that you should obtain on node2 (debug client):
+This is the output obtained on node2 (debug client):
 
 ~~~
-2016-04-01 22:22:45.506324 [2010/0x256d200] flom_debug_features
-2016-04-01 22:22:45.506557 [2010/0x256d200] flom_debug_features: name='tls.client'
-2016-04-01 22:22:45.506575 [2010/0x256d200] flom_debug_features_tls_client
-2016-04-01 22:22:45.506589 [2010/0x256d200] flom_tcp_init
-2016-04-01 22:22:45.506602 [2010/0x256d200] flom_tls_init: calling SSL_library_init()...
-2016-04-01 22:22:45.506892 [2010/0x256d200] flom_tls_init: calling SSL_load_error_strings()...
-2016-04-01 22:22:45.510156 [2010/0x256d200] flom_tls_init: calling OpenSSL_add_all_algorithms()...
-2016-04-01 22:22:45.510326 [2010/0x256d200] flom_tls_context
-2016-04-01 22:22:45.510333 [2010/0x256d200] flom_tls_context: setting TLS/SSL method to TLSv1_client_method()
-2016-04-01 22:22:45.510830 [2010/0x256d200] flom_tls_context: SSL_CTX_set_verify(0x258bbd0, 1, flom_tls_callback)
-2016-04-01 22:22:45.510854 [2010/0x256d200] flom_tls_context/excp=2/ret_cod=0/errno=2
-2016-04-01 22:22:45.510863 [2010/0x256d200] flom_tls_set_cert
-2016-04-01 22:22:45.510869 [2010/0x256d200] flom_tls_set_cert: SSL_CTX_use_certificate_file(obj->ctx, '/tmp/flom_ssl/first_cert.pem', SSL_FILETYPE_PEM)
-2016-04-01 22:22:45.511231 [2010/0x256d200] flom_tls_set_cert: SSL_CTX_use_PrivateKey_file(obj->ctx, '/tmp/flom_ssl/first_key.pem', SSL_FILETYPE_PEM)
-2016-04-01 22:22:45.511355 [2010/0x256d200] flom_tls_set_cert: SSL_CTX_check_private_key(obj->ctx)
-2016-04-01 22:22:45.511372 [2010/0x256d200] flom_tls_set_cert: SSL_CTX_load_verify_locations(obj->ctx, '/tmp/flom_ssl/cacert.pem', NULL)
-2016-04-01 22:22:45.511568 [2010/0x256d200] flom_tls_set_cert/excp=4/ret_cod=0/errno=2
-2016-04-01 22:22:45.511585 [2010/0x256d200] flom_tcp_connect
-2016-04-01 22:22:45.511591 [2010/0x256d200] flom_tcp_connect: connecting to address 'ubuntu1004.brenta.org' and port 28015
-2016-04-01 22:22:45.515958 [2010/0x256d200] flom_tcp_connect/getaddrinfo(): [ai_flags=2,ai_family=2,ai_socktype=1,ai_protocol=6,ai_addrlen=16,ai_canonname='ubuntu1004.brenta.org'] [ai_flags=2,ai_family=10,ai_socktype=1,ai_protocol=6,ai_addrlen=28,ai_canonname='{null}'] 
-2016-04-01 22:22:45.515999 [2010/0x256d200] flom_tcp_try_connect: sa addrlen=16; IPv4 address, sin_port=28015, sin_addr='192.168.122.57'
-2016-04-01 22:22:45.517012 [2010/0x256d200] flom_tcp_try_connect: sa addrlen=16; IPv4 address, sin_port=28015, sin_addr='192.168.122.57'
-2016-04-01 22:22:45.517670 [2010/0x256d200] flom_tcp_connect: domain=2, sockfd=3, socket_type=16, addrlen=0
-2016-04-01 22:22:45.517701 [2010/0x256d200] flom_tcp_connect: addrlen=16; IPv4 address, sin_port=28015, sin_addr='192.168.122.57'
-2016-04-01 22:22:45.517733 [2010/0x256d200] flom_tcp_connect/excp=2/ret_cod=0/errno=22
-2016-04-01 22:22:45.517743 [2010/0x256d200] flom_tls_connect
-2016-04-01 22:22:45.517750 [2010/0x256d200] flom_tls_prepare
-2016-04-01 22:22:45.517842 [2010/0x256d200] flom_tls_prepare/excp=3/ret_cod=0/errno=22
-2016-04-01 22:22:45.519259 [2010/0x256d200] flom_tls_callback: preverify_ok=1
-2016-04-01 22:22:45.519286 [2010/0x256d200] flom_tls_callback: ret_cod=1
-2016-04-01 22:22:45.519449 [2010/0x256d200] flom_tls_callback: preverify_ok=1
-2016-04-01 22:22:45.519459 [2010/0x256d200] flom_tls_callback: ret_cod=1
-2016-04-01 22:22:45.524159 [2010/0x256d200] flom_tls_connect: connection established with AES256-SHA encryption
-2016-04-01 22:22:45.524179 [2010/0x256d200] flom_tls_cert_parse
-...
-2016-04-01 22:22:45.524251 [2010/0x256d200] flom_tls_cert_parse: issuer fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
-...
-2016-04-01 22:22:45.525551 [2010/0x256d200] flom_tls_cert_parse: subject fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
-2016-04-01 22:22:45.525573 [2010/0x256d200] flom_tls_cert_parse/excp=4/ret_cod=0/errno=0
-2016-04-01 22:22:45.525578 [2010/0x256d200] flom_tls_connect/excp=3/ret_cod=0/errno=0
-2016-04-01 22:22:45.526165 [2010/0x256d200] flom_debug_features_tls_client: sending 32 bytes, '6046574205df4258aeb409bf377235e0'
-2016-04-01 22:22:45.526177 [2010/0x256d200] flom_tls_send
-2016-04-01 22:22:45.526214 [2010/0x256d200] flom_tls_send/excp=2/ret_cod=0/errno=0
-2016-04-01 22:22:45.526223 [2010/0x256d200] flom_tls_recv
-2016-04-01 22:22:45.526721 [2010/0x256d200] flom_tls_recv: received 32 of 100 bytes
-2016-04-01 22:22:45.526734 [2010/0x256d200] flom_tls_recv/excp=1/ret_cod=0/errno=0
-2016-04-01 22:22:45.526739 [2010/0x256d200] flom_debug_features_tls_client: received 32 bytes, '91ed6d1ed76c5773c7503d285679b33b'
-2016-04-01 22:22:45.526746 [2010/0x256d200] flom_tcp_close
-2016-04-01 22:22:45.526771 [2010/0x256d200] flom_tcp_close/excp=1/ret_cod=0/errno=0
-2016-04-01 22:22:45.526951 [2010/0x256d200] flom_debug_features_tls_client/excp=10/ret_cod=0/errno=0
-2016-04-01 22:22:45.526966 [2010/0x256d200] flom_debug_features/excp=1/ret_cod=0/errno=0
-[tiian@centos71-64 ~]$ echo $?
-0
+2020-11-14 21:27:04.562478 [1172/0x55686eafc600] flom_debug_features
+2020-11-14 21:27:04.562523 [1172/0x55686eafc600] flom_debug_features: name='tls.client'
+2020-11-14 21:27:04.562527 [1172/0x55686eafc600] flom_debug_features_tls_client
+2020-11-14 21:27:04.562532 [1172/0x55686eafc600] flom_tls_init: calling OPENSSL_init_ssl()...
+2020-11-14 21:27:04.563365 [1172/0x55686eafc600] flom_tls_init: calling SSL_load_error_strings()...
+2020-11-14 21:27:04.563458 [1172/0x55686eafc600] flom_tls_init: calling OpenSSL_add_all_algorithms()...
+2020-11-14 21:27:04.563465 [1172/0x55686eafc600] flom_tls_context
+2020-11-14 21:27:04.563467 [1172/0x55686eafc600] flom_tls_context: setting TLS/SSL method to TLS_client_method()
+2020-11-14 21:27:04.563542 [1172/0x55686eafc600] flom_tls_context: SSL_CTX_set_verify(0x55686eb037d0, 1, flom_tls_callback)
+2020-11-14 21:27:04.563547 [1172/0x55686eafc600] flom_tls_context/excp=2/ret_cod=0/errno=2
+2020-11-14 21:27:04.563549 [1172/0x55686eafc600] flom_tls_set_cert
+2020-11-14 21:27:04.563551 [1172/0x55686eafc600] flom_tls_set_cert: SSL_CTX_use_certificate_file(obj->ctx, '/tmp/flom_ssl/first_cert.pem', SSL_FILETYPE_PEM)
+2020-11-14 21:27:04.563652 [1172/0x55686eafc600] flom_tls_set_cert: SSL_CTX_use_PrivateKey_file(obj->ctx, '/tmp/flom_ssl/first_key.pem', SSL_FILETYPE_PEM)
+2020-11-14 21:27:04.563690 [1172/0x55686eafc600] flom_tls_set_cert: SSL_CTX_check_private_key(obj->ctx)
+2020-11-14 21:27:04.563702 [1172/0x55686eafc600] flom_tls_set_cert: SSL_CTX_load_verify_locations(obj->ctx, '/tmp/flom_ssl/cacert.pem', NULL)
+2020-11-14 21:27:04.563752 [1172/0x55686eafc600] flom_tls_set_cert/excp=4/ret_cod=0/errno=2
+2020-11-14 21:27:04.565337 [1172/0x55686eafc600] flom_tls_connect
+2020-11-14 21:27:04.565352 [1172/0x55686eafc600] flom_tls_prepare
+2020-11-14 21:27:04.565387 [1172/0x55686eafc600] flom_tls_prepare/excp=3/ret_cod=0/errno=22
+2020-11-14 21:27:04.566002 [1172/0x55686eafc600] flom_tls_connect/SSL_connect: SSL error=1 (SSL_ERROR_SSL)
+2020-11-14 21:27:04.566015 [1172/0x55686eafc600] flom_tls_connect/SSL_connect: error:1425F102:SSL routines:ssl_choose_client_version:unsupported protocol
+2020-11-14 21:27:04.566029 [1172/0x55686eafc600] flom_tls_connect/excp=1/ret_cod=-406/errno=0
+2020-11-14 21:27:04.566058 [1172/0x55686eafc600] flom_debug_features_tls_client/excp=4/ret_cod=-406/errno=0
+2020-11-14 21:27:04.566061 [1172/0x55686eafc600] flom_debug_features/excp=1/ret_cod=-406/errno=0
+~~~
+
+Ubuntu 10.04 uses an old version of the TLS protocol and it can't handshake with Ubuntu 20.04 (by default). Repeating the test using a couple of recent systems like CentOS 8.2 and Ubuntu 20.04, a different result is obtained.
+
+### Certificate *"installation"* ###
+
+Copy the 3 files both to CentOS 8.2 and to Ubuntu 20.04:
+
+~~~
+tiian@ubuntu1004:~/flom_ssl/CA1$ mkdir /tmp/flom_ssl
+tiian@ubuntu1004:~/flom_ssl/CA1$ cp cacert.pem first_cert.pem first_key.pem /tmp/flom_ssl/
+tiian@ubuntu1004:~/flom_ssl/CA1$ ls -la /tmp/flom_ssl/
+total 24
+drwxr-xr-x 2 tiian tiian 4096 2020-11-14 19:15 .
+drwxrwxrwt 5 root  root  4096 2020-11-14 19:15 ..
+-rw-r--r-- 1 tiian tiian 1667 2020-11-14 19:15 cacert.pem
+-rw-r--r-- 1 tiian tiian 4655 2020-11-14 19:15 first_cert.pem
+-rw-r--r-- 1 tiian tiian 1675 2020-11-14 19:15 first_key.pem
+tiian@ubuntu1004:~/flom_ssl/CA1$ scp -r /tmp/flom_ssl/ tiian@centos8.brenta.org:/tmp
+Enter passphrase for key '/home/tiian/.ssh/id_rsa': 
+first_cert.pem                                100% 4655     4.6KB/s   00:00    
+cacert.pem                                    100% 1667     1.6KB/s   00:00    
+first_key.pem                                 100% 1675     1.6KB/s   00:00    
+tiian@ubuntu1004:~/flom_ssl/CA1$ scp -r /tmp/flom_ssl/ tiian@ubuntu2004.brenta.org:/tmp
+Enter passphrase for key '/home/tiian/.ssh/id_rsa': 
+first_cert.pem                                100% 4655     4.6KB/s   00:00    
+cacert.pem                                    100% 1667     1.6KB/s   00:00    
+first_key.pem                                 100% 1675     1.6KB/s   00:00    
+~~~
+
+Activate a debug TLS server in the first node (CentOS 8.2):
+
+~~~
+[tiian@centos8 ~]$ export FLOM_TRACE_MASK=0x300000
+[tiian@centos8 ~]$ echo $FLOM_TRACE_MASK
+0x300000
+[tiian@centos8 ~]$ flom --debug-feature=tls.server -a centos8.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
+2020-11-14 19:29:48.335478 [58709/0x14dfc00] flom_debug_features
+2020-11-14 19:29:48.335525 [58709/0x14dfc00] flom_debug_features: name='tls.server'
+2020-11-14 19:29:48.335529 [58709/0x14dfc00] flom_debug_features_tls_server
+2020-11-14 19:29:48.335536 [58709/0x14dfc00] flom_tls_init: calling OPENSSL_init_ssl()...
+2020-11-14 19:29:48.336621 [58709/0x14dfc00] flom_tls_init: calling SSL_load_error_strings()...
+2020-11-14 19:29:48.336856 [58709/0x14dfc00] flom_tls_init: calling OpenSSL_add_all_algorithms()...
+2020-11-14 19:29:48.336871 [58709/0x14dfc00] flom_tls_context
+2020-11-14 19:29:48.336874 [58709/0x14dfc00] flom_tls_context: setting TLS/SSL method to TLS_server_method()
+2020-11-14 19:29:48.337268 [58709/0x14dfc00] flom_tls_context: SSL_CTX_set_verify(0x14e6da0, 3, flom_tls_callback)
+2020-11-14 19:29:48.337284 [58709/0x14dfc00] flom_tls_context/excp=2/ret_cod=0/errno=2
+2020-11-14 19:29:48.337287 [58709/0x14dfc00] flom_tls_set_cert
+2020-11-14 19:29:48.337290 [58709/0x14dfc00] flom_tls_set_cert: SSL_CTX_use_certificate_file(obj->ctx, '/tmp/flom_ssl/first_cert.pem', SSL_FILETYPE_PEM)
+2020-11-14 19:29:48.337549 [58709/0x14dfc00] flom_tls_set_cert: SSL_CTX_use_PrivateKey_file(obj->ctx, '/tmp/flom_ssl/first_key.pem', SSL_FILETYPE_PEM)
+2020-11-14 19:29:48.337602 [58709/0x14dfc00] flom_tls_set_cert: SSL_CTX_check_private_key(obj->ctx)
+2020-11-14 19:29:48.337611 [58709/0x14dfc00] flom_tls_set_cert: SSL_CTX_load_verify_locations(obj->ctx, '/tmp/flom_ssl/cacert.pem', NULL)
+2020-11-14 19:29:48.337950 [58709/0x14dfc00] flom_tls_set_cert/excp=4/ret_cod=0/errno=2
+2020-11-14 19:30:02.306300 [58709/0x14dfc00] flom_debug_features_tls_server: incoming connection address data: addrlen=16; IPv4 address, sin_port=35308, sin_addr='192.168.123.92'
+2020-11-14 19:30:02.306345 [58709/0x14dfc00] flom_tls_accept
+2020-11-14 19:30:02.306352 [58709/0x14dfc00] flom_tls_prepare
+2020-11-14 19:30:02.306408 [58709/0x14dfc00] flom_tls_prepare/excp=3/ret_cod=0/errno=22
+2020-11-14 19:30:02.310324 [58709/0x14dfc00] flom_tls_callback: preverify_ok=1
+2020-11-14 19:30:02.310341 [58709/0x14dfc00] flom_tls_callback: ret_cod=1
+2020-11-14 19:30:02.310579 [58709/0x14dfc00] flom_tls_callback: preverify_ok=1
+2020-11-14 19:30:02.310593 [58709/0x14dfc00] flom_tls_callback: ret_cod=1
+2020-11-14 19:30:02.311028 [58709/0x14dfc00] flom_tls_accepted: connection accepted with TLS_AES_256_GCM_SHA384 encryption
+2020-11-14 19:30:02.311043 [58709/0x14dfc00] flom_tls_cert_parse
+2020-11-14 19:30:02.311057 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311066 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311071 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311075 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311079 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311083 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311089 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311094 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311101 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311105 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311358 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311365 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311371 [58709/0x14dfc00] flom_tls_cert_parse: issuer fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=CA for FLoM Channel Encryption
+2020-11-14 19:30:02.311682 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311698 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311701 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311704 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311706 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311709 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311714 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311716 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311718 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311721 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311723 [58709/0x14dfc00] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.311725 [58709/0x14dfc00] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.311728 [58709/0x14dfc00] flom_tls_cert_parse: subject fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=Generic FLoM node
+2020-11-14 19:30:02.311743 [58709/0x14dfc00] flom_tls_cert_parse/excp=4/ret_cod=0/errno=0
+2020-11-14 19:30:02.311746 [58709/0x14dfc00] flom_tls_accept/excp=3/ret_cod=0/errno=0
+2020-11-14 19:30:02.311750 [58709/0x14dfc00] flom_tls_recv_msg
+2020-11-14 19:30:02.311753 [58709/0x14dfc00] flom_tls_recv_msg: closing_tag='</msg>', closing_tag_len=6, closing_tag_last='>'
+2020-11-14 19:30:02.311766 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=6 'aa0025'
+2020-11-14 19:30:02.311906 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=6 '217cc2'
+2020-11-14 19:30:02.311914 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=6 '4efb98'
+2020-11-14 19:30:02.311917 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=6 '3dff5b'
+2020-11-14 19:30:02.311919 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=6 'fb3611'
+2020-11-14 19:30:02.311922 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=2 '29'
+2020-11-14 19:30:02.311932 [58709/0x14dfc00] flom_tls_recv_msg: read_bytes=6 '</msg>'
+2020-11-14 19:30:02.311935 [58709/0x14dfc00] flom_tls_recv_msg: received message is 'aa0025217cc24efb983dff5bfb361129</msg>' of 38 chars
+2020-11-14 19:30:02.311937 [58709/0x14dfc00] flom_tls_recv_msg/excp=3/ret_cod=0/errno=0
+2020-11-14 19:30:02.311940 [58709/0x14dfc00] flom_debug_features_tls_server: received 38 bytes, 'aa0025217cc24efb983dff5bfb361129</msg>'
+2020-11-14 19:30:02.312001 [58709/0x14dfc00] flom_debug_features_tls_server: sending 32 bytes, 'b4eae148592d4d128df8f76987b9ac08'
+2020-11-14 19:30:02.312007 [58709/0x14dfc00] flom_tls_send
+2020-11-14 19:30:02.312075 [58709/0x14dfc00] flom_tls_send/excp=2/ret_cod=0/errno=0
+2020-11-14 19:30:02.312083 [58709/0x14dfc00] flom_debug_features_tls_server: sending 6 bytes, '</msg>'
+2020-11-14 19:30:02.312087 [58709/0x14dfc00] flom_tls_send
+2020-11-14 19:30:02.312096 [58709/0x14dfc00] flom_tls_send/excp=2/ret_cod=0/errno=0
+2020-11-14 19:30:02.312300 [58709/0x14dfc00] flom_debug_features_tls_server/excp=15/ret_cod=0/errno=0
+2020-11-14 19:30:02.312311 [58709/0x14dfc00] flom_debug_features/excp=1/ret_cod=0/errno=0
+~~~
+
+Activate a debug TLS client in the second node (Ubuntu 20.04):
+
+~~~
+tiian@ubuntu2004:~/flom$ export FLOM_TRACE_MASK=0x300000
+tiian@ubuntu2004:~/flom$ echo $FLOM_TRACE_MASK
+0x300000
+tiian@ubuntu2004:~/flom$ flom --debug-feature=tls.client -a centos8.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
+2020-11-14 19:30:02.307742 [1348/0x561122ac9600] flom_debug_features
+2020-11-14 19:30:02.307831 [1348/0x561122ac9600] flom_debug_features: name='tls.client'
+2020-11-14 19:30:02.307847 [1348/0x561122ac9600] flom_debug_features_tls_client
+2020-11-14 19:30:02.307864 [1348/0x561122ac9600] flom_tls_init: calling OPENSSL_init_ssl()...
+2020-11-14 19:30:02.309783 [1348/0x561122ac9600] flom_tls_init: calling SSL_load_error_strings()...
+2020-11-14 19:30:02.310013 [1348/0x561122ac9600] flom_tls_init: calling OpenSSL_add_all_algorithms()...
+2020-11-14 19:30:02.310038 [1348/0x561122ac9600] flom_tls_context
+2020-11-14 19:30:02.310058 [1348/0x561122ac9600] flom_tls_context: setting TLS/SSL method to TLS_client_method()
+2020-11-14 19:30:02.310252 [1348/0x561122ac9600] flom_tls_context: SSL_CTX_set_verify(0x561122ad0710, 1, flom_tls_callback)
+2020-11-14 19:30:02.310276 [1348/0x561122ac9600] flom_tls_context/excp=2/ret_cod=0/errno=2
+2020-11-14 19:30:02.310288 [1348/0x561122ac9600] flom_tls_set_cert
+2020-11-14 19:30:02.310299 [1348/0x561122ac9600] flom_tls_set_cert: SSL_CTX_use_certificate_file(obj->ctx, '/tmp/flom_ssl/first_cert.pem', SSL_FILETYPE_PEM)
+2020-11-14 19:30:02.310540 [1348/0x561122ac9600] flom_tls_set_cert: SSL_CTX_use_PrivateKey_file(obj->ctx, '/tmp/flom_ssl/first_key.pem', SSL_FILETYPE_PEM)
+2020-11-14 19:30:02.310623 [1348/0x561122ac9600] flom_tls_set_cert: SSL_CTX_check_private_key(obj->ctx)
+2020-11-14 19:30:02.310647 [1348/0x561122ac9600] flom_tls_set_cert: SSL_CTX_load_verify_locations(obj->ctx, '/tmp/flom_ssl/cacert.pem', NULL)
+2020-11-14 19:30:02.310804 [1348/0x561122ac9600] flom_tls_set_cert/excp=4/ret_cod=0/errno=2
+2020-11-14 19:30:02.312219 [1348/0x561122ac9600] flom_tls_connect
+2020-11-14 19:30:02.312235 [1348/0x561122ac9600] flom_tls_prepare
+2020-11-14 19:30:02.312259 [1348/0x561122ac9600] flom_tls_prepare/excp=3/ret_cod=0/errno=22
+2020-11-14 19:30:02.314662 [1348/0x561122ac9600] flom_tls_callback: preverify_ok=1
+2020-11-14 19:30:02.314685 [1348/0x561122ac9600] flom_tls_callback: ret_cod=1
+2020-11-14 19:30:02.314747 [1348/0x561122ac9600] flom_tls_callback: preverify_ok=1
+2020-11-14 19:30:02.314755 [1348/0x561122ac9600] flom_tls_callback: ret_cod=1
+2020-11-14 19:30:02.316070 [1348/0x561122ac9600] flom_tls_connect: connection established with TLS_AES_256_GCM_SHA384 encryption
+2020-11-14 19:30:02.316087 [1348/0x561122ac9600] flom_tls_cert_parse
+2020-11-14 19:30:02.316101 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316107 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316113 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316118 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316123 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316128 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316133 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316138 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316143 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316148 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316153 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316158 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316163 [1348/0x561122ac9600] flom_tls_cert_parse: issuer fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=CA for FLoM Channel Encryption
+2020-11-14 19:30:02.316204 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316216 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316223 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316228 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316233 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316238 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316243 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316248 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316253 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316258 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316262 [1348/0x561122ac9600] flom_tls_cert_struct_fill
+2020-11-14 19:30:02.316267 [1348/0x561122ac9600] flom_tls_cert_struct_fill/excp=7/ret_cod=0/errno=0
+2020-11-14 19:30:02.316272 [1348/0x561122ac9600] flom_tls_cert_parse: subject fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=Generic FLoM node
+2020-11-14 19:30:02.316285 [1348/0x561122ac9600] flom_tls_cert_parse/excp=4/ret_cod=0/errno=0
+2020-11-14 19:30:02.316291 [1348/0x561122ac9600] flom_tls_connect/excp=3/ret_cod=0/errno=0
+2020-11-14 19:30:02.316327 [1348/0x561122ac9600] flom_debug_features_tls_client: sending 32 bytes, 'aa0025217cc24efb983dff5bfb361129'
+2020-11-14 19:30:02.316336 [1348/0x561122ac9600] flom_tls_send
+2020-11-14 19:30:02.316374 [1348/0x561122ac9600] flom_tls_send/excp=2/ret_cod=0/errno=0
+2020-11-14 19:30:02.316384 [1348/0x561122ac9600] flom_debug_features_tls_client: sending 6 bytes, '</msg>'
+2020-11-14 19:30:02.316389 [1348/0x561122ac9600] flom_tls_send
+2020-11-14 19:30:02.316398 [1348/0x561122ac9600] flom_tls_send/excp=2/ret_cod=0/errno=0
+2020-11-14 19:30:02.316405 [1348/0x561122ac9600] flom_tls_recv_msg
+2020-11-14 19:30:02.316410 [1348/0x561122ac9600] flom_tls_recv_msg: closing_tag='</msg>', closing_tag_len=6, closing_tag_last='>'
+2020-11-14 19:30:02.318252 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=6 'b4eae1'
+2020-11-14 19:30:02.318400 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=6 '48592d'
+2020-11-14 19:30:02.318526 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=6 '4d128d'
+2020-11-14 19:30:02.318631 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=6 'f8f769'
+2020-11-14 19:30:02.318688 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=6 '87b9ac'
+2020-11-14 19:30:02.318782 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=2 '08'
+2020-11-14 19:30:02.318839 [1348/0x561122ac9600] flom_tls_recv_msg: read_bytes=6 '</msg>'
+2020-11-14 19:30:02.319046 [1348/0x561122ac9600] flom_tls_recv_msg: received message is 'b4eae148592d4d128df8f76987b9ac08</msg>' of 38 chars
+2020-11-14 19:30:02.319142 [1348/0x561122ac9600] flom_tls_recv_msg/excp=3/ret_cod=0/errno=0
+2020-11-14 19:30:02.319274 [1348/0x561122ac9600] flom_debug_features_tls_client: received 38 bytes, 'b4eae148592d4d128df8f76987b9ac08</msg>'
+2020-11-14 19:30:02.319600 [1348/0x561122ac9600] flom_debug_features_tls_client/excp=12/ret_cod=0/errno=0
+2020-11-14 19:30:02.319718 [1348/0x561122ac9600] flom_debug_features/excp=1/ret_cod=0/errno=0
 ~~~
 
 #### The key messages are the following ones:
 
 The debug client send its unique ID:
 ~~~
-2016-04-01 22:22:45.526165 [2010/0x256d200] flom_debug_features_tls_client: sending 32 bytes, '6046574205df4258aeb409bf377235e0'
+2020-11-14 19:30:02.316327 [1348/0x561122ac9600] flom_debug_features_tls_client: sending 32 bytes, 'aa0025217cc24efb983dff5bfb361129'
 ~~~
 
 the debug server receives the unique ID sent by the debug client and replies with its own unique ID:
 
 ~~~
-2016-04-01 22:22:46.178694 [1348/0xfec510] flom_debug_features_tls_server: received 32 bytes, '6046574205df4258aeb409bf377235e0'
-2016-04-01 22:22:46.178771 [1348/0xfec510] flom_debug_features_tls_server: sending 32 bytes, '91ed6d1ed76c5773c7503d285679b33b'
+2020-11-14 19:30:02.311940 [58709/0x14dfc00] flom_debug_features_tls_server: received 38 bytes, 'aa0025217cc24efb983dff5bfb361129</msg>'
+2020-11-14 19:30:02.312001 [58709/0x14dfc00] flom_debug_features_tls_server: sending 32 bytes, 'b4eae148592d4d128df8f76987b9ac08'
 ~~~
 
 the debug client receives the unique ID sent by the debug server:
 
 ~~~
-2016-04-01 22:22:45.526739 [2010/0x256d200] flom_debug_features_tls_client: received 32 bytes, '91ed6d1ed76c5773c7503d285679b33b'
+2020-11-14 19:30:02.319274 [1348/0x561122ac9600] flom_debug_features_tls_client: received 38 bytes, 'b4eae148592d4d128df8f76987b9ac08</msg>'
 ~~~
 
 Remove *trace mask* , then restart the debug server on node1:
 
 ~~~
-tiian@ubuntu1004:~$ unset FLOM_TRACE_MASK
-tiian@ubuntu1004:~$ flom --debug-feature=tls.server -a ubuntu1004.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
-tiian@ubuntu1004:~$ echo $?
+[tiian@centos8 ~]$ unset FLOM_TRACE_MASK
+[tiian@centos8 ~]$ flom --debug-feature=tls.server -a centos8.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
+[tiian@centos8 ~]$ echo $?
 0
 ~~~
 
 Remove *trace mask*, then restart the debug client on node2:
 
 ~~~
-[tiian@centos71-64 ~]$ unset FLOM_TRACE_MASK
-[tiian@centos71-64 ~]$ flom --debug-feature=tls.client -a ubuntu1004.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
-[tiian@centos71-64 ~]$ echo $?
+tiian@ubuntu2004:~/flom$ unset FLOM_TRACE_MASK
+tiian@ubuntu2004:~/flom$ flom --debug-feature=tls.client -a centos8.brenta.org --tls-certificate=/tmp/flom_ssl/first_cert.pem --tls-private-key=/tmp/flom_ssl/first_key.pem --tls-ca-certificate=/tmp/flom_ssl/cacert.pem --tls-check-peer-id=no
+tiian@ubuntu2004:~/flom$ echo $?
 0
 ~~~
 
@@ -415,18 +552,16 @@ Both client and server write logging messages on the system log.
 On the server side (*node1*):
 
 ~~~
-tiian@ubuntu1004:~$ sudo tail /var/log/syslog 
-Apr  1 22:22:46 ubuntu1004 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
-Apr  1 22:22:46 ubuntu1004 flom: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
-Apr  1 22:32:50 ubuntu1004 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
-Apr  1 22:32:50 ubuntu1004 flom: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
+[tiian@centos8 ~]$ sudo tail /var/log/messages
+Nov 14 19:33:59 centos8 flom[58719]: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=CA for FLoM Channel Encryption
+Nov 14 19:33:59 centos8 flom[58719]: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=Generic FLoM node
 ~~~
 
 On the client side (*node2*), these are the corresponding messages:
 
 ~~~
-[tiian@centos71-64 ~]$ sudo tail /var/log/messages
-Apr  1 22:32:49 centos71-64 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=CA for FLoM Channel Encryption
-Apr  1 22:32:49 centos71-64 flom: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=FLoM Software Corporation/OU=Development and Research/emailAddress={null}/CN=Generic FLoM node
+tiian@ubuntu2004:~/flom$ sudo tail /var/log/syslog
+Nov 14 19:33:59 ubuntu2004 flom: FLM011I X.509 CA certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=CA for FLoM Channel Encryption
+Nov 14 19:33:59 ubuntu2004 flom: FLM012I X.509 peer certificate fields are C=IT/ST=Treviso/L=Mogliano Veneto/O=www.tiian.org/OU=FLoM Project/emailAddress={null}/CN=Generic FLoM node
 ~~~
 
