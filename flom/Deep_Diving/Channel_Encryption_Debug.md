@@ -6,7 +6,7 @@ This debug session uses two different nodes; these are the names used during all
 
 ## Native FLoM debugging tool
 Sometimes debugging becomes difficult, especially when you have to deal with networks, firewalls, public and private addresses and so on.   
-For some complex features, FLoM provide a native debugging tool that can help the system engineer to understand the root cause of an issue.
+For some complex features, FLoM provide a native debugging tool that can help the system engineer in understanding the root cause of an issue.
 
 ## Setting up the certification authority and the required certificates
 
@@ -524,7 +524,7 @@ tiian@ubuntu2004:~/flom$ echo $?
 
 When everything is fine, no messages on the terminal are printed and the exit code of the *flom* command is 0.
 
-### Configuration hint
+### Configuration hints
 A more convenient way to setup all the TLS parameters is to use a FLoM [configuration](../Configuration.md) file: these are the keys you have to customize:
 
 ~~~
