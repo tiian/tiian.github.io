@@ -210,9 +210,12 @@ drwxrwxrwt 14 root  root  4096 Nov 14 12:29 ..
 ~~~
 
 ### Debugging TLS (channel encryption security level) with FLoM
-Setting a *trace mask* to trace the messages produced by *flom_tls*, *flom_tcp* and *flom_debug* modules can help to troubleshoot a possible issue.
+
+The picture shows the debug scenario:
 
 ![](security_ce_01.png)
+
+Setting a *trace mask* to trace the messages produced by *flom_tls* and *flom_debug* modules can help to troubleshoot a possible issue.
 
 These are the commands to activate tracing and start a FLoM debug server using TLS inside node1:
 
@@ -292,6 +295,10 @@ This is the output obtained on node2 (debug client):
 ~~~
 
 Ubuntu 10.04 uses an old version of the TLS protocol and it can't handshake with Ubuntu 20.04 (by default). Repeating the test using a couple of recent systems like CentOS 8.2 and Ubuntu 20.04, a different result is obtained.
+
+The picture shows the new debug scenario:
+
+![](security_ce_03.png)
 
 ### Certificate *"installation"* ###
 
