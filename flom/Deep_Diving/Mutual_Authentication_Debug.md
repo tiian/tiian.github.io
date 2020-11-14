@@ -329,9 +329,12 @@ drwxrwxrwt. 12 root  root  4096 Nov 14 22:01 ..
 ~~~
 
 ### Debugging TLS (mutual authentication security level) with FLoM
-Setting a *trace mask* to trace the messaged produced by *flom_tls*, *flom_tcp* and *flom_debug* modules can help to troubleshoot a possible issue.
+
+The picture shows the debug scenario:
 
 ![](security_ma_01.png)
+
+Setting a *trace mask* to trace the messaged produced by *flom_tls* and *flom_debug* modules can help to troubleshoot a possible issue.
 
 These are the commands to activate tracing and to start a FLoM debug server using TLS inside node1:
 
