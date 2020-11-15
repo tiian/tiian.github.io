@@ -7,8 +7,7 @@ The example uses two different nodes; these are the names used during all the ex
 The page [Channel Encryption Debug](../Deep_Diving/Channel_Encryption_Debug.md) explains how to debug this type of configuration in case of issues.
 
 ## Setting up the certification authority and the required certificates ##
-
-The instruction that are shown below are sufficient for a basic TLS set-up, for more advanced configuration please refer to specific documentaion like for exampe [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html).
+The instructions that are shown below are sufficient for a basic TLS set-up, for more advanced configurations please refer to specific documentaion like for exampe [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html).
 
 ### Creating a CA (Certification Authority) of name *CA1* ###
 Connect to node2 (could be even node1, it doesn't matter what node you use to create the Certification Authority and the Certificates) and execute these commands to create the directory structure:

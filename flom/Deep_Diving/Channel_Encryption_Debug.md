@@ -9,6 +9,7 @@ Sometimes debugging becomes difficult, especially when you have to deal with net
 For some complex features, FLoM provide a native debugging tool that can help the system engineer in understanding the root cause of an issue.
 
 ## Setting up the certification authority and the required certificates
+The instructions that are shown below are sufficient for a basic TLS set-up, for more advanced configurations please refer to specific documentaion like for exampe [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html).
 
 ### Creating a CA (Certification Authority) of name *CA1*
 Connect to node1, and execute these commands to create the directory structure:

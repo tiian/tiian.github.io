@@ -64,7 +64,7 @@ To set up mutual authetication you have to:
 Follow these links for a full description of the configuration examples:
 
 * [Channel Encryption](Channel_Encryption.md)
-* [Mutual Authentication]
+* [Mutual Authentication](Mutual_Authentication.md)
 
 ## Debugging tools ##
 TLS can be difficult to debug due to many possible issues:
