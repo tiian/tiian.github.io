@@ -63,7 +63,7 @@ To set up mutual authetication you have to:
 ## Configuration examples ##
 Follow these links for a full description of the configuration examples:
 
-* [Channel Encryption]
+* [Channel Encryption](Channel_Encryption.md)
 * [Mutual Authentication]
 
 ## Debugging tools ##
