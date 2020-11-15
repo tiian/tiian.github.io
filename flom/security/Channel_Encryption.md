@@ -11,7 +11,7 @@ The page [Channel Encryption Debug](../Deep_Diving/Channel_Encryption_Debug.md) 
 The instruction that are shown below are sufficient for a basic TLS set-up, for more advanced configuration please refer to specific documentaion like for exampe [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html).
 
 ### Creating a CA (Certification Authority) of name *CA1* ###
-Connect to node2, and execute these commands to create the directory structure:
+Connect to node2 (could be even node1, it doesn't matter what node you use to create the Certification Authority and the Certificates) and execute these commands to create the directory structure:
 
 ~~~
 tiian@ubuntu2004:~$ mkdir -p flom_ssl/CA1
@@ -214,7 +214,7 @@ drwxrwxrwt. 12 root  root  4096 Nov 15 19:01 ..
 
 The picture shows the use case:
 
-[[img src=security_ce_03.png]]
+![](security_ce_03.png)
 
 Setting a *trace mask* to trace the messaged produced by *flom_tls* and *flom_tcp* modules can help in troubleshooting a possible issue.
 
@@ -779,7 +779,7 @@ second_key.pem                                100% 1708     1.8MB/s   00:00
 ~~~
 The certificate must be copied to node1, as above; the image shows the use case:
 
-[[img src=security_ce_02.png]]
+![](security_ce_02.png)
 
 
 ~~~
