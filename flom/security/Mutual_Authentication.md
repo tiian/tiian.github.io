@@ -1,4 +1,4 @@
-# Configuration example for "Mutual Authentication" security level #
+#= Configuration example for "Mutual Authentication" security level #
 The example uses two different nodes; these are the names used during all the example:
 
 * node1, name: *ubuntu2004.brenta.org*, operating system: Ubuntu Linux 20.04 (64 bit)

@@ -58,7 +58,7 @@ To set up mutual authetication you have to:
 * generate a distinct certificate for every node
 * put the *unique ID* value inside the *CN* (*Common Name*) field of the certificate metadata
 
-![](src=security_03.png)
+![](security_03.png)
 
 ## Configuration examples ##
 Follow these links for a full description of the configuration examples:
