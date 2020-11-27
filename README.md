@@ -1,9 +1,10 @@
-# tiian.org
+# www.tiian.org
+## Quality First Free Software
 
-tiian.org is my personal open and free software initiative; it hosts 3 projects:
+Your next step could be looking at
 
-- [LIXA](/lixa), LIbre XA, a free and open source XA transaction manager
-- [FLoM](/flom), a Free Lock Manager with command line and API
-- [LIBJF](http://libjf.sourceforge.net), LIBrary for Journaled Files
+## [LIXA](/lixa), a Scalable Distributed Transaction Manager
 
-LIXA is the largest project and still in evolution, FLoM can be considered a stable project and LIBJF is a quite old project that I have not touched since many years.
+##  [FLoM](/flom), an Easy to Use, Frictionless Distributed Lock Manager
+
+See [Quality First](Quality_First.md) to read more about the value of projects under www.tiian.org umbrella
