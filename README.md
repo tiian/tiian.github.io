@@ -1,5 +1,5 @@
 # www.tiian.org
-## Quality First Free Software
+Quality First Free Software
 
 Your next step could be looking at
 
