@@ -16,11 +16,11 @@ Design and implement features that are easy to use for the specific domain: usel
 
 ### Full Documentation
 
-Documentation is a core property of software: if it's not documented, there's no way to recognize what "wrong behavior" means.
+Documentation is a core property of software: if it's not documented, there's no way to recognize what *wrong behavior* means.
 
-### Open Mind
+### Open Minded
 
-Accept to discuss every type of proposal: nothing is "stupid" by itself.
+Accept to discuss every type of proposal: nothing is *stupid* by itself.
 
 ### Transparency
 
@@ -34,18 +34,22 @@ Implementing a feature requires all the necessary effort: no workarounds or shor
 
 ## Quality Guidelines
 
+### Automation
+
+Every phase of the process is automated: build, check, install, distribute; GNU standard toolchain based on *autotools* is used. Automation guarantee reproducibility.
+
 ### Compatibility
 
-Software is developed using "the oldes possible" Linux distributions and tested with the newest Linux distributions: this guarantee a wide range of applicability and compatibility. Ubuntu Linux and CentOS are used as reference Linux distributions.
+Software is developed using *the oldest possible* Linux distributions and tested with the newest Linux distributions: this guarantee a wide range of applicability and compatibility. Ubuntu Linux and CentOS are used as reference Linux distributions.
 
 ### Documentation is a Must
 
-Every documentation error is managed with the same process of bug fixing: as soon as it has been detected, an activity to fix it is put in the pipeline.
+Every documentation error is managed with the same process of the bug fixing: as soon as it has been detected, an activity to fix it is put in the pipeline.
 
 ### Licenses: Clear and Transparent
 
 GNU GPL and LGPL licenses are used: no need to search something different, the same licenses used by the Linux kernel and many Linux core components.
-Every source file specifies the applicable license.
+Every source code file specifies the applicable license.
 
 ### Observability Features
 
@@ -59,7 +63,7 @@ The source code contains a huge number of trace messages that can be activated/d
 
 ### Testing
 
-Every documented use case is tested by one or more dedicated test cases. System testing is the largely preferred methodology to verify software correctness.
+Every documented use case is tested by one or more dedicated test cases. End-to-end testing is the largely preferred methodology to verify software correctness.
 
 ### Usability
 
