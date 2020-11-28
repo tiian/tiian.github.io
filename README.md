@@ -3,11 +3,11 @@
 
 Your next step could be looking at
 
-## [LIXA](/lixa), a Scalable Distributed Transaction Manager
+## [LIXA](/lixa): Scalable Distributed Transaction Manager for Microservices and Modern Applications
 
 or
 
-##  [FLoM](/flom), an Easy to Use, Frictionless Distributed Lock Manager.
+##  [FLoM](/flom): Easy to Use Distributed Lock Manager.
 
 ---
 
