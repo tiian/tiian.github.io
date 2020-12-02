@@ -20,11 +20,13 @@ Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hostin
 
 Docker images are available in [Docker Hub](https://hub.docker.com/u/lixa): here you can find ready to use and base images to develop XTA applications that run in Docker containers.
 
-Are you scared about [performances](performances/performances.md) of Distributed Transactions? LIXA might surprise you! If you are interested in the topic, don't miss this section with the results that have been obtained with a [colocated/sidecar architecture](performances/performances_2.md)
+Are you scared about [performances](performances/performances.md) of Distributed Transactions? LIXA might surprise you! If you are interested in the topic, don't miss this section with the results that have been obtained with a [colocated/sidecar architecture](performances/performances_2.md).
 
 LIXA articles:
 
 - [Microservices and Distributed Transactions](https://dzone.com/articles/microservices-and-distributed-transactions): introduces how LIXA and XTA supports microservices based architectures
 - [Microservices and Distributed Transactions: Beyond the 'Happy Path'](https://dzone.com/articles/microservices-and-distributed-transactions-beyond): explains how failure scenarios are managed by LIXA and XTA in microservices based architectures
+
+A selection of [interesting articles](interesting_articles.md) related to distributed transactions & microservices.
 
 Legacy [home page](https://sourceforge.net/p/lixa/wiki/) still contains interesting contents that will be gradually migrated to this new site.
