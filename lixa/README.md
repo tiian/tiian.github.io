@@ -22,6 +22,8 @@ Docker images are available in [Docker Hub](https://hub.docker.com/u/lixa): here
 
 Are you scared about [performances](performances/performances.md) of Distributed Transactions? LIXA might surprise you! If you are interested in the topic, don't miss this section with the results that have been obtained with a [colocated/sidecar architecture](performances/performances_2.md).
 
+Are you curious about [LIXA history? Here it is!](history.md)
+
 LIXA articles:
 
 - [Microservices and Distributed Transactions](https://dzone.com/articles/microservices-and-distributed-transactions): introduces how LIXA and XTA supports microservices based architectures
