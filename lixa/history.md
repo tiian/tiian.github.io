@@ -4,28 +4,28 @@ Every project has its own history and LIXA it's no exception.
 
 ## The How, The Why and the When
 
-It was 2009 and in my professional life I had to cope with UNIX applications and 2 phase commit transactions. 
-Online applications were not that bad situation because TP monitors typically provide the capability of managing distributed transactions across two or more resource managers.
+It was 2009 when in my professional life I had to cope with UNIX applications and 2 phase commit transactions. 
+Online applications were not that bad situation because TP monitors typically provided the capability of managing distributed transactions across two or more resource managers.
 But batch applications were a completely different beast:
 
 - transforming then in "quite online" applications?
 - looking for some sort of transaction manager for batch applications?
 - getting rid of 2 phase commit and implementing some sort of "checkpoint/restart" logic at the application level?
 
-No approach satisfied the different stakeholders for one reason or another. In the end I rember that company used a couple of alternatives:
+No approach satisfied the different stakeholders for one reason or another. In the end I remember that the company used a couple of alternatives:
 
-- for COBOL applications, that at the end of the day behave quite similar to C applications, [IBM MQSeries / IBM WebSphere MQ / IBM MQ](https://en.wikipedia.org/wiki/IBM_MQ) was used in the role of *transaction manager*
+- for COBOL applications, that at the end of the day were quite similar to C applications, [IBM MQSeries / IBM WebSphere MQ / IBM MQ](https://en.wikipedia.org/wiki/IBM_MQ) was used in the role of *transaction manager*
 - for Java applications, [Bitronix Transaction Manager](https://github.com/bitronix/btm) was used
 
 I was not really interested by the second one because it was a pure Java technology for Java applications: using it with a different language, let say C or Python seemed to me a not natural choice.
-About the first one, it had a lot of limitations, just to cite a couple:
+About the first one, it had a lot of interesting limitations, just to cite a couple:
 
-- only the *bind* mode was supported and that required the application to run inside the same system that hosted the queue manager acting as transaction manager
+- only the *bind* mode was supported and that required the application to run inside the same system that hosted the queue manager acting as an XA Transaction Manager
 - only one XA configuration per queue manager was possible: if you had two applications that required two different XA configurations, like for example two distinct users and passwords to access the same database, you needed two queue manager with two distinct XA configurations
 
 To make a long story short, the limitations introduced topology and scalability constraints.
 
-At that point I started asking myself: is it possible to create an XA *Transaction Manager* with some peculiar characteristics:
+At that point I started asking myself: is it possible to create a different type of *XA Transaction Manager* with some peculiar characteristics like:
 
 - it's **not** a *Transaction Monitor*
 - it's **fully distributed**, in other words it allows any type of deployment: local or remote as preferred by the user
