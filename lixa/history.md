@@ -36,7 +36,7 @@ That exact day I started to develop LIXA, acronym of LIbre XA.
 
 At that time, the first versions of LIXA supported the *traditional pattern* for XA applications: one *Application Program*, many (two or more) *Resource Managers* as in the picture below:
 
-![Traditional XA Pattern: 1 Application Program, Many Resource Managers](LIXA_Configuration_1.png)
+![Traditional XA Pattern: 1 Application Program, Many Resource Managers](history_simple.svg)
 
 the implementation made a lot of sense and demonstrated that *creating a different type of XA Transaction Manager* was possible, but in the end, it was **just another XA Transaction Manager**.
 
@@ -67,4 +67,18 @@ That's why, before implementing something real useful, I implemented LIXAVSR: LI
 
 ## The Born of XTA: XA Transaction API ##
 
-...to be continued...
+A detail was still missing: what API should have use the developer to implement those interesting patterns for XA distributed transactions?
+
+The TX Demarcation Specification was too naive to support modern distributed programming and it was immediately discarded.
+
+Re-inventing the wheel was not my preferred strategy, so I studied JTA, the Java Transaction API, hoping I could reuse it, at least its semantic. Unfortunately it was not possible, because JTA has not been designed to be used by an *Application*, but by *Application Managers*. Creating a baroque API for the LIXA developers was out of any discussion.
+
+In the end, I decided to pick what could have been re-used of JTA and putting in place all the changes necessary to create a Transaction API easy to use from an *Application Program*: it was the born of XTA.
+
+![Advanced XA Pattern: 2 Application Program, Many Resource Managers](history_xta.svg)
+
+The really interesting thing about the above picture is the composability: more than two *Application Programs* can be concatenated in a single global distributed transaction! All these magics are explained in [LIXA Reference Guide](manuals/html/index.html).
+
+## The Future of LIXA
+
+The future of LIXA depends on you, *the LIXA user*: use it, report feedback about it, interact, propose what could help more.
