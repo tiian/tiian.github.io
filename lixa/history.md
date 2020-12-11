@@ -8,7 +8,7 @@ It was 2009 when in my professional life I had to cope with UNIX applications an
 Online applications were not that bad situation because TP monitors typically provided the capability of managing distributed transactions across two or more resource managers.
 But batch applications were a completely different beast:
 
-- transforming then in "quite online" applications?
+- transforming them in "quite online" applications?
 - looking for some sort of transaction manager for batch applications?
 - getting rid of 2 phase commit and implementing some sort of "checkpoint/restart" logic at the application level?
 
@@ -21,7 +21,7 @@ I was not really interested by the second one because it was a pure Java technol
 About the first one, it had a lot of interesting limitations, just to cite a couple:
 
 - only the *bind* mode was supported and that required the application to run inside the same system that hosted the queue manager acting as an XA Transaction Manager
-- only one XA configuration per queue manager was possible: if you had two applications that required two different XA configurations, like for example two distinct users and passwords to access the same database, you needed two queue manager with two distinct XA configurations
+- only one XA configuration per queue manager was possible: if you had two applications that required two different XA configurations, like for example two distinct users and passwords to access the same database, you needed two queue managers with two distinct XA configurations
 
 To make a long story short, the limitations introduced topology and scalability constraints.
 
@@ -44,13 +44,13 @@ the implementation made a lot of sense and demonstrated that *creating a differe
 
 After some year, I was contacted by a [software company](https://www.globetom.com/) that was interested in using LIXA: we exchanged many point of views and opinions, but sometimes I was unable to understand some subtle items. Anyway, we had a constructive collaboration from every point of view: they offered to extend LIXA to support a specific use case that made sense for them. Let me be very frank: I didn't clearly understand what they wanted to implement, but I thought it was a good practice to accept contributions, and they played their game with few, if any, interference on my side.
 
-They named the feature *Transaction Coupling* and they extended the *TX Demarcation Specification* to support a **different pattern**: two (or more) *Application Programs*, many *Resource Managers*. At the beginnings I thought they *were on the wrong path* because such a pattern was already described by the **XA+** specification and it requires a lot complexity like for example:
+They named the feature *Transaction Coupling* and they extended the *TX Demarcation Specification* to support a **different pattern**: two (or more) *Application Programs*, many *Resource Managers*. At the beginnings I thought they *were on the wrong path* because such a pattern was already described by the **XA+** specification and it requires a lot of complexity like for example:
 
 - the concept of *Communication Resource Manager*
 - the concepts of *Superior Node* and *Subordinate Node*
-- a *Transaction Processing* **protocol** able to coordinate the activities between different *Application Programs*
+- a *Transaction Processing* **network protocol** able to coordinate the activities between different *Application Programs* and to propagate the *transactional context*
 
-In the end *XA+* seemed to me like an unicorn, designed in a different age, leveraging a bunch of different standards - like for example ISO/OSI - , but with a very few practical usage. On the other hand, I was completely aware that some commercial *TP monitors* implemented proprietary protocols to obtain some of the features proposed by the *XA+* standard. I never was brave enough to start developing some sort of support for XA+ in LIXA codebase.
+In the end *XA+* seemed to me like an unicorn, designed in a different age, leveraging a bunch of different standards, like for example ISO/OSI, and with few if any implementations. On the other hand, I was completely aware that some commercial *TP monitors* implemented proprietary protocols to obtain some of the features proposed by the *XA+* standard. I never was brave enough to start developing some support for XA+ in LIXA codebase.
 
 I do think I did the **right thing**: a developer of that software company figured out a different way to use two native capabilities described by the XA standard:
 
@@ -61,23 +61,29 @@ At that point in time I really started to understand the big picture: using the 
 
 After several minutes of true excitement, some questions arose in my mind, especially doubts: implementing a standard is conceptually *easy* because every time you have a doubt, you can open a book and search for an answer that makes sense. Implementing something original is a completely different game: sometimes you have no better guidance than your instinct and your experience.
 
-That's why, before implementing something real useful, I implemented LIXAVSR: LIXA Very Stupid Robot; it's just a sandbox to make XA experiments, especially with suspend/resume and branch features. I wanted to be 100% sure some available XA implementations really support this different way of using the XA functions.
+That's why, before implementing something really useful, I implemented LIXAVSR: LIXA Very Stupid Robot; it's just a sandbox to make XA experiments, especially with suspend/resume and branch features. I wanted to be 100% sure some available XA implementations really supported this different way of using the XA functions.
 
 **LIXAVSR** demonstrated that the *intuition* of that developer of that software company was correct, I discovered that the landscape behind the gate was much wider than expected: **three original *applicative patterns* can be supported with the bare *XA* standard, without introducing the complexity of the XA+ specification**.
 
 ## The Born of XTA: XA Transaction API ##
 
-A detail was still missing: what API should have use the developer to implement those interesting patterns for XA distributed transactions?
+A detail was still missing: what API should have used the developer to implement those interesting patterns for XA distributed transactions?
 
 The TX Demarcation Specification was too naive to support modern distributed programming and it was immediately discarded.
 
-Re-inventing the wheel was not my preferred strategy, so I studied JTA, the Java Transaction API, hoping I could reuse it, at least its semantic. Unfortunately it was not possible, because JTA has not been designed to be used by an *Application*, but by *Application Managers*. Creating a baroque API for the LIXA developers was out of any discussion.
+Re-inventing the wheel was not my preferred strategy, so I studied JTA, the Java Transaction API, hoping I could reuse at least its semantic. Unfortunately it was not possible, because JTA has not been designed to be used by *Applications*, but by *Application Managers*. Creating a baroque API for the LIXA developers was out of any discussion.
 
 In the end, I decided to pick what could have been re-used of JTA and putting in place all the changes necessary to create a Transaction API easy to use from an *Application Program*: it was the born of XTA.
 
 ![Advanced XA Pattern: 2 Application Program, Many Resource Managers](history_xta.svg)
 
-The really interesting thing about the above picture is the composability: more than two *Application Programs* can be concatenated in a single global distributed transaction! All these magics are explained in [LIXA Reference Guide](manuals/html/index.html).
+The above picture can be drawn even in a less abstract way:
+
+![Microservice Distributed Transaction](history_xta_us.svg)
+
+that's basically the representation of an XA Distributed Transactions in a Microservice Architecture.
+
+Another interesting thing about the above pictures is the composability: more than two *Application Programs* can be concatenated in a single global distributed transaction! All these magics are explained in [LIXA Reference Guide](manuals/html/index.html).
 
 ## The Future of LIXA
 
