@@ -39,7 +39,7 @@ LIXA articles:
 A selection of [interesting articles](interesting_articles.md) related to distributed transactions & microservices.
 
 ## Donate
-You can donate to the project using this D9DWqtEFrMV1b55af4Pai7GbcDhxj43gtS [Dogecoin address](https://dogecoin.com/)
+You can donate to the project using this D9DWqtEFrMV1b55af4Pai7GbcDhxj43gtS [Dogecoin address](dogecoin:D9DWqtEFrMV1b55af4Pai7GbcDhxj43gtS)
 
 ### Old site
 Legacy [home page](https://sourceforge.net/p/lixa/wiki/) contains old contents.
