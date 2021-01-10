@@ -28,7 +28,7 @@ FLoM wants to be **just work software** and configuration should be reduced to t
 FLoM [deep diving](Deep_Diving/Deep_Diving.md) contains specific detailed topics you could interested in after you tried some examples (use cases).
 
 ## FLoM API (Application Programming Interface)
-Starging with version 0.9.0 FLoM provides an API based on [libflom](libflom/libflom.md) that's compiled and installed using libtool; using **libflom** you can use a FLoM *daemon* to synchronize your own applications and your own shell scripts/commands using the **same** tool.
+FLoM provides an API based on [libflom](libflom/libflom.md) that's compiled and installed using libtool; using **libflom** you can use a FLoM *daemon* to synchronize your own applications and your own shell scripts/commands using the **same** tool.
 
 The FLoM API allows you to write your own program using these programming languages:
 
@@ -44,6 +44,9 @@ SSL/TLS [Security](security/Security.md) allows to protect network communication
 
 ## Your feedback is very valuable
 Don't esitate to write your suggestions using the [project forum](http://sourceforge.net/p/flom/discussion/): without your feedback this software can't become terribly useful.
+
+## Donate
+You can donate to the project using this DPBAX1a98sCeLcSEjk4KqDTjdB8fQ9WQpC [Dogecoin address](https://dogecoin.com/)
 
 ## And last but not least...
 In the event of bug, [GitHub Issues](https://github.com/tiian/flom/issues) is your friend!
