@@ -5,7 +5,22 @@
         "monthlySeasonality": [4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3],
         "fruit": false,
         "suggestedReceipt": null,
-        "description": "Le Beta vulgaris assume varie denominazioni in funzione delle diverse tipologie, tra le più comuni c’è la bieta a foglia larga, o bieta erbetta, e la bieta a coste. Botanicamente appartiene alla famiglia delle Amaranthacee, la stessa degli spinaci. È disponibile tutto l’anno e viene coltivata prevalentemente in Lazio, Liguria, Toscana e Puglia. La bieta erbetta presenta dei piccioli (coste) molto sottili e delle foglie di varia dimensione, mentre la bieta a coste ha foglie di grandi dimensioni e una nervatura centrale molto sviluppata che può assumere delle colorazioni che vanno dal bianco, la più diffusa, al rosso o giallo. Le Beta vulgaris assume varie denominazioni in funzione delle diverse tipologie, tra le più comuni c’è la bieta a foglia larga, o bieta erbetta, e la bieta a coste. Botanicamente appartiene alla famiglia delle Amaranthacee, la stessa degli spinaci. È disponibile tutto l’anno e viene coltivata prevalentemente in Lazio, Liguria, Toscana e Puglia. La bieta erbetta presenta dei piccioli (coste) molto sottili e delle foglie di varia dimensione, mentre la bieta a coste ha foglie di grandi dimensioni e una nervatura centrale molto sviluppata che può assumere delle colorazioni che vanno dal bianco, la più diffusa, al rosso o giallo. Le Beta vulgaris assume varie denominazioni in funzione delle diverse tipologie, tra le più comuni c’è la bieta a foglia larga, o bieta erbetta, e la bieta a coste. Botanicamente appartiene alla famiglia delle Amaranthacee, la stessa degli spinaci. È disponibile tutto l’anno e viene coltivata prevalentemente in Lazio, Liguria, Toscana e Puglia. La bieta erbetta presenta dei piccioli (coste) molto sottili e delle foglie di varia dimensione, mentre la bieta a coste ha foglie di grandi dimensioni e una nervatura centrale molto sviluppata che può assumere delle colorazioni che vanno dal bianco, la più diffusa, al rosso o giallo."
+        "information": [
+            {
+                "title": "Descrizione",
+                "description": "Le Beta vulgaris assume varie denominazioni in funzione delle diverse tipologie, tra le più comuni c’è la bieta a foglia larga, o bieta erbetta, e la bieta a coste. Botanicamente appartiene alla famiglia delle Amaranthacee, la stessa degli spinaci. È disponibile tutto l’anno e viene coltivata prevalentemente in Lazio, Liguria, Toscana e Puglia. La bieta erbetta presenta dei piccioli (coste) molto sottili e delle foglie di varia dimensione, mentre la bieta a coste ha foglie di grandi dimensioni e una nervatura centrale molto sviluppata che può assumere delle colorazioni che vanno dal bianco, la più diffusa, al rosso o giallo.",
+                "link": "https://it.wikipedia.org/wiki/Beta_vulgaris"
+            },
+            {
+                "title": "Come si coltiva",
+                "description": "Giustino il contadino la coltiva col vino",
+                "link": "https://giustinoilcontadino.it/"
+            },
+            {
+                "title": "Il parere dell'esperto",
+                "description": "È una verdura molto apprezzata dato che contiene vitamine, fibre, acido folico e sali minerali. Le foglie esteriori, che sono le più verdi, contengono la maggior quantità di vitamine e carotene. Contiene acido ossalico.                Si può consumare tutta la pianta incluso le foglie e il gambo. Le foglie vengono raccolte quando sono ancora piccole (meno di 20 cm). "
+            }
+        ]
     },
     {
         "name": "CARCIOFI",
