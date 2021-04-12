@@ -1,8 +1,8 @@
 [
     {
         "name": "BIETOLE",
-        "picture": "bietole.png",
-        "monthlySeasonality": [4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3],
+        "picture": "img1.jpg",
+        "monthlySeasonality": [4, 3, 2, 4, 0, 1, 2, 3, 4, 3, 2, 3],
         "fruit": false,
         "suggestedReceipt": null,
         "information": [
@@ -24,8 +24,8 @@
     },
     {
         "name": "CARCIOFI",
-        "picture": "carciofo.jpg",
-        "monthlySeasonality": [4, 4, 3, 2, 1, 0, 0, 0, 0, 1, 2, 3],
+        "picture": "img2.jpg",
+        "monthlySeasonality": [4, 4, 3, 4, 1, 0, 0, 0, 0, 1, 2, 3],
         "fruit": false,
         "suggestedReceipt": null,
         "description": "Il carciofo (Cynara scolymus) è una pianta appartenente alla famiglia delle Asteracee, originaria dell’area mediterranea. L’Italia detiene il primato di produzione a livello mondiale, con una coltivazione prevalentemente diffusa in Puglia, Sicilia, Sardegna, Lazio e Campania. ",
@@ -54,7 +54,7 @@
     },
     {
         "name": "BROCCOLO",
-        "picture": "broccolo.png",
+        "picture": "img3.jpg",
         "monthlySeasonality": [4, 4, 4, 4, 4, 0, 0, 0, 4, 4, 4, 4],
         "fruit": false,
         "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/polenta-con-verdura/"
