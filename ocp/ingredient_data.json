@@ -1,8 +1,8 @@
 [
     {
         "name": "BIETOLE",
-        "picture": "img1.jpg",
-        "monthlySeasonality": [4, 3, 2, 4, 0, 1, 2, 3, 4, 3, 2, 3],
+        "picture": "https://www.tiian.org/ocp/bietole.png",
+        "monthlySeasonality": [4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3],
         "fruit": false,
         "suggestedReceipt": null,
         "information": [
@@ -24,11 +24,16 @@
     },
     {
         "name": "CARCIOFI",
-        "picture": "img2.jpg",
-        "monthlySeasonality": [4, 4, 3, 4, 1, 0, 0, 0, 0, 1, 2, 3],
+        "picture": "https://www.tiian.org/ocp/carciofo.jpg",
+        "monthlySeasonality": [4, 4, 3, 2, 1, 0, 0, 0, 0, 1, 2, 3],
         "fruit": false,
         "suggestedReceipt": null,
-        "description": "Il carciofo (Cynara scolymus) è una pianta appartenente alla famiglia delle Asteracee, originaria dell’area mediterranea. L’Italia detiene il primato di produzione a livello mondiale, con una coltivazione prevalentemente diffusa in Puglia, Sicilia, Sardegna, Lazio e Campania. ",
+        "information": [
+            {
+                "title": "Descrizione",
+                "description": "Il carciofo (Cynara scolymus) è una pianta appartenente alla famiglia delle Asteracee, originaria dell’area mediterranea. L’Italia detiene il primato di produzione a livello mondiale, con una coltivazione prevalentemente diffusa in Puglia, Sicilia, Sardegna, Lazio e Campania. "
+            }
+        ],        
         "nutrientList": [
             {
                 "name": "Energia",
@@ -53,10 +58,60 @@
           ]
     },
     {
-        "name": "BROCCOLO FIORARO DI CREAZZO",
-        "picture": "img3.jpg",
+        "name": "BROCCOLO",
+        "picture": "https://www.tiian.org/ocp/broccolo.png",
         "monthlySeasonality": [4, 4, 4, 4, 4, 0, 0, 0, 4, 4, 4, 4],
         "fruit": false,
         "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/polenta-con-verdura/"
+    },
+    {
+        "name": "CAVOLO CAPPUCCIO",
+        "picture": "https://www.tiian.org/ocp/cavolo_cappuccio.png",
+        "monthlySeasonality": [0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0]
+    },
+    {
+        "name": "CETRIOLO",
+        "picture": "https://www.tiian.org/ocp/cetriolo.png",
+        "fruit": true,
+        "monthlySeasonality": [0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0]
+    },
+    {
+        "name": "FINOCCHIO",
+        "picture": "https://www.tiian.org/ocp/finocchio.png",
+        "monthlySeasonality": [2, 0, 0, 2, 4, 4, 4, 4, 4, 4, 4, 4],
+        "suggestedReceipt": "https://ricette.giallozafferano.it/Finocchi-in-padella.html"
+    },
+    {
+        "name": "POMODORO",
+        "picture": "https://www.tiian.org/ocp/pomodoro.png",
+        "fruit": true,
+        "monthlySeasonality": [0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0]
+    },
+    {
+        "name": "RADICCHIO DI CHIOGGIA",
+        "picture": "https://www.tiian.org/ocp/radicchio_chioggia.jpg",
+        "monthlySeasonality": [0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0]
+    },
+    {
+        "name": "RADICCHIO ROSA",
+        "picture": "https://www.tiian.org/ocp/radicchio_rosa.png",
+        "monthlySeasonality": [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 4, 4]
+    },
+    {
+        "name": "VERZA",
+        "picture": "https://www.tiian.org/ocp/verza.png",
+        "monthlySeasonality": [4, 4, 4, 4, 0, 0, 0, 0, 0, 4, 4, 4]
+    },
+    {
+        "name": "ZUCCA",
+        "picture": "https://www.tiian.org/ocp/zucca.png",
+        "fruit": true,
+        "monthlySeasonality": [4, 4, 4, 1, 0, 0, 0, 1, 4, 4, 4, 4]
+    },
+    {
+        "name": "ZUCCHINE",
+        "picture": "https://www.tiian.org/ocp/zucchine.jpg",
+        "fruit": true,
+        "monthlySeasonality": [0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0]
     }
 ]
