@@ -1,145 +1,286 @@
-[
-    {
-        "name": "BIETOLE",
-        "picture": "https://www.tiian.org/ocp/bietole.png",
-        "monthlySeasonality": [4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3],
-        "fruit": false,
-        "suggestedReceipt": null,
-        "information": [
-            {
-                "title": "Descrizione",
-                "description": "Le Beta vulgaris assume varie denominazioni in funzione delle diverse tipologie, tra le più comuni c’è la bieta a foglia larga, o bieta erbetta, e la bieta a coste. Botanicamente appartiene alla famiglia delle Amaranthacee, la stessa degli spinaci. È disponibile tutto l’anno e viene coltivata prevalentemente in Lazio, Liguria, Toscana e Puglia. La bieta erbetta presenta dei piccioli (coste) molto sottili e delle foglie di varia dimensione, mentre la bieta a coste ha foglie di grandi dimensioni e una nervatura centrale molto sviluppata che può assumere delle colorazioni che vanno dal bianco, la più diffusa, al rosso o giallo.",
-                "link": "https://it.wikipedia.org/wiki/Beta_vulgaris"
-            },
-            {
-                "title": "Come si coltiva",
-                "description": "Giustino il contadino la coltiva col vino",
-                "link": "https://giustinoilcontadino.it/"
-            },
-            {
-                "title": "Il parere dell'esperto",
-                "description": "È una verdura molto apprezzata dato che contiene vitamine, fibre, acido folico e sali minerali. Le foglie esteriori, che sono le più verdi, contengono la maggior quantità di vitamine e carotene. Contiene acido ossalico.                Si può consumare tutta la pianta incluso le foglie e il gambo. Le foglie vengono raccolte quando sono ancora piccole (meno di 20 cm). "
-            },
-            {
-                "title": "Altra descrizione I,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            },
-            {
-                "title": "Altra descrizione II,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            },
-            {
-                "title": "Altra descrizione III,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            },
-            {
-                "title": "Altra descrizione IV,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            },
-            {
-                "title": "Altra descrizione V,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            },
-            {
-                "title": "Altra descrizione VI,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            },
-            {
-                "title": "Altra descrizione VII,",
-                "description": "Ecco un'altra descrizione molto lunga..................................................................................................................................................................................................................................................................."
-            }
-        ]
-    },
-    {
-        "name": "CARCIOFI",
-        "picture": "https://www.tiian.org/ocp/carciofo.jpg",
-        "monthlySeasonality": [4, 4, 3, 2, 1, 0, 0, 0, 0, 1, 2, 3],
-        "fruit": false,
-        "suggestedReceipt": null,
-        "information": [
-            {
-                "title": "Descrizione",
-                "description": "Il carciofo (Cynara scolymus) è una pianta appartenente alla famiglia delle Asteracee, originaria dell’area mediterranea. L’Italia detiene il primato di produzione a livello mondiale, con una coltivazione prevalentemente diffusa in Puglia, Sicilia, Sardegna, Lazio e Campania. "
-            }
-        ],        
-        "nutrientList": [
-            {
-                "name": "Energia",
-                "quantity": 33.0,
-                "unit": "Kcal"
-            },
-            {
-                "name": "Acqua",
-                "quantity": 84.0,
-                "unit": "g"
-            },
-            {
-                "name": "Proteine",
-                "quantity": 2.7,
-                "unit": "g"
-            },
-            {
-                "name": "Potassio",
-                "quantity": 376.0,
-                "unit": "mg"
-            }
-          ]
-    },
-    {
-        "name": "BROCCOLO",
-        "picture": "https://www.tiian.org/ocp/broccolo.png",
-        "monthlySeasonality": [4, 4, 4, 4, 4, 0, 0, 0, 4, 4, 4, 4],
-        "fruit": false,
-        "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/polenta-con-verdura/"
-    },
-    {
-        "name": "CAVOLO CAPPUCCIO",
-        "picture": "https://www.tiian.org/ocp/cavolo_cappuccio.png",
-        "monthlySeasonality": [0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0]
-    },
-    {
-        "name": "CETRIOLO",
-        "picture": "https://www.tiian.org/ocp/cetriolo.png",
-        "fruit": true,
-        "monthlySeasonality": [0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0]
-    },
-    {
-        "name": "FINOCCHIO",
-        "picture": "https://www.tiian.org/ocp/finocchio.png",
-        "monthlySeasonality": [2, 0, 0, 2, 4, 4, 4, 4, 4, 4, 4, 4],
-        "suggestedReceipt": "https://ricette.giallozafferano.it/Finocchi-in-padella.html"
-    },
-    {
-        "name": "POMODORO",
-        "picture": "https://www.tiian.org/ocp/pomodoro.png",
-        "fruit": true,
-        "monthlySeasonality": [0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0]
-    },
-    {
-        "name": "RADICCHIO DI CHIOGGIA",
-        "picture": "https://www.tiian.org/ocp/radicchio_chioggia.jpg",
-        "monthlySeasonality": [0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0]
-    },
-    {
-        "name": "RADICCHIO ROSA",
-        "picture": "https://www.tiian.org/ocp/radicchio_rosa.png",
-        "monthlySeasonality": [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 4, 4]
-    },
-    {
-        "name": "VERZA",
-        "picture": "https://www.tiian.org/ocp/verza.png",
-        "monthlySeasonality": [4, 4, 4, 4, 0, 0, 0, 0, 0, 4, 4, 4]
-    },
-    {
-        "name": "ZUCCA",
-        "picture": "https://www.tiian.org/ocp/zucca.png",
-        "fruit": true,
-        "monthlySeasonality": [4, 4, 4, 1, 0, 0, 0, 1, 4, 4, 4, 4]
-    },
-    {
-        "name": "ZUCCHINE",
-        "picture": "https://www.tiian.org/ocp/zucchine.jpg",
-        "fruit": true,
-        "monthlySeasonality": [0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0]
+{
+    "ingredient_data": {
+        "albicocche001" : {
+            "name": "ALBICOCCHE",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/albicocche.png",
+            "monthlySeasonality": [0, 0, 0, 1, 2, 4, 4, 2, 0, 0, 0, 0],
+            "type": 0,
+            "suggestedReceipt": null,
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": ""
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": ""
+                }
+            ]
+        },
+        "anguria001" : {
+            "name": "ANGURIA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/anguria.png",
+            "monthlySeasonality": [0, 0, 0, 1, 0, 4, 4, 4, 2, 0, 0, 0],
+            "type": 0,
+            "suggestedReceipt": null,
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": ""
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": ""
+                }
+            ]
+        },
+        "asparagi001" : {
+            "name": "ASPARAGI",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/asparagi.png",
+            "monthlySeasonality": [0, 0, 2, 4, 4, 2, 0, 0, 0, 0, 0, 0],
+            "type": 1,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=asparagi",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "L’asparago, il re della primavera per eccellenza. Ipocalorico, ricco di acqua e fibre. Fonte di vitamine A e C, antiossidanti, acido folico e minerali come potassio, fosforo e calcio. Queste proprietà lo rendono un ottimo depurativo e diuretico e stimolatore della regolarità intestinale. La forte azione diuretica lo rende meno adatto a chi soffre di insufficienza renale.",
+                    "link": "https://www.instagram.com/ghiottodisalute/"
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": ""
+                },
+                {
+                    "title": "Le varie tipologie",
+                    "description": "........................................."
+                },
+                {
+                    "title": "Come coltivare",
+                    "description": ".........................."
+                }      
+            ]              
+        },
+        "batata001" : {
+            "name": "BATATA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/batata.png",
+            "monthlySeasonality": [2, 2, 0, 1, 0, 0, 0, 2, 4, 4, 4, 4],
+            "type": 1,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/batata-in-padella-o-al-forno/",
+            "information": [
+                {
+                    "title": "Patata dolce americana - proprietà",
+                    "description": "La patata dolce, rispetto alla patata classica, ha un indice glicemico più basso, più fibre e meno calorie.",
+                    "link": "https://blog.giallozafferano.it/ortaggichepassionebysara/patata-dolce/"
+                }
+            ]
+        },
+        "carciofo001" : {
+            "name": "CARCIOFO",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/carciofo.png",
+            "monthlySeasonality": [4, 4, 4, 3, 2, 0, 0, 0, 0, 2, 4, 4],
+            "type": 1,
+            "suggestedReceipt": null,
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": ""
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": ""
+                }
+            ],        
+            "nutrientList": [
+                {
+                    "name": "Energia",
+                    "quantity": 33.0,
+                    "unit": "Kcal"
+                },
+                {
+                    "name": "Acqua",
+                    "quantity": 84.0,
+                    "unit": "g"
+                },
+                {
+                    "name": "Proteine",
+                    "quantity": 2.7,
+                    "unit": "g"
+                },
+                {
+                    "name": "Potassio",
+                    "quantity": 376.0,
+                    "unit": "mg"
+                }
+            ]
+        },
+        "cavolo cappuccio001" : {
+            "name": "CAVOLO CAPPUCCIO",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/cavolo-cappuccio.png",
+            "type": 1,
+            "monthlySeasonality": [0, 2, 4, 4, 4, 4, 4, 4, 4, 4, 2, 0]
+        },
+        "cetriolo001" : {
+            "name": "CETRIOLO",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/cetriolo.png",
+            "type": 1,
+            "monthlySeasonality": [0, 0, 0, 1, 2, 4, 4, 4, 4, 2, 0, 0],
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/tzatziki-greco/",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "...."
+                }
+            ]
+        },
+        "cipolla001" : {
+            "name": "CIPOLLA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/cipolla.png",
+            "monthlySeasonality": [ 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+            "type": 1,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=CIPOLLE",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "La cipolla è ricca di quercetina, una sostanza anti-infiammatoria utile alla salute. Ha proprietà diuretiche e favorisce la peristalsi intestinale.",
+                    "link": "http://www.ilcibodellasalute.com/ode-alla-cipolla-un-aiuto-nella-prevenzione-tumori/"
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": ""
+                }
+            ]
+        },
+        "fagioli001" : {
+            "name": "FAGIOLI",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/fagioli.png",
+            "monthlySeasonality": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            "type": 1,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=fagioli",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": ""
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": "https://www.fiordalisatrentino.com/acquista-ora/fagioli-antichi-di-montagna/"
+                }
+            ]
+        },
+        "fiori eduli 001" : {
+            "name": "FIORI EDULI",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/fiori-eduli.png",
+            "monthlySeasonality": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            "type": 2,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=fiori+eduli",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": ""
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": "https://www.fiordalisatrentino.com/acquista-ora/aromi-pizza-e-fiori-eduli/"
+                }
+            ]
+        },
+        "fragole001" : {
+            "name": "FRAGOLE",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/fragole.png",
+            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 2, 0, 0, 0],
+            "type": 0,
+            "suggestedReceipt": null,
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": ""
+                },
+                {
+                    "title": "Il parere del produttore",
+                    "description": "...",
+                    "link": ""
+                }
+            ]
+        },
+        "ortica001" : {
+            "name": "ORTICA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/ortica.png",
+            "monthlySeasonality": [0, 0, 2, 2, 4, 4, 0, 0, 2, 4, 2, 0],
+            "type": 2,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=ortiche",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": "https://www.instagram.com/michelatrevisannutrizionista/"
+                }
+            ]
+        },
+        "pomodoro001" : {
+            "name": "POMODORO",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/pomodoro.png",
+            "type": 1,
+            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 4, 4, 0, 0]
+        },
+        "radicchio001" : {
+            "name": "RADICCHIO",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/radicchio.png",
+            "type": 1,
+            "monthlySeasonality": [4, 4, 4, 4, 4, 4, 2, 0, 2, 4, 4, 4],
+            "suggestedReceipt": "https://www.google.com/search?client=firefox-b-d&biw=1536&bih=734&q=Ricette+con+radicchio+rosso+tondo+al+forno&sa=X&ved=2ahUKEwjf46z1joHwAhVQPuwKHYhYC0cQ1QIwHnoECAsQAQ"
+        },
+        "rapa rossa001" : {
+            "name": "RAPA ROSSA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/rapa-rossa.png",
+            "type": 1,
+            "monthlySeasonality": [4, 4, 4, 2, 2, 2, 4, 4, 4, 4, 4, 4],
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/barbabietola-rossa/",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "....",
+                    "link": "https://www.energiabenessere.com/chi-sono-sara-masiero-consulente-nutrizionale/"
+                }
+            ]
+        },
+        "ravanelli001" : {
+            "name": "RAVANELLI",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/ravanelli.png",
+            "type": 1,
+            "monthlySeasonality": [0, 0, 2, 4, 4, 4, 4, 4, 4, 2, 0, 0]
+        },
+        "rucola001" : {
+            "name": "RUCOLA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/rucola.jpg",
+            "type": 1,
+            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 4, 2, 0, 0],
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/arrosto-freddo-con-salsa-alla-rucola/",
+            "information": [
+                {
+                    "title": "Il consiglio del nutrizionista",
+                    "description": "Con il suo gusto pungente, la rucola apporta importanti minerali quali magnesio, potassio e calcio e vitamine tra le quali soprattutto A, C e folati. Il grande contenuto di carotenoidi, luteina e zeaxantina la eleggono un fantastico antiossidante nella lotta contro i radicali liberi. Come tutte le erbe amare ha azione epato-stimolante e quindi depurativa e diuretica. Contiene “erucina” preziosa per il nostro microbiota intestinale e protettiva della mucosa gastrica.",
+                    "link": "https://www.instagram.com/ghiottodisalute/"
+                }
+            ]
+        },
+        "zucchine001" : {
+            "name": "ZUCCHINE",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/zucchine.png",
+            "type": 1,
+            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 4, 4, 2, 0]
+        }
     }
-]
+}
