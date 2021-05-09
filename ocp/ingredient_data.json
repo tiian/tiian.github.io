@@ -1,286 +1,707 @@
 {
     "ingredient_data": {
-        "albicocche001" : {
+        "aglio001": {
+            "information": [
+                {
+                    "description": "L’aglio ha qualità antinfiammatorie, antibatteriche, antiossidanti. Il consumo regolare di aglio è in grado di ridurre significativamente il rischio di tumore all’apparato digerente.",
+                    "link": "http://www.ilcibodellasalute.com/aglio-vampiri-anche-tumori-ed-infezioni/",
+                    "title": "Parla la dott.ssa Petruzzelli"
+                },
+                {
+                    "description": "...",
+                    "link": "",
+                    "title": "Il parere del produttore"
+                }
+            ],
+            "monthlySeasonality": [
+                2,
+                2,
+                1,
+                1,
+                4,
+                4,
+                4,
+                4,
+                2,
+                2,
+                2,
+                2
+            ],
+            "name": "AGLIO",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/aglio.png",
+            "type": 1
+        },
+        "albicocche001": {
+            "information": [
+                {
+                    "description": "....",
+                    "link": "",
+                    "title": "Il consiglio del nutrizionista"
+                },
+                {
+                    "description": "...",
+                    "link": "",
+                    "title": "Il parere del produttore"
+                }
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                2,
+                0,
+                0,
+                0,
+                0
+            ],
             "name": "ALBICOCCHE",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/albicocche.png",
-            "monthlySeasonality": [0, 0, 0, 1, 2, 4, 4, 2, 0, 0, 0, 0],
-            "type": 0,
-            "suggestedReceipt": null,
+            "type": 0
+        },
+        "anguria001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
                     "description": "....",
-                    "link": ""
+                    "link": "",
+                    "title": "Il consiglio del nutrizionista"
                 },
                 {
-                    "title": "Il parere del produttore",
                     "description": "...",
-                    "link": ""
+                    "link": "",
+                    "title": "Il parere del produttore"
                 }
-            ]
-        },
-        "anguria001" : {
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                4,
+                4,
+                4,
+                2,
+                0,
+                0,
+                0
+            ],
             "name": "ANGURIA",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/anguria.png",
-            "monthlySeasonality": [0, 0, 0, 1, 0, 4, 4, 4, 2, 0, 0, 0],
-            "type": 0,
-            "suggestedReceipt": null,
-            "information": [
+            "type": 0
+        },
+        "arance001": {
+            "children": [
                 {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "....",
-                    "link": ""
+                    "information": [
+                        {
+                            "description": "L’arancia bionda Siciliana Naveline, nasce da una mutazione delle arance Navel. Sono le arance Siciliane bionde per eccellenza con buccia tipicamente di colore giallo/arancio, polpa succosa e priva di semi. Le arance Naveline vengono chiamate anche arance con l’ombelico, perché presentano all’interno della buccia un frutto gemello, una piccola arancia gemella che cresce in uno spazio localizzato al polo opposto del picciolo, che ricorda l'ombelico (dall'inglese appunto navel). È una varietà prevalentemente diffusa e apprezzata in Sicilia per la bassa acidità che ne esalta la dolcezza del succo. Le caratteristiche peculiari sono consistenza ed intenso profumo.",
+                            "link": "https://www.agrumidesiree.com/naveline-da-spremuta.html",
+                            "title": "Il parere del produttore"
+                        }
+                    ],
+                    "monthlySeasonality": [
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        2,
+                        4,
+                        4
+                    ],
+                    "name": "A. Navel",
+                    "searchName": "Arance Navel",
+                    "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/05/arancia-navel.png",
+                    "type": 0
                 },
                 {
-                    "title": "Il parere del produttore",
-                    "description": "...",
-                    "link": ""
+                    "information": [
+                        {
+                            "description": "Il Moro è la prima varietà tra le Arance Rosse di Sicilia a maturare. La sua commercializzazione è concentrata nei mesi che vanno da Dicembre a metà Marzo. Arancia unica nel suo genere è di colore rosso sanguigno. Più nota a livello internazionale che nazionale per le sue qualità benefiche è un frutto dal calibro medio con forma sferica e ovoidale. La buccia arancione con sfumature di rosso, copre una polpa di colore rosso scuro senza semi, così come il succo dal tipico colore sanguigno per la forte presenza di antociani (pigmenti naturali) sia nella buccia che nella polpa. La resa del succo è elevata e leggermente acidulo, come elevata è l’acidità e il contenuto di zucchero medio.",
+                            "link": "https://www.agrumidesiree.com/agrumi/arance-rosse-sicilia.html",
+                            "title": "Il parere del produttore"
+                        }
+                    ],
+                    "monthlySeasonality": [
+                        4,
+                        4,
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        4
+                    ],
+                    "name": "A. Moro",
+                    "searchName": "Arance Moro",
+                    "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/05/arancia-moro.jpg",
+                    "type": 0
+                },
+                {
+                    "information": [
+                        {
+                            "description": "Le arance rosse Sanguinello sono l’ultima varietà a maturare, infatti la maturazione inizia a Febbraio, ma la raccolta avviene tra Marzo e Aprile. Insieme al Sanguinello Moscato, è la più importante cultivar Italiana di media stagione. L’arancia è di calibro medio con buccia color arancio intenso e sfumature rosse. La polpa senza semi o quasi è con screziature sanguigne, sapore eccellente e molto succosa.",
+                            "link": "https://www.agrumidesiree.com/arancia-rossa-sanguinello.html",
+                            "title": "Il parere del produttore"
+                        }
+                    ],
+                    "monthlySeasonality": [
+                        0,
+                        2,
+                        4,
+                        4,
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "name": "A. Sanguinello",
+                    "searchName": "Arance Sanguinello",
+                    "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/05/arancia-sanguinello.jpg",
+                    "type": 0
+                },
+                {
+                    "information": [
+                        {
+                            "description": "Le arance rosse Tarocco, posso considerarsi le regine delle arance rosse Siciliane. L’arancia Tarocco presenta dei frutti di grosso calibro con forma sferica che tende all’ovoidale. Presenta una buccia sottile e liscia, di colore giallo-arancio ed arrossato su oltre la metà della superficie in base al grado di maturazione dell’agrume. Questa varietà si distingue per il cosiddetto collare o “muso” più o meno pronunciato, ha una polpa striata di rosso, priva di semi, con un gusto agro-dolce che la rende piacevole e adatta alle spremute.",
+                            "link": "https://www.agrumidesiree.com/agrumi/arance-rosse-sicilia.html",
+                            "title": "Il parere del produttore"
+                        }
+                    ],
+                    "monthlySeasonality": [
+                        4,
+                        4,
+                        4,
+                        4,
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        2,
+                        4
+                    ],
+                    "name": "A. Tarocco",
+                    "searchName": "Arance Tarocco",
+                    "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/05/arancia-tarocco.jpeg",
+                    "type": 0
+                },
+                {
+                    "information": [
+                        {
+                            "description": "Le arance bionde Valencia Late è una delle varietà più tardive delle arance dolci. I frutti iniziano a maturare a Dicembre e sono disponibili fino all'estate, per questo vengono considerate le regine d'estate. L'arancia Valencia Late contiene un'eccellente aroma ed un alto contenuto di succo. Dolcissime e croccante, sono adatte per essere gustate a tavola come classico frutto, ma anche in insalate e dolci, grazie all'intenso gusto e dolcezza.",
+                            "link": "https://www.agrumidesiree.com/arancia-bionda-valencia-late.html",
+                            "title": "Il parere del produttore"
+                        }
+                    ],
+                    "monthlySeasonality": [
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        4
+                    ],
+                    "name": "A. Valencia",
+                    "searchName": "Arance Valencia",
+                    "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/05/arancia-valencia.png",
+                    "type": 0
                 }
-            ]
+            ],
+            "information": [
+                {
+                    "description": "....",
+                    "link": "",
+                    "title": "Il consiglio del nutrizionista"
+                },
+                {
+                    "description": "La consistenza dei frutti varia in relazione alla pigmentazione delle arance siano esse bionde o rosse. Solitamente i Navel, i Valencia e gli Ovali hanno una consistenza maggiore rispetto alle rosse che sono Tarocco, Moro e Sanguinello. L’Italia in Europa occupa un posto di rilievo nella produzione degli agrumi che si concentra nelle regioni meridionali",
+                    "link": "",
+                    "title": "Il parere del produttore"
+                },
+                {
+                    "description": "Il territorio che accoglie la coltivazione degli agrumi deve essere una zona a microclima. Le piante all’età di 3-4 anni iniziano a dare i primi frutti. La potatura avviene in Primavera o in Autunno.",
+                    "link": "https://www.facebook.com/venditaagrumi",
+                    "title": "Come si coltivano le ARANCE?"
+                }
+            ],
+            "monthlySeasonality": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0,
+                0,
+                2,
+                4,
+                4
+            ],
+            "name": "ARANCE",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/05/arance.png",
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=%23aranc",
+            "type": 0
         },
-        "asparagi001" : {
+        "asparagi001": {
+            "information": [
+                {
+                    "description": "L’asparago, il re della primavera per eccellenza. Ipocalorico, ricco di acqua e fibre. Fonte di vitamine A e C, antiossidanti, acido folico e minerali come potassio, fosforo e calcio. Queste proprietà lo rendono un ottimo depurativo e diuretico e stimolatore della regolarità intestinale. La forte azione diuretica lo rende meno adatto a chi soffre di insufficienza renale.",
+                    "link": "https://www.instagram.com/ghiottodisalute/",
+                    "title": "Parla la dott.ssa Piva"
+                },
+                {
+                    "description": "Gli asparagi bianchi si coltivano facendo una baulatura (un cumulo di terra sopra la fila di asparago) e coprendola con un telo nero in modo che l'asparago non prenda la luce e assuma il suo caratteristico colore bianco perlato. Il sapore è molto delicato e dolce.",
+                    "link": "https://www.instagram.com/societa_agricola_mg/",
+                    "title": "Come si coltiva l'asparago BIANCO"
+                },
+                {
+                    "description": "L'asparago verde è semplicemente lasciato crescere fuori terra e diventa verde (o viola) per effetto della fotosintesi clorofilliana, prendendo la luce del sole. Il sapore è più deciso e saporito",
+                    "link": "https://www.facebook.com/MGMorandinGraziottoMercatoVerdura",
+                    "title": "Come si coltiva l'asparago VERDE"
+                },
+                {
+                    "description": "..........................",
+                    "title": "Le varietà degli asparagi"
+                }
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                2,
+                4,
+                4,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
             "name": "ASPARAGI",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/asparagi.png",
-            "monthlySeasonality": [0, 0, 2, 4, 4, 2, 0, 0, 0, 0, 0, 0],
-            "type": 1,
-            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=asparagi",
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=%23asparagi",
+            "type": 1
+        },
+        "batata001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "L’asparago, il re della primavera per eccellenza. Ipocalorico, ricco di acqua e fibre. Fonte di vitamine A e C, antiossidanti, acido folico e minerali come potassio, fosforo e calcio. Queste proprietà lo rendono un ottimo depurativo e diuretico e stimolatore della regolarità intestinale. La forte azione diuretica lo rende meno adatto a chi soffre di insufficienza renale.",
-                    "link": "https://www.instagram.com/ghiottodisalute/"
-                },
-                {
-                    "title": "Il parere del produttore",
-                    "description": "...",
-                    "link": ""
-                },
-                {
-                    "title": "Le varie tipologie",
-                    "description": "........................................."
-                },
-                {
-                    "title": "Come coltivare",
-                    "description": ".........................."
-                }      
-            ]              
-        },
-        "batata001" : {
+                    "description": "La patata dolce, rispetto alla patata classica, ha un indice glicemico più basso, più fibre e meno calorie.",
+                    "link": "https://blog.giallozafferano.it/ortaggichepassionebysara/patata-dolce/",
+                    "title": "Patata dolce americana - proprietà"
+                }
+            ],
+            "monthlySeasonality": [
+                2,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4
+            ],
             "name": "BATATA",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/batata.png",
-            "monthlySeasonality": [2, 2, 0, 1, 0, 0, 0, 2, 4, 4, 4, 4],
-            "type": 1,
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/batata-in-padella-o-al-forno/",
-            "information": [
-                {
-                    "title": "Patata dolce americana - proprietà",
-                    "description": "La patata dolce, rispetto alla patata classica, ha un indice glicemico più basso, più fibre e meno calorie.",
-                    "link": "https://blog.giallozafferano.it/ortaggichepassionebysara/patata-dolce/"
-                }
-            ]
+            "type": 1
         },
-        "carciofo001" : {
+        "carciofo001": {
+            "monthlySeasonality": [
+                4,
+                4,
+                4,
+                3,
+                2,
+                0,
+                0,
+                0,
+                0,
+                2,
+                4,
+                4
+            ],
             "name": "CARCIOFO",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/carciofo.png",
-            "monthlySeasonality": [4, 4, 4, 3, 2, 0, 0, 0, 0, 2, 4, 4],
-            "type": 1,
-            "suggestedReceipt": null,
-            "information": [
-                {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "....",
-                    "link": ""
-                },
-                {
-                    "title": "Il parere del produttore",
-                    "description": "...",
-                    "link": ""
-                }
-            ],        
-            "nutrientList": [
-                {
-                    "name": "Energia",
-                    "quantity": 33.0,
-                    "unit": "Kcal"
-                },
-                {
-                    "name": "Acqua",
-                    "quantity": 84.0,
-                    "unit": "g"
-                },
-                {
-                    "name": "Proteine",
-                    "quantity": 2.7,
-                    "unit": "g"
-                },
-                {
-                    "name": "Potassio",
-                    "quantity": 376.0,
-                    "unit": "mg"
-                }
-            ]
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=carciofo",
+            "type": 1
         },
-        "cavolo cappuccio001" : {
+        "cavolo cappuccio001": {
+            "monthlySeasonality": [
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0
+            ],
             "name": "CAVOLO CAPPUCCIO",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/cavolo-cappuccio.png",
-            "type": 1,
-            "monthlySeasonality": [0, 2, 4, 4, 4, 4, 4, 4, 4, 4, 2, 0]
+            "type": 1
         },
-        "cetriolo001" : {
+        "cetriolo001": {
+            "information": [
+                {
+                    "description": "....",
+                    "title": "Il consiglio del nutrizionista"
+                }
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0,
+                0
+            ],
             "name": "CETRIOLO",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/cetriolo.png",
-            "type": 1,
-            "monthlySeasonality": [0, 0, 0, 1, 2, 4, 4, 4, 4, 2, 0, 0],
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/tzatziki-greco/",
+            "type": 1
+        },
+        "cipolla001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "...."
+                    "description": "La cipolla è ricca di quercetina, una sostanza anti-infiammatoria utile alla salute. Ha proprietà diuretiche e favorisce la peristalsi intestinale.",
+                    "link": "http://www.ilcibodellasalute.com/ode-alla-cipolla-un-aiuto-nella-prevenzione-tumori/",
+                    "title": "Parla la dott.ssa Petruzzelli"
+                },
+                {
+                    "description": "...",
+                    "link": "",
+                    "title": "Il parere del produttore"
                 }
-            ]
-        },
-        "cipolla001" : {
+            ],
+            "monthlySeasonality": [
+                2,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+            ],
             "name": "CIPOLLA",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/cipolla.png",
-            "monthlySeasonality": [ 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-            "type": 1,
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=CIPOLLE",
+            "type": 1
+        },
+        "fagioli001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "La cipolla è ricca di quercetina, una sostanza anti-infiammatoria utile alla salute. Ha proprietà diuretiche e favorisce la peristalsi intestinale.",
-                    "link": "http://www.ilcibodellasalute.com/ode-alla-cipolla-un-aiuto-nella-prevenzione-tumori/"
+                    "description": "....",
+                    "link": "",
+                    "title": "Il consiglio del nutrizionista"
                 },
                 {
-                    "title": "Il parere del produttore",
-                    "description": "...",
-                    "link": ""
+                    "description": "I fagioli freschi si raccolgono in estate e in autunno, quando il loro baccello non è secco.",
+                    "link": "https://www.facebook.com/fiordalisaaziendaagricola",
+                    "title": "Fagioli FRESCHI"
+                },
+                {
+                    "description": "I fagioli secchi si raccolgono alla fine del ciclo produttivo, quando il loro baccello è secco. Una volta raccolti, per una corretta conservazione si termina l'essiccazione all'aria.",
+                    "link": "https://www.instagram.com/azagrfiordalisa/",
+                    "title": "Fagioli SECCHI"
+                },
+                {
+                    "description": "I fagioli si seminano in primavera, direttamente in terra, in fila (un seme ogni 10 cm) o in postarelle (4 semi per buca). I fagioli rampicanti sono molto produttivi e per crescere necesitano di un tutore. I fagioli bassi - nani hanno un ciclo breve e non hanno bisogno di sostegni.",
+                    "link": "https://www.fiordalisatrentino.com/acquista-ora/fagioli-antichi-di-montagna/",
+                    "title": "Come si coltivano i fagioli"
                 }
-            ]
-        },
-        "fagioli001" : {
+            ],
+            "monthlySeasonality": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
             "name": "FAGIOLI",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/fagioli.png",
-            "monthlySeasonality": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            "type": 1,
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=fagioli",
+            "type": 1
+        },
+        "fiori eduli 001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
                     "description": "....",
-                    "link": ""
+                    "link": "",
+                    "title": "Il consiglio del nutrizionista"
                 },
                 {
-                    "title": "Il parere del produttore",
                     "description": "...",
-                    "link": "https://www.fiordalisatrentino.com/acquista-ora/fagioli-antichi-di-montagna/"
+                    "link": "https://www.fiordalisatrentino.com/acquista-ora/aromi-pizza-e-fiori-eduli/",
+                    "title": "Il parere del produttore"
                 }
-            ]
-        },
-        "fiori eduli 001" : {
+            ],
+            "monthlySeasonality": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
             "name": "FIORI EDULI",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/fiori-eduli.png",
-            "monthlySeasonality": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            "type": 2,
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=fiori+eduli",
+            "type": 2
+        },
+        "fragole001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
                     "description": "....",
-                    "link": ""
+                    "link": "",
+                    "title": "Il consiglio del nutrizionista"
                 },
                 {
-                    "title": "Il parere del produttore",
                     "description": "...",
-                    "link": "https://www.fiordalisatrentino.com/acquista-ora/aromi-pizza-e-fiori-eduli/"
+                    "link": "",
+                    "title": "Il parere del produttore"
                 }
-            ]
-        },
-        "fragole001" : {
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0,
+                0,
+                0
+            ],
             "name": "FRAGOLE",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/fragole.png",
-            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 2, 0, 0, 0],
-            "type": 0,
-            "suggestedReceipt": null,
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=%23fragole",
+            "type": 0
+        },
+        "ortica001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
                     "description": "....",
-                    "link": ""
-                },
-                {
-                    "title": "Il parere del produttore",
-                    "description": "...",
-                    "link": ""
+                    "link": "https://www.instagram.com/michelatrevisannutrizionista/",
+                    "title": "Il consiglio del nutrizionista"
                 }
-            ]
-        },
-        "ortica001" : {
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                2,
+                2,
+                4,
+                4,
+                0,
+                0,
+                2,
+                4,
+                2,
+                0
+            ],
             "name": "ORTICA",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/ortica.png",
-            "monthlySeasonality": [0, 0, 2, 2, 4, 4, 0, 0, 2, 4, 2, 0],
-            "type": 2,
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/?s=ortiche",
-            "information": [
-                {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "....",
-                    "link": "https://www.instagram.com/michelatrevisannutrizionista/"
-                }
-            ]
+            "type": 2
         },
-        "pomodoro001" : {
+        "pomodoro001": {
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                0,
+                0
+            ],
             "name": "POMODORO",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/pomodoro.png",
-            "type": 1,
-            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 4, 4, 0, 0]
+            "type": 1
         },
-        "radicchio001" : {
+        "radicchio001": {
+            "monthlySeasonality": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0,
+                2,
+                4,
+                4,
+                4
+            ],
             "name": "RADICCHIO",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/radicchio.png",
-            "type": 1,
-            "monthlySeasonality": [4, 4, 4, 4, 4, 4, 2, 0, 2, 4, 4, 4],
-            "suggestedReceipt": "https://www.google.com/search?client=firefox-b-d&biw=1536&bih=734&q=Ricette+con+radicchio+rosso+tondo+al+forno&sa=X&ved=2ahUKEwjf46z1joHwAhVQPuwKHYhYC0cQ1QIwHnoECAsQAQ"
+            "suggestedReceipt": "https://www.google.com/search?client=firefox-b-d&biw=1536&bih=734&q=Ricette+con+radicchio+rosso+tondo+al+forno&sa=X&ved=2ahUKEwjf46z1joHwAhVQPuwKHYhYC0cQ1QIwHnoECAsQAQ",
+            "type": 1
         },
-        "rapa rossa001" : {
+        "rapa rossa001": {
+            "information": [
+                {
+                    "description": "....",
+                    "link": "https://www.energiabenessere.com/chi-sono-sara-masiero-consulente-nutrizionale/",
+                    "title": "Il consiglio del nutrizionista"
+                }
+            ],
+            "monthlySeasonality": [
+                4,
+                4,
+                4,
+                2,
+                2,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+            ],
             "name": "RAPA ROSSA",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/rapa-rossa.png",
-            "type": 1,
-            "monthlySeasonality": [4, 4, 4, 2, 2, 2, 4, 4, 4, 4, 4, 4],
             "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/barbabietola-rossa/",
-            "information": [
-                {
-                    "title": "Il consiglio del nutrizionista",
-                    "description": "....",
-                    "link": "https://www.energiabenessere.com/chi-sono-sara-masiero-consulente-nutrizionale/"
-                }
-            ]
+            "type": 1
         },
-        "ravanelli001" : {
+        "ravanelli001": {
+            "monthlySeasonality": [
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0,
+                0
+            ],
             "name": "RAVANELLI",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/ravanelli.png",
-            "type": 1,
-            "monthlySeasonality": [0, 0, 2, 4, 4, 4, 4, 4, 4, 2, 0, 0]
+            "type": 1
         },
-        "rucola001" : {
-            "name": "RUCOLA",
-            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/rucola.jpg",
-            "type": 1,
-            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 4, 2, 0, 0],
-            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/arrosto-freddo-con-salsa-alla-rucola/",
+        "rucola001": {
             "information": [
                 {
-                    "title": "Il consiglio del nutrizionista",
                     "description": "Con il suo gusto pungente, la rucola apporta importanti minerali quali magnesio, potassio e calcio e vitamine tra le quali soprattutto A, C e folati. Il grande contenuto di carotenoidi, luteina e zeaxantina la eleggono un fantastico antiossidante nella lotta contro i radicali liberi. Come tutte le erbe amare ha azione epato-stimolante e quindi depurativa e diuretica. Contiene “erucina” preziosa per il nostro microbiota intestinale e protettiva della mucosa gastrica.",
-                    "link": "https://www.instagram.com/ghiottodisalute/"
+                    "link": "https://www.instagram.com/ghiottodisalute/",
+                    "title": "Parla la dott.ssa Piva"
                 }
-            ]
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0,
+                0
+            ],
+            "name": "RUCOLA",
+            "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/rucola.jpg",
+            "suggestedReceipt": "https://blog.giallozafferano.it/ortaggichepassionebysara/arrosto-freddo-con-salsa-alla-rucola/",
+            "type": 1
         },
-        "zucchine001" : {
+        "zucchine001": {
+            "information": [
+                {
+                    "description": "La zucchina è una pianta esigente, richiede spazio (circa un metro quadro a pianta) e un terreno ben concimato. Ci ricambia con una produzione abbondante.",
+                    "link": "",
+                    "title": "Il parere del produttore"
+                }
+            ],
+            "monthlySeasonality": [
+                0,
+                0,
+                0,
+                2,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                2,
+                0
+            ],
             "name": "ZUCCHINE",
             "picture": "https://blog.giallozafferano.it/ortaggichepassionebysara/wp-content/uploads/2021/04/zucchine.png",
-            "type": 1,
-            "monthlySeasonality": [0, 0, 0, 2, 4, 4, 4, 4, 4, 4, 2, 0]
+            "type": 1
         }
     }
 }
