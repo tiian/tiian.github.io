@@ -5,3 +5,4 @@ Here is the list of articles I think are more interesting and relevant about the
 - [Practical Transaction Handling in Microservice Architecture](https://hackernoon.com/practical-transaction-handling-in-microservice-architecture-5x1631ke), by Anjana Fernando
 - [Patterns for distributed transactions within a microservices architecture](https://developers.redhat.com/blog/2018/10/01/patterns-for-distributed-transactions-within-a-microservices-architecture/), by Keyang Xiang
 - [A Guide to Transactions Across Microservices](https://www.baeldung.com/transactions-across-microservices), by Sergei Petunin
+- [Distributed transaction patterns for microservices compared](https://developers.redhat.com/articles/2021/09/21/distributed-transaction-patterns-microservices-compared#), by Bilgin Ibryam
