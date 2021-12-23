@@ -18,7 +18,7 @@ XTA API Reference is available for the following programming languages:
 - [Java](/lixa/manuals/xta/Java/index.html)
 
 For the API provided by the TX Transaction Demarcation specification refer to
-the [official Technical Standard](https://pubs.opengroup.org/onlinepubs/9694999599/toc.pdf); LIXA support TX for both [C](https://www.tiian.org/lixa/manuals/html/ch05.html) and [COBOL](https://www.tiian.org/lixa/manuals/html/ch06.html) programming languages
+the [official Technical Standard](https://pubs.opengroup.org/onlinepubs/9694999599/toc.pdf); LIXA support the TX standard for both [C](https://www.tiian.org/lixa/manuals/html/ch05.html) and [COBOL](https://www.tiian.org/lixa/manuals/html/ch06.html) programming languages.
 
 ## Download
 Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hosting site is [SourceForge](https://sourceforge.net/projects/lixa/).
