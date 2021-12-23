@@ -1,9 +1,8 @@
 # LIXA - LIbre XA
 
-LIXA is a free and open source implementation of XA and TX specifications.
-
-LIXA ships XTA, [**XA Transaction API**](XTA.md), a new transactional API for
-applications.
+LIXA is a free and open source implementation of standard XA and TX 
+specifications; furthermore LIXA ships XTA, [**XA Transaction API**](XTA.md),
+a new transactional API for applications.
 
 ## Documentation
 Here is the last version of the LIXA manual as an HTML document:
@@ -17,6 +16,9 @@ XTA API Reference is available for the following programming languages:
 - [C](/lixa/manuals/xta/C/index.html)
 - [C++](/lixa/manuals/xta/CPP/index.html), it's useful even for Python
 - [Java](/lixa/manuals/xta/Java/index.html)
+
+For the API provided by the TX Transaction Demarcation specification refer to
+the [official Technical Standard](https://pubs.opengroup.org/onlinepubs/9694999599/toc.pdf); LIXA support TX for both [C](https://www.tiian.org/lixa/manuals/html/ch05.html) and [COBOL](https://www.tiian.org/lixa/manuals/html/ch06.html) programming languages
 
 ## Download
 Main hosting site is [GitHub](https://github.com/tiian/lixa), alternative hosting site is [SourceForge](https://sourceforge.net/projects/lixa/).
