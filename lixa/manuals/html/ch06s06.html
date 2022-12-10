@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle Pro*COBOL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s05.html" title="An example with PostgreSQL" /><link rel="next" href="ch06s07.html" title="An example with PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle Pro*COBOL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s05.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with Oracle Pro*COBOL</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.5)" /><link rel="up" href="ch06.html" title="Chapter 6. Developing COBOL Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch06s05.html" title="An example with PostgreSQL" /><link rel="next" href="ch06s07.html" title="An example with PostgreSQL &amp; Oracle" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with Oracle Pro*COBOL</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s05.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Developing COBOL Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch06s07.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_EXAMPLE2_ORA"></a>An example with Oracle Pro*COBOL</h2></div></div></div><div class="figure"><a id="develop6_cobol"></a><p class="title"><strong>Figure 6.3. Deploy model of an example with Oracle DBMS</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_5.png" alt="Deploy model of an example with Oracle DBMS" /></div></div></div><br class="figure-break" /><p>
       This example was developed using the following configuration:
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: bullet; "><li class="listitem" style="list-style-type: disc"><p>
@@ -27,7 +27,7 @@
 	  Start the LIXA state server as explained in
 	  <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59222112"></a>Set environment variables</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59160384"></a>Set environment variables</h3></div></div></div><p>
 	Create a shell script file, for example 
 	<code class="filename">oracle_env.sh</code>
 	with some useful environment variables as below:
@@ -57,7 +57,7 @@ tiian@ubuntu1404-64:/tmp$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lixa/lib
 tiian@ubuntu1404-64:/tmp$ echo $LD_LIBRARY_PATH
 /opt/oracle/instantclient_12_1::/opt/lixa/lib
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59225664"></a>Build the client program</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59163936"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ cp /opt/lixa/share/doc/lixa-X.Y.Z/examples/cobol/EXAMPLE2_ORA.pco .
@@ -71,44 +71,52 @@ System default option values taken from: /opt/oracle/instantclient_12_1/precomp/
 
 tiian@ubuntu1404-64:/tmp$ export COB_LDFLAGS=-Wl,--no-as-needed
 tiian@ubuntu1404-64:/tmp$ cobc -x $(lixa-config -f -l) \
-&gt; -L/opt/oracle/instantclient_12_1 -lclntsh -lnnz12 \
+&gt; -L$ORACLE_HOME -lclntsh \
 &gt; EXAMPLE2_ORA.cob \
-&gt; /opt/oracle/instantclient_12_1/cobsqlintf.o
+&gt; $ORACLE_HOME/cobsqlintf.o
 	  </pre></td></tr></tbody></table></div><p>
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	  The above commands should work even with very old cobc versions like OpenCOBOL 1.1.0; with recent versions a smarter command line should also work:
+	  <div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
+...
+
+tiian@ubuntu1404-64:/tmp$ cobc -x $(lixa-config -f -l) -L$ORACLE_HOME -lclntsh \
+&gt; EXAMPLE2_ORA.cob $ORACLE_HOME/cobsqlintf.o -Q "-Wl,--no-as-needed"
+	    </pre></td></tr></tbody></table></div></div><p>
 	Verify the executable produced by <span class="command"><strong>cobc</strong></span>:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ ldd EXAMPLE2_ORA
-    linux-vdso.so.1 =&gt;  (0x00007fff1bb34000)
-    libcob.so.1 =&gt; /usr/lib/libcob.so.1 (0x00007f434aaf8000)
-    libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f434a7f2000)
-    libgmp.so.10 =&gt; /usr/lib/x86_64-linux-gnu/libgmp.so.10 (0x00007f434a57d000)
-    libncurses.so.5 =&gt; /lib/x86_64-linux-gnu/libncurses.so.5 (0x00007f434a35a000)
-    libtinfo.so.5 =&gt; /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007f434a131000)
-    libdb-5.3.so =&gt; /usr/lib/x86_64-linux-gnu/libdb-5.3.so (0x00007f4349d8e000)
-    libdl.so.2 =&gt; /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f4349b8a000)
-    liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0x00007f434996f000)
-    libclntsh.so.12.1 =&gt; /opt/oracle/instantclient_12_1/libclntsh.so.12.1 (0x00007f43469b1000)
-    libnnz12.so =&gt; /opt/oracle/instantclient_12_1/libnnz12.so (0x00007f43462a7000)
-    libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f4345ee2000)
-    libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f4345cc3000)
-    /lib64/ld-linux-x86-64.so.2 (0x00007f434ad36000)
-    libgmodule-2.0.so.0 =&gt; /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0 (0x00007f4345abf000)
-    libglib-2.0.so.0 =&gt; /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007f43457b7000)
-    libxml2.so.2 =&gt; /usr/lib/x86_64-linux-gnu/libxml2.so.2 (0x00007f434544f000)
-    liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0x00007f4345236000)
-    libmql1.so =&gt; /opt/oracle/instantclient_12_1/libmql1.so (0x00007f4344fc0000)
-    libipc1.so =&gt; /opt/oracle/instantclient_12_1/libipc1.so (0x00007f4344c41000)
-    libons.so =&gt; /opt/oracle/instantclient_12_1/libons.so (0x00007f43449fc000)
-    libnsl.so.1 =&gt; /lib/x86_64-linux-gnu/libnsl.so.1 (0x00007f43447e2000)
-    librt.so.1 =&gt; /lib/x86_64-linux-gnu/librt.so.1 (0x00007f43445d9000)
-    libaio.so.1 =&gt; /lib/x86_64-linux-gnu/libaio.so.1 (0x00007f43443d7000)
-    libclntshcore.so.12.1 =&gt; /opt/oracle/instantclient_12_1/libclntshcore.so.12.1 (0x00007f4343e65000)
-    libpcre.so.3 =&gt; /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f4343c26000)
-    libz.so.1 =&gt; /lib/x86_64-linux-gnu/libz.so.1 (0x00007f4343a0d000)
-    liblzma.so.5 =&gt; /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007f43437eb000)
-    libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007f43435e5000)
+linux-vdso.so.1 =&gt;  (0x00007ffc15bfe000)
+libcob.so.1 =&gt; /usr/lib/libcob.so.1 (0x00007fd00ecea000)
+libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007fd00e9e4000)
+libgmp.so.10 =&gt; /usr/lib/x86_64-linux-gnu/libgmp.so.10 (0x00007fd00e770000)
+libncurses.so.5 =&gt; /lib/x86_64-linux-gnu/libncurses.so.5 (0x00007fd00e54d000)
+libtinfo.so.5 =&gt; /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007fd00e324000)
+libdb-5.3.so =&gt; /usr/lib/x86_64-linux-gnu/libdb-5.3.so (0x00007fd00df82000)
+libdl.so.2 =&gt; /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fd00dd7e000)
+liblixac.so.0 =&gt; /opt/lixa/lib/liblixac.so.0 (0x00007fd00db58000)
+liblixab.so.0 =&gt; /opt/lixa/lib/liblixab.so.0 (0x00007fd00d936000)
+libclntsh.so.12.1 =&gt; /opt/oracle/instantclient_12_1/libclntsh.so.12.1 (0x00007fd00a979000)
+libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd00a5b0000)
+libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fd00a392000)
+/lib64/ld-linux-x86-64.so.2 (0x00007fd00ef1c000)
+libgmodule-2.0.so.0 =&gt; /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0 (0x00007fd00a18e000)
+libglib-2.0.so.0 =&gt; /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007fd009e86000)
+libxml2.so.2 =&gt; /usr/lib/x86_64-linux-gnu/libxml2.so.2 (0x00007fd009b1f000)
+libuuid.so.1 =&gt; /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007fd00991a000)
+libmql1.so =&gt; /opt/oracle/instantclient_12_1/libmql1.so (0x00007fd0096a4000)
+libipc1.so =&gt; /opt/oracle/instantclient_12_1/libipc1.so (0x00007fd009326000)
+libnnz12.so =&gt; /opt/oracle/instantclient_12_1/libnnz12.so (0x00007fd008c1c000)
+libons.so =&gt; /opt/oracle/instantclient_12_1/libons.so (0x00007fd0089d7000)
+libnsl.so.1 =&gt; /lib/x86_64-linux-gnu/libnsl.so.1 (0x00007fd0087bd000)
+librt.so.1 =&gt; /lib/x86_64-linux-gnu/librt.so.1 (0x00007fd0085b5000)
+libaio.so.1 =&gt; /lib/x86_64-linux-gnu/libaio.so.1 (0x00007fd0083b3000)
+libclntshcore.so.12.1 =&gt; /opt/oracle/instantclient_12_1/libclntshcore.so.12.1 (0x00007fd007e41000)
+libpcre.so.3 =&gt; /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007fd007c03000)
+libz.so.1 =&gt; /lib/x86_64-linux-gnu/libz.so.1 (0x00007fd0079ea000)
+liblzma.so.5 =&gt; /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007fd0077c8000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59233536"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59174112"></a>Set-up LIXA environment</h3></div></div></div><p>
 	Set-up the <code class="varname">LIXA_PROFILE</code> environment variable:
 	</p><div class="table"><table frame="box"><thead><tr><td>[Shell terminal session]</td></tr></thead><tbody><tr><td><pre class="screen">
 tiian@ubuntu1404-64:/tmp$ echo $LIXA_PROFILE
@@ -120,7 +128,7 @@ ORAIC_DYN
       </p><p>
 	See <a class="xref" href="ch05s08.html#example5_some_checks" title="Some checks before program execution">the section called “Some checks before program execution”</a> for additional details on
 	the profile.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59237456"></a>Program execution</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59177936"></a>Program execution</h3></div></div></div><p>
 	It is suggested to open two different terminals: the first one
 	connected to Oracle database and the second
 	one pointing to the directory where the compiled program

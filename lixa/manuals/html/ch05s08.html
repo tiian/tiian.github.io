@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s07.html" title="" /><link rel="next" href="ch05s09.html" title="An example with PostgreSQL &amp; IBM DB2" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s07.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>An example with PostgreSQL &amp; Oracle</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.5)" /><link rel="up" href="ch05.html" title="Chapter 5. Developing C Application Programs using TX (Transaction Demarcation) interface" /><link rel="prev" href="ch05s07.html" title="" /><link rel="next" href="ch05s09.html" title="An example with PostgreSQL &amp; IBM DB2" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">An example with PostgreSQL &amp; Oracle</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s07.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Developing C Application Programs using TX (Transaction
   Demarcation) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch05s09.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Development_example6_pql_ora"></a>An example with PostgreSQL &amp; Oracle</h2></div></div></div><div class="figure"><a id="develop6"></a><p class="title"><strong>Figure 5.4. Deploy model of an example showing a distributed transaction with PostgreSQL and Oracle</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_6.png" alt="Deploy model of an example showing a distributed transaction with PostgreSQL and Oracle" /></div></div></div><br class="figure-break" /><p>
       This example shows as
       you can implement DTP (Distributed Transaction Processing) with two
@@ -48,7 +48,7 @@
 	    in <a class="xref" href="ch04.html#Starting_the_state_server" title="Starting the state server (lixad)">the section called “Starting the state server (<span class="command"><strong>lixad</strong></span>)”</a>
 	    to start up the LIXA state server
 	</p></li></ul></div><p>
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58474832"></a>Build the client program</h3></div></div></div><p>
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58413104"></a>Build the client program</h3></div></div></div><p>
 	Prepare the client (Application Program) using the below commands
 	(<span class="command"><strong>gcc</strong></span> command was splitted on several lines 
 	using <span class="command"><strong>\</strong></span> to help readability, but you may use
@@ -107,7 +107,7 @@ libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x00007f692c923000)
 libffi.so.6 =&gt; /lib64/libffi.so.6 (0x00007f692c71a000)
 libpcre2-8.so.0 =&gt; /lib64/libpcre2-8.so.0 (0x00007f692c496000)
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58475344"></a>Set-up LIXA environment</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58413616"></a>Set-up LIXA environment</h3></div></div></div><p>
 	There are some unresolved references that can be fixed setting up
 	the environment properly; you can fix the environment manually or
 	using a script like:
@@ -220,15 +220,15 @@ libpcre2-8.so.0 =&gt; /lib64/libpcre2-8.so.0 (0x00007f1f340d6000)
 	</pre><p>
 	we can discover how our application will access the resource
 	managers
-	<a href="#ftn.idp58503200" class="footnote" id="idp58503200"><sup class="footnote">[26]</sup></a>
-	<a href="#ftn.idp58505664" class="footnote" id="idp58505664"><sup class="footnote">[27]</sup></a>. 
+	<a href="#ftn.idp58441472" class="footnote" id="idp58441472"><sup class="footnote">[27]</sup></a>
+	<a href="#ftn.idp58443936" class="footnote" id="idp58443936"><sup class="footnote">[28]</sup></a>. 
       </p><p>
 	Verify no (Oracle) trace file exists:
 	</p><pre class="screen">
 [tiian@centos8 tmp]$ ls -la /tmp/xa*
 ls: cannot access '/tmp/xa*': No such file or directory
 	</pre><p>
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58507648"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp58445920"></a>Program execution (dynamic registration for Oracle)</h3></div></div></div><p>
 	It is suggested to open three different terminals: 
 	the first one connected to <span class="quote">“<span class="quote">testdb</span>”</span> PostgreSQL database,
 	the second one connected to Oracle database and the
@@ -358,15 +358,15 @@ no rows selected
 [tiian@centos8 tmp]$ ls -la /tmp/xa_*
 -rw-rw-r--. 1 tiian tiian 9980 Oct 11 16:07 /tmp/xa_NULL10112020.trc
 	  </pre></td></tr></tbody></table></div><p>
-      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58503200" class="footnote"><p><a href="#idp58503200" class="para"><sup class="para">[26] </sup></a>
+      </p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp58441472" class="footnote"><p><a href="#idp58441472" class="para"><sup class="para">[27] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> is passed to
 	    <code class="function">PQconnectdb</code> function: you can refer to 
 	    PostgreSQL official
 	    documentation to discover what you can pass to this function.
 	    Please pay attention the <code class="varname">xa_open_info</code> can
 	    contain a maximum of 255 characters: this limitation is
-	    documented in [<a class="citation" href="bi01.html#idp61184512"><span class="citation">XAspec</span></a>].
-	  </p></div><div id="ftn.idp58505664" class="footnote"><p><a href="#idp58505664" class="para"><sup class="para">[27] </sup></a>
+	    documented in [<a class="citation" href="bi01.html#idp61125008"><span class="citation">XAspec</span></a>].
+	  </p></div><div id="ftn.idp58443936" class="footnote"><p><a href="#idp58443936" class="para"><sup class="para">[28] </sup></a>
 	    The content of <code class="constant">xa_open_info</code> string is
 	    described in chapter 15 "Developing Applications with Oracle XA"
 	    of the "Oracle Database Application Developer's Guide"

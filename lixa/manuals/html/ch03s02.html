@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57862352"></a>Configuring LIXA components</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring LIXA components</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.5)" /><link rel="up" href="ch03.html" title="Chapter 3. Configuration" /><link rel="prev" href="ch03.html" title="Chapter 3. Configuration" /><link rel="next" href="ch03s03.html" title="Environment variables" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Configuring LIXA components</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Configuration</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp57797360"></a>Configuring LIXA components</h2></div></div></div><p>
       The picture below shows the LIXA components that must be configured:
     </p><div class="figure"><a id="config6"></a><p class="title"><strong>Figure 3.6. The LIXA components and the necessary configuration files</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Configuration_6.png" alt="The LIXA components and the necessary configuration files" /></div></div></div><br class="figure-break" /><p>
       The client component (<code class="systemitem">lixac</code>) 
@@ -7,12 +7,12 @@
       <code class="filename">etc/lixac_conf.xml</code> file; the server component
       (<span class="command"><strong>lixad</strong></span>) is configured using the
       <code class="filename">etc/lixad_conf.xml</code> file
-      <a href="#ftn.idp57866800" class="footnote" id="idp57866800"><sup class="footnote">[17]</sup></a>.
+      <a href="#ftn.idp57801808" class="footnote" id="idp57801808"><sup class="footnote">[17]</sup></a>.
     </p><p>
       If a node hosts both the client and the server components, both the
       files must be configured. If a node hosts only one component, only
       one configuration file is necessary
-      <a href="#ftn.idp57868992" class="footnote" id="idp57868992"><sup class="footnote">[18]</sup></a>.
+      <a href="#ftn.idp57804000" class="footnote" id="idp57804000"><sup class="footnote">[18]</sup></a>.
     </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="Configuring_the_server"></a>Configuring the server</h3></div></div></div><p>
 	The default configuration file is 
 	<code class="filename">etc/lixad_conf.xml</code>
@@ -185,7 +185,7 @@ $ export LIXA_STATE_ENGINE=JOURNAL
 	  </p><pre class="screen">
 $ export LIXA_STATE_ENGINE=TRADITIONAL
 	  </pre><p>
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57908336"></a>Configuring the client</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp57843344"></a>Configuring the client</h3></div></div></div><p>
 	The default configuration file is 
 	<code class="filename">etc/lixac_conf.xml</code>
 	and is located at the root installation path (i.e.
@@ -372,7 +372,25 @@ $ export LIXA_STATE_ENGINE=TRADITIONAL
 		(APP1DEV, APP2DEV, APP3DEV, APP1TEST,
 		APP2TEST, APP3TEST, APP1PROD, APP2PROD, APP3PROD).
 	    </p></li></ul></div><p>
-	</p><p>
+	</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+	  Every profile lists some Resource Managers: LIXA guarantees that all
+	  the XA functions are called in the same exact order
+	  <a href="#ftn.idp57880912" class="footnote" id="idp57880912"><sup class="footnote">[19]</sup></a>
+	  of the Resource Managers as enlisted in the profile.</p><p>In the above example, profile "VZ67" enlists Resource Managers
+	  "OracleXE_dynreg" in first position and "IBMDB2_dynreg" in second
+	  position; every XA function, like for example
+	  <code class="function">xa_prepare</code> and <code class="function">xa_commit</code>
+	  are called by LIXA in the same exact order:
+	  </p><pre class="screen">
+	    ...
+	    xa_prepare("OracleXE_dynreg")
+	    xa_prepare("IBMDB2_dynreg")
+	    ...
+	    xa_commit("OracleXE_dynreg")
+	    xa_commit("IBMDB2_dynreg")
+	    ...
+	  </pre><p>
+	</p></div><p>
 	  The picture below models an environment that's using the sample
 	  <code class="filename">etc/lixac_conf.xml</code>
 	  showed above:
@@ -461,13 +479,15 @@ Feb  8 21:38:51 ubuntu lixat[2532]: LXC001E transaction '1279875137.46d1df80428d
 	    as explained in
 	    <a class="xref" href="ch03s03.html" title="Environment variables">the section called “Environment variables”</a> until you are not sure 
 	    about the changes you are performing.
-	  </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57866800" class="footnote"><p><a href="#idp57866800" class="para"><sup class="para">[17] </sup></a>
+	  </p></div></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp57801808" class="footnote"><p><a href="#idp57801808" class="para"><sup class="para">[17] </sup></a>
 	  Both the files reside in <code class="filename">/opt/lixa/etc/</code>
 	  directory and must be managed by
 	  <code class="systemitem">lixa</code> user, the
 	  LIXA administrative user
-      </p></div><div id="ftn.idp57868992" class="footnote"><p><a href="#idp57868992" class="para"><sup class="para">[18] </sup></a>
+      </p></div><div id="ftn.idp57804000" class="footnote"><p><a href="#idp57804000" class="para"><sup class="para">[18] </sup></a>
 	  The standard installation procedure installs both the files with
 	  default content; it's your responsability to customize the content
 	  of the files.
-      </p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Environment variables</td></tr></table></div></body></html>
+      </p></div><div id="ftn.idp57880912" class="footnote"><p><a href="#idp57880912" class="para"><sup class="para">[19] </sup></a>XA functions can be skipped for dynamically
+	  registered Resource Managers 
+	  if they are not part of the transaction.</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. Configuration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Environment variables</td></tr></table></div></body></html>

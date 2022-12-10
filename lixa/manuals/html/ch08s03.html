@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Consecutive Calls” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.3)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s02.html" title="The “Single Application” Pattern" /><link rel="next" href="ch08s04.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The “Multiple Applications, Consecutive Calls” Pattern</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LIXA Reference Guide (version 1.9.5)" /><link rel="up" href="ch08.html" title="Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface" /><link rel="prev" href="ch08s02.html" title="The “Single Application” Pattern" /><link rel="next" href="ch08s04.html" title="The “Multiple Applications, Concurrent Branches/Pseudo Synchronous” Pattern" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The
     <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
     Pattern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Developing Application Programs using XTA (XA Transaction API) interface</th><td width="20%" align="right"> <a accesskey="n" href="ch08s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="xta_macc"></a>The
     <span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
@@ -18,7 +18,7 @@
 	</tr><tr>
 	  <td>Concurrency among Application Programs:</td>
 	  <td>no, strictly consecutive executive</td>
-	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59740320"></a>Description</h3></div></div></div><p>
+	</tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59680800"></a>Description</h3></div></div></div><p>
 	This is a Distributed Transaction Processing pattern introduced by XTA:
 	two or more Application Programs use the same Resource Manager(s) and
 	perform consecutive operations inside a single XA global transaction.
@@ -34,8 +34,8 @@
 	  Resource Manager</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_06.svg" alt="Example of “Multiple Applications, Consecutive Calls” with two Application Programs and one Resource Manager" /></div></div></div><p><br class="figure-break" />
 	The pattern can <span class="emphasis"><em>not</em></span> be implemented using the
 	standard TX Transaction	Demarcation interface
-	<a href="#ftn.idp59744448" class="footnote" id="idp59744448"><sup class="footnote">[49]</sup></a>.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59745616"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern07"></a><p class="title"><strong>Figure 8.7. Simplified sequence diagram for the
+	<a href="#ftn.idp59684928" class="footnote" id="idp59684928"><sup class="footnote">[50]</sup></a>.
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59686096"></a>How it works</h3></div></div></div><div class="figure"><a id="xta_pattern07"></a><p class="title"><strong>Figure 8.7. Simplified sequence diagram for the
 	<span class="quote">“<span class="quote">Multiple Applications, Consecutive Calls</span>”</span>
 	Pattern</strong></p><div class="figure-contents"><div class="mediaobject"><img src="../images/LIXA_Development_XTA_07.svg" alt="Simplified sequence diagram for the “Multiple Applications, Consecutive Calls” Pattern" /></div></div></div><br class="figure-break" /><p>
 	The above figure shows the logic necessary to build this type of
@@ -130,18 +130,18 @@
 	</p><pre class="screen">tm = xta_transaction_manager_new()</pre><p> and
 	</p><pre class="screen">tx.Commit()</pre><p> translates to
 	</p><pre class="screen">xta_transaction_commit(tx, FALSE)</pre><p> in C.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59770224"></a>Known limitations</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59710704"></a>Known limitations</h3></div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 	Not all the Resource Managers have implemented the XA specifications
 	in the same way. This section tracks some limitations that have been
 	reported by the LIXA project.
-      </p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59773664"></a>MariaDB, MySQL and PostgreSQL support for 
+      </p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59714144"></a>MariaDB, MySQL and PostgreSQL support for 
 	<span class="quote">“<span class="quote">suspend/resume</span>”</span></h4></div></div></div><p>
 	  All the three databases do not support the XA specification part that
 	  describe as a transaction can be suspended and resumed. This pattern
 	  can't be used with those Resource Managers.
 	  The limitation currently applies to all the provided APIs: C, Java,
 	  etc...
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59774976"></a>An example using the C language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59715456"></a>An example using the C language</h3></div></div></div><p>
 	The supplied example (<code class="filename">example_xta_macc01.c</code>) uses
 	Oracle in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span>; please
 	refer to the instructions explained:
@@ -442,13 +442,13 @@ xaoclose: rtn 0
 	instead of a <span class="quote">“<span class="quote">two phase commit</span>”</span> because there's only one
 	Resource Manager (hint: function <code class="function">xaoprepare</code> has
 	not been called by the Transaction Manager).
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59797952"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59738432"></a>Source Code</h4></div></div></div><p>
 	  Source code for program <code class="filename">example_xta_macc01.c</code> is
 	  installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta</code>
 	  and is available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/example_xta_macc01.c" target="_top">GitHub</a>.
 	  Source code is fully commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59843088"></a>An example using the C++ language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59783520"></a>An example using the C++ language</h3></div></div></div><p>
 	The supplied example (<code class="filename">example_xta_macc11.cpp</code>) uses
 	Oracle in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span>; please
 	refer to the instructions explained:
@@ -749,13 +749,13 @@ xaoclose: rtn 0
 	instead of a <span class="quote">“<span class="quote">two phase commit</span>”</span> because there's only one
 	Resource Manager (hint: function <code class="function">xaoprepare</code> has
 	not been called by the Transaction Manager).
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59866304"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59806736"></a>Source Code</h4></div></div></div><p>
 	  Source code for program <code class="filename">example_xta_macc11.cpp</code>
 	  is installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/cpp</code>
 	  and is available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/cpp/example_xta_macc11.cpp" target="_top">GitHub</a>.
 	  Source code is fully commented for readability.
-	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59911392"></a>An example using the Java language</h3></div></div></div><p>
+	</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="idp59851872"></a>An example using the Java language</h3></div></div></div><p>
 	The supplied example (<code class="filename">ExampleXtaMACC31.java</code>) uses
 	Oracle in the role of <span class="quote">“<span class="quote">Resource Manager 1</span>”</span>; please
 	refer to the instructions explained:
@@ -974,13 +974,13 @@ no rows selected
 
 	  </pre></td></tr></tbody></table></div><p>
 	The table is now empty.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59934448"></a>Source Code</h4></div></div></div><p>
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="idp59874928"></a>Source Code</h4></div></div></div><p>
 	  Source code for program <code class="filename">ExampleXtaMACC31.java</code>
 	  is installed in directory
 	  <code class="filename">/opt/lixa/share/doc/lixa-X.Y.Z/examples/xta/java</code>
 	  and is available on <a class="link" href="https://github.com/tiian/lixa/blob/master/doc/examples/xta/java/ExampleXtaMACC31.java" target="_top">GitHub</a>.
 	  Source code is fully commented for readability.
-	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59744448" class="footnote"><p><a href="#idp59744448" class="para"><sup class="para">[49] </sup></a>
+	</p></div></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp59684928" class="footnote"><p><a href="#idp59684928" class="para"><sup class="para">[50] </sup></a>
 	  Transaction Coupling (TC) TX extensions supports the pattern with
 	  a traditional TX like interface
 	  (see <a class="xref" href="ch07.html" title="Chapter 7. Developing C Application Programs with the Transaction Coupling (TC) TX extensions">Chapter 7, <em>Developing C Application Programs with the Transaction Coupling (TC) TX extensions</em></a>)
