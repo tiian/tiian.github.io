@@ -46,7 +46,7 @@ SSL/TLS [Security](security/Security.md) allows to protect network communication
 Don't esitate to write your suggestions using the [project forum](http://sourceforge.net/p/flom/discussion/): without your feedback this software can't become terribly useful.
 
 ## Donate
-You can donate to the project using this DPBAX1a98sCeLcSEjk4KqDTjdB8fQ9WQpC [Dogecoin address](https://dogecoin.com/)
+If you think FLoM provides value to you, please donate to the project using this DPBAX1a98sCeLcSEjk4KqDTjdB8fQ9WQpC [Dogecoin address](https://dogecoin.com/): useless to say, even free software development and maintenance generates costs. Thanks for your support!
 
 ## And last but not least...
 In the event of bug, [GitHub Issues](https://github.com/tiian/flom/issues) is your friend!
