@@ -27,6 +27,10 @@ FLoM wants to be **just work software** and configuration should be reduced to t
 
 FLoM [deep diving](Deep_Diving/Deep_Diving.md) contains specific detailed topics you could interested in after you tried some examples (use cases).
 
+## Packages
+
+The main way to get FLoM is building it from source code, but Andreas Stieger provided a [package for openSUSE](https://build.opensuse.org/package/show/utilities/flom).
+
 ## FLoM API (Application Programming Interface)
 FLoM provides an API based on [libflom](libflom/libflom.md) that's compiled and installed using libtool; using **libflom** you can use a FLoM *daemon* to synchronize your own applications and your own shell scripts/commands using the **same** tool.
 
