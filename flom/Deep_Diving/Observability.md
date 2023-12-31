@@ -6,7 +6,7 @@ Starting from version 1.7.0, FLoM provides an "observability" feature that can b
 The *observability* feature provides a Virtual File System (VFS) that mimics the behavior of the well known /proc and /sys virtual filesystems of the Linux operating system. The VFS provided by FLoM is based on [Linux FUSE](https://www.kernel.org/doc/html/next/filesystems/fuse.html) (Filesystem in Userspace) technology and [libfuse](https://github.com/libfuse/libfuse) that are typically available in most Linux distributions.
 
 ## Preparing the VFS mount point
-The VFS must be mounted somewhere in the same system where FLoM daemon is running; for example you can mount it inside /tmp:
+The VFS must be mounted somewhere in the same system where FLoM *daemon* is running; for example you can create a mount point inside /tmp:
 
     ~$ mkdir flom-vfs
     ~$ ls -la flom-vfs/
@@ -17,7 +17,7 @@ The VFS must be mounted somewhere in the same system where FLoM daemon is runnin
 ## Activate FLoM daemon with the observability feature
 Use **command line option** "-m", "--mount-point-vfs" to activate the feature and use the mount point for the Virtual File System:
 
-    :/tmp$ flom -m /tmp/flom-vfs/ -- sleep 60
+    ~$ flom -m /tmp/flom-vfs/ -- sleep 60
 
 and from another session:
 
@@ -70,12 +70,12 @@ Inspect the content of the files:
 
 The above information can be read as:
 
-* client **2** is connecting from address 192.168.120.20 port 57072
+* client **2** is connecting from address 192.168.123.20 port 57072
 * it's waiting from **numeric** resource of name **num[3]**
 
 From the same system / another system, activate another client that wants to lock the same resource:
 
-    $ flom -a 192.168.123.20 -r num[3] -q 2 -- sleep 30
+    $ flom -a 192.168.123.20 -r num[3] -q 2 -- sleep 300
 
 look at the content of the VFS:
 
@@ -96,7 +96,7 @@ look at the content of the VFS:
     /tmp/flom-vfs/status/lockers/4/waitings/2/peer_name
     /tmp/flom-vfs/status/lockers/4/waitings/2/quantity
 
-the *daemon* activate the *locker* number **4** for *resource* "num[3]" of *type* "numeric":
+now the *incubator* is empty because the *daemon* activated the *locker* number **4** for *resource* "num[3]" of *type* "numeric":
 
     ~$ cat /tmp/flom-vfs/status/lockers/4/resource_name 
     num[3]
@@ -139,4 +139,11 @@ and, after some time, when the first holder completed, look at it again:
     2
 
 as expected, the *client* that was waiting the resource is now holding it.
+
+## Troubleshooting
+When the FLoM *daemon* exits, the FUSE Virtual File System is automatically unmounted, but under certain conditions, like for example another process that's keeping the filesystem open, the VFS cannot be automatically unmounted. To unmount it manually, two different commands can be used:
+
+    fusermount -u <mountpoint>
+
+    sudo umount -l <mountpoint>
 
