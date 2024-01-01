@@ -68,6 +68,16 @@ Inspect the content of the files:
     ~$ cat /tmp/flom-vfs/status/incubator/2/resource_type 
     numeric
 
+Modification times are aligned with operations times:
+
+    ~$ ls -la /tmp/flom-vfs/status/incubator/2/
+    total 0
+    dr-xr-x--- 2 tiian tiian  0 Jan  1 17:18 .
+    dr-xr-x--- 2 tiian tiian  0 Jan  1 17:18 ..
+    -r--r----- 1 tiian tiian 22 Jan  1 17:18 peer_name
+    -r--r----- 1 tiian tiian  7 Jan  1 17:18 resource_name
+    -r--r----- 1 tiian tiian  8 Jan  1 17:18 resource_type
+
 The above information can be read as:
 
 * client **2** is connecting from address 192.168.123.20 port 57072
